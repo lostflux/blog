@@ -7,6 +7,16 @@
 <script lang="ts">
 
 export default {
-  name: 'IndexPage',
+  head() {
+    return {
+      title: "Amittai's Portfolio",
+      meta: [
+        {
+          name: "Amittai's Portfolio",
+          content: "Randomness",
+        },
+      ],
+    }
+  }
 }
 </script>

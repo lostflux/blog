@@ -10,7 +10,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "fibers": "^5.0.1",
     "nuxt": "3.0.0-rc.3",
-    "sass": "^1.52.1",
+    "sass": "^1.52.2",
     "sass-loader": "^13.0.0"
   },
   "dependencies": {

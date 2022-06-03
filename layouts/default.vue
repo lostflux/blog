@@ -1,54 +1,83 @@
 <template>
-  <div class="container">
+  <div id="root">
     <AppHeader/>
-    <slot />
+    <div id="theme">
+      <a className="skip-to-content" href="#content">
+        Skip to Content
+      </a>
+      <div className="styled-content">
+        <AppHeader />
+        <!-- <Nav isHome={isHome} /> -->
+        <!-- <Social isHome={isHome} /> -->
+        <!-- <Email isHome={isHome} /> -->
+
+        <div id="content">
+          {children}
+          <AppFooter />
+        </div>
+      </div>
+
+    </div>
+    <!-- <slot/> -->
+    <!-- <AppFooter/> -->
   </div>
 </template>
 
-<script lang="ts">
-import AppHeader from "../components/AppHeader.vue"
-
-export default {
-  components: {
-    AppHeader
-  },
-  layout: 'default'
-}
-</script>
-
-
 <style lang="sass">
 
-  *
-    box-sizing: border-box
-    margin: 0
-    padding: 0
-
-  body
-    // font-family: aktiv-grotesk, courier-new, courier, monospace
-    font-family: 'Mercury SSm A', 'Mercury SSm B', georgia, serif
-    font-style: normal
-    font-weight: 300
-    font-size: 1em
-    line-height: 1.85em
-    background: #f4f4f4
-    color: #003F33
-    background-color: #edece8
-
-
-  a
-    color: crimson
-    text-decoration: none
-
-  ul
-    list-style: none
-
-
-  .container
-    max-width: 800px
-    margin: 2rem auto
-    overflow: hidden
-    padding: 1rem 2rem
-    background: #fff
-
+  .styled-content
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    
 </style>
+
+<script lang="ts">
+  import AppHeader from "../components/AppHeader.vue"
+  import AppFooter from "../components/AppFooter.vue"
+  import { useState, useEffect } from 'react'
+
+  const Layout = ({ children, location }) => {
+    const isHome = location.pathname === '/';
+    const [isLoading, setIsLoading] = useState(isHome);
+
+    // Sets target="_blank" rel="noopener noreferrer" on external links
+    const handleExternalLinks = () => {
+      const allLinks = Array.from(document.querySelectorAll('a'));
+      if (allLinks.length > 0) {
+        allLinks.forEach(link => {
+          if (link.host !== window.location.host) {
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('target', '_blank');
+          }
+        });
+      }
+    };
+
+    useEffect(() => {
+      if (isLoading) {
+        return;
+      }
+
+      if (location.hash) {
+        const id = location.hash.substring(1); // location.hash without the '#'
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView();
+            el.focus();
+          }
+        }, 0);
+      }
+
+      handleExternalLinks();
+    }, [isLoading]);
+  };
+  export default {
+    components: {
+      AppHeader,
+      AppFooter
+    },
+    layout: 'default'
+  }
+</script>

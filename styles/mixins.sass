@@ -1,19 +1,27 @@
 
-button
-  color: $green
+@use "colors"
+@use "typography"
+@use "geometry"
+
+$green: colors.color("green")
+$green-tint: colors.darken($green, 50%)
+$border-radius: geometry.radius("small")
+
+@mixin button
+  color: colors.color("green")
   background-color: transparent
   border: 1px solid $green
-  border-radius: $border-radius
-  font-size: $fz-xs
-  font-family: $font-mono
+  border-radius: geometry.radius("small")
+  font-size: typography.font-size("small")
+  font-family: typography.font("mono")
   line-height: 1
   text-decoration: none
   cursor: pointer
-  transition: $transition
   padding: 1.25rem 1.75rem
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
 
   &:hover, &:focus, &:active
-    background-color: $green-tint
+    background-color: colors.color("green-tint")
     outline: none
   &:after
     display: none !important
@@ -35,7 +43,7 @@ button
   text-decoration-skip-ink: auto
   color: inherit
   position: relative
-  transition: $transition
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
   &:hover, &:active, &:focus
     color: $green
     outline: 0
@@ -46,9 +54,11 @@ button
   text-decoration: none
   text-decoration-skip-ink: auto
   position: relative
-  transition: $transition
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
   color: $green
-  &:hover, &:focus, &:active
+  &:hover,
+  &:focus,
+  &:active
     color: $green
     outline: 0
     &:after
@@ -56,7 +66,7 @@ button
 
     & > *
       color: $green !important
-      transition: $transition
+      // transition: geometry.transition(all, 0.2s, ease-in-out)
 
   &:after
     content: ''
@@ -66,73 +76,74 @@ button
     position: relative
     bottom: 0.37em
     background-color: $green
-    transition: $transition
+    // transition: geometry.transition(all, 0.2s, ease-in-out)
     opacity: 0.5
 
-  button,
-  .small-button
-    color: $green
-    background-color: transparent
-    border: 1px solid $green
-    border-radius: $border-radius
-    padding: 0.75rem 1rem
-    font-size: $fz-xs
-    font-family: $font-mono
-    line-height: 1
-    text-decoration: none
-    cursor: pointer
-    transition: $transition
-    &:hover, &:focus, &:active
-      background-color: $green-tint
-      outline: none
+button,
+.small-button
+  color: $green
+  background-color: transparent
+  border: 1px solid $green
+  border-radius: $border-radius
+  padding: 0.75rem 1rem
+  font-size: typography.font-size("small")
+  font-family: typography.font("monospace")
+  line-height: 1
+  text-decoration: none
+  cursor: pointer
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
+  &:hover, &:focus, &:active
+    background-color: colors.color("crimson")
+    outline: none
 
-    &:after
-      display: none !important
+  &:after
+    display: none !important
 
-  .big-button:
-    color: $green
-    background-color: transparent
-    border: 1px solid $green
-    border-radius: $border-radius
-    padding: 1.25rem 1.75rem
-    font-size: var(--fz-sm)
-    font-family: $font-mono
-    line-height: 1
-    text-decoration: none
-    cursor: pointer
-    transition: $transition
-    &:hover,
-    &:focus,
-    &:active
-      background-color: $green-tint
-      outline: none
-    &:after
-      display: none !important
+.big-button
+  color: colors.color("green")
+  background-color: transparent
+  border: 1px solid colors.color("green")
+  border-radius: geometry.radius("small")
+  padding: 1.25rem 1.75rem
+  font-size: typography.font-size("small")
+  font-family: typography.font("monospace")
+  line-height: 1
+  text-decoration: none
+  cursor: pointer
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
 
-  .box-shadow
-    box-shadow: 0 10px 30px -15px $navy-shadow
-    transition: $transition
+  &:hover,
+  &:focus,
+  &:active
+    background-color: colors.color("crimson")
+    outline: none
+  &:after
+    display: none !important
 
-    &:hover,
-    &:focus
-      box-shadow: 0 20px 30px -15px $navy-shadow
+.box-shadow
+  box-shadow: 0 10px 30px -15px colors.color("zaffre")
+  // transition: geometry.transition(all, 0.2s, ease-in-out)
 
-  .fancy-list
-    padding: 0
-    margin: 0
-    list-style: none
-    font-size: $fz-lg
-    li
-      position: relative
-      padding-left: 30px
-      margin-bottom: 10px
-      &:before 
-        content: '▹'
-        position: absolute
-        left: 0
-        color: $green
+  &:hover,
+  &:focus
+    box-shadow: 0 20px 30px -15px colors.color("zaffre")
 
-  .reset-list
-    list-style: none
-    padding: 0
-    margin: 0
+.fancy-list
+  padding: 0
+  margin: 0
+  list-style: none
+  font-size: typography.font-size("small")
+  li
+    position: relative
+    padding-left: 30px
+    margin-bottom: 10px
+    &:before 
+      content: '▹'
+      position: absolute
+      left: 0
+      color: colors.color("green")
+
+.reset-list
+  list-style: none
+  padding: 0
+  margin: 0

@@ -1,35 +1,22 @@
 <template>
-  <div id="main" location={location}>
-    <StyledMainContainer className="fillHeight">
-      <Hero />
-      <About />
-      <Jobs />
-      <Featured />
-      <Projects />
-      <Contact />
-    </StyledMainContainer>
+  <div id="main">
+    <AppHeader />
+    <!-- <Front/> -->
+    <About />
+    <!-- <Jobs/> -->
+    <!-- <Featured/> -->
+    <!-- <Projects/> -->
+    <!-- <Contact/> -->
+    <AppFooter />
   </div>
 </template>
 
-<script lang="ts">
-
-  export default {
-    head() {
-      return {
-        title: "Amittai's Portfolio",
-        meta: [
-          {
-            name: "Amittai's Portfolio",
-            content: "Randomness",
-          },
-        ],
-      }
-    }
-  }
-</script>
-
-<style lang="sass" scoped>
-
-  .styled-main
-    counter-reset: section
+<style lang="sass">
+  @use '../styles/index'
 </style>
+
+<script lang="ts">
+export default {
+  name: "DefaultLayout",
+}
+</script>

@@ -1,0 +1,27 @@
+@use "sass:map";
+
+@function font($name) {
+  $result: map.get($fonts, $name);
+  // @debug $result;
+  @return $result;
+}
+
+@function font-size($size) {
+  $result: map.get($font-sizes, $size);
+  // @debug $result;
+  @return $result;
+}
+
+$fonts: (
+  "primary": "Roboto, sans-serif",
+  "secondary": "Roboto, sans-serif",
+  "monospace": "Roboto Mono, monospace",
+);
+
+$font-sizes: (
+  "small": 0.875rem,
+  "medium": 1rem,
+  "large": 1.125rem,
+  "x-large": 1.25rem,
+  "xx-large": 1.5rem,
+);

@@ -1,0 +1,16 @@
+@use "colors"
+#main
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  $back-color: colors.color("blue")
+  @debug $back-color
+  background-color: colors.color("green")
+
+
+.skip-to-content
+  position: absolute
+  top: 0
+  right: 0
+  background-color: colors.color("crimson")
+  @debugi colors.color("crimson")

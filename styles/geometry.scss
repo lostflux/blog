@@ -1,0 +1,25 @@
+
+@use "sass:map";
+
+@function transition($property, $time, $easing) {
+  $tr: $property + " " + $time + " " + $easing;
+  // @debug $property;
+  // @debug $time;
+  // @debug $easing;
+  // @debug $tr;
+  @return $tr;
+}
+
+@function radius($measure) {
+  $rad: map.get($radii, $measure);
+  // @debug $rad;
+  @return $rad;
+}
+
+$radii: (
+  "small": 0.25,
+  "medium": 0.5,
+  "large": 1,
+  "x-large": 2,
+  "xx-large": 4,
+);

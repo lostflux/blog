@@ -1,32 +1,41 @@
 <template>
   <header class="header">
-    <Logo/>
-    <ul class="nav">
-      <li class="nav-item">
-        <nuxt-link to="/" class="nav-link">home</nuxt-link>
-      </li>
-      <li class="nav-item">
-        <nuxt-link to="/blog" class="nav-link">blog</nuxt-link>
-      </li>
-      <li class="nav-item">
-        <nuxt-link to="/projects/cs" class="nav-link">cs</nuxt-link>
-      </li>
-      <li class="nav-item">
-        <nuxt-link to="/projects/art" class="nav-link">art</nuxt-link>
-      </li>
-      <li class="nav-item">
-        <nuxt-link to="/misc" class="nav-link">misc</nuxt-link>
-      </li>
-      <li class="nav-item">
-        <nuxt-link to="/about" class="nav-link">about</nuxt-link>
-      </li>
-    </ul>
+    <nav class="nav">
+      <ol class="nav-list">
+        <Logo />
+        <li class="nav-item">
+          <NuxtLink to="/" class="nav-link">home {{ test }} </NuxtLink>
+        </li>
+        <li class="nav-item">
+          <NuxtLink to="/blog" class="nav-link">blog</NuxtLink>
+        </li>
+        <li class="nav-item">
+          <NuxtLink to="/projects/cs" class="nav-link">cs</NuxtLink>
+        </li>
+        <li class="nav-item">
+          <NuxtLink to="/projects/art" class="nav-link">art</NuxtLink>
+        </li>
+        <li class="nav-item">
+          <NuxtLink to="/misc" class="nav-link">misc</NuxtLink>
+        </li>
+        <li class="nav-item">
+          <NuxtLink to="/about" class="nav-link">about</NuxtLink>
+        </li>
+      </ol>
+    </nav>
+    
   </header>
 </template>
 
-<script>
-  export default {
-    name: 'AppHeader'
-  }
-
+<script setup>
+const test = 0;
 </script>
+<script>
+export default {
+  name: "AppHeader",
+};
+</script>
+
+<style lang="sass" scoped>
+@use "../styles/header"
+</style>

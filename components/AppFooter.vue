@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer className="footer">
     <div>
       <a> &copy; Amittai</a>
     </div>
@@ -8,9 +8,9 @@
 
 <script lang="ts">
   let date = new Date()
+  console.log(date)
   export default {
-    name: 'AppFooter',
+    name: "AppFooter"
   }
-
 </script>
 

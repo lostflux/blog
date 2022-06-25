@@ -6,19 +6,17 @@
 
 <script>
   export default {
-    name: 'Logo'
+    name: "Logo"
   }
 
 </script>
 
-<style>
-.logo-container {
-  height: 20px;
-}
+<style lang="sass">
+  .logo-container
+    height: 20px
 
-.logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 5px;
-}
+  .logo
+    width: 40px
+    height: 40px
+    margin-right: 5px
 </style>

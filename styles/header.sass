@@ -1,0 +1,41 @@
+
+// Style-sheet for header-related elements.
+//
+// Author: Amittai
+
+@use "mixins"
+@use "typography"
+@use "colors"
+
+  
+.header
+  @include mixins.button
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 1rem
+  padding-bottom: 1rem
+  background-color: transparent
+  
+  .nav
+
+    .title
+      font-size: typography.font("xx-large")
+      color: colors.color(crimson)
+
+    ol
+      display: flex
+      background-color: transparent
+      
+
+    a
+      display: inline-block
+      background: transparent
+      padding: 0.3rem 1rem
+      margin-right: 0.5rem
+
+    .nav-link
+      color: #000
+      text-decoration: #dc2f2f
+      color: colors.color(crimson)
+      &:hover

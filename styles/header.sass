@@ -18,24 +18,35 @@
   background-color: transparent
   
   .nav
-
-    .title
-      font-size: typography.font("xx-large")
-      color: colors.color(crimson)
-
-    ol
+    .nav-list
       display: flex
       background-color: transparent
-      
+      list-style-type: decimal
+      counter-reset: item-count
+
+      .logo
+        color: colors.color("crimson")
+        background-color: transparent
+
+      .nav-item
+        .nav-link
+          text-align: right
+          text-decoration: #dc2f2f
+          color: colors.color(crimson)
+
+          &:before
+            counter-increment: item-count
+            content: "0" counter(item-count) "."
+            margin-right: 5px
+            color: colors.color("brown")
+            font-size: typography.font("large")
+
+          &:hover
+            color: #000
+            
 
     a
       display: inline-block
       background: transparent
       padding: 0.3rem 1rem
       margin-right: 0.5rem
-
-    .nav-link
-      color: #000
-      text-decoration: #dc2f2f
-      color: colors.color(crimson)
-      &:hover

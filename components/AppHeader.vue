@@ -2,7 +2,7 @@
   <header class="header">
     <nav class="nav">
       <ol class="nav-list">
-        <Logo />
+        <Logo class="logo"/>
         <li class="nav-item">
           <NuxtLink to="/" class="nav-link">home {{ test }} </NuxtLink>
         </li>

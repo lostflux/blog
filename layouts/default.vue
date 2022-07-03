@@ -2,7 +2,7 @@
   <div id="main">
     <AppHeader/>
     <!-- <Front/> -->
-    <About/>
+    <!-- <About/> -->
     <!-- <Jobs/> -->
     <!-- <Featured/> -->
     <!-- <Projects/> -->

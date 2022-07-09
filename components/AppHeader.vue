@@ -27,10 +27,10 @@
   </header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const test = 0;
 </script>
-<script>
+<script lang="ts">
 export default {
   name: "AppHeader",
 };

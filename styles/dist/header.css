@@ -1,0 +1,129 @@
+@charset "UTF-8";
+button,
+.small-button {
+  color: #76ba99;
+  background-color: transparent;
+  border: 1px solid #76ba99;
+  border-radius: 0.25;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-family: "Roboto Mono, monospace";
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+button:hover, button:focus, button:active,
+.small-button:hover,
+.small-button:focus,
+.small-button:active {
+  background-color: #d32f2f;
+  outline: none;
+}
+button:after,
+.small-button:after {
+  display: none !important;
+}
+
+.big-button {
+  color: #76ba99;
+  background-color: transparent;
+  border: 1px solid #76ba99;
+  border-radius: 0.25;
+  padding: 1.25rem 1.75rem;
+  font-size: 0.875rem;
+  font-family: "Roboto Mono, monospace";
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+.big-button:hover, .big-button:focus, .big-button:active {
+  background-color: #d32f2f;
+  outline: none;
+}
+.big-button:after {
+  display: none !important;
+}
+
+.box-shadow {
+  box-shadow: 0 10px 30px -15px #00bcd4;
+}
+.box-shadow:hover, .box-shadow:focus {
+  box-shadow: 0 20px 30px -15px #00bcd4;
+}
+
+.fancy-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.fancy-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+.fancy-list li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #76ba99;
+}
+
+.reset-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  color: #76ba99;
+  background-color: transparent;
+  border: 1px solid #76ba99;
+  border-radius: 0.25;
+  font-size: 0.875rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  background-color: transparent;
+}
+.header:hover, .header:focus, .header:active {
+  outline: none;
+}
+.header:after {
+  display: none !important;
+}
+.header .nav .nav-list {
+  display: flex;
+  background-color: transparent;
+  list-style-type: decimal;
+  counter-reset: item-count;
+}
+.header .nav .nav-list .logo {
+  color: #d32f2f;
+  background-color: transparent;
+}
+.header .nav .nav-list .nav-item .nav-link {
+  text-align: right;
+  text-decoration: #dc2f2f;
+}
+.header .nav .nav-list .nav-item .nav-link:before {
+  counter-increment: item-count;
+  content: "0" counter(item-count) ".";
+  margin-right: 5px;
+  color: #795548;
+}
+.header .nav .nav-list .nav-item .nav-link:hover {
+  color: #000;
+}
+.header .nav a {
+  display: inline-block;
+  background: transparent;
+  padding: 0.3rem 1rem;
+  margin-right: 0.5rem;
+}

@@ -4,20 +4,17 @@
     "build": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
-    "preview": "nuxi preview"
+    "preview": "nuxi preview",
+    "postinstall": "rm -rf ./node_modules/@types/react"
   },
   "devDependencies": {
-    "@nuxtjs/style-resources": "^1.2.1",
-    "@types/styled-components": "^5.1.25",
-    "fibers": "^5.0.1",
-    "nuxt": "3.0.0-rc.3",
-    "sass": "^1.52.3",
-    "sass-loader": "^13.0.0"
+    "nuxt": "npm:nuxt3@latest",
+    "sass": ">=1.52.3",
+    "sass-loader": ">=13.0.0"
   },
   "dependencies": {
-    "@nuxtjs/composition-api": "^0.32.0",
-    "axios": "^0.27.2",
-    "node-sass": "^7.0.1",
-    "styled-components": "^5.3.5"
+    "axios": ">=0.27.2",
+    "node-sass": ">=7.0.1",
+    "styled-components": ">=5.3.5"
   }
 }

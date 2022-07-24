@@ -2,7 +2,7 @@
 
 @function font($name) {
   $result: map.get($fonts, $name);
-  // @debug $result;
+  @debug $result;
   @return $result;
 }
 
@@ -13,8 +13,8 @@
 }
 
 $fonts: (
-  "primary": "Roboto, sans-serif",
-  "secondary": "Roboto, sans-serif",
+  "primary": "Calibre, sans-serif",
+  "secondary": "Calibre, sans-serif",
   "monospace": "Roboto Mono, monospace",
 );
 

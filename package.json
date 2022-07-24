@@ -8,9 +8,10 @@
     "postinstall": "rm -rf ./node_modules/@types/react"
   },
   "devDependencies": {
+    "@nuxt/content": "^2.0.1",
     "nuxt": "npm:nuxt3@latest",
-    "sass": ">=1.53.0",
-    "sass-loader": ">=13.0.2"
+    "sass": "latest",
+    "sass-loader": "latest"
   },
   "dependencies": {
     "axios": ">=0.27.2",

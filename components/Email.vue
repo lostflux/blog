@@ -1,23 +1,25 @@
 <template>
   <div id="email-root">
     <Side>
-      <div className="email-link-wrapper">
-        <a href="mailto:{{ email }}">{email}</a>
+      <div class="email-link-wrapper">
+        <a v-bind:href="'mailto:' + address ">Reach out to me.</a>
       </div>
     </Side>
   </div>
 </template>
 
-<script setup>
-const email = "amittaijoel@outlook.com";
+<script lang="ts" setup>
+  const email = "amittaijoel@outlook.com";
 </script>
+
 <script lang="ts">
-export default {
-  name: "Email",
-  data() {
-    return {
-      email: "amittaijoel@outlook.com",
-    };
-  },
-};
+  const email = "amittaijoel@outlook.com";
+  export default {
+    name: "Email",
+    data() {
+      return {
+        address: email,
+      };
+    },
+  };
 </script>

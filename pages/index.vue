@@ -1,13 +1,13 @@
 <template>
   <div id="main">
-    <AppHeader />
     <!-- <Front/> -->
     <About />
+    <Email />
+    <NuxtLogo />
     <!-- <Jobs/> -->
     <!-- <Featured/> -->
     <!-- <Projects/> -->
     <!-- <Contact/> -->
-    <AppFooter />
   </div>
 </template>
 
@@ -17,6 +17,6 @@
 
 <script lang="ts">
 export default {
-  name: "DefaultLayout",
+  name: "Landing Page",
 }
 </script>

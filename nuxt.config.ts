@@ -14,6 +14,13 @@ export default defineNuxtConfig({
     "@/styles/theme.sass",
     "@/styles/email.sass",
     "@/styles/colors.sass",
-    "@/styles/fonts.sass"
-  ]
+    "@/styles/fonts.sass",
+    "@/styles/default.sass"
+  ],
+  modules: [
+    "@nuxt/content",
+  ],
+  content: {
+    
+  }
 })

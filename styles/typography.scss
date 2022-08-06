@@ -2,18 +2,16 @@
 
 @function font($name) {
   $result: map.get($fonts, $name);
-  @debug $result;
   @return $result;
 }
 
 @function font-size($size) {
   $result: map.get($font-sizes, $size);
-  // @debug $result;
   @return $result;
 }
 
 $fonts: (
-  "primary": "Calibre, sans-serif",
+  "primary": "DM Sans",
   "secondary": "Calibre, sans-serif",
   "monospace": "Roboto Mono, monospace",
 );

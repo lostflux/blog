@@ -3,10 +3,6 @@
 
 @function transition($property, $time, $easing) {
   $tr: $property + " " + $time + " " + $easing;
-  // @debug $property;
-  // @debug $time;
-  // @debug $easing;
-  // @debug $tr;
   @return $tr;
 }
 

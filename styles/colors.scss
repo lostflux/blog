@@ -38,17 +38,14 @@ $colors: (
 
 @function color($color-name) {
   $result: map.get($colors, $color-name);
-  // @debug $result
   @return $result;
 }
 @function darken($color, $amount: 50%) {
   $black: color("black");
-  // @debug $black
   @return mix($color, $black, $amount);
 }
 
 @function invert($color, $amount: 100%) {
   $inverse: change-color($color, $hue: hue($color) + 180);
-  @debug $inverse;
   @return mix($inverse, $color, $amount);
 }

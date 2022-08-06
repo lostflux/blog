@@ -10,11 +10,20 @@
   
 .header
   @include mixins.button
-  display: flex
-  justify-content: space-between
-  margin-bottom: 1rem
-  padding-bottom: 1rem
-  background-color: inherit
+  // display: flex
+  // justify-content: space-between
+  // margin-bottom: 1rem
+  // padding-bottom: 1rem
+  // background-color: inherit
+
+  margin: 0
+  min-height: 100%
+  background-color: #fff
+  font-family: 'DM Sans', sans-serif
+  color: #123693
+  font-size: 16px
+  line-height: 160%
+  letter-spacing: .25px
   
   .nav
     .nav-list
@@ -49,5 +58,5 @@
       background: transparent
       padding: 0.3rem 1rem
       margin-right: 0.5rem
-      font: typography.font("monospace")
-      font-size: typography.font-size("large")
+      font: typography.font("primary")
+      font-size: typography.font-size("primary")

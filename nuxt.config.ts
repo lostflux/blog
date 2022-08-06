@@ -19,8 +19,21 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@nuxt/content",
+    "@nuxtjs/google-fonts"
+  ],
+
+  buildModules: [
+    "@nuxtjs/google-fonts"
   ],
   content: {
     
+  },
+
+  googleFonts: {
+    prefetch: true,
+    display: "fallback",
+    families: {
+      "DM Sans": true,
+    }
   }
 })

@@ -15,7 +15,7 @@
     "sass-loader": "latest"
   },
   "dependencies": {
-    "axios": ">=0.27.2",
+    "axios": ">=1.0.0",
     "node-sass": ">=7.0.1",
     "styled-components": ">=5.3.5"
   }

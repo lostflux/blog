@@ -169,7 +169,3 @@ const mixins = {
 };
 
 export default mixins;
-
-
-// A -> 
-// B -> 3 2 1

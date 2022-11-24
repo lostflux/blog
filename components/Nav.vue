@@ -26,11 +26,11 @@
           <NuxtLink to="/Blog/4" class="nav-column-item">Deep Learning</NuxtLink>
         </div>
         <div class="nav-column">
-          <NuxtLink to="/Photography" class="nav-column-header">Photography</NuxtLink>
-          <NuxtLink to="/Photography/0" class="nav-column-item">Abstract</NuxtLink>
-          <NuxtLink to="/Photography/3" class="nav-column-item">LandScape</NuxtLink>
-          <NuxtLink to="/Photography/1" class="nav-column-item">Miniature</NuxtLink>
-          <NuxtLink to="/Photography/2" class="nav-column-item">Portraits</NuxtLink>
+          <NuxtLink to="/Blog/Photography" class="nav-column-header">Photography</NuxtLink>
+          <NuxtLink to="/Blog/Photography/0" class="nav-column-item">Abstract</NuxtLink>
+          <NuxtLink to="/Blog/Photography/3" class="nav-column-item">LandScape</NuxtLink>
+          <NuxtLink to="/Blog/Photography/1" class="nav-column-item">Miniature</NuxtLink>
+          <NuxtLink to="/Blog/Photography/2" class="nav-column-item">Portraits</NuxtLink>
         </div>
       </div>
     </div>
@@ -50,18 +50,36 @@
     display: flex
     flex-direction: row
     justify-content: space-between
-    align-items: center
+    align-items: top
 
   // make nav-column-items a vertical list
   .nav-column
-    // flex-direction: column
-    // justify-content: left
     align-items: right
     margin-bottom: 1rem
+    display: table-column
     &:hover
       background-color: #f5f5f5
       border-radius: 0.25rem
       padding: 0.5rem
       transition: all 0.2s ease-in-out
+
+  .nav-column-header
+    font-size: 1.5rem
+    font-weight: 600
+    color: #000
+    text-decoration: none
+    &:hover
+      color: #000
+      text-decoration: none
+
+  .nav-column-item
+    font-size: 1.25rem
+    font-weight: 400
+    color: #000
+    text-decoration: none
+    display: none
+    &:hover
+      color: #000
+      text-decoration: none
 
 </style>

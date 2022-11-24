@@ -5,7 +5,7 @@
       Hello! I'm Amittai, a student and aspiring systems engineer from Kenya.
       I am currently studying at Dartmouth College, where I dabble in
       Computer Science, Mathematics, and Psychology.
-      What else? Are we together?
+      What else? Are we together? Here is some more text.
     </p>
   </div>
 </template>

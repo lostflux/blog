@@ -2,8 +2,7 @@
   <div id="main">
     <!-- <Front/> -->
     <About />
-    <Email />
-    <NuxtLogo />
+    <!-- <Email /> -->
     <!-- <Jobs/> -->
     <!-- <Featured/> -->
     <!-- <Projects/> -->

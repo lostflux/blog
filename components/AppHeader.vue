@@ -1,12 +1,6 @@
 <template>
   <header class="header">
-    <nav class="nav">
-      <ol class="nav-list">
-        <Logo class="logo"/>
-        <Nav/>
-      </ol>
-    </nav>
-    
+    <Nav />
   </header>
 </template>
 

@@ -7,7 +7,8 @@
   display: flex
   flex-direction: column
   min-height: 100vh
-  font-family: "DM Sans", sans-serif
+  font-family: typography.font("font-mono")
+  font-size: typography.font-size("xl")
   line-height: 24px
 
 
@@ -102,13 +103,13 @@ body
     
   
 
-#root 
+#root .root
   min-height: 100vh
   display: grid
   grid-template-rows: 1fr auto
   grid-template-columns: 100%
 
-main 
+main
   margin: 0 auto
   width: 100%
   max-width: 1600px
@@ -123,7 +124,7 @@ main
   @media (max-width: 480px) 
     padding: 125px 25px
   
-  &.fillHeight 
+  &.fill-height 
     padding: 0 150px
     @media (max-width: 1080px) 
       padding: 0 100px
@@ -204,8 +205,7 @@ h1, h2, h3, h4, h5, h6
     
   
 
-img,
-svg,
+img, svg,
 .gatsby-image-wrapper 
   width: 100%
   max-width: 100%
@@ -291,7 +291,6 @@ ul
         color: colors.color("green")
       
     
-  
 
 blockquote 
   border-left-color: colors.color("green")
@@ -339,7 +338,7 @@ code
     z-index: 99
   
 
-#logo 
+#logo
   color: colors.color("green")
 
 .overline 

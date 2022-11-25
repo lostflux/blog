@@ -8,17 +8,6 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/content",
-    "@nuxtjs/google-fonts",
-
-    // With options
-    ["@nuxtjs/google-fonts", {
-      prefetch: true,
-      display: "fallback",
-      families: {
-        "DM Sans": true,
-        "Cambo": true
-      }
-    }],
   ],
   css: [
     "~/styles/about.sass",
@@ -33,5 +22,13 @@ export default defineNuxtConfig({
     "~/styles/palettes.sass",
     "~/styles/theme.sass",
     "~/styles/typography.scss",
-  ]
+    "~/styles/fonts.scss",
+  ],
+  components: {
+    dirs: [
+      '~/components/atoms',
+      '~/components/molecules',
+      '~/components',
+    ]
+  },
 })

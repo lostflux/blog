@@ -6,57 +6,94 @@
 @use "mixins"
 @use "typography"
 @use "colors"
+@use "geometry"
 
   
 .header
-  @include mixins.button
-  // display: flex
-  // justify-content: space-between
-  // margin-bottom: 1rem
-  // padding-bottom: 1rem
-  // background-color: inherit
-
-  margin: 0
-  min-height: 100%
+  @apply mixins.flex-between
+  position: fixed
+  top: 0
+  z-index: 11
+  padding: 0px 50px
+  width: 100%
+  height: geometry.var("nav-height")
   background-color: inherit
-  font-family: 'DM Sans', sans-serif
-  color: inherit
-  font-size: 16px
-  line-height: 160%
-  letter-spacing: .25px
+  filter: none !important
+  pointer-events: auto !important
+  user-select: auto !important
+  backdrop-filter: blur(10px)
+  transition: geometry.transition("background-color", "0.5s")
+
+  @media (max-width: 1080px)
+    padding: 0 40px
   
-  .nav
-    .nav-list
-      display: flex
-      background-color: transparent
-      list-style-type: decimal
-      counter-reset: item-count
+  @media (max-width: 768px)
+    padding: 0 25px
 
-      .logo
-        color: colors.color("crimson")
-        background-color: transparent
+  @media (prefers-reduced-motion: no-preference)
+    height: geometry.var("nav-scroll-height")
+    transform: translateY(0px)
+    background-color: rgba(10, 25, 47, 0.85)
+    box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
+    height: geometry.var("nav-scroll-height")
 
-      .nav-item
-        .nav-link
-          text-align: right
-          text-decoration: #dc2f2f
-          color: colors.color("crimson")
+    // hide on scroll down
+    // transform: translateY(calc(geometry.var("nav-scroll-height") * -1))
+    box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
 
-          &:before
-            counter-increment: item-count
-            content: "0" counter(item-count) "."
-            margin-right: 5px
-            color: colors.color("brown")
-            font-size: typography.font("large")
+nav
+  @apply mixins.flex-between
+  position: relative
+  width: 100%
+  color: colors.color("lightest-slate")
+  font-family: typography.font("font-mono")
+  counter-reset: item 0
+  z-index: 12
 
-          &:hover
-            color: #000
-            
+  .logo
+    @apply mixins.flex-center
 
     a
-      display: inline-block
-      background: transparent
-      padding: 0.3rem 1rem
-      margin-right: 0.5rem
-      font: typography.font("primary")
-      font-size: typography.font-size("primary")
+      color: colors.color("green")
+      width: 42px
+      height: 42px
+
+      &:hover, &:focus
+        svg
+          fill: colors.color("green-tint")
+          
+      svg
+        fill: none
+        transition: geometry.transition("background-color", "0.5s")
+        user-select: none
+
+  .nav-links
+    display: flex
+    align-items: center
+
+    @media (max-width: 768px)
+      display: none
+    
+    ol
+      @apply mixins.flex-between
+      padding: 0
+      margin: 0
+      list-style: none
+
+      li
+        margin: 0 5px
+        position: relative
+        counter-increment: item 1
+        font-size: typography.font-size("xs")
+        float: left
+
+        .nav-link
+          padding: 10px
+          font-family: typography.font("font-mono")
+          
+          &:before
+            content: '0' counter(item) '.'
+            margin-right: 5px
+            color: colors.color("green")
+            font-size: typography.font-size("xxs")
+            text-align: right

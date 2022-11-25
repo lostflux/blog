@@ -1,7 +1,9 @@
 
 @use "sass:map";
 
-@function transition($property, $time, $easing) {
+$default-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+@function transition($property, $time, $easing: $default-easing) {
   $tr: $property + " " + $time + " " + $easing;
   @return $tr;
 }
@@ -20,6 +22,34 @@ $radii: (
   "xx-large": 4,
 );
 
-:root {
-  border-radius: 0;
+$variables: (
+  "border-radius": 4px,
+  "nav-height": 100px,
+  "nav-scroll-height": 70px,
+
+  "tab-height": 42px,
+  "tab-scroll-height": 120px,
+
+  "easing": cubic-bezier(0.645, 0.045, 0.355, 1),
+  "default-transition": transition(all, 0.25s),
+
+
+  "hamburger-width": 30px,
+  "ham-before": top 0.1s ease-in 0.25s opacity 0.1s ease-in,
+  "ham-before-active": top 0.1s ease-out opacity 0.1s ease-out 0.12s,
+  "ham-after": bottom 0.1s ease-in 0.25s
+    transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19),
+  "ham-after-active": bottom 0.1s ease-out
+    transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s,
+);
+
+@function var($variable) {
+  $result: map.get($variables, $variable);
+  @return $result;
 }
+
+@function default-transition() {
+  $result: map.get($variables, "default-transition");
+  @return $result;
+}
+

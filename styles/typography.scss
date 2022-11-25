@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "fonts";
 
 @function font($name) {
   $result: map.get($fonts, $name);
@@ -11,15 +12,18 @@
 }
 
 $fonts: (
-  "primary": "DM Sans",
-  "secondary": "Calibre, sans-serif",
-  "monospace": "Roboto Mono, monospace",
+  "font-sans": "Calibre, Inter, San Francisco, SF Pro Text,\
+                -apple-system, system-ui, sans-serif",
+  "font-mono": "SF Mono, Fira Code, Fira Mono, Roboto Mono, monospace",
 );
 
 $font-sizes: (
-  "small": 0.875rem,
-  "medium": 1rem,
-  "large": 1.125rem,
-  "x-large": 1.25rem,
-  "xx-large": 1.5rem,
+  "xxs": 12px,
+  "xs": 13px,
+  "s": 14px,
+  "m": 16px,
+  "l": 18px,
+  "xl": 20px,
+  "xxl": 22px,
+  "heading": 32px
 );

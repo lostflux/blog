@@ -2,8 +2,9 @@
 @use "typography"
 @use "theme"
 @use "mixins"
+@use "geometry"
 
-#main
+.main
   display: flex
   flex-direction: column
   min-height: 100vh
@@ -12,16 +13,16 @@
   line-height: 24px
 
 
-.skip-to-content
-  position: absolute
-  top: 0
-  right: 0
-  background-color: colors.color("green")
+// .skip-to-content
+//   position: absolute
+//   top: 0
+//   right: 0
+//   background-color: colors.color("green")
 
-body
-  max-width: 1080px
-  margin: 0 auto
-  background-color: colors.color("light-slate")
+// body
+//   max-width: 1080px
+//   margin: 0
+//   background-color: colors.color("light-slate")
 
 html
   box-sizing: border-box
@@ -81,11 +82,11 @@ body
   -webkit-font-smoothing: antialiased
   background-color: colors.color("navy")
   color: colors.color("slate")
-  font-family: var(--font-sans)
-  font-size: var(--fz-xl)
+  font-family: typography.font("font-sans")
+  font-size: typography.font-size("xl")
   line-height: 1.3
   @media (max-width: 480px) 
-    font-size: var(--fz-lg)
+    font-size: typography.font-size("l")
   
   &.hidden 
     overflow: hidden
@@ -97,7 +98,7 @@ body
     
     #content > * 
       filter: blur(5px) brightness(0.7)
-      transition: var(--transition)
+      transition: geometry.var("default-transition")
       pointer-events: none
       user-select: none
     
@@ -168,7 +169,8 @@ h1, h2, h3, h4, h5, h6
   position: relative
   margin: 10px 0 40px
   width: 100%
-  font-size: clamp(26px, 5vw, var(--fz-heading))
+  font-family: typography.font("font-sans")
+  font-size: clamp(26px, 5vw, typography.font-size("heading"))
   white-space: nowrap
   &:before 
     position: relative
@@ -177,8 +179,8 @@ h1, h2, h3, h4, h5, h6
     content: '0' counter(section) '.'
     margin-right: 10px
     color: colors.color("green")
-    font-family: var(--font-mono)
-    font-size: clamp(var(--fz-md), 3vw, var(--fz-xl))
+    font-family: typography.font("font-mono")
+    font-size: clamp(typography.font-size("m"), 3vw, typography.font-size("xl"))
     font-weight: 400
     @media (max-width: 480px) 
       margin-bottom: -3px
@@ -205,8 +207,7 @@ h1, h2, h3, h4, h5, h6
     
   
 
-img, svg,
-.gatsby-image-wrapper 
+img, svg, .image-wrapper 
   width: 100%
   max-width: 100%
   vertical-align: middle
@@ -230,9 +231,9 @@ a
   text-decoration-skip-ink: auto
   color: inherit
   position: relative
-  transition: var(--transition)
-  &:hover,
-  &:focus 
+  transition: geometry.var("default-transition")
+
+  &:hover, &:focus 
     color: colors.color("green")
   
   &.inline-link 
@@ -259,8 +260,8 @@ input, textarea
 
 p 
   margin: 0 0 15px 0
-  &:last-child,
-  &:last-of-type 
+
+  &:last-child, &:last-of-type 
     margin: 0
   
   & > a 
@@ -269,21 +270,24 @@ p
   & > code 
     background-color: colors.color("light-navy")
     color: colors.color("white")
-    font-size: var(--fz-sm)
-    border-radius: var(--border-radius)
+    font-size: typography.font-size("s")
+    border-radius: geometry.var("border-radius")
     padding: 0.3em 0.5em
   
 
-ul 
-  &.fancy-list 
+ul
+  &.styled-list 
     padding: 0
     margin: 0
     list-style: none
-    font-size: var(--fz-lg)
+    font-size: typography.font-size("l")
+
+
     li 
       position: relative
       padding-left: 30px
       margin-bottom: 10px
+
       &:before 
         content: '▹'
         position: absolute
@@ -314,8 +318,8 @@ hr
   margin: 1rem
 
 code 
-  font-family: var(--font-mono)
-  font-size: var(--fz-md)
+  font-family: typography.font("font-mono")
+  font-size: typography.font-size("m")
 
 .skip-to-content 
   @include mixins.button
@@ -343,22 +347,22 @@ code
 
 .overline 
   color: colors.color("green")
-  font-family: var(--font-mono)
-  font-size: var(--fz-md)
+  font-family: typography.font("font-mono")
+  font-size: typography.font-size("m")
   font-weight: 400
 
 .subtitle 
   color: colors.color("green")
   margin: 0 0 20px 0
-  font-size: var(--fz-md)
-  font-family: var(--font-mono)
+  font-size: typography.font-size("m")
+  font-family: typography.font("font-mono")
   font-weight: 400
   line-height: 1.5
   @media (max-width: 1080px) 
-    font-size: var(--fz-sm)
+    font-size: typography.font-size("s")
   
   @media (max-width: 768px) 
-    font-size: var(--fz-xs)
+    font-size: typography.font-size("xs")
   
   a 
     @include mixins.inline-link
@@ -377,15 +381,15 @@ code
   
   a 
     @include mixins.inline-link
-    font-family: var(--font-mono)
-    font-size: var(--fz-sm)
+    font-family: typography.font("font-mono")
+    font-size: typography.font-size("s")
     font-weight: 600
     line-height: 1.5
     text-transform: uppercase
     letter-spacing: 0.1em
   
 
-.gatsby-image-outer-wrapper 
+.image-outer-wrapper 
   height: 100%
 
 

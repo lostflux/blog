@@ -10,7 +10,6 @@ $default-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 @function radius($measure) {
   $rad: map.get($radii, $measure);
-  // @debug $rad;
   @return $rad;
 }
 

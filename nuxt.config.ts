@@ -9,20 +9,19 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/content",
   ],
+  
   css: [
-    "~/styles/about.sass",
+    "~/styles/raw-fonts.scss",
+    "~/styles/typography.scss",
     "~/styles/colors.scss",
     "~/styles/default.sass",
     "~/styles/error.sass",
     "~/styles/footer.sass",
     "~/styles/geometry.scss",
-    "~/styles/header.sass",
     "~/styles/index.sass",
     "~/styles/main.sass",
     "~/styles/palettes.sass",
     "~/styles/theme.sass",
-    "~/styles/typography.scss",
-    "~/styles/fonts.scss",
   ],
   components: {
     dirs: [

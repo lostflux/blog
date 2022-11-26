@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "fonts";
+// @use "~/styles/raw-fonts";
 
 @function font($name) {
-  $result: map.get($fonts, $name);
+  $result: map.get($fonts-map, $name);
   @return $result;
 }
 
@@ -11,11 +11,17 @@
   @return $result;
 }
 
-$fonts: (
-  "font-sans": "Calibre, Inter, San Francisco, SF Pro Text,\
-                -apple-system, system-ui, sans-serif",
-  "font-mono": "SF Mono, Fira Code, Fira Mono, Roboto Mono, monospace",
+$fonts-map: (
+  "font-sans": "Calibre",
+  
+  "font-mono": "SF Mono",
 );
+
+// $fonts-map: (
+//   "font-sans": "Calibre, Inter, San Francisco, SF Pro Text,\
+//                 -apple-system, system-ui, sans-serif",
+//   "font-mono": "SF Mono, Fira Code, Fira Mono, Roboto Mono, monospace",
+// );
 
 $font-sizes: (
   "xxs": 12px,

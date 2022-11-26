@@ -11,11 +11,15 @@
 </script>
 
 <style lang="sass">
-@use "../styles/typography"
-@use "../styles/colors"
-@use "../styles/geometry"
+@use "~/styles/typography"
+@use "~/styles/colors"
+@use "~/styles/geometry"
 
 #styled-text
+  font-family: typography.font("font-sans")
+  font-size: typography.font-size("m")
+
+
   .styled-list
     display: grid
     grid-template-columns: repeat(2, minmax(140px, 200px))
@@ -29,8 +33,8 @@
       position: relative
       margin-bottom: 10px
       padding-left: 20px
-      font-family: typography.font("font-sans")
-      font-size: typography.font-size("s")
+      font-family: typography.font("font-mono")
+      font-size: typography.font-size("xs")
 
       &:before
         content: '▹'

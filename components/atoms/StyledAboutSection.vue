@@ -18,7 +18,7 @@ export default {
   @use "../styles/colors"
   @use "../styles/geometry"
 
-  .about-section
+  #about-section
     max-width: 900px
     .inner
       display: grid

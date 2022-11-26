@@ -103,9 +103,28 @@
   }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
+  @use "~/styles/colors"
+  @use "~/styles/typography"
+  @use "~/styles/geometry"
+  @use "~/styles/mixins"
   .logo
+    @apply mixins.flex-center
     width: 40px
     height: 40px
     margin-right: 5px
+
+    a
+      color: colors.color("green")
+      width: 42px
+      height: 42px
+
+      &:hover, &:focus
+        svg
+          fill: colors.color("green-tint")
+          
+      svg
+        fill: none
+        transition: geometry.transition("background-color", "0.5s")
+        user-select: none
 </style>

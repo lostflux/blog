@@ -1,13 +1,15 @@
 <template>
-  <div id="main">
-    <!-- <Front/> -->
+  <main class="fill-height">
+    <div class="fill-height">
+      <Hero />
+    </div>
     <About />
-    <!-- <Email /> -->
-    <!-- <Jobs/> -->
+    <Jobs />
     <!-- <Featured/> -->
     <!-- <Projects/> -->
     <!-- <Contact/> -->
-  </div>
+
+  </main>
 </template>
 
 <style lang="sass">
@@ -19,3 +21,4 @@ export default {
   name: "Landing Page",
 }
 </script>
+

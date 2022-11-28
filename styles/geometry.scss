@@ -14,15 +14,15 @@ $default-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 $radii: (
-  "small": 0.25,
-  "medium": 0.5,
-  "large": 1,
-  "x-large": 2,
-  "xx-large": 4,
+  "small": 0.25px,
+  "medium": 0.5px,
+  "large": 1px,
+  "x-large": 2px,
+  "xx-large": 4px,
 );
 
 $variables: (
-  "border-radius": 4px,
+  "border-radius": radius("xx-large"),
   "nav-height": 100px,
   "nav-scroll-height": 70px,
 
@@ -31,7 +31,6 @@ $variables: (
 
   "easing": cubic-bezier(0.645, 0.045, 0.355, 1),
   "default-transition": transition(all, 0.25s),
-
 
   "hamburger-width": 30px,
   "ham-before": top 0.1s ease-in 0.25s opacity 0.1s ease-in,

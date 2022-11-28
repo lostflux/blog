@@ -1,0 +1,23 @@
+---
+title: "Introduction"
+author: "Amittai"
+description: 'What a lovely page.'
+image:
+  src: '/assets/image.jpg'
+  alt: 'An image showcasing My Page.'
+  width: 400
+  height: 300
+head:
+  meta:
+    - name: 'keywords'
+      content: 'nuxt, vue, content'
+    - name: 'robots'
+      content: 'index, follow'
+    - name: 'author'
+      content: 'NuxtLabs'
+    - name: 'copyright'
+      content: '© 2022 NuxtLabs'
+---
+Learn how to use @nuxt/content.
+<!--more-->
+Full amount of content beyond the more divider.

@@ -3,22 +3,21 @@
 @use "typography"
 @use "geometry"
 
-$green: colors.color("green")
-$green-tint: colors.darken($green, 50%)
 $border-radius: geometry.radius("small")
 
 @mixin button
   color: colors.color("green")
   background-color: transparent
-  border: 1px solid $green
-  border-radius: geometry.radius("small")
-  font-size: typography.font-size("small")
-  font-family: typography.font("mono")
+  border: 1px solid colors.color("green")
+  border-radius: geometry.var("border-radius")
+  font-size: typography.font-size("xs")
+  font-family: typography.font("font-mono")
   line-height: 1
   text-decoration: none
   cursor: pointer
   padding: 1.25rem 1.75rem
-  transition: geometry.transition(all, 0.2s, ease-in-out)
+  transition: geometry.var("default-transition")
+  padding: 1.25rem 1.75rem
 
   &:hover, &:focus, &:active
     background-color: colors.color("green-tint")
@@ -43,9 +42,9 @@ $border-radius: geometry.radius("small")
   text-decoration-skip-ink: auto
   color: inherit
   position: relative
-  transition: geometry.transition(all, 0.2s, ease-in-out)
+  transition: geometry.var("default-transition")
   &:hover, &:active, &:focus
-    color: $green
+    color: colors.color("green")
     outline: 0
 
 
@@ -54,19 +53,19 @@ $border-radius: geometry.radius("small")
   text-decoration: none
   text-decoration-skip-ink: auto
   position: relative
-  transition: geometry.transition(all, 0.2s, ease-in-out)
-  color: $green
+  transition: geometry.var("default-transition")
+  color: colors.color("green")
   &:hover,
   &:focus,
   &:active
-    color: $green
+    color: colors.color("green")
     outline: 0
     &:after
       width: 100%
 
     & > *
-      color: $green !important
-      transition: geometry.transition(all, 0.2s, ease-in-out)
+      color: colors.color("green") !important
+      transition: geometry.var("default-transition")
 
   &:after
     content: ''
@@ -75,64 +74,63 @@ $border-radius: geometry.radius("small")
     height: 1px
     position: relative
     bottom: 0.37em
-    background-color: $green
-    transition: geometry.transition(all, 0.2s, ease-in-out)
+    background-color: colors.color("green")
+    transition: geometry.var("default-transition")
     opacity: 0.5
 
-button,
-.small-button
-  color: $green
+@mixin small-button
+  color: colors.color("green")
   background-color: transparent
-  border: 1px solid $green
-  border-radius: $border-radius
+  border: 1px solid colors.color("green")
+  border-radius: geometry.var("border-radius")
   padding: 0.75rem 1rem
-  font-size: typography.font-size("small")
-  font-family: typography.font("monospace")
+  font-size: typography.font-size("xs")
+  font-family: typography.font("font-mono")
   line-height: 1
   text-decoration: none
   cursor: pointer
-  transition: geometry.transition(all, 0.2s, ease-in-out)
+  transition: geometry.var("default-transition")
   &:hover, &:focus, &:active
-    background-color: colors.color("crimson")
+    background-color: colors.color("green-tint")
     outline: none
 
   &:after
     display: none !important
 
-.big-button
+@mixin big-button
   color: colors.color("green")
   background-color: transparent
   border: 1px solid colors.color("green")
-  border-radius: geometry.radius("small")
+  border-radius: geometry.var("border-small")
   padding: 1.25rem 1.75rem
-  font-size: typography.font-size("small")
-  font-family: typography.font("monospace")
+  font-size: typography.font-size("s")
+  font-family: typography.font("font-mono")
   line-height: 1
   text-decoration: none
   cursor: pointer
-  transition: geometry.transition(all, 0.2s, ease-in-out)
+  transition: geometry.var("default-transition")
 
   &:hover,
   &:focus,
   &:active
-    background-color: colors.color("crimson")
+    background-color: colors.color("green-tint")
     outline: none
   &:after
     display: none !important
 
-.box-shadow
-  box-shadow: 0 10px 30px -15px colors.color("zaffre")
+@mixin box-shadow
+  box-shadow: 0 10px 30px -15px colors.color("navy-shadow")
   transition: geometry.transition(all, 0.2s, ease-in-out)
 
   &:hover,
   &:focus
-    box-shadow: 0 20px 30px -15px colors.color("zaffre")
+    box-shadow: 0 20px 30px -15px colors.color("navy-shadow")
 
-.fancy-list
+@mixin styled-list
   padding: 0
   margin: 0
   list-style: none
-  font-size: typography.font-size("small")
+  font-size: typography.font-size("l")
   li
     position: relative
     padding-left: 30px
@@ -143,7 +141,7 @@ button,
       left: 0
       color: colors.color("green")
 
-.reset-list
+@mixin reset-list
   list-style: none
   padding: 0
   margin: 0

@@ -20,7 +20,7 @@
   font-size: typography.font-size("m")
 
 
-  .styled-list
+  .styled-list, #styled-list
     display: grid
     grid-template-columns: repeat(2, minmax(140px, 200px))
     grid-gap: 0 10px

@@ -63,6 +63,8 @@
 .nav-links
   display: flex
   align-items: center
+  position: relative
+  float: right
 
   @media (max-width: 768px)
     display: none

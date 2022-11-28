@@ -26,7 +26,7 @@
   margin-right: 5px
   // background-color: colors.color("green")
 
-  .logo
+  svg
     color: colors.color("green")
     width: 42px
     height: 42px

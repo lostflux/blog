@@ -1,5 +1,5 @@
   <template>
-  <nav class="nav">
+  <nav>
     <TransitionGroup :component="null">
       <Transition
         :if="isMounted"
@@ -48,16 +48,21 @@ const fadeDownClass = isHome ? 'fadedown' : '';
 @use "~/styles/geometry"
 @use "~/styles/mixins"
 
+*
+  margin: 0
+  padding: 0
+
+
 nav
   @apply mixins.flex-between
   position: relative
-  width: inherit
+  width: 100%
   color: colors.color("lightest-slate")
   font-family: typography.font("font-mono")
   counter-reset: item 0
   z-index: 12
-  // float: right
-  // display: flex
-  // justify-content: flex-end
+  float: right
+  display: flex
+  // justify-content: flex-endanslate(-50%)
 
 </style>

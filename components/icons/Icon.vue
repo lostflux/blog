@@ -1,5 +1,5 @@
 <template>
-  <AppStoreIcon     v-if="type.toLowerCase()      === 'app store'" />
+  <AppStoreIcon          v-if="type.toLowerCase() === 'app store'" />
   <BookMarkIcon     v-else-if="type.toLowerCase() === 'bookmark'" />
   <CodePenIcon      v-else-if="type.toLowerCase() === 'codepen'" />
   <ExternalLinkIcon v-else-if="type.toLowerCase() === 'external link'" />

@@ -26,14 +26,7 @@
         Here are a few technologies I've been working with recently:
       </p>
       <ul class="styled-list">
-        <li>Python</li>
-        <li>SQL</li>
-        <li>Nuxt (Vue)</li>
-        <li>Node.js</li>
-        <li>C/C++</li>
-        <li>Haskell</li>
-        <li>LaTeX</li>
-        <li>Git</li>
+        <li v-for="skill in skills"> {{ skill }}</li>
       </ul>
     
     </StyledText>
@@ -49,6 +42,12 @@
     </StyledImage>
   </StyledAboutSection>
 </template>
+
+<script lang="ts" setup>
+
+import { skills } from "~/src/config";
+
+</script>
 
 <script lang="ts">
   export default {

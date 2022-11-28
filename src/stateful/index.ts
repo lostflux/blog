@@ -1,9 +1,10 @@
 
-import { ReactiveEffect } from 'nuxt/dist/app/compat/vue-demi';
+import { ReactiveEffect, UnwrapRef } from 'nuxt/dist/app/compat/vue-demi';
 import { 
   readonly, ref, reactive,
   onMounted, onUnmounted, watch, Ref
 } from 'vue';
+
 
 
 class MyRef<T = any> {
@@ -32,7 +33,8 @@ class MyRef<T = any> {
  *  - `state`: the current value of the state
  *  - `setState`: a function to update the state
  */
-export function useState<T = any>(initialState: T): [T, ((newState: T) => void)] {
+export function useState<T = any>(initialState: T):
+[T, ((newState: T) => void)] {
 
   // create state and insert initial state
   const state = ref<T>();
@@ -43,9 +45,14 @@ export function useState<T = any>(initialState: T): [T, ((newState: T) => void)]
     state.value = newState;
   };
 
-  const value = state.value;
+  // get state func
+  const getState = () => {
+    return state.value;
+  };
+
+  const reactiveValue = reactive(state).value;
   
-  return  [ value, setState ];
+  return  [ reactiveValue, setState ];
 }
 
 // use reference

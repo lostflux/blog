@@ -1,12 +1,39 @@
 <template>
-  <div class="styled-tab-panel">
+  <div
+    class="styled-tab-panel"
+    v-show="active === 1"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
+
 export default {
   name: "StyledTabPanel",
+  props: {
+    identifier: {
+      type: Number,
+      required: true,
+    }
+  },
+  data() {
+    return {
+
+      // initially, the first tab is active.
+      active: this.$props.identifier === 0 ? 1 : 0,
+    };
+  },
+  methods : {
+    activateTab() {
+      console.log(`activated tab!!`);
+      this.active = 1;
+    },
+    muteTab() {
+      console.log(`muted tab!!`);
+      this.active = 0;
+    },
+  },
 }
 </script>
 

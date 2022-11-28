@@ -15,6 +15,8 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/react": "^18.0.25",
     "@types/scrollreveal": "^0.0.8",
+    "@vueblocks/vue-use-core": "^0.2.11",
+    "@vueblocks/vue-use-vuex": "^0.2.11",
     "apollo": "^2.34.0",
     "composition-api": "latest",
     "express": "^4.18.2",

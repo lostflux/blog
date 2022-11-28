@@ -9,54 +9,49 @@
         >
           <StyledTabButton
             v-for="job in jobs"
-            :key="job.i"
             :id="`tab-${job.i}`"
             :tabindex="activeTabId === job.i ? '0' : '-1'"
             :aria-controls="`panel-${job.i}`"
             :aria-selected="activeTabId === job.i ? true : false"
             @click="logSetActiveTabId(job.i)"
-            :is="tabs[job.i]"
             role="tab"
           > 
             <span>
               {{ `${job.i}: ${job.company}` }}
             </span>
           </StyledTabButton>
-          <StyledHighlight :activeTabId={activeTabId} />
+          <StyledHighlight ref="highlight" />
         </StyledTabList>
   
         <StyledTabPanels>
-          <template v-for="job in jobs">
-            <StyledTabPanel
-              v-if = "activeTabId === job.i"
-              :key="job.i"
-              :id="`panel-${job.i}`"
-              :aria-labelledby="`tab-${job.i}`"
-              :aria-hidden="job.i !== activeTabId"
-              :tabindex="activeTabId === job.i ? '0' : '-1'"
-              role="tabpanel"
-            >
-              <h3>
-                {{ job.title }}
-                <span class="company">
-                  &nbsp;@&nbsp;
-                  <a :href="job.url" class="inline-link">
-                    {{ job.company }}
-                  </a>
-                </span>
-              </h3>
-              <p class="range">
-                {{ job.range }}
-              </p>
-              <StyledText>
-                <ul class="styled-list">
-                  <li v-for="point in job.points" :key="point.id">
-                    {{ point.text }}
-                  </li>
-                </ul>
-              </StyledText>
-            </StyledTabPanel>
-          </template>
+          <StyledTabPanel
+            v-for="job in jobs"
+            :identifier="job.i"
+            ref="tabs"
+            role="tabpanel"
+            id="`panel-${job.i}`"
+          > 
+            <p> Active: {{ tabs[job.i] }} </p>
+            <h3>
+              {{ job.title }}
+              <span class="company">
+                &nbsp;@&nbsp;
+                <a :href="job.url" class="inline-link">
+                  {{ job.company }}
+                </a>
+              </span>
+            </h3>
+            <p class="range">
+              {{ job.range }}
+            </p>
+            <StyledText>
+              <ul class="styled-list">
+                <li v-for="point in job.points" :key="point.id">
+                  {{ point.text }}
+                </li>
+              </ul>
+            </StyledText>
+          </StyledTabPanel>
         </StyledTabPanels>
       </div>
     </StyledJobsSection>
@@ -73,7 +68,7 @@ import { useState, useRef, useEffect } from "~/src/stateful";
 import { srConfig } from '~/src/config';
 import { KEY_CODES } from '~/src/utils';
 import { usePrefersReducedMotion } from '~/src/hooks';
-
+import { ref } from "vue";
 
 const path = useRoute();
 
@@ -139,27 +134,49 @@ jobs.map((job, i) => {
   job.i = i;
 });
 
+
+const initTabs = () => {
+  var _tabs = ref([])
+  return _tabs;
+};
     
-  const [activeTabId, setActiveTabId] = useState(0);
-  const [tabFocus, setTabFocus] = useState(0);
+  // const [activeTabId, setActiveTabId] = useState(0);
+var activeTabId = 0;
+var tabs = initTabs();
+var highlight = ref(null);
+// console.log(`tabs: ${tabs}`);
 
-  const logSetActiveTabId = (id: number) => {
-    console.log(`setActiveTabId: id`);
-    console.log(`current activeTabId: ${activeTabId}`);
-    setActiveTabId(id);
-    console.log(`new activeTabId: ${id}`);
-  }
+const setActiveTabId = (id: number) => {
+  tabs.value[activeTabId]?.muteTab();
+  // tabs[activeTabId]. = 0;
+  activeTabId = id;
+  // tabs[activeTabId] = 1;
+  tabs.value[activeTabId]?.activateTab();
+  highlight.value?.highlight(id)
+}
+
+const logSetActiveTabId = (id: number) => {
+  console.log(`current activeTabId: ${activeTabId}`);
+  console.log(`Setting active tab to ${id}`);
+  // activeTabId = id;
+  setActiveTabId(id);
+  console.log(`new activeTabId: ${activeTabId}`);
+  console.log(`tabs: ${tabs}`);
+}
+
+logSetActiveTabId(0);
+
+
+
+
+
+const [tabFocus, setTabFocus] = useState(0);
+
+
   
-  const initTabs = () => {
-    const _tabs = []
-    for (let i = 0; i < jobs.length; i++) {
-      _tabs.push(`tab-${i}`)
-    }
-    return _tabs;
-  }
+ 
 
-  const tabs = useRef(initTabs());
-  console.log(`tabs: ${tabs.value}`);
+
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -184,8 +201,8 @@ jobs.map((job, i) => {
 
   const focusTab = () => {
     console.log(`focusTab: ${tabFocus}`);
-    if (tabs.value[tabFocus]) {
-      tabs.value[tabFocus].focus();
+    if (tabs[tabFocus]) {
+      tabs[tabFocus].focus();
       return;
     }
     // If we're at the end, go to the start

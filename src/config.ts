@@ -62,4 +62,15 @@ const srConfig = (delay = 200, viewFactor = 0.25) => ({
     viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
   });
 
-export { email, social, navLinks, colors, srConfig };
+const skills = [
+  "Python",
+  "C/C++",
+  "Java",
+  "Haskell",
+  "Vue/Typescript",
+  "Rust",
+  "LaTeX",
+  "Git",
+]
+
+export { email, social, navLinks, colors, srConfig, skills };

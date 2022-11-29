@@ -19,7 +19,6 @@ export default {
   },
   data() {
     return {
-
       // initially, the first tab is active.
       active: this.$props.identifier === 0 ? 1 : 0,
     };
@@ -32,6 +31,10 @@ export default {
     muteTab() {
       console.log(`muted tab!!`);
       this.active = 0;
+    },
+    focus() {
+      console.log(`focusing tab!!`);
+      this.$refs.tab.focus();
     },
   },
 }
@@ -47,8 +50,10 @@ export default {
   width: 100%
   height: auto
   padding: 10px 5px
+
   ul
     @include mixins.styled-list
+    
   
   h3 
     margin-bottom: 2px

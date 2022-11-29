@@ -7,7 +7,7 @@
         :timeout="timeout"
       >
         <div class="nav-inner">
-          <Logo/>
+          <Logo class="logo"/>
         </div>
       </Transition>
     </TransitionGroup>
@@ -63,6 +63,6 @@ nav
   z-index: 12
   float: right
   display: flex
-  // justify-content: flex-endanslate(-50%)
+  justify-content: flex-end
 
 </style>

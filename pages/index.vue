@@ -1,11 +1,9 @@
 <template>
   <main class="fill-height">
-    <div class="fill-height">
-      <Hero />
-    </div>
+    <Hero />
     <About />
     <Jobs />
-    <!-- <Featured/> -->
+    <Featured/>
     <!-- <Projects/> -->
     <!-- <Contact/> -->
 

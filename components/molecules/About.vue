@@ -34,11 +34,12 @@
     <StyledImage>
       <img
         src="~assets/images/profile-image.jpg"
+        class="img"
         width="500"
         quality="100"
         formats="AUTO, WEBP, AVIF"
         alt="head shot"
-        />
+      />
     </StyledImage>
   </StyledAboutSection>
 </template>

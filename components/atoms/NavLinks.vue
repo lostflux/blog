@@ -63,8 +63,8 @@
 .nav-links
   display: flex
   align-items: center
-  position: relative
-  float: right
+  // position: relative
+  // float: right
 
   @media (max-width: 768px)
     display: none
@@ -74,13 +74,14 @@
     padding: 0
     margin: 0
     list-style: none
+    // display: flex
 
     li
       margin: 0 5px
       position: relative
       counter-increment: item 1
       font-size: typography.font-size("xs")
-      float: left
+      // float: left
 
       a
         padding: 10px

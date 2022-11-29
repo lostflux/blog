@@ -13,7 +13,6 @@
   <StarIcon         v-else-if="type.toLowerCase() === 'star'" />
   <TwitterIcon      v-else-if="type.toLowerCase() === 'twitter'" />
   <ExternalLinkIcon v-else />
-
 </template>
 
 <script lang="ts">

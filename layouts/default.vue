@@ -1,9 +1,9 @@
 <template>
-  <div id="root">
+  <div>
     <a class="skip-to-content" href="#content">
       Skip to Content
     </a>
-    <div class="styled-content">
+    <div>
       <AppHeader/>
       <slot />
       <AppFooter/>
@@ -11,14 +11,19 @@
   </div>
 </template>
 
+
+
+
+
+
+
 <style lang="sass">
 @use "../styles/default"
-
-.styled-content
-  display: flex
-  flex-direction: column
-  min-height: 100vh
 </style>
+
+
+
+
 
 <script lang="ts">
   export default {
@@ -35,6 +40,14 @@
     }
   }
 </script>
+
+
+
+
+
+
+
+
 
 <script setup lang="ts">
 
@@ -57,6 +70,7 @@ const handleExternalLinks = () => {
   }
 };
 
+
 useEffect(() => {
   if (isLoading) {
     return;
@@ -64,6 +78,7 @@ useEffect(() => {
 
   if (location.hash) {
     const id = location.hash.substring(1); // location.hash without the '#'
+    console.log(`id: ${id}`);
     setTimeout(() => {
       const el = document.getElementById(id);
       if (el) {
@@ -75,4 +90,13 @@ useEffect(() => {
 
   handleExternalLinks();
 }, [useRef(isLoading)]);
+
+
+const scrollTo = (location: number) => {
+  window.scrollTo({
+    top: location,
+    behavior: "smooth"
+  });
+};
+
 </script>

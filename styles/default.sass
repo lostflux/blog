@@ -67,7 +67,11 @@ html
   border: 3px solid colors.color("navy")
   border-radius: 10px
 
-body 
+body
+  
+  /////// INITIALIZE COUNTERS
+  counter-reset: sections items
+  
   margin: 0
   width: 100%
   min-height: 100%
@@ -169,11 +173,11 @@ h1, h2, h3, h4, h5, h6
   font-size: clamp(26px, 5vw, typography.font-size("heading"))
   white-space: nowrap
   
-  &:before 
+  &::before 
     position: relative
     bottom: 4px
-    counter-increment: section
-    content: '0' counter(section) '.'
+    counter-increment: sections 1
+    content: '0' counter(sections) '.'
     margin-right: 10px
     color: colors.color("green")
     font-family: typography.font("font-mono")
@@ -185,7 +189,7 @@ h1, h2, h3, h4, h5, h6
       margin-right: 5px
     
   
-  &:after 
+  &::after 
     content: ''
     display: block
     position: relative
@@ -217,7 +221,7 @@ img:not([alt])
 svg 
   width: 100%
   height: 100%
-  fill: current-color
+  fill: currentColor
   vertical-align: middle
 
   &.feather 
@@ -294,7 +298,10 @@ ul
         left: 0
         color: colors.color("green")
       
-    
+.styled-content
+  display: flex
+  flex-direction: column
+  min-height: 100vh
 
 blockquote 
   border-left-color: colors.color("green")
@@ -344,7 +351,7 @@ code
     z-index: 99
   
 
-#logo
+.logo
   color: colors.color("green")
 
 .overline 

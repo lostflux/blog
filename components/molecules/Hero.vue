@@ -1,14 +1,15 @@
 <template>
-  <div class="fill-height">
+  <div>
     <div id="hero">
       <template v-for="{level, content} in items">
         <h1 v-if="level === 'h1'"> {{ content }} </h1>
-        <h2 v-else-if="level === 'h2'"> {{ content }} </h2>
-        <h3 v-else-if="level === 'h3'"> {{ content }} </h3>
+        <h2 v-else-if="level === 'h2'" class="big-heading"> {{ content }} </h2>
+        <h3 v-else-if="level === 'h3'" class="big-heading"> {{ content }} </h3>
         <p v-else-if="level === 'p'"> {{ content }} </p>
         <a
           v-else-if="level === 'a'"
           href="mailto:amittaijoel@outlook.com"
+          class="email-link"
           target="_blank"
           rel="noreferrer"
         > {{ content }} </a>
@@ -22,14 +23,8 @@
 <script lang="ts" setup>
 import { useState, useEffect } from "~/src/stateful";
 
-const [isMounted, setIsMounted] = useState(false);
-
-onMounted(() => {
-  setIsMounted(true);
-});
-
 const one = {level: "h1", content: "Hi, my name is"};
-const two = {level: "h2", content: "Altair"};
+const two = {level: "h2", content: "Altair."};
 const three = {level: "h3", content: "I build things for the web"};
 const four = {
   level: "p",
@@ -39,7 +34,7 @@ const four = {
     using emerging technologies such as Machine Learning and Blockchain.`,
 };
 
-const five = {level: "a", content: "Up for a chat?" };
+const five = {level: "a", content: "Up (or... Down) for a chat?" };
 
 const items = [one, two, three, four, five];
 
@@ -62,6 +57,11 @@ export default {
   align-items: flex-start
   min-height: 100vh
   padding: 0
+  // position: absolute
+  // bottom: 0
+  // left: 0
+  // top: 0
+  // left: 0
 
   @media (max-width: 480px) and (min-height: 700px)
     padding-bottom: 10vh
@@ -85,8 +85,12 @@ export default {
     margin: 20px 0 0
     max-width: 540px
   
-  a
+  .email-link
     // @include mixins.big-button
     margin-top: 50px
+    color: colors.color("lightest-slate")
+
+    &:hover
+      color: colors.color("green")
   
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <button class="styled-button">
+  <button
+    class="styled-button"
+    :id="`styled-button-${identifier}`"
+  >
     <slot />
   </button>
 </template>
@@ -7,6 +10,18 @@
 <script lang="ts">
   export default {
     name: "StyledButton",
+    props: {
+      identifier: {
+        type: Number,
+        required: true,
+      },
+    },
+    methods: {
+      focus() {
+        console.log(`focusing button!!`);
+        document.getElementById(`styled-button-${this.$props.identifier}`)?.focus();
+      },
+    },
   }
 </script>
 
@@ -41,7 +56,7 @@
     border-bottom: 2px solid colors.color("lightest-navy")
     text-align: center
   
-  &:hover
+  &:hover, &:focus-visible, &:focus
     background-color: colors.color("light-navy")
 
   &:active

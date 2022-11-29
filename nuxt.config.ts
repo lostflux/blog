@@ -38,4 +38,9 @@ export default defineNuxtConfig({
       '~/components',
     ]
   },
+  compilerOptions: {
+    isCustomElement: [
+      'vue-freezeframe',
+    ]
+  },
 })

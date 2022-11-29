@@ -10,6 +10,7 @@
   "devDependencies": {
     "@comunica/query-sparql-file": "^2.5.2",
     "@nuxt/content": "^2.1.1",
+    "@nuxt/types": "^2.15.8",
     "@nuxt/ui": "^0.3.3",
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.2.1",
@@ -20,6 +21,7 @@
     "apollo": "^2.34.0",
     "composition-api": "latest",
     "express": "^4.18.2",
+    "freezeframe": "^5.0.2",
     "frontmatter-markdown-loader": "^3.7.0",
     "gql-client": "^1.0.0",
     "graphql": "^16.6.0",
@@ -30,6 +32,7 @@
     "sass-loader": "latest",
     "scrollreveal": "^4.0.9",
     "sr": "^1.0.4",
+    "vue-freezeframe": "^5.0.2",
     "vue-styled-components": "^1.6.0"
   },
   "dependencies": {

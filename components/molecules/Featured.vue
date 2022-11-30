@@ -141,8 +141,9 @@ class ParsedProjectInfo {
 const { data: projectData, error } = await useAsyncData(
   `projects-${useRoute().path}`,
   async () => {
-    const _projectsData = queryContent<MarkdownParsedContent>()
+    const _projectsData = queryContent<MarkdownParsedContent>("projects")
       .where( {category: "featured-project"} )
+      .where( {show: "true"} )
       .sort( {date: -1} )
       .find();
     return await _projectsData;
@@ -152,7 +153,8 @@ const { data: projectData, error } = await useAsyncData(
 const projects = Array<ParsedProjectInfo>();
 
 /// DEBUG
-// projectData ? projectData.value.forEach(console.log) : console.log(error);
+projectData ? projectData.value.forEach(console.log) : console.log(error);
+console.log(`${projectData.value[0].body.children[1] }`)
 
 projectData.value?.forEach((item, i) => {
   projects.push(new ParsedProjectInfo(item, i));

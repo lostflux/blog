@@ -1,5 +1,5 @@
 <template>
-  <StyledAboutSection class="about-section">
+  <StyledAboutSection id="about" class="about-section">
     <StyledText>
       <p>
         Hello, my name is Altair, a current undergraduate student

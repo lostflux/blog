@@ -3,8 +3,20 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     // ...
+    "sourceMap": true,
+    "target": "ESNext",
+    "allowJs": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM", "es5", "es6", "DOM.Iterable"],
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "types": [
-      "vite/client", // if using vite
+      "@types/node", // standard node types
+      "@nuxt/types",
+      // "vite/client", // if using vite
       // ...
     ]
   }

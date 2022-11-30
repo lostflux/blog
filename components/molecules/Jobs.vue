@@ -1,60 +1,64 @@
 <template>
-    <StyledJobsSection>
-      <h2 class="numbered-heading">Work Experience</h2>
-      <div class="inner">
-        <StyledTabList
-          role="tablist"
-          aria-label="Job tabs"
-          @keydown="onKeyDown"
+  <StyledJobsSection id="jobs">
+    <h2 class="numbered-heading">Work Experience</h2>
+    <div class="inner">
+      <StyledTabList
+        role="tablist"
+        aria-label="Job tabs"
+        @keydown="onKeyDown"
+      >
+        <StyledTabButton
+          v-for="job in jobs"
+          :identifier="job.i"
+          ref="tabButtons"
+          :tabindex="activeTabId === job.i ? '0' : '-1'"
+          :aria-controls="`panel-${job.i}`"
+          :aria-selected="activeTabId === job.i ? true : false"
+          @click="
+            () => {
+              setActiveTabId(job.i);
+              selectTab(job.i);
+            }"
+          role="tab"
+        > 
+          <span>
+            {{ `${job.i}: ${job.company}` }}
+          </span>
+        </StyledTabButton>
+        <StyledHighlight ref="highlight" />
+      </StyledTabList>
+
+      <StyledTabPanels>
+        <StyledTabPanel
+          v-for="job in jobs"
+          :identifier="job.i"
+          ref="tabs"
+          role="tabpanel"
+          id="`panel-${job.i}`"
         >
-          <StyledTabButton
-            v-for="job in jobs"
-            :identifier="job.i"
-            ref="tabButtons"
-            :tabindex="activeTabId === job.i ? '0' : '-1'"
-            :aria-controls="`panel-${job.i}`"
-            :aria-selected="activeTabId === job.i ? true : false"
-            @click="setActiveTabId(job.i)"
-            role="tab"
-          > 
-            <span>
-              {{ `${job.i}: ${job.company}` }}
+          <h3>
+            {{ job.title }}
+            <span class="company">
+              &nbsp;@&nbsp;
+              <a :href="job.url" class="inline-link">
+                {{ job.company }}
+              </a>
             </span>
-          </StyledTabButton>
-          <StyledHighlight ref="highlight" />
-        </StyledTabList>
-  
-        <StyledTabPanels>
-          <StyledTabPanel
-            v-for="job in jobs"
-            :identifier="job.i"
-            ref="tabs"
-            role="tabpanel"
-            id="`panel-${job.i}`"
-          >
-            <h3>
-              {{ job.title }}
-              <span class="company">
-                &nbsp;@&nbsp;
-                <a :href="job.url" class="inline-link">
-                  {{ job.company }}
-                </a>
-              </span>
-            </h3>
-            <p class="range">
-              {{ job.range }}
-            </p>
-            <ul class="styled-list">
-              <li v-for="point in job.points" :key="point.id">
-                <StyledText>
-                  {{ point.text }}
-                </StyledText>
-                </li>
-              </ul>
-          </StyledTabPanel>
-        </StyledTabPanels>
-      </div>
-    </StyledJobsSection>
+          </h3>
+          <p class="range">
+            {{ job.range }}
+          </p>
+          <ul class="styled-list">
+            <li v-for="point in job.points" :key="point.id">
+              <StyledText>
+                {{ point.text }}
+              </StyledText>
+              </li>
+            </ul>
+        </StyledTabPanel>
+      </StyledTabPanels>
+    </div>
+  </StyledJobsSection>
 </template>
 
 <script setup lang="ts">
@@ -146,14 +150,24 @@ var highlight = ref(null);
 
 const setActiveTabId = (id: number) => {
 
-  // switch the active tab and mute the old one
+  console.log(`Setting active tab to ${id}`);
+
+  // mute old tab if active
   tabs.value[activeTabId]?.muteTab();
-  activeTabId = id;
+
+  // change active tab to current
   tabFocus.value = id;
+
+  activeTabId = id;
   tabs.value[activeTabId]?.activateTab();
 
   // show the corresponding tab panel
   highlight.value?.highlight(id)
+
+  console.log(`
+    activeTabId: ${activeTabId}
+    tabFocus.value: ${tabFocus.value}
+  `);
 }
 
 // setActiveTabId(0);
@@ -193,6 +207,15 @@ const setActiveTabId = (id: number) => {
 
   const focusTab = () => {
     tabButtons.value[tabFocus.value]?.focus();
+  };
+
+  var selectedTab = 0;
+  const selectTab = (id: number) => {
+    if (id !== selectedTab) {
+      tabButtons.value[selectedTab]?.deselect();
+      selectedTab = id;
+      tabButtons.value[selectedTab]?.select();
+    }
   };
 
   // Only re-run the effect if tabFocus changes

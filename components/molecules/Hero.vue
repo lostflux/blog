@@ -25,7 +25,7 @@ import { useState, useEffect } from "~/src/stateful";
 
 const one = {level: "h1", content: "Hi, my name is"};
 const two = {level: "h2", content: "Altair."};
-const three = {level: "h3", content: "I build things for the web"};
+const three = {level: "h3", content: "I make things do stuff."};
 const four = {
   level: "p",
   content: `

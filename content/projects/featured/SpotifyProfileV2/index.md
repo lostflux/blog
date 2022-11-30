@@ -11,6 +11,7 @@ tech:
   - Spotify API
   - Styled Components
 category: 'featured-project'
+show: 'true'
 ---
 
 Having struggled with understanding how the Spotify OAuth flow works, I made the course I wish I could have had.

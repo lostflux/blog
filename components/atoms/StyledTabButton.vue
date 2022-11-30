@@ -2,12 +2,16 @@
   <button
     class="styled-button"
     :id="`styled-button-${identifier}`"
+    :style="style"
   >
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { identifier } from '@babel/types';
+const _colorGreen = "#64ffda";
+
   export default {
     name: "StyledButton",
     props: {
@@ -18,8 +22,38 @@
     },
     methods: {
       focus() {
-        console.log(`focusing button!!`);
         document.getElementById(`styled-button-${this.$props.identifier}`)?.focus();
+      },
+      select() {
+        this.selected = true;
+      },
+      deselect() {
+        this.selected = false;
+      },
+    },
+    data() {
+      return {
+        // initially, the first tab is active.
+        selected: this.$props.identifier === 0 ? true : false,
+      };
+    },
+    computed: {
+      style() {
+        if (this.selected) {
+          return `aria-selected: true; color: ${_colorGreen}`;
+        } else {
+          return `aria-selected: false`;
+        }
+      },
+    },
+
+    watch: {
+      selected(newSelected: boolean) {
+        console.log(`selected changed to ${newSelected}`);
+        console.log(`style is ${this.style}`);
+        
+        // re-render the component
+        this.$forceUpdate();
       },
     },
   }

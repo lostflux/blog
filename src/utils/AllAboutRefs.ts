@@ -16,10 +16,12 @@ class NumRefManager {
     this.ref = ref(0);
     this.max = max || 0;
     this.min = min || 0;
+
+    console.log(`Ref with min`)
   }
 
   public set value(index: number) {
-    this.ref.value = index % this.max;
+    this.ref.value = index % (this.max + 1);
   }
 
   public get value() {

@@ -1,5 +1,5 @@
 <template>
-  <li id="styled-project">
+  <li class="styled-project">
     <slot />
   </li>
 </template>
@@ -18,7 +18,7 @@
 @use "~/styles/geometry"
 
 
-#styled-project
+.styled-project
   position: relative
   display: grid
   grid-gap: 10px
@@ -96,7 +96,6 @@
       height: 100%
       grid-column: 1 / -1
       padding: 40px 40px 30px
-      z-index: 5
     
     @media (max-width: 480px)
       padding: 30px 25px 20px
@@ -112,18 +111,21 @@
   .project-title
     color: colors.color("lightest-slate")
     font-size: clamp(24px, 5vw, 28px)
+    z-index: 2
+    position: relative
+
     @media (min-width: 768px)
       margin: 0 0 20px
     
     @media (max-width: 768px)
       color: colors.color("white")
-      a
+      
+      a, span
         position: static
         &:before
           content: ''
           display: block
           position: absolute
-          z-index: 0
           width: 100%
           height: 100%
           top: 0
@@ -135,12 +137,12 @@
   .project-description
     @include mixins.box-shadow
     position: relative
-    z-index: 2
     padding: 25px
     border-radius: geometry.var("border-radius")
     background-color: colors.color("light-navy")
     color: colors.color("light-slate")
     font-size: typography.font-size("l")
+    z-index: 2
     @media (max-width: 768px)
       padding: 20px 0
       background-color: transparent
@@ -161,10 +163,12 @@
     display: flex
     flex-wrap: wrap
     position: relative
-    z-index: 2
     margin: 25px 0 10px
     padding: 0
     list-style: none
+    z-index: 2
+    pointer-events: none
+
     li
       margin: 0 20px 5px 0
       color: colors.color("light-slate")
@@ -187,6 +191,8 @@
     margin-top: 10px
     margin-left: -10px
     color: colors.color("lightest-slate")
+    z-index: 2
+
     a 
       @include mixins.flex-center
       padding: 10px
@@ -200,6 +206,7 @@
       svg 
         width: 20px
         height: 20px
+        stroke-width: 3px
       
     
     .cta 
@@ -243,7 +250,7 @@
         left: 0
         right: 0
         bottom: 0
-        z-index: 3
+        z-index: 1
         transition: geometry.var("default-transition")
         background-color: colors.color("navy")
         mix-blend-mode: screen
@@ -252,7 +259,7 @@
     .img 
       border-radius: geometry.var("border-radius")
       mix-blend-mode: multiply
-      filter: grayscale(100%) contrast(1) brightness(90%)
+      filter: grayscale(80%) contrast(1) brightness(40%)
       @media (max-width: 768px) 
         object-fit: cover
         width: auto

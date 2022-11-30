@@ -1,5 +1,5 @@
 <template>
-  <section id="jobs-section">
+  <section class="jobs-section">
     <slot />
   </section>
 </template>
@@ -9,7 +9,7 @@
 @use "../styles/colors"
 @use "../styles/geometry"
 
-#jobs-section
+.jobs-section
   max-width: 700px
   .inner
     display: flex

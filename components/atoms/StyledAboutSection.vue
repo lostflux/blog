@@ -1,5 +1,5 @@
 <template>
-  <section id="about-section">
+  <section class="about-section">
     <h2 class="numbered-heading">About Me</h2>
     <div class="inner">
       <slot />
@@ -18,7 +18,7 @@ export default {
   @use "../styles/colors"
   @use "../styles/geometry"
 
-  #about-section
+  .about-section
     max-width: 900px
     .inner
       display: grid

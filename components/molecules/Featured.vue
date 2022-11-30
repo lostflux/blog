@@ -58,7 +58,7 @@
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
             <img
-              src="~assets/images/neural.gif"
+              src="~assets/images/pentanion.gif"
               :alt="project.title"
               class="img"
               quality="100"

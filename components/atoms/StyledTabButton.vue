@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { identifier } from '@babel/types';
+
 const _colorGreen = "#64ffda";
 
   export default {

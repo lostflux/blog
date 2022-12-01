@@ -3,6 +3,7 @@ category: 'contact'
 ---
 
 ::section{class="contact-section"}
+
   ::h2{class="numbered-heading overline"}
     What's next?
   ::
@@ -12,9 +13,12 @@ category: 'contact'
   ::
 
   ::p
-    If you have any questions or comments, please feel free to contact me.
-    You can also [check out my GitHub](https://github.com/siavava).
-    Thanks for visiting!
+    Thank you for checking out my portfolio.
+    Reach out if you have any comments, questions, et cetera.
+    Alternatively, find me on
+    [GitHub](https://github.com/siavava),
+    [LinkedIn](https://www.linkedin.com/in/siavava/),
+    or [Behance](https://www.behance.net/siavava).
     
     I  hope you're kind to the world,
     and I hope the world is kind to you.
@@ -27,4 +31,5 @@ category: 'contact'
   ---
     Email Me
   ::
+  
 ::

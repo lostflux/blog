@@ -1,5 +1,8 @@
 <template>
-  <ContentDoc path="/profile/contact" />
+  <ContentDoc
+    path="profile/contact"
+    query="{ category: 'contact' }"
+  />
 </template>
 
 <style lang="sass">

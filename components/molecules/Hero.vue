@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <div id="hero">
-      <template v-for="{level, content} in items">
+  <!-- <div> -->
+    <!-- <div class="hero"> -->
+      <ContentDoc
+        path="profile/hero"
+        query="{{ category: 'hero' }}"
+        class="hero"
+
+      />
+      <!-- <template v-for="{level, content} in items">
         <h1 v-if="level === 'h1'"> {{ content }} </h1>
         <h2 v-else-if="level === 'h2'" class="big-heading"> {{ content }} </h2>
         <h3 v-else-if="level === 'h3'" class="big-heading"> {{ content }} </h3>
@@ -14,10 +20,10 @@
           rel="noreferrer"
         > {{ content }} </a>
       
-      </template>
-    </div>
+      </template> -->
+    <!-- </div> -->
 
-  </div>
+  <!-- </div> -->
 </template>
 
 <script lang="ts" setup>
@@ -51,12 +57,18 @@ export default {
 @use "~/styles/colors"
 @use "~/styles/typography"
 
-#hero
+.hero
+
+  *
+    &:hover
+      cursor: pointer
+      mouse-events: none
   @include mixins.flex-center
   flex-direction: column
   align-items: flex-start
   min-height: 100vh
   padding: 0
+  // background-color: colors.color("lightest-slate")
   // position: absolute
   // bottom: 0
   // left: 0
@@ -80,6 +92,7 @@ export default {
     margin-top: 10px
     color: colors.color("slate")
     line-height: 0.9
+    font-size: typography.font-size("")
   
   p 
     margin: 20px 0 0

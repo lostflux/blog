@@ -4,6 +4,7 @@
   <CodePenIcon      v-else-if="type.toLowerCase() === 'codepen'" />
   <ExternalLinkIcon v-else-if="type.toLowerCase() === 'external link'" />
   <FolderIcon       v-else-if="type.toLowerCase() === 'folder'" />
+  <ForkIcon         v-else-if="type.toLowerCase() === 'fork'" />
   <GitHubIcon       v-else-if="type.toLowerCase() === 'github'" />
   <InstagramIcon    v-else-if="type.toLowerCase() === 'instagram'" />
   <LinkedInIcon     v-else-if="type.toLowerCase() === 'linkedin'" />

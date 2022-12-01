@@ -5,8 +5,7 @@
     <Jobs id="jobs"/>
     <Featured id="projects"/>
     <Projects />
-    <Contact/>
-
+    <Contact id="contact"/>
   </main>
 </template>
 

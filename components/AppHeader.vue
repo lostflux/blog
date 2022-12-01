@@ -132,6 +132,7 @@ header
   // trick: make header stick out a bit
   // by filtering it with grayscale.
   filter: grayscale(30%) !important
+
   pointer-events: auto !important
   user-select: auto !important
   transition: geometry.var("default-transition")
@@ -161,10 +162,5 @@ header
     // hide on scroll down
     // transform: translateY(calc(geometry.var("nav-scroll-height") * -1))
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
-
-  // hide header at some point
-  // .header--hidden
-  //   transform: translateY(calc(geometry.var("nav-scroll-height") * -1))
-  //   // box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
 
 </style>

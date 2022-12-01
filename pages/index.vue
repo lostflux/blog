@@ -4,7 +4,7 @@
     <About id="about"/>
     <Jobs id="jobs"/>
     <Featured id="projects"/>
-    <!-- <Projects/> -->
+    <Projects />
     <!-- <Contact/> -->
 
   </main>

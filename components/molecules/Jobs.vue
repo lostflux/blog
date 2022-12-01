@@ -150,8 +150,6 @@ var highlight = ref(null);
 
 const setActiveTabId = (id: number) => {
 
-  console.log(`Setting active tab to ${id}`);
-
   // mute old tab if active
   tabs.value[activeTabId]?.muteTab();
 
@@ -164,10 +162,6 @@ const setActiveTabId = (id: number) => {
   // show the corresponding tab panel
   highlight.value?.highlight(id)
 
-  console.log(`
-    activeTabId: ${activeTabId}
-    tabFocus.value: ${tabFocus.value}
-  `);
 }
 
 // setActiveTabId(0);
@@ -183,25 +177,25 @@ const setActiveTabId = (id: number) => {
  
 
 
-  const revealContainer = useRef(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
+  // const revealContainer = useRef(null);
+  // const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect( () => {
-    if (prefersReducedMotion) {
-      return;
-    }
-    const importScrollReveal = async () => {
-      const scrollReveal = await import("~/src/utils/sr");
-      return scrollReveal.default;
-    }
+  // useEffect( () => {
+  //   if (prefersReducedMotion) {
+  //     return;
+  //   }
+  //   const importScrollReveal = async () => {
+  //     const scrollReveal = await import("~/src/utils/sr");
+  //     return scrollReveal.default;
+  //   }
     
-    const sr = importScrollReveal()
-    .then((sr) => {
-      sr.reveal(revealContainer.value, srConfig());
-    })
-    .catch(console.error);    
-    }, [])
-  ;
+  //   const sr = importScrollReveal()
+  //   .then((sr) => {
+  //     sr.reveal(revealContainer.value, srConfig());
+  //   })
+  //   .catch(console.error);    
+  //   }, [])
+  // ;
   
 
 

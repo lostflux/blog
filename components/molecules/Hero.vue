@@ -63,6 +63,7 @@ export default {
     &:hover
       cursor: pointer
       mouse-events: none
+  
   @include mixins.flex-center
   flex-direction: column
   align-items: flex-start

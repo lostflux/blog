@@ -4,9 +4,7 @@
     class="header"
     :style="style"
   >
-    <Nav
-      class="nav"
-    />
+    <Nav class="nav" />
   </header>
 </template>
 

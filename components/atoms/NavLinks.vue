@@ -26,7 +26,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            Resume
+            &#x3c;
           </a>
         </div>
       </Transition>
@@ -94,7 +94,8 @@
           text-align: right
 
 .resume-button
-  @include mixins.small-button
+  // @include mixins.small-button
   margin-left: 15px
-  font-size: typography.font-size("xs")
+  font-size: typography.font-size("heading")
+  color: colors.color("green")
 </style>

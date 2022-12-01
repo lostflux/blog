@@ -127,12 +127,7 @@ class ParsedProjectInfo {
     //   coverPath = coverPath.substring(1);
     // }
     this.cover = coverPath
-    this.cover = "~assets/images/halcyon.jpg"
-    console.log(`
-      project._path: ${project._path}
-      project.cover: ${project.cover}
-      this.cover: ${this.cover}
-      `);
+    this.cover = "~assets/images/halcyon.jpg"  // fix this
   }
 }
 
@@ -150,10 +145,6 @@ const { data: projectData, error } = await useAsyncData(
 
 // parse job info and store in an array, sorted by date
 const projects = Array<ParsedProjectInfo>();
-
-// /// DEBUG
-// projectData ? projectData.value.forEach(console.log) : console.log(error);
-// console.log(`${projectData.value[0].body.children[1] }`)
 
 projectData.value?.forEach((item, i) => {
   projects.push(new ParsedProjectInfo(item, i));

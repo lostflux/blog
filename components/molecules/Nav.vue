@@ -54,15 +54,20 @@ const fadeDownClass = isHome ? 'fadedown' : '';
 
 
 nav
-  @apply mixins.flex-between
+  @include mixins.flex-between
   position: relative
   width: 100%
+  max-width: 1600px
   color: colors.color("lightest-slate")
   font-family: typography.font("font-mono")
   counter-reset: item 0
   z-index: 12
   float: right
-  display: flex
-  justify-content: flex-end
+  margin: 0 auto
+  // display: flex
+  // justify-content: flex-end
+
+  // debug stuff
+  // background-color: colors.color("lightest-navy") 
 
 </style>

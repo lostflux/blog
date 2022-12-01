@@ -115,9 +115,9 @@ class ParsedJobInfo {
 const { data: jobsData, error } = await useAsyncData(
   `jobs-${useRoute().path}`,
   async () => {
-    const _jobsData = queryContent<MarkdownParsedContent>()
-      .where( {category: "jobs-info"} )
-      .sort( {date: -1} )
+    const _jobsData = queryContent<MarkdownParsedContent>("jobs")
+      .where( { category: "jobs-info" } )
+      .sort( { date: -1 } )
       .find();
     return await _jobsData;
 });

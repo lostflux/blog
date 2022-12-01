@@ -24,6 +24,7 @@
     font-family: typography.font("font-mono")
     font-size: typography.font-size("m")
     font-weight: 400
+    
     &:before 
       bottom: 0
       font-size: typography.font-size("s")

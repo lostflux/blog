@@ -1,5 +1,5 @@
 <template>
-  <div id="styled-text">
+  <div class="styled-text">
     <slot />
   </div>
 </template>
@@ -14,13 +14,14 @@
 @use "~/styles/typography"
 @use "~/styles/colors"
 @use "~/styles/geometry"
+@use "~/styles/mixins"
 
-#styled-text
+.styled-text
   font-family: typography.font("font-sans")
   font-size: typography.font-size("m")
 
 
-  .styled-list, #styled-list
+  .styled-list
     display: grid
     grid-template-columns: repeat(2, minmax(140px, 200px))
     grid-gap: 0 10px
@@ -43,4 +44,7 @@
         color: colors.color("green")
         font-size: typography.font-size("s")
         line-height: 12px
+
+a
+  @include mixins.inline-link
 </style>

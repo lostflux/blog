@@ -21,3 +21,5 @@ head:
 Learn how to use @nuxt/content.
 <!--more-->
 Full amount of content beyond the more divider.
+
+Lol I thought this was an error message?

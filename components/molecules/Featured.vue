@@ -65,7 +65,8 @@
               formats="AUTO, WEBP, AVIF"
             />
           </a>
-        </div>     
+        </div>
+        <!-- <ContentDoc :content="project.content" />    -->
       </StyledProject>
     </StyledProjectsGrid>
   </section>
@@ -142,6 +143,8 @@ const { data: projectData, error } = await useAsyncData(
       .find();
     return await _projectsData;
 });
+
+console.log(projectData?.value[0]);
 
 // parse job info and store in an array, sorted by date
 const projects = Array<ParsedProjectInfo>();

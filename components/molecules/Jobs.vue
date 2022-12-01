@@ -8,21 +8,21 @@
         @keydown="onKeyDown"
       >
         <StyledTabButton
-          v-for="job in jobs"
-          :identifier="job.i"
+          v-for="job, i in jobs"
+          :identifier="i"
           ref="tabButtons"
-          :tabindex="activeTabId === job.i ? '0' : '-1'"
-          :aria-controls="`panel-${job.i}`"
-          :aria-selected="activeTabId === job.i ? true : false"
+          :tabindex="activeTabId === i ? '0' : '-1'"
+          :aria-controls="`panel-${i}`"
+          :aria-selected="activeTabId === i ? true : false"
           @click="
             () => {
-              setActiveTabId(job.i);
-              selectTab(job.i);
+              setActiveTabId(i);
+              selectTab(i);
             }"
           role="tab"
         > 
           <span>
-            {{ `${job.i}: ${job.company}` }}
+            {{ `${i}: ${job.company}` }}
           </span>
         </StyledTabButton>
         <StyledHighlight ref="highlight" />
@@ -30,11 +30,11 @@
 
       <StyledTabPanels>
         <StyledTabPanel
-          v-for="job in jobs"
-          :identifier="job.i"
+          v-for="job, i in jobs"
+          :identifier="i"
           ref="tabs"
           role="tabpanel"
-          id="`panel-${job.i}`"
+          :id="`panel-${i}`"
         >
           <h3>
             {{ job.title }}
@@ -48,13 +48,19 @@
           <p class="range">
             {{ job.range }}
           </p>
-          <ul class="styled-list">
+          <ContentDoc :path="job._path" />
+          
+          <!-- <ul class="styled-list">
             <li v-for="point in job.points" :key="point.id">
+
+
               <StyledText>
                 {{ point.text }}
               </StyledText>
+
+
               </li>
-            </ul>
+            </ul> -->
         </StyledTabPanel>
       </StyledTabPanels>
     </div>
@@ -74,39 +80,67 @@ import { Ref, ref } from "vue";
 import { MarkdownRoot, Toc, MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
 
 
-class ParsedJobInfo {
-  date: Date;
-  title: string;
-  company: string;
-  location: string;
-  range: string;
-  url: string;
-  details: Array<string>;
-  points: Array<{ id: number, text: string }>;
-  body: MarkdownRoot & { toc?: Toc; };
-  i: number;
+// class ParsedJobInfo implements MarkdownParsedContent {
+//   date: Date;
+//   title: string;
+//   company: string;
+//   location: string;
+//   range: string;
+//   url: string;
+//   details: Array<string>;
+//   points: Array<{ id: number, text: string }>;
+//   body: MarkdownRoot & { toc?: Toc; };
+//   i: number;
 
-  constructor(job: MarkdownParsedContent, jobIndex: number) {
-    this.body = job.body;
-    this.date = job.date;
-    this.title = job.title;
-    this.company = job.company;
-    this.location = job.location;
-    this.range = job.range;
-    this.url = job.url;
-    this.i = jobIndex;
-    this.points = job.details.map((detail: any, i: any) => {
-      return {
-        id: i,
-        text: detail
-      }
-    });
-  }
+//   [key: string]: any;
+//   _type: "markdown";
+//   _empty: boolean;
+//   description: string;
+//   excerpt?: MarkdownRoot;
+//   _id: string;
+//   _source?: string;
+//   _path?: string;
+//   _draft?: boolean;
+//   _partial?: boolean;
+//   _locale?: boolean;
+//   _file?: string;
+//   _extension?: string;
+  
+//   constructor(job: MarkdownParsedContent, jobIndex: number) {
+//     this.body = job.body;
+//     this.date = job.date;
+//     this.title = job.title;
+//     this.company = job.company;
+//     this.location = job.location;
+//     this.range = job.range;
+//     this.url = job.url;
+//     this.i = jobIndex;
+//     this.points = job.details?.map((detail: any, i: any) => {
+//       return {
+//         id: i,
+//         text: detail
+//       }
+//     });
 
-  public compare = (other: ParsedJobInfo) => {
-    return this.date > other.date ? -1 : 1;
-  }
-};
+//     // more
+//     this._type = job._type;
+//     this._empty = job._empty;
+//     this.description = job.description;
+//     this.excerpt = job.excerpt;
+//     this._id = job._id;
+//     this._source = job._source;
+//     this._path = job._path;
+//     this._draft = job._draft;
+//     this._partial = job._partial;
+//     this._locale = job._locale;
+//     this._file = job._file;
+//     this._extension = job._extension;
+//   }
+
+//   public compare = (other: ParsedJobInfo) => {
+//     return this.date > other.date ? -1 : 1;
+//   }
+// };
 
 
 
@@ -123,11 +157,14 @@ const { data: jobsData, error } = await useAsyncData(
 });
 
 // parse job info and store in an array, sorted by date
-const jobs = Array<ParsedJobInfo>();
+// const jobs = Array<ParsedJobInfo>();
+const jobs = jobsData.value
+  ? jobsData.value
+  : [];
 
-jobsData?.value.forEach((item, i) => {
-  jobs.push(new ParsedJobInfo(item, i));
-});
+// jobsData?.value.forEach((item, i) => {
+//   jobs.push(new ParsedJobInfo(item, i));
+// });
 
 
 

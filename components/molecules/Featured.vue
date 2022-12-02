@@ -83,6 +83,7 @@
 <script lang="ts" setup>
 
 import { joinPaths } from '~/src/utils';
+const { path } = useRoute();
 
 
 // read 'job-info' data from Markdown 

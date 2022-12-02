@@ -21,7 +21,7 @@
       <Transition :class="fadeDownClass" :timeout="timeout">
         <div :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }">
           <a 
-            class="resume-button"
+            class="more-button"
             href="~/assets/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -93,9 +93,10 @@
           font-size: typography.font-size("xxs")
           text-align: right
 
-.resume-button
+.more-button
   // @include mixins.small-button
   margin-left: 15px
   font-size: typography.font-size("heading")
+  font-weight: 700
   color: colors.color("green")
 </style>

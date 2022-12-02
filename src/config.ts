@@ -21,7 +21,7 @@ const social = [
     },
   ];
 
-const navLinks = [
+const homeLinks = [
     {
       name: 'About',
       url: '/#about',
@@ -39,6 +39,26 @@ const navLinks = [
       url: '/#contact',
     },
   ];
+
+const otherLinks = [
+    {
+      name: 'Blog',
+      url: '/blog',
+      show: true,
+    },
+    {
+      name: 'Resume',
+      url: '/resume',
+      show: true,
+    },
+    {
+      name: 'Art Portfolio',
+      url: '/portfolio',
+      show: true,
+    },
+  ].filter((link) => link.show);
+
+const navLinks = { homeLinks, otherLinks };
 
 const colors = {
     green: '#64ffda',
@@ -62,15 +82,4 @@ const srConfig = (delay = 200, viewFactor = 0.25) => ({
     viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
   });
 
-const skills = [
-  "Python",
-  "C/C++",
-  "Java",
-  "Haskell",
-  "Vue/Typescript",
-  "Rust",
-  "LaTeX",
-  "Git",
-]
-
-export { email, social, navLinks, colors, srConfig, skills };
+export { email, social, navLinks, colors, srConfig };

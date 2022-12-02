@@ -35,7 +35,6 @@ export default {
         : `transform: translateY(-${this.scrollHeight}px)`;
     },
     scrolledToTop() {
-      console.log(`scrolledToTop: ${this.lastScrollPosition <= 0}`);
       return this.lastScrollPosition <= 0;
     },
   },
@@ -48,7 +47,6 @@ export default {
     // update height on resize!
     window.addEventListener("resize", () => {
       this.height = this.$refs.header.offsetHeight || 0;
-      // console.log(`Resized! Height = ${this.height}`);
     });
   },
   beforeDestroy() {

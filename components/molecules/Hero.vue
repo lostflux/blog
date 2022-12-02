@@ -51,11 +51,4 @@ export default {
   
   .email-link
     @include mixins.big-button
-
-
-    margin-top: 50px
-    color: colors.color("lightest-slate")
-    border: none  // remove terrible border
-    background-color: colors.color("green-tint")
-    outline: none
 </style>

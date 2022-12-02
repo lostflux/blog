@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useState, useEffect } from '~/src/stateful';
+import { useState } from '~/src/stateful';
 import { loaderDelay } from '~~/src/utils';
 
 const isHome = useRoute().path === "/";

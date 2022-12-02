@@ -58,10 +58,6 @@ class SR {
   }
 }
 
-const boolean = (sr: SR)  => {
-  return sr.isSupported();
-};
-
 const sr = new SR();
 
 

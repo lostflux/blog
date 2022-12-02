@@ -1,33 +1,58 @@
 <template>
-  <div class="nav-links">
-    <ol v-for="{ name, url }, i in navLinks">
-      <TransitionGroup :component="null">
-        <Transition :key="i" :class="fadeDownClass" :timeout="timeout">
-          <li
-            :key="i"
-            :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }"
-          >
-            <NuxtLink
-              :to="url"
-              class="nav-link"
+  <div class="home-links">
+    <template v-if="(isHome && menuIsCollapsed)">
+      <ol v-for="{ name, url }, i in homeLinks">
+        <TransitionGroup :component="null">
+          <Transition :key="i" :class="fadeDownClass" :timeout="timeout">
+            <li
+              :key="i"
+              :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }"
             >
-              {{ name }}
-        </NuxtLink>
-          </li>
-        </Transition>
-      </TransitionGroup>
-    </ol>
+              <NuxtLink
+                :to="url"
+                class="nav-link"
+              >
+                {{ name }}
+              </NuxtLink>
+            </li>
+          </Transition>
+        </TransitionGroup>
+      </ol>
+    </template>
+  </div>
+  <div class="other-links">
     <TransitionGroup>
       <Transition :class="fadeDownClass" :timeout="timeout">
         <div :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }">
           <a 
             class="more-button"
-            href="~/assets/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            @click="() => {
+              menuIsCollapsed = !menuIsCollapsed
+            }"
           >
-            &#x3c;
+            {{ menuIsCollapsed ? "&#x3c" : "&#x3e" }}
           </a>
+          <template v-if="(!menuIsCollapsed)">
+            <ol v-for="{ name, url }, i in otherLinks">
+              <TransitionGroup :component="null">
+                <Transition :key="i" :class="fadeDownClass" :timeout="timeout">
+                  <li
+                    :key="i"
+                    :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }"
+                  >
+                    <NuxtLink
+                      :to="url"
+                      class="nav-link"
+                    >
+                      {{ name }}
+                    </NuxtLink>
+                  </li>
+                </Transition>
+              </TransitionGroup>
+            </ol>
+          </template>
         </div>
       </Transition>
     </TransitionGroup>
@@ -38,10 +63,13 @@
   import { navLinks } from "~/src/config";
   import { loaderDelay } from '~/src/utils';
 
-  const isHome = useRoute().path === "/";
+  const { homeLinks, otherLinks } = navLinks;
+
+  const { path } = useRoute();
+  const isHome = path === "/";
+  const menuIsCollapsed = ref(true);
 
   const timeout = isHome ? loaderDelay : 0;
-  const fadeClass = isHome ? 'fade' : '';
   const fadeDownClass = isHome ? 'fadedown' : '';
 </script>
 
@@ -51,7 +79,7 @@
   }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 
 @use "~/styles/colors"
@@ -60,28 +88,49 @@
 @use "~/styles/mixins"
 
   
-.nav-links
+.home-links
   display: flex
-  align-items: center
-  // position: relative
-  // float: right
+  // align-items: center
 
   @media (max-width: 768px)
     display: none
-  
+
   ol
     @include mixins.flex-between
     padding: 0
     margin: 0
     list-style: none
-    // display: flex
 
     li
       margin: 0 5px
       position: relative
       counter-increment: item 1
       font-size: typography.font-size("xs")
-      // float: left
+
+      a
+        padding: 10px
+        
+        &:before
+          content: '0' counter(item) '.'
+          margin-right: 5px
+          color: colors.color("green")
+          font-size: typography.font-size("xxs")
+          text-align: right
+.other-links
+  display: flex
+  align-items: center
+
+  ol
+    @include mixins.flex-between
+    padding: 0
+    margin: 0
+    list-style: none
+
+    li
+      margin: 0 5px
+      position: relative
+      counter-increment: item 1
+      font-size: typography.font-size("xs")
 
       a
         padding: 10px
@@ -93,10 +142,15 @@
           font-size: typography.font-size("xxs")
           text-align: right
 
+  
+
 .more-button
   // @include mixins.small-button
   margin-left: 15px
   font-size: typography.font-size("heading")
   font-weight: 700
   color: colors.color("green")
+
+  &:hover
+    color: red
 </style>

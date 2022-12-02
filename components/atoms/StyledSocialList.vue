@@ -1,6 +1,6 @@
 <template>
   <ul
-    v-for="item, i in social"
+    v-for="item in social"
     :key="item.name"
     class="social-list"
   >

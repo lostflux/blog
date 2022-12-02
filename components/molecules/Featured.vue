@@ -37,7 +37,7 @@
               </template>
             </h3>
             <div class="project-description">
-              <ContentDoc :path="project._path" />
+              <ContentDoc :value="project" />
             </div>
           </div>
           <ul class="project-tech-list">
@@ -86,8 +86,6 @@
 
 <script lang="ts" setup>
 
-import { joinPaths } from '~/src/utils';
-const { path } = useRoute();
 const hasCompany = (project: any) => typeof project.company !== 'undefined';
 
 

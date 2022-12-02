@@ -1,10 +1,28 @@
 <template>
   <section class="contact-section">
-    <ContentDoc
-      path="profile/contact"
-    />
+    <ContentDoc :value="contact" />
+    <a
+      :href="`mailto:${ contact.email }`"
+      class="email-link"
+    >
+      Email
+    </a>
   </section>
 </template>
+
+<script lang="ts" setup>
+
+import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types';
+
+const { data: contact } = await useAsyncData(
+  `contact-${useRoute().path}`,
+  async () => {
+    const _contactData = queryContent<MarkdownParsedContent>("profile")
+      .where( { category: "contact" } )
+      .findOne();
+    return await _contactData;
+});
+</script>
 
 <style lang="sass">
 @use "~/styles/mixins"

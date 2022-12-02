@@ -32,8 +32,6 @@ const { data } = await useAsyncData(
     return await _projectsData;
 });
 
-console.log(data);
-
 </script>
 
 <script lang="ts">

@@ -16,8 +16,6 @@ class NumRefManager {
     this.ref = ref(0);
     this.max = max || 0;
     this.min = min || 0;
-
-    console.log(`Ref with min`)
   }
 
   public set value(index: number) {

@@ -21,7 +21,6 @@ export default defineNuxtConfig({
     "~/styles/typography.scss",
     "~/styles/colors.scss",
     "~/styles/default.sass",
-    "~/styles/error.sass",
     "~/styles/footer.sass",
     "~/styles/geometry.scss",
     "~/styles/index.sass",

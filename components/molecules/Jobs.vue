@@ -40,7 +40,7 @@
             {{ job.title }}
             <span class="company">
               &nbsp;@&nbsp;
-              <a :href="job.url" class="inline-link">
+              <a :href="job.url" class="link">
                 {{ job.company }}
               </a>
             </span>
@@ -48,19 +48,7 @@
           <p class="range">
             {{ job.range }}
           </p>
-          <ContentDoc :path="job._path" />
-          
-          <!-- <ul class="styled-list">
-            <li v-for="point in job.points" :key="point.id">
-
-
-              <StyledText>
-                {{ point.text }}
-              </StyledText>
-
-
-              </li>
-            </ul> -->
+          <ContentDoc :value="job" />
         </StyledTabPanel>
       </StyledTabPanels>
     </div>
@@ -72,81 +60,14 @@
 import {
   NumRefManager
 } from "~/src/utils";
-import { useState, useRef, useEffect } from "~/src/stateful";
-import { srConfig } from '~/src/config';
+import { useEffect } from "~/src/stateful";
 import { KEY_CODES } from '~/src/utils';
-import { usePrefersReducedMotion } from '~/src/hooks';
-import { Ref, ref } from "vue";
-import { MarkdownRoot, Toc, MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
-
-
-// class ParsedJobInfo implements MarkdownParsedContent {
-//   date: Date;
-//   title: string;
-//   company: string;
-//   location: string;
-//   range: string;
-//   url: string;
-//   details: Array<string>;
-//   points: Array<{ id: number, text: string }>;
-//   body: MarkdownRoot & { toc?: Toc; };
-//   i: number;
-
-//   [key: string]: any;
-//   _type: "markdown";
-//   _empty: boolean;
-//   description: string;
-//   excerpt?: MarkdownRoot;
-//   _id: string;
-//   _source?: string;
-//   _path?: string;
-//   _draft?: boolean;
-//   _partial?: boolean;
-//   _locale?: boolean;
-//   _file?: string;
-//   _extension?: string;
-  
-//   constructor(job: MarkdownParsedContent, jobIndex: number) {
-//     this.body = job.body;
-//     this.date = job.date;
-//     this.title = job.title;
-//     this.company = job.company;
-//     this.location = job.location;
-//     this.range = job.range;
-//     this.url = job.url;
-//     this.i = jobIndex;
-//     this.points = job.details?.map((detail: any, i: any) => {
-//       return {
-//         id: i,
-//         text: detail
-//       }
-//     });
-
-//     // more
-//     this._type = job._type;
-//     this._empty = job._empty;
-//     this.description = job.description;
-//     this.excerpt = job.excerpt;
-//     this._id = job._id;
-//     this._source = job._source;
-//     this._path = job._path;
-//     this._draft = job._draft;
-//     this._partial = job._partial;
-//     this._locale = job._locale;
-//     this._file = job._file;
-//     this._extension = job._extension;
-//   }
-
-//   public compare = (other: ParsedJobInfo) => {
-//     return this.date > other.date ? -1 : 1;
-//   }
-// };
-
-
+import { ref } from "vue";
+import { MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
 
 
 // read 'job-info' data from Markdown files 
-const { data: jobsData, error } = await useAsyncData(
+const { data: jobsData } = await useAsyncData(
   `jobs-${useRoute().path}`,
   async () => {
     const _jobsData = queryContent<MarkdownParsedContent>("jobs")
@@ -191,77 +112,42 @@ const setActiveTabId = (id: number) => {
 
 }
 
-// setActiveTabId(0);
+const focusTab = () => {
+  tabButtons.value[tabFocus.value]?.focus();
+};
 
+var selectedTab = 0;
+const selectTab = (id: number) => {
+  if (id !== selectedTab) {
+    tabButtons.value[selectedTab]?.deselect();
+    selectedTab = id;
+    tabButtons.value[selectedTab]?.select();
+  }
+};
 
+// Only re-run the effect if tabFocus changes
+useEffect(() => focusTab(), tabFocus.ref);
 
-
-
-// const [tabFocus, setTabFocus] = useState(0);
-
-
-  
- 
-
-
-  // const revealContainer = useRef(null);
-  // const prefersReducedMotion = usePrefersReducedMotion();
-
-  // useEffect( () => {
-  //   if (prefersReducedMotion) {
-  //     return;
-  //   }
-  //   const importScrollReveal = async () => {
-  //     const scrollReveal = await import("~/src/utils/sr");
-  //     return scrollReveal.default;
-  //   }
-    
-  //   const sr = importScrollReveal()
-  //   .then((sr) => {
-  //     sr.reveal(revealContainer.value, srConfig());
-  //   })
-  //   .catch(console.error);    
-  //   }, [])
-  // ;
-  
-
-
-  const focusTab = () => {
-    tabButtons.value[tabFocus.value]?.focus();
-  };
-
-  var selectedTab = 0;
-  const selectTab = (id: number) => {
-    if (id !== selectedTab) {
-      tabButtons.value[selectedTab]?.deselect();
-      selectedTab = id;
-      tabButtons.value[selectedTab]?.select();
+// Focus on tabs when using up & down arrow keys
+const onKeyDown = (event) => {
+  switch (event.key) {
+    case KEY_CODES.ARROW_UP: {
+      event.preventDefault();
+      tabFocus.prev();
+      break;
     }
-  };
 
-  // Only re-run the effect if tabFocus changes
-  useEffect(() => focusTab(), tabFocus.ref);
-
-  // Focus on tabs when using up & down arrow keys
-  const onKeyDown = (event) => {
-    switch (event.key) {
-      case KEY_CODES.ARROW_UP: {
-        event.preventDefault();
-        tabFocus.prev();
-        break;
-      }
-
-      case KEY_CODES.ARROW_DOWN: {
-        event.preventDefault();
-        tabFocus.next();
-        break;
-      }
-
-      default: {
-        break;
-      }
+    case KEY_CODES.ARROW_DOWN: {
+      event.preventDefault();
+      tabFocus.next();
+      break;
     }
-  };
+
+    default: {
+      break;
+    }
+  }
+};
 
 </script>
 

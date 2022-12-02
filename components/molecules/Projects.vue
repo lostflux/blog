@@ -5,8 +5,6 @@
     <Link class="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
       view the archive
     </Link>
-
-    <!-- <ul class="projects-grid"> -->
         <TransitionGroup
           component="null"
           ref="projectsGrid"
@@ -36,7 +34,7 @@
                     </div>
                     <div class="project-links">
                       <a
-                        v-if="project.repo !== null"
+                        v-if="project?.repo != null"
                         :href="project.repo"
                         aria-label="GitHub Link"
                         target="_blank"
@@ -45,7 +43,7 @@
                           <Icon type="GitHub" />
                       </a>
                       <a
-                        v-if="project.url !== null"
+                        v-if="project?.url != null"
                         :href="project.url"
                         aria-label="External Link"
                         class="external"
@@ -58,7 +56,7 @@
 
                   <h3 class="project-title">
                     <a
-                      v-if="project.url !== null"
+                      v-if="project?.url != null"
                       :href="project.url"
                       target="_blank"
                       rel="noreferrer">
@@ -77,7 +75,7 @@
                 <footer>
                   <ul class="project-tech-list">
                     <li
-                      v-for="tech, i in project.tech"
+                      v-for="tech, i in project?.tech"
                       :key="i"
                     >
                       {{ tech }}
@@ -88,7 +86,6 @@
             </StyledArchivedProject>
           </Transition>
         </TransitionGroup>
-    <!-- </ul> -->
 
     <button
       v-if="projects.length > 6"
@@ -105,43 +102,22 @@
 
 import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types';
 
-class ParsedProjectInfo {
-  title: string;
-  tech: Array<string>;
-  url: string | null;
-  repo: string | null;
-  description: string;
-
-  constructor( _raw: MarkdownParsedContent) {
-    this.title = _raw.title;
-    this.tech = _raw.tech;
-    this.url = _raw.url || null;
-    this.repo = _raw.repo || null;
-    this.description = _raw.description;
-  }
-}
-
 const projectsGrid = ref<HTMLElement | null>(null); 
 const GRID_LIMIT = 6;
 
 // read 'job-info' data from Markdown files 
-const { data: projectData, error } = await useAsyncData(
+const { data: projectData } = await useAsyncData(
   `archived-projects-${useRoute().path}`,
   async () => {
     const _projectsData = queryContent<MarkdownParsedContent>("projects/all")
       .where( {show: true} )
       .sort( {date: -1} )
-      .find()
-      .then( (projects) => {
-        return projects.map( (project) => new ParsedProjectInfo(project) );
-      });
+      .find();
     return await _projectsData;
 });
 
 
-const projects = projectData
-  ? projectData.value
-  : [];
+const projects = projectData.value;
 
 const showMore = ref(false);
 const showMoreButton = ref(null);
@@ -173,7 +149,7 @@ function hideAnotherProject() {
   }
 }
 
-var timer = null;
+var timer = null; /// debug: I should catch this on destruction!
 onMounted(() => {
   timer = setInterval(() => {
     showMore.value
@@ -182,62 +158,15 @@ onMounted(() => {
   }, 1000);
 });
 
-
+onUnmounted(() => {
+  clearInterval(timer);
+});
 
 </script>
 
 <script lang="ts">
-
-
-
   export default {
     name: "Projects",
-
-    // data() {
-    //   return {
-    //     more: false,
-    //     current: 6,
-    //     timer: null,
-    //   };
-    // },
-    // methods: {
-    //   // toggleMore() {
-    //   //   // this.$forceUpdate();
-    //   //   // this.more = !this.more;
-    //   // },
-    //   showAnotherProject() {
-    //     if (!isMax()) {
-    //       currentlyShowing.value += 1;
-    //       // this.current = currentlyShowing.value;
-    //       this.$forceUpdate();
-    //     }
-    //   },
-    //   hideAnotherProject() {
-    //     if (!isMin()) {
-    //       currentlyShowing.value -= 1;
-    //       // this.current = currentlyShowing.value;
-    //       this.$forceUpdate();
-    //     }
-    //   },
-    // },
-    // watch: {
-    //   current(newVal) {
-    //     this.$forceUpdate();
-    //   }
-    // },
-
-    // mounted() {
-    //   this.timer = setInterval(() => {
-    //     if (showMore.value) {
-    //       this.showAnotherProject();
-    //     } else {
-    //       this.hideAnotherProject();
-    //     }
-    //   }, 3000);
-    // },
-    // beforeDestroy() {
-    //   clearInterval(this.timer);
-    // },
   }
 </script>
 

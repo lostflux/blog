@@ -8,7 +8,7 @@ $border-radius: geometry.radius("small")
 @mixin button
   color: colors.color("green")
   background-color: transparent
-  border: 1px solid colors.color("green")
+  // border: 1px solid colors.color("green")
   border-radius: geometry.var("border-radius")
   font-size: typography.font-size("xs")
   font-family: typography.font("font-mono")
@@ -19,8 +19,15 @@ $border-radius: geometry.radius("small")
   transition: geometry.var("default-transition")
   padding: 1.25rem 1.75rem
 
+  margin-top: 50px
+  color: colors.color("lightest-slate")
+  background-color: colors.color("green-tint")
+  border: none  // remove terrible border
+  outline: none
+
   &:hover, &:focus, &:active
-    background-color: colors.color("green-tint")
+    // background-color: colors.color("green-tint")
+    color: colors.color("green")
     outline: none
   &:after
     display: none !important
@@ -110,11 +117,18 @@ $border-radius: geometry.radius("small")
   cursor: pointer
   transition: geometry.var("default-transition")
 
+  margin-top: 50px
+  color: colors.color("lightest-slate")
+  border: none  // remove terrible border
+  background-color: colors.color("green-tint")
+  outline: none
+
   &:hover,
   &:focus,
   &:active
     background-color: colors.color("green-tint")
     outline: none
+    color: colors.color("green")
   &:after
     display: none !important
 

@@ -1,9 +1,10 @@
 ---
 category: 'contact'
+email: 'amittaijoel@outlook.com'
 ---
 
 
-::h2{class="overline"} <!-- remove overline-->
+::h2{class="numbered-heading overline"}
   What's Next?
 ::
 
@@ -18,11 +19,3 @@ or [Behance](https://www.behance.net/siavava).
 
 I  hope you're kind to the world,
 and I hope the world is kind to you.
-
-::a
----
-class: "email-link"
-href: "mailto:amittaijoel@outlook.com"
----
-  [Email Me](mailto:amittaijoel@outlook.com)
-::

@@ -1,16 +1,3 @@
-<!-- <template>
-  <div class="root">
-    <a class="skip-to-content" href="#content">
-      Skip to Content
-    </a>
-    <div>
-      <AppHeader/>
-      <slot />
-      <AppFooter/>
-    </div>
-  </div>
-</template> -->
-
 <template>
   <body>
     <div id="root">
@@ -26,19 +13,9 @@
   </body>
 </template>
 
-
-
-
-
-
-
 <style lang="sass">
 @use "../styles/default"
 </style>
-
-
-
-
 
 <script lang="ts">
   export default {
@@ -56,14 +33,6 @@
   }
 </script>
 
-
-
-
-
-
-
-
-
 <script setup lang="ts">
 
 import { useState, useEffect, useRef } from "~/src/stateful";
@@ -71,6 +40,12 @@ import { useState, useEffect, useRef } from "~/src/stateful";
 const isHome = useRoute().path === "/";
 const [isLoading, setIsLoading] = useState(isHome);
 const [isMounted, setMounted] = useState(false);
+
+
+/// either fix the functionality or drop these...
+isMounted;
+setMounted;
+setIsLoading;
 
 // Sets target="_blank" rel="noopener noreferrer" on external links
 const handleExternalLinks = () => {
@@ -105,13 +80,5 @@ useEffect(() => {
 
   handleExternalLinks();
 }, [useRef(isLoading)]);
-
-
-const scrollTo = (location: number) => {
-  window.scrollTo({
-    top: location,
-    behavior: "smooth"
-  });
-};
 
 </script>

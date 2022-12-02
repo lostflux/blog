@@ -29,7 +29,6 @@ put out into the world, or, on occassion, playing
 
 I am most recently learning Database Systems (check out my projects section)
 and Computer Vision, but I am generally looking for opportunities
-to dabble in data engineering, machine learning or functional programming
-(it is my calling, I feel it).
+to dabble in data engineering, machine learning, and/or functional programming.
 
 Here are a few technologies I've been working with recently:

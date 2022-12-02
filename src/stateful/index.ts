@@ -1,30 +1,12 @@
 
-import { ReactiveEffect, UnwrapRef } from 'nuxt/dist/app/compat/vue-demi';
+import { ReactiveEffect } from 'nuxt/dist/app/compat/vue-demi';
 import { 
-  readonly, ref, reactive,
-  onMounted, onUnmounted, watch, Ref
+  ref, reactive,
+  onMounted, watch, Ref
 } from 'vue';
 
 
 
-class MyRef<T = any> {
-  _value: T;
-
-  constructor(value: T) {
-    this._value = value;
-  }
-
-  get value() {
-    const val = this._value;
-    return val;
-  }
-  
-  set value(newValue: T) {
-    this._value = newValue;
-  }
-
-  public current = this.value;
-}
 /**
  * 
  * @param `initialState` the starting value of the state

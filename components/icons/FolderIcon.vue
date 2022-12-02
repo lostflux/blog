@@ -12,14 +12,12 @@
     <title>Folder</title>
     <path
       fill="none"
-      stroke="red"
       stroke-miterlimit="10"
       stroke-width="2"
       d="M25 28L7 28 7 4 23 4 23 13 25 15z"
     />
     <path
       fill="none"
-      stroke="red"
       stroke-miterlimit="10"
       stroke-width="2"
       d="M23 4L27 4 27 13 25 15"
@@ -37,7 +35,6 @@
 <style lang="sass" scoped>
   @use "~/styles/colors"
   svg
-    stroke: red
     fill: none
 
     &:hover

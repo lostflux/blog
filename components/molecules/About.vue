@@ -3,7 +3,9 @@
     <StyledText>
       <ContentDoc :value="data" />
       <ul class="styled-list">
-        <li v-for="skill in data.skills"> {{ skill }}</li>
+        <li v-for="skill in data.skills">
+          {{ skill }}
+        </li>
       </ul>
     
     </StyledText>
@@ -39,8 +41,3 @@ const { data } = await useAsyncData(
     name: "About"
   }
 </script>
-
-<style lang="sass">
-p
-  font-size: 20
-</style>

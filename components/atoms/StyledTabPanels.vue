@@ -16,6 +16,7 @@ export default {
   position: relative
   width: 100%
   margin-left: 20px
+  min-height: 512px
 
   @media (max-width: 600px) 
     margin-left: 0

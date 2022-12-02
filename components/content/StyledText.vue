@@ -46,6 +46,5 @@
 
   a
     @include mixins.inline-link
-
     
 </style>

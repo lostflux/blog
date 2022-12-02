@@ -23,16 +23,16 @@
 
 <script lang="ts" setup>
 
-import { skills } from "~/src/config";
-
-const { data, error } = await useAsyncData(
+const { data } = await useAsyncData(
   `profile-brief-${useRoute().path}`,
   async () => {
-    const _projectsData = queryContent("profile")
+    const _projectsData = queryContent("profile/brief")
       .where({ category: 'profile-brief' })
       .findOne();
     return await _projectsData;
 });
+
+console.log(data);
 
 </script>
 

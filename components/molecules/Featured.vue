@@ -21,16 +21,20 @@
               <span v-else>
                 {{ project.title }}
               </span>
-              <span v-if="typeof project.company !== 'undefined'"  class="project-company">
-                &nbsp;@&nbsp;
+              <template v-if="hasCompany(project)">
+                <span 
+                  v-if="hasCompany(project)"
+                  class="project-company">
+                  &nbsp;@&nbsp;
+                </span>
                 <a
                   v-if="
                     project?.company?.url !== null &&
                     project?.company?.name !== ''"
-                  :href="project.company.url" class="inline-link">
+                  :href="project.company.url">
                   {{ project.company.name }}
                 </a>
-              </span>
+              </template>
             </h3>
             <div class="project-description">
               <ContentDoc :path="project._path" />
@@ -60,7 +64,7 @@
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
             <img
-              src="~assets/images/pentanion.gif"
+              src="~assets/images/neural.gif"
               :alt="project.title"
               class="img"
               quality="100"
@@ -84,10 +88,11 @@
 
 import { joinPaths } from '~/src/utils';
 const { path } = useRoute();
+const hasCompany = (project: any) => typeof project.company !== 'undefined';
 
 
 // read 'job-info' data from Markdown 
-const { data, error } = await useAsyncData(
+const { data } = await useAsyncData(
   `projects-${useRoute().path}`,
   async () => {
     const _projectsData = queryContent("projects/featured")

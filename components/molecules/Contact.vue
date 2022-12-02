@@ -1,7 +1,6 @@
 <template>
   <ContentDoc
     path="profile/contact"
-    query="{ category: 'contact' }"
   />
 </template>
 

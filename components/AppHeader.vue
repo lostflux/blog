@@ -16,7 +16,7 @@ export default {
   name: "AppHeader",
   data() {
     return {
-      scrollSpeed: 0.4,
+      scrollSpeed: 1,
       lastScrollPosition: 0,
       scrollHeight: 0,
       height: 0

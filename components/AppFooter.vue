@@ -6,12 +6,12 @@
           v-for="(link, i) in social"
           :key="i"
         >
-          <a
+          <NuxtLink
             :href="link.url"
             aria-label="link to my {{ link.name }} page"
           >
             <Icon :type="link.name" />
-          </a>
+      </NuxtLink>
         </li>
       </ul>
     </div>
@@ -60,8 +60,6 @@ useEffect(() => {
   })
   .catch(err => console.error(err));
 }, []);
-
-console.log(`gitHubInfo: ${gitHubInfo}`);
 
 
 </script>

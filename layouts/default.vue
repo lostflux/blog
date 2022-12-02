@@ -1,5 +1,5 @@
-<template>
-  <div>
+<!-- <template>
+  <div class="root">
     <a class="skip-to-content" href="#content">
       Skip to Content
     </a>
@@ -9,6 +9,21 @@
       <AppFooter/>
     </div>
   </div>
+</template> -->
+
+<template>
+  <body>
+    <div id="root">
+      <a class="skip-to-content" href="#content">
+        Skip to Content
+      </a>
+      <AppHeader/>
+        <div id="content">
+          <slot />
+        </div>
+      <AppFooter/>
+    </div>
+  </body>
 </template>
 
 

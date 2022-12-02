@@ -30,8 +30,14 @@ export default {
       return this.scrollHeight == 0;
     },
     style() {
-      return `transform: translateY(-${this.scrollHeight}px)`;
-    }
+      return this.scrolledToTop
+        ? `box-shadow: none`
+        : `transform: translateY(-${this.scrollHeight}px)`;
+    },
+    scrolledToTop() {
+      console.log(`scrolledToTop: ${this.lastScrollPosition <= 0}`);
+      return this.lastScrollPosition <= 0;
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -152,13 +158,8 @@ header
 
   @media (prefers-reduced-motion: no-preference)
     height: geometry.var("nav-scroll-height")
-    transform: translateY(0px)
-    background-color: rgba(10, 25, 47, 0.85)
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
     height: geometry.var("nav-scroll-height")
-
-    // hide on scroll down
-    // transform: translateY(calc(geometry.var("nav-scroll-height") * -1))
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
 
 </style>

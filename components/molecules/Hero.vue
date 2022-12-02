@@ -1,12 +1,15 @@
 <template>
   <!-- <div> -->
     <!-- <div class="hero"> -->
+    <section>
+
       <ContentDoc
         path="profile/hero"
-        query="{{ category: 'hero' }}"
         class="hero"
+        tag="div"
 
       />
+    </section>
       <!-- <template v-for="{level, content} in items">
         <h1 v-if="level === 'h1'"> {{ content }} </h1>
         <h2 v-else-if="level === 'h2'" class="big-heading"> {{ content }} </h2>
@@ -29,20 +32,13 @@
 <script lang="ts" setup>
 import { useState, useEffect } from "~/src/stateful";
 
-const one = {level: "h1", content: "Hi, my name is"};
-const two = {level: "h2", content: "Altair."};
-const three = {level: "h3", content: "I make things do stuff."};
-const four = {
-  level: "p",
-  content: `
-    I am a software engineer and student at Dartmouth College.
-    I am passionate about building the next important solutions
-    using emerging technologies such as Machine Learning and Blockchain.`,
-};
-
-const five = {level: "a", content: "Up (or... Down) for a chat?" };
-
-const items = [one, two, three, four, five];
+const { data } = await useAsyncData(
+  `profile-hero-${useRoute().path}`,
+  async () => {
+    const _projectsData = queryContent("profile/hero")
+      .findOne();
+    return await _projectsData;
+});
 
 </script>
 
@@ -58,23 +54,15 @@ export default {
 @use "~/styles/typography"
 
 .hero
-
-  *
-    &:hover
-      cursor: pointer
-      mouse-events: none
-  
   @include mixins.flex-center
   flex-direction: column
   align-items: flex-start
   min-height: 100vh
-  padding: 0
-  // background-color: colors.color("lightest-slate")
-  // position: absolute
-  // bottom: 0
-  // left: 0
-  // top: 0
-  // left: 0
+  padding: 0  // fix alignment ?
+  // justify-content: center
+  // box-sizing: border-box
+  // max-width: 1000px
+  position: static
 
   @media (max-width: 480px) and (min-height: 700px)
     padding-bottom: 10vh
@@ -93,18 +81,15 @@ export default {
     margin-top: 10px
     color: colors.color("slate")
     line-height: 0.9
-    font-size: typography.font-size("")
   
-  p 
+  p p
     margin: 20px 0 0
     max-width: 540px
   
   .email-link
-    // @include mixins.big-button
+    @include mixins.big-button
     margin-top: 50px
     color: colors.color("lightest-slate")
-
-    &:hover
-      color: colors.color("green")
-  
+    
+    border: none  // remove terrible border
 </style>

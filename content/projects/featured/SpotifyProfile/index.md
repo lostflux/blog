@@ -3,8 +3,8 @@ date: '2'
 year: '2020'
 title: 'Spotify Profile'
 cover: './demo.png'
-github: 'https://github.com/bchiang7/spotify-profile'
-external: 'https://spotify-profile.herokuapp.com/'
+url: 'https://spotify-profile.herokuapp.com/'
+repo: 'https://github.com/bchiang7/spotify-profile'
 tech:
   - React
   - Styled Components

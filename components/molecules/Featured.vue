@@ -5,15 +5,15 @@
     </h2>
     <StyledProjectsGrid>
       <StyledProject
-        v-for="project in projects"
-        :key="project.i"
+        v-for="project, i in projects"
+        :key="i"
       >
         <div class="project-content">
           <div>
             <p class="project-overline">Featured Project</p>
             <h3 class="project-title">
               <a
-                v-if="project.url !== null"
+                v-if="project?.url !== null"
                 :href="project.url"
               >
                 {{ project.title }}
@@ -21,17 +21,19 @@
               <span v-else>
                 {{ project.title }}
               </span>
-              <span v-if="project.company !== null"  class="project-company">
+              <span v-if="typeof project.company !== 'undefined'"  class="project-company">
                 &nbsp;@&nbsp;
-                <a :href="project.company.url" class="inline-link">
+                <a
+                  v-if="
+                    project?.company?.url !== null &&
+                    project?.company?.name !== ''"
+                  :href="project.company.url" class="inline-link">
                   {{ project.company.name }}
                 </a>
               </span>
             </h3>
             <div class="project-description">
-              <p>
-                {{ project.description }}
-              </p>
+              <ContentDoc :path="project._path" />
             </div>
           </div>
           <ul class="project-tech-list">
@@ -41,7 +43,7 @@
           </ul>
           <div class="project-links">
             <a
-              v-if="project.repo !== null"
+              v-if="project?.repo !== null"
               :href="project.repo"
               aria-label="GitHub Link"
             >
@@ -66,7 +68,6 @@
             />
           </a>
         </div>
-        <!-- <ContentDoc :content="project.content" />    -->
       </StyledProject>
     </StyledProjectsGrid>
   </section>
@@ -81,75 +82,20 @@
 
 <script lang="ts" setup>
 
-import { MarkdownParsedContent, MarkdownRoot, Toc } from '@nuxt/content/dist/runtime/types';
-
-const joinPaths = (...args: string[]) => {
-  args.forEach((arg, i) => {
-    if ( (arg.startsWith('/') || arg.startsWith('./')) && i !== 0) {
-      args[i] = arg.slice(1);
-    }
-    if (arg.endsWith('/') && i !== args.length - 1) {
-      args[i] = arg.slice(0, -1);
-    }
-  });
-  return args.join('/').replace(/\/+/g, '/');
-}
-
-class ParsedProjectInfo {
-  title: string;
-  description: string;
-  tech: Array<string>;
-  
-  url: string | null;
-  repo: string | null;
-
-  cover: string;
+import { joinPaths } from '~/src/utils';
 
 
-  body: MarkdownRoot & { toc?: Toc; };
-  i: number;
-  company: {
-    name: string;
-    url: string;
-  } | null;
-
-  constructor(project: MarkdownParsedContent, projectIndex: number) {
-    this.title = project.title;
-    this.description = project.description;
-    this.tech = project.tech;
-    this.url = project.external || null;
-    this.repo = project.github || null;
-    this.body = project.body;
-    this.i = projectIndex;
-    this.company = project.company || null;
-
-    var coverPath = joinPaths("~assets", project._path, project.cover).trim();
-    // if (coverPath.startsWith('/')) {
-    //   coverPath = coverPath.substring(1);
-    // }
-    this.cover = coverPath
-    this.cover = "~assets/images/halcyon.jpg"  // fix this
-  }
-}
-
-
-// read 'job-info' data from Markdown files 
-const { data: projectData, error } = await useAsyncData(
+// read 'job-info' data from Markdown 
+const { data, error } = await useAsyncData(
   `projects-${useRoute().path}`,
   async () => {
-    const _projectsData = queryContent<MarkdownParsedContent>("projects/featured")
+    const _projectsData = queryContent("projects/featured")
       .where( {show: "true"} )
       .sort( {date: -1} )
       .find();
     return await _projectsData;
 });
 
-console.log(projectData?.value[0]);
+const projects = data.value;
 
-// parse job info and store in an array, sorted by date
-const projects = Array<ParsedProjectInfo>();
-
-projectData.value?.forEach((item, i) => {
-  projects.push(new ParsedProjectInfo(item, i));
-});
 </script>

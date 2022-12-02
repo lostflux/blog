@@ -3,8 +3,8 @@ date: '1'
 year: '2021'
 title: 'Halcyon Theme'
 cover: './halcyon.png'
-github: 'https://github.com/bchiang7/halcyon-site'
-# external: 'https://halcyon-theme.netlify.com/'
+url: 'https://halcyon-theme.netlify.com/'
+repo: 'https://github.com/bchiang7/halcyon-site'
 tech:
   - VS Code
   - Sublime Text

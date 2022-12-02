@@ -45,6 +45,6 @@
         font-size: typography.font-size("s")
         line-height: 12px
 
-a
-  @include mixins.inline-link
+  a
+    @include mixins.inline-link
 </style>

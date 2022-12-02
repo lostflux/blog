@@ -162,16 +162,6 @@ const jobs = jobsData.value
   ? jobsData.value
   : [];
 
-// jobsData?.value.forEach((item, i) => {
-//   jobs.push(new ParsedJobInfo(item, i));
-// });
-
-
-
-
-
-
-
 
 
 var activeTabId = 0;

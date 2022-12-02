@@ -1,5 +1,6 @@
 <template>
   <section class="contact-section">
+    <h2 class="heading overline"> What's Next?</h2>
     <ContentDoc :value="contact" />
     <a
       :href="`mailto:${ contact.email }`"

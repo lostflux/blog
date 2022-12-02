@@ -22,34 +22,40 @@
           role="tab"
         > 
           <span>
-            {{ `${i}: ${job.company}` }}
+            {{ `${job.company}` }}
           </span>
         </StyledTabButton>
         <StyledHighlight ref="highlight" />
       </StyledTabList>
 
       <StyledTabPanels>
-        <StyledTabPanel
-          v-for="job, i in jobs"
-          :identifier="i"
-          ref="tabs"
-          role="tabpanel"
-          :id="`panel-${i}`"
+        <TransitionGroup
+          name="fade"
+          :timeout="250"
         >
-          <h3>
-            {{ job.title }}
-            <span class="company">
-              &nbsp;@&nbsp;
-              <a :href="job.url" class="link">
-                {{ job.company }}
-              </a>
-            </span>
-          </h3>
-          <p class="range">
-            {{ job.range }}
-          </p>
-          <ContentDoc :value="job" />
-        </StyledTabPanel>
+          <StyledTabPanel
+            v-for="job, i in jobs"
+            :key="i"
+            :identifier="i"
+            ref="tabs"
+            role="tabpanel"
+            :id="`panel-${i}`"
+          >
+            <h3>
+              {{ job.title }}
+              <span class="company">
+                &nbsp;@&nbsp;
+                <a :href="job.url" class="link">
+                  {{ job.company }}
+                </a>
+              </span>
+            </h3>
+            <p class="range">
+              {{ job.range }}
+            </p>
+            <ContentDoc :value="job" />
+          </StyledTabPanel>
+        </TransitionGroup>
       </StyledTabPanels>
     </div>
   </StyledJobsSection>

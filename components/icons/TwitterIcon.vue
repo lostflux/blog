@@ -34,3 +34,8 @@ export default {
   name: "TwitterIcon",
 }
 </script>
+
+<style lang="sass" scoped>
+svg
+	fill: currentColor
+</style>

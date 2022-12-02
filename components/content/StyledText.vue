@@ -20,7 +20,6 @@
   font-family: typography.font("font-sans")
   font-size: typography.font-size("m")
 
-
   .styled-list
     display: grid
     grid-template-columns: repeat(2, minmax(140px, 200px))
@@ -47,4 +46,6 @@
 
   a
     @include mixins.inline-link
+
+    
 </style>

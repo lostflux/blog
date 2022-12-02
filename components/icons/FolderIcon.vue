@@ -2,16 +2,30 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     role="img"
-    viewBox="0 0 24 24"
-    fill="none"
+    viewBox="0 0 32 32"
     stroke="currentColor"
-    strokeWidth="1"
+    strokewidth="5"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="feather feather-folder">
+    class="feather feather-folder"
+  >
     <title>Folder</title>
-    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+    <path
+      fill="none"
+      stroke="red"
+      stroke-miterlimit="10"
+      stroke-width="2"
+      d="M25 28L7 28 7 4 23 4 23 13 25 15z"
+    />
+    <path
+      fill="none"
+      stroke="red"
+      stroke-miterlimit="10"
+      stroke-width="2"
+      d="M23 4L27 4 27 13 25 15"
+    />
   </svg>
+
 </template>
 
 <script lang="ts">
@@ -19,3 +33,13 @@
     name: "FolderIcon",
   }
 </script>
+
+<style lang="sass" scoped>
+  @use "~/styles/colors"
+  svg
+    stroke: red
+    fill: none
+
+    &:hover
+      fill: colors.color("green")
+</style>

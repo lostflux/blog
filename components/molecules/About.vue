@@ -39,3 +39,8 @@ const { data } = await useAsyncData(
     name: "About"
   }
 </script>
+
+<style lang="sass">
+p
+  font-size: 20
+</style>

@@ -9,13 +9,31 @@
   </main>
 </template>
 
-<style lang="sass">
+<!-- <style lang="sass">
   @use '../styles/index'
-</style>
+</style> -->
 
 <script lang="ts">
 export default {
   name: "Landing Page",
+
+  data() {
+    return {
+      title: "Altair's Portfolio",
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: "landing-page",
+          name: "Landing Page",
+          content: "A summary of my work and experience."
+        }
+      ]
+    }
+  }
 }
 </script>
 

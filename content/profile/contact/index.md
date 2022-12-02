@@ -3,11 +3,6 @@ category: 'contact'
 email: 'amittaijoel@outlook.com'
 ---
 
-
-::h2{class="numbered-heading overline"}
-  What's Next?
-::
-
 ## Get In Touch
 
 Thank you for checking out my portfolio.

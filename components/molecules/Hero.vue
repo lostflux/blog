@@ -44,6 +44,10 @@ export default {
     margin-top: 10px
     color: colors.color("slate")
     line-height: 0.9
+
+  .big-heading
+    font-weight: 600
+    line-height: 86px
   
   p p
     margin: 20px 0 0

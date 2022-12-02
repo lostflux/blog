@@ -417,38 +417,38 @@ code
   
 /** All about transitions */
 /* Fade up */
-.fadeup-enter 
+.fadeup-enter-from
   opacity: 0.01
   transform: translateY(20px)
   transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
 
-.fadeup-enter-active 
+.fadeup-enter-to
   opacity: 1
   transform: translateY(0px)
   transition: opacity 300ms geometry.var("easing"), transform 300ms var("easing")
 
 /* Fade down */
-.fadedown-enter 
+.fadedown-enter-from
   opacity: 0.01
   transform: translateY(-20px)
   transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
 
-.fadedown-enter-active 
+.fadedown-enter-to
   opacity: 1
   transform: translateY(0px)
   transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
 
 /* Fade */
-.fade-enter 
+.fade-enter-from
   opacity: 0
 
-.fade-enter-active 
+.fade-enter-to
   opacity: 1
-  transition: opacity 300ms geometry.var("easing")
+  transition: opacity 0.3s geometry.var("easing")
 
-.fade-exit 
+.fade-leave-from
   opacity: 1
 
-.fade-exit-active 
+.fade-leave-to
   opacity: 0
-  transition: opacity 300ms geometry.var("easing")
+  transition: opacity 0.3s geometry.var("easing")

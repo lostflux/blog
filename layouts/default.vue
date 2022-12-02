@@ -14,7 +14,7 @@
 </template>
 
 <style lang="sass">
-@use "../styles/default"
+// @use "../styles/default"
 </style>
 
 <script lang="ts">

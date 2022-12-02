@@ -50,6 +50,7 @@ export default {
   width: 100%
   height: auto
   padding: 10px 5px
+  position: absolute    // fix jumping content when switching tabs
 
   ul
     @include mixins.styled-list

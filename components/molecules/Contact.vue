@@ -1,7 +1,9 @@
 <template>
-  <ContentDoc
-    path="profile/contact"
-  />
+  <section class="contact-section">
+    <ContentDoc
+      path="profile/contact"
+    />
+  </section>
 </template>
 
 <style lang="sass">
@@ -32,7 +34,8 @@
       display: none
     
   
-  .title 
+  // .title
+  h2
     font-size: clamp(40px, 5vw, 60px)
   
   .email-link

@@ -28,7 +28,7 @@
     margin: 20px 0 0 0
     overflow: hidden
     list-style: none
-    
+
     li
       position: relative
       margin-bottom: 10px

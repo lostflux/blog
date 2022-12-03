@@ -12,6 +12,7 @@
       </Transition>
     </TransitionGroup>
     <NavLinks />
+    <Menu class="menu"/>
   </nav>
 </template>
 
@@ -28,7 +29,8 @@ onMounted(() => {
   }, loaderDelay);
 });
 
-const isHome = useRoute().path === "/";
+const { path } = useRoute();
+const isHome = () => path === "/";
 
 const timeout = isHome ? loaderDelay : 0;
 const fadeDownClass = isHome ? 'fadedown' : '';
@@ -63,10 +65,15 @@ nav
   z-index: 12
   float: right
   margin: 0 auto
-  // display: flex
-  // justify-content: flex-end
+  overflow: none
 
-  // debug stuff
-  // background-color: colors.color("lightest-navy") 
+.menu
+  position: absolute
+  top: 0px
+  right: 0px
+
+  // center vertically
+  transform: translateY(-25%)
+  -webkit-transform: translateY(-25%)
 
 </style>

@@ -5,6 +5,7 @@
     :style="style"
   >
     <Nav class="nav" />
+    <!-- <Menu /> -->
   </header>
 </template>
 
@@ -134,19 +135,22 @@ header
   // trick: make header stick out a bit
   // by filtering it with grayscale.
   filter: grayscale(30%) !important
+  backdrop-filter: blur(8px)
 
   pointer-events: auto !important
   user-select: auto !important
   transition: geometry.var("default-transition")
 
   // blur when there's content underneath
-  backdrop-filter: blur(3px)
 
   // center nav on the header when header is wider than nav.
   margin: 0 auto
 
   // retain header at top of page on scroll down.
   position: fixed
+
+  // for side menu
+  overflow: show
 
   @media (max-width: 1080px)
     padding: 0 40px

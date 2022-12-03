@@ -24,7 +24,7 @@
     <TransitionGroup>
       <Transition :class="fadeDownClass" :timeout="timeout">
         <div :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }">
-          <a 
+          <!-- <a 
             class="more-button"
             target="_blank"
             rel="noopener noreferrer"
@@ -33,7 +33,7 @@
             }"
           >
             {{ menuIsCollapsed ? "&#x3c" : "&#x3e" }}
-          </a>
+          </a> -->
           <template v-if="(!menuIsCollapsed)">
             <ol v-for="{ name, url }, i in otherLinks">
               <TransitionGroup :component="null">
@@ -144,7 +144,7 @@
 
   
 
-.more-button
+.menu-button
   // @include mixins.small-button
   margin-left: 15px
   font-size: typography.font-size("heading")

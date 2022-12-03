@@ -1,35 +1,25 @@
-import { useEffect } from 'react';
 
-// https://usehooks.com/useOnClickOutside/
 
-const useOnClickOutside = (ref, handler) => {
-  useEffect(
-    () => {
-      const listener = event => {
-        // Do nothing if clicking ref's element or descendent elements
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
+export function useOnClickOutside(ref, handler) {
 
-        handler(event);
-      };
+  // handler for pointer events
+  const listener = (e) => {
+    if (!ref.value || ref.value?.contains(e.target)) {
+      return;
+    }
+    handler(e);
+  };
 
-      document.addEventListener('mousedown', listener);
-      document.addEventListener('touchstart', listener);
+  // runner to add event listeners
+  const runner = () => {
+    document.addEventListener("click", listener);
+    document.addEventListener("touch", listener);
+    return () => {
+      document.removeEventListener("click", listener);
+      document.removeEventListener("touch", listener);
+    };
+  }
 
-      return () => {
-        document.removeEventListener('mousedown', listener);
-        document.removeEventListener('touchstart', listener);
-      };
-    },
-    // Add ref and handler to effect dependencies
-    // It's worth noting that because passed in handler is a new ...
-    // ... function on every render that will cause this effect ...
-    // ... callback/cleanup to run every render. It's not a big deal ...
-    // ... but to optimize you can wrap handler in useCallback before ...
-    // ... passing it into this hook.
-    [ref, handler],
-  );
-};
-
-export default useOnClickOutside;
+  const stop = watchEffect(runner);
+  stop();
+}

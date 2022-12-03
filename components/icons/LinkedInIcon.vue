@@ -25,4 +25,7 @@ svg
   fill: currentcolor
   stroke: none
   width: 24px
+
+  &:hover
+    fill: currentcolor
 </style>

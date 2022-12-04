@@ -65,7 +65,7 @@
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
             <NuxtImg
-              :src="imageUrl(`../../assets/projects/featured/${project.cover}.gif`)"
+              :src="`/${project.cover}.gif`"
               :alt="project.title"
               class="img"
               quality="100"

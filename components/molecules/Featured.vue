@@ -64,7 +64,7 @@
         </div>   
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
-            <NuxtImg
+            <img
               :src="`/${project.cover}.gif`"
               :alt="project.title"
             />

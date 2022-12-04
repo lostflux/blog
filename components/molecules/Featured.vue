@@ -67,9 +67,6 @@
             <NuxtImg
               :src="`/${project.cover}.gif`"
               :alt="project.title"
-              class="img"
-              quality="100"
-              formats="AUTO, WEBP, AVIF"
             />
           </a>
         </div>

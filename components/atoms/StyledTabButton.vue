@@ -1,6 +1,6 @@
 <template>
   <button
-    class="styled-button"
+    :class="selected ? 'styled-button selected' : 'styled-button'"
     :id="`styled-button-${identifier}`"
     :style="style"
   >
@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts">
-
-const _colorGreen = "#64ffda";
 
   export default {
     name: "StyledButton",
@@ -40,7 +38,7 @@ const _colorGreen = "#64ffda";
     computed: {
       style() {
         if (this.selected) {
-          return `aria-selected: true; color: ${_colorGreen}`;
+          return `aria-selected: true;`;
         } else {
           return `aria-selected: false`;
         }
@@ -94,6 +92,9 @@ const _colorGreen = "#64ffda";
     background-color: colors.color("light-navy")
 
   &:active
+    color: colors.color("green")
+
+  &.selected
     color: colors.color("green")
 
 </style>

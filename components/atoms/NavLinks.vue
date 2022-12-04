@@ -69,7 +69,7 @@
   }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 
 
 @use "~/styles/colors"
@@ -80,7 +80,6 @@
   
 .home-links
   display: flex
-  // align-items: center
 
   @media (max-width: 768px)
     display: none
@@ -106,41 +105,5 @@
           color: colors.color("green")
           font-size: typography.font-size("xxs")
           text-align: right
-.other-links
-  display: flex
-  align-items: center
 
-  ol
-    @include mixins.flex-between
-    padding: 0
-    margin: 0
-    list-style: none
-
-    li
-      margin: 0 5px
-      position: relative
-      counter-increment: item 1
-      font-size: typography.font-size("xs")
-
-      a
-        padding: 10px
-        
-        &:before
-          content: '0' counter(item) '.'
-          margin-right: 5px
-          color: colors.color("green")
-          font-size: typography.font-size("xxs")
-          text-align: right
-
-  
-
-.menu-button
-  // @include mixins.small-button
-  margin-left: 15px
-  font-size: typography.font-size("heading")
-  font-weight: 700
-  color: colors.color("green")
-
-  &:hover
-    color: red
 </style>

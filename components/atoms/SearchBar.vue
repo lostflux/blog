@@ -53,7 +53,6 @@ export default {
     width: 100%
     height: 100%
     background: inherit
-    // color: white
     border: none
     font-size: 20px
     padding: 20px

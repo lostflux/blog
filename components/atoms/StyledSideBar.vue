@@ -27,10 +27,6 @@
   // visibility: $props => (props.menuOpen ? 'visible' : 'hidden')
   transition: geometry.var("default-transition")
 
-  // transform: scale(1.75)
-
-  // background-color: inherit
-
   // trick: make header stick out a bit
   // by filtering it with grayscale.
   filter: grayscale(30%) !important

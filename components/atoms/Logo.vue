@@ -24,11 +24,10 @@
   width: 40px
   height: 40px
   margin-right: 5px
-  // background-color: colors.color("green")
 
   svg
     color: colors.color("green")
-    width: 42px
-    height: 42px
+    width: 50px
+    height: 50px
 
 </style>

@@ -16,7 +16,7 @@
     <div
       v-show="menuOpen"
       class="site-menu">
-      <SearchBar ref="searchBar"/>
+      <SearchBar ref="searchBar" class="search-bar"/>
       <div class="menu-columns-wrapper">
         <div class="menu-column">
           <NuxtLink
@@ -286,7 +286,7 @@ const toggleMenu = () => {
 </script>
 
 
-<style lang="sass" scoped>
+<style lang="sass">
 @use "~/styles/mixins"
 @use "~/styles/typography"
 @use "~/styles/colors"
@@ -299,11 +299,8 @@ const toggleMenu = () => {
   padding: 0 50px
   width: 100%
   position: fixed
-  display: block
-  overflow: auto
-  
-  // height: auto //geometry.var("nav-scroll-height")
-  // background-color: inherit
+  display: table
+  max-height: auto
 
   // trick: make header stick out a bit
   // by filtering it with grayscale.
@@ -320,7 +317,6 @@ const toggleMenu = () => {
   // center nav on the header when header is wider than nav.
   margin: 0 auto
 
-  // background-color: green
 
   @media (max-width: 1080px)
     padding: 0 40px
@@ -329,9 +325,7 @@ const toggleMenu = () => {
     padding: 0 25px
 
   @media (prefers-reduced-motion: no-preference)
-    // height: geometry.var("nav-scroll-height")
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
-    // height: geometry.var("nav-scroll-height")
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
 
 
@@ -344,23 +338,22 @@ const toggleMenu = () => {
   max-width: 1600px
   width: auto
   margin: 0 auto
-  // margin-top: 20px
-  // margin-bottom: 20px
-  // background-color: yellow
 
 .nav-in-container
   margin: 10px
   max-width: 100%
-  height: geometry.var("nav-scroll-height")
+  height: auto
+  padding-top: 20px
+  padding-bottom: 20px
   margin: auto
-  // background-color: purple
 
 .menu-button
   position: absolute
-  right: 20px
-  // background-color: orange
-  height: 100%
-  padding-right: 20px       /// keep button abreast.
+  right: 0
+  top: 5px
+  width: 50px
+  height: 50px
+
 
 .site-menu
   display: block
@@ -369,9 +362,8 @@ const toggleMenu = () => {
   max-width: 1600px
   width: 100%
   flex-direction: column
-  // background-color: #0053d6
   min-height: auto
-  max-height: 70vh
+  max-height: auto
   margin: auto
   margin-top: 20px
   margin-bottom: 20px
@@ -384,10 +376,10 @@ const toggleMenu = () => {
 .menu-columns-wrapper
   display: flex
   flex-direction: row
+  flex-wrap: wrap
   justify-content: space-between
   height: 100%
   width: 100%
-  // background-color: yellow
   margin: 40px 0 40px 0
   border-top: 1px solid colors.color("lightest-navy")
   color: inherit
@@ -397,20 +389,28 @@ const toggleMenu = () => {
   flex-direction: column
   justify-content: space-between
   height: 100%
-  width: 100%
-  // background-color: inherit
+  width: 25%
   padding-left: 10px
-  color: inherit
+  margin-top: 40px
 
-.menu-column-header > *
-  font-family: typography.font("font-sans")
-  font-size: typography.font-size("xxl")
-  color: inherit
+  @media (max-width: 1080px)
+    width: 50%
+    flex: 0 50%
 
-.menu-column-item > *
+  @media (max-width: 768px)
+    width: 100%
+    flex: 0 100%
+
+
+.menu-column-header
   font-family: typography.font("font-sans")
   font-size: typography.font-size("xl")
-  color: inherit
+  color: colors.color("lightest-slate")
+
+.menu-column-item
+  font-family: typography.font("font-sans")
+  font-size: typography.font-size("m")
+  color: colors.color("light-slate")
 
 .menu-extras
   display: flex
@@ -423,25 +423,28 @@ const toggleMenu = () => {
 .menu-extras-links
   display: flex
   justify-items: center
-  align: center
   flex-direction: column
-  // justify-content: space-between
-  height: 100%
-  width: 100%
-  // background-color: green
-  width: 50%
-  padding-left: 10px
+  margin-left: 10px
   align-items: left
   margin: 40px
+  color: colors.color("green")
 
 .menu-extras-footer
   width: 50%
 
+  @media (max-width: 768px)
+    width: 100%
+
 .menu-footer
   float: right
-  margin-top: 0
+  margin-top: 20px
   top: 0px
   width: 100%
-  // background-color: purple
+
+
+
+.search-bar, .search-icon
+  margin-top: 20px
+  margin-bottom: 20px
 
 </style>

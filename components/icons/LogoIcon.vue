@@ -93,7 +93,7 @@
   </svg>  
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 @use "~/styles/colors"
 @use "~/styles/geometry"
@@ -102,6 +102,8 @@ svg
   fill: none
   transition: geometry.var("default-transition")
   user-select: none
+  width: 50px
+  height: 50px
 
   &:hover, &:focus
     fill: colors.color("green-tint")

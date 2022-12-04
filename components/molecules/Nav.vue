@@ -49,9 +49,9 @@ const fadeDownClass = isHome ? 'fadedown' : '';
 @use "~/styles/geometry"
 @use "~/styles/mixins"
 
-*
-  margin: 0
-  padding: 0
+// *
+//   margin: 0
+//   padding: 0
 
 
 nav
@@ -67,13 +67,18 @@ nav
   margin: 0 auto
   overflow: none
 
+.nav-inner
+  margin-left: 20px  // keep logo abreast
+
 .menu
   position: absolute
   top: 0px
-  right: 0px
+  right: 0px    
+  height: 100%
 
   // center vertically
   transform: translateY(-25%)
   -webkit-transform: translateY(-25%)
+  margin-right: 10px
 
 </style>

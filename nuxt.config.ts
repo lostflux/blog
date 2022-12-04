@@ -60,4 +60,17 @@ export default {
       'vue-freezeframe',
     ]
   },
+  plugins: [
+    { src: "~/plugins/resize.ts", mode: "client" },
+  ],
+  vue: {
+    compilerOptions: {
+      directiveTransforms: {
+        resizetrack: () => ({
+          props: [],
+          needRuntime: false,
+        })
+      }
+    }
+  }
 }

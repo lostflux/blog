@@ -1,7 +1,8 @@
 <template>
-  <button class="menu-button">
-    {{ menuOpen ? "&#x3e" : "&#x3c" }}
-  </button>
+  <!-- <button class="menu-button"> -->
+    <!-- {{ menuOpen ? "&#x3e" : "&#x3c" }} -->
+    <Icon type="menu" class="menu-button" />
+  <!-- </button> -->
 </template>
 
 <script lang="ts">
@@ -27,11 +28,14 @@
 @use "~/styles/colors"
 @use "../styles/typography"
 
+.menu-icon
+  color: colors.color("green")
+
 .menu-button
-  @include mixins.flex-center
+  // @include mixins.flex-center
   position: relative
   z-index: 10
-  margin-right: -15px
+  // margin-right: -15px
   padding: 15px
   border: 0
   background: transparent

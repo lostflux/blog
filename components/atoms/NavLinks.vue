@@ -24,16 +24,6 @@
     <TransitionGroup>
       <Transition :class="fadeDownClass" :timeout="timeout">
         <div :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }">
-          <!-- <a 
-            class="more-button"
-            target="_blank"
-            rel="noopener noreferrer"
-            @click="() => {
-              menuIsCollapsed = !menuIsCollapsed
-            }"
-          >
-            {{ menuIsCollapsed ? "&#x3c" : "&#x3e" }}
-          </a> -->
           <template v-if="(!menuIsCollapsed)">
             <ol v-for="{ name, url }, i in otherLinks">
               <TransitionGroup :component="null">

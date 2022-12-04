@@ -1,13 +1,12 @@
 <template>
   <body>
     <div id="root">
-      <a class="skip-to-content" href="#content">
-        Skip to Content
-      </a>
+      <a class="skip-to-content" href="#content"/>
       <AppHeader/>
-        <div id="content">
-          <slot />
-        </div>
+        <!-- <div id="content"> -->
+          <slot id="content"/>
+          <!-- <Nuxt id="content"/> -->
+        <!-- </div> -->
       <AppFooter/>
     </div>
   </body>

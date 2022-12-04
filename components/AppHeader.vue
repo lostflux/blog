@@ -350,7 +350,7 @@ const toggleMenu = () => {
 .menu-button
   position: absolute
   right: 0
-  top: 5px
+  top: 1px
   width: 50px
   height: 50px
 

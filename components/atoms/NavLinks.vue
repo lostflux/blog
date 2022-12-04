@@ -20,40 +20,13 @@
       </ol>
     </template>
   </div>
-  <div class="other-links">
-    <TransitionGroup>
-      <Transition :class="fadeDownClass" :timeout="timeout">
-        <div :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }">
-          <template v-if="(!menuIsCollapsed)">
-            <ol v-for="{ name, url }, i in otherLinks">
-              <TransitionGroup :component="null">
-                <Transition :key="i" :class="fadeDownClass" :timeout="timeout">
-                  <li
-                    :key="i"
-                    :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }"
-                  >
-                    <NuxtLink
-                      :to="url"
-                      class="nav-link"
-                    >
-                      {{ name }}
-                    </NuxtLink>
-                  </li>
-                </Transition>
-              </TransitionGroup>
-            </ol>
-          </template>
-        </div>
-      </Transition>
-    </TransitionGroup>
-  </div>
 </template>
 
 <script lang="ts" setup>
   import { navLinks } from "~/src/config";
   import { loaderDelay } from '~/src/utils';
 
-  const { homeLinks, otherLinks } = navLinks;
+  const { homeLinks } = navLinks;
 
   const { path } = useRoute();
   const isHome = path === "/";
@@ -80,6 +53,7 @@
   
 .home-links
   display: flex
+  margin: 0 auto
 
   @media (max-width: 768px)
     display: none

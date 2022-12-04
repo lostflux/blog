@@ -82,7 +82,8 @@
   
   @media (max-width: 600px)
     @apply mixins.flex-center
-    min-width: 120px
+    min-width: geometry.var("tab-width")
+    width: geometry.var("tab-width")
     padding: 0 15px
     border-left: 0
     border-bottom: 2px solid colors.color("lightest-navy")

@@ -3,7 +3,7 @@
     class="styled-highlight"
     :style="style"
   >
-    <slot />
+    <!-- <slot /> -->
   </div>
 </template>
 
@@ -87,13 +87,13 @@ const tabWidth = 120;
   @media (max-width: 600px) 
     top: auto
     bottom: 0
-    width: 100%
+    width: 120px //geometry.var("tab-width")
     max-width: geometry.var("tab-width")
     height: 2px
     margin-left: 50px
-    transform: translateX(geometry.var("tab-width"))
+    // transform: translateX(geometry.var("tab-width"))
 
-  @media (max-width: 480px) 
-    margin-left: 2
+  // @media (max-width: 480px) 
+  //   margin-left: 2
 
 </style>

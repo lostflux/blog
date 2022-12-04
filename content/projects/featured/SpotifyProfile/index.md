@@ -2,7 +2,7 @@
 date: '2'
 year: '2020'
 title: 'Spotify Profile'
-cover: './demo.png'
+cover: 'neural'
 url: 'https://spotify-profile.herokuapp.com/'
 repo: 'https://github.com/bchiang7/spotify-profile'
 tech:

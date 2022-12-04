@@ -29,8 +29,9 @@
                 </span>
                 <a
                   v-if="
-                    project?.company?.url !== null &&
-                    project?.company?.name !== ''"
+                    project.company !== null
+                    && project.company.url !== null &&
+                    project?.company?.name !== null"
                   :href="project.company.url">
                   {{ project.company.name }}
                 </a>
@@ -63,8 +64,8 @@
         </div>   
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
-            <img
-              src="~assets/images/neural.gif"
+            <NuxtImg
+              :src="imageUrl(`../../assets/projects/featured/${project.cover}.gif`)"
               :alt="project.title"
               class="img"
               quality="100"
@@ -85,6 +86,19 @@
 </script>
 
 <script lang="ts" setup>
+// import { joinPaths } from '~~/src/utils';
+
+// const makePath = (file: string) => {
+//   return await loadImage(`/assets/projects/featured/${file}`);
+//   // const _path = joinPaths('assets/projects/featured', path);
+//   // console.log(`Path: ${_path}`);
+//   // return _path;
+// }
+
+const imageUrl = (file: string) => {
+  const _url = new URL(file, import.meta.url);
+  return _url.href;
+}
 
 const hasCompany = (project: any) => typeof project.company !== 'undefined';
 
@@ -100,6 +114,12 @@ const { data } = await useAsyncData(
     return await _projectsData;
 });
 
-const projects = data.value;
+
+const projects = data.value || [];
+// projects.forEach((project: any) => {
+//   if (project.cover) {
+//     project.cover = makePath(project.cover);
+//   } 
+// });
 
 </script>

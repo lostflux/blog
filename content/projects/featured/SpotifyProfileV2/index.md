@@ -2,7 +2,7 @@
 date: '3'
 year: '2022'
 title: 'Build a Spotify Connected App'
-cover: './course-card.png'
+cover: 'neural'
 url: 'https://www.newline.co/courses/build-a-spotify-connected-app-v2'
 cta: 'https://www.newline.co/courses/build-a-spotify-connected-app'
 tech:

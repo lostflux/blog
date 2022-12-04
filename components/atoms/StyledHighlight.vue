@@ -11,31 +11,51 @@
 <script lang="ts">
 
 const tabHeight = 42;
+const tabWidth = 120;
 
   export default {
     name: "StyledHighlight",
     data() {
       return {
         index : 0,
+        vertical: true
       }
     },
     methods : {
       highlight(newIndex: number) {
-        console.log(`Moving position of highlight!!`);
         this.index = newIndex;
       },
     },
     computed: {
       style() {
-        return `transform: translateY(${this.index * tabHeight}px)`;
+        return this.vertical
+          ? `transform: translateY(${this.index * tabHeight}px);`
+          : `transform: translateX(${this.index * tabWidth}px);`;
       },
+      vertical() {
+        if (typeof window !== "undefined") {
+          return window.innerWidth > 600;
+        }
+        return false;
+      },
+    },
+    mounted() {
+      this.vertical = window.innerWidth > 600;
+      window.addEventListener("resize", () => {
+        this.vertical = window.innerWidth > 600;
+        this.$forceUpdate();
+      });
+    },
+
+    unmounted() {
+      window.removeEventListener("resize", () => {
+        this.vertical = window.innerWidth > 600;
+        this.$forceUpdate();
+      });
     },
 
     watch: {
       index(newIndex: number) {
-
-        console.log(`index changed to ${newIndex}`);
-        console.log(`style is ${this.style}`);
         
         // re-render the component
         this.$forceUpdate();

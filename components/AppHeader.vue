@@ -1,7 +1,7 @@
 <template>
   <header
     ref="headerRef"
-    class="header"
+    :class="menuOpen ? 'header menu-open' : 'header'"
     :style="style"
   >
     <div class="nav-container">
@@ -154,7 +154,7 @@ export default {
         // } else {
         //   document.body.style.overflow = "auto";
         // }
-        this.height = this.$refs.header?.offsetHeight || 0;
+        this.height = this.$el.offsetHeight || 0;
         console.log(`height: ${this.height}`);
       },
       deep: true,
@@ -168,10 +168,6 @@ export default {
       //   document.body.style.overflow = "auto";
       // }
       this.height = this.$refs.header.offsetHeight || 0;
-    },
-    onResize({ width, height }) {
-      console.log(`width: ${width}, height: ${height}`);
-      this.height = height;
     },
 
     /**
@@ -294,13 +290,20 @@ const toggleMenu = () => {
 
 .header
   @include mixins.flex-between
-  top: 0
+
   z-index: 11
   padding: 0 50px
-  width: 100%
+  
   position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: auto
+
+  max-height: 100vh
+  overflow-y: scroll
+
   display: table
-  max-height: auto
 
   // trick: make header stick out a bit
   // by filtering it with grayscale.
@@ -328,6 +331,13 @@ const toggleMenu = () => {
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
     box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
 
+
+  // when menu is open,
+  // make header not exceed the height of the screen
+  // and make overflowing content scrollable
+  &.menu-open
+    max-height: 100vh
+    overflow-y: scroll
 
 .nav-container
   display: flex

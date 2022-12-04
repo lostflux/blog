@@ -162,3 +162,8 @@ export default {
   name: "Jobs",
 }
 </script>
+
+<style lang="sass" scoped>
+@use "~/styles/default"
+
+</style>

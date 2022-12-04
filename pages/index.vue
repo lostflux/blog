@@ -1,11 +1,11 @@
 <template>
   <main class="fill-height">
-    <Hero id="landing"/>
-    <About id="about"/>
-    <Jobs id="jobs"/>
-    <Featured id="projects"/>
+    <Hero id="landing" />
+    <About id="about" />
+    <Jobs id="jobs" />
+    <Featured id="projects" />
     <Projects />
-    <Contact id="contact"/>
+    <Contact id="contact" />
   </main>
 </template>
 

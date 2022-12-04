@@ -62,6 +62,7 @@ export default {
   },
   plugins: [
     { src: "~/plugins/resize.ts", mode: "client" },
+    // { src: "~/plugins/reveal.ts", mode: "client", ssr: false },
   ],
   vue: {
     compilerOptions: {
@@ -69,7 +70,11 @@ export default {
         resizetrack: () => ({
           props: [],
           needRuntime: false,
-        })
+        }),
+        // reveal: () => ({
+        //   props: [],
+        //   needRuntime: false,
+        // })
       }
     }
   }

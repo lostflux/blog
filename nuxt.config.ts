@@ -17,14 +17,13 @@ export default {
       navigation: true,
       page: true,
       surround: true,
-      // Will fetch `content/_theme.yml` and put it in `globals.theme` if present.
-      // Will use `theme` global to search for a fallback `layout` key.
-      layoutFallbacks: ['theme'],
+
       // Will inject `[...slug].vue` as the root page.
       injectPage: true,
       ignores: [
         'content/jobs',
       ],
+      
     }    
   },
   ssr: true,
@@ -83,4 +82,13 @@ export default {
       '2xl': 1536
     },
   },
+  head: {
+    link: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon.png",
+      }
+    ]
+  }
 }

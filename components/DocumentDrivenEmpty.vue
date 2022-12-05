@@ -1,5 +1,5 @@
 <template>
-  <h1>
-    This page is empty.
-  </h1>
+  <Hero>
+    Sorry, this page is empty.
+  </Hero>
 </template>

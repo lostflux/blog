@@ -1,6 +1,6 @@
 # Altair's Portfolio/Blog Website
 
-Built with [Nuxt 3](https://v3.nuxtjs.org),
+Built with [Nuxt 3](https://nuxtjs.org/),
 [Sass](https://sass-lang.com), and [TypeScript](https://www.typescriptlang.org),
 with a slight hint of [MongoDB](https://www.mongodb.com).
 

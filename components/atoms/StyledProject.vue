@@ -256,14 +256,14 @@
         mix-blend-mode: screen
       
     
-    .img 
-      border-radius: geometry.var("border-radius")
-      mix-blend-mode: multiply
-      filter: grayscale(80%) contrast(1) brightness(40%)
-      @media (max-width: 768px) 
-        object-fit: cover
-        width: auto
-        height: 100%
-        filter: grayscale(100%) contrast(1) brightness(50%)
+      img 
+        border-radius: geometry.var("border-radius")
+        mix-blend-mode: multiply
+        filter: grayscale(40%) contrast(1) brightness(70%)
+        @media (max-width: 768px) 
+          object-fit: cover
+          width: auto
+          height: 100%
+          filter: grayscale(100%) contrast(1) brightness(50%)
 
 </style>

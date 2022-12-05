@@ -55,7 +55,7 @@
               <Icon type="GitHub" />
             </a>
             <a
-              v-if="project.url !== null"
+              v-if="project.url"
               :href="project.url"
             >
               <Icon type="ExternalLink" />
@@ -65,7 +65,7 @@
         <div class="project-image">
           <a :href="project.url ? project.url : project.repo ? project.repo : '#'">
             <img
-              :src="`/${project.cover}.gif`"
+              :src="`/${project.cover}`"
               :alt="project.title"
             />
           </a>
@@ -92,10 +92,10 @@
 //   // return _path;
 // }
 
-const imageUrl = (file: string) => {
-  const _url = new URL(file, import.meta.url);
-  return _url.href;
-}
+// const imageUrl = (file: string) => {
+//   const _url = new URL(file, import.meta.url);
+//   return _url.href;
+// }
 
 const hasCompany = (project: any) => typeof project.company !== 'undefined';
 
@@ -106,7 +106,7 @@ const { data } = await useAsyncData(
   async () => {
     const _projectsData = queryContent("projects/featured")
       .where( {show: "true"} )
-      .sort( {date: -1} )
+      .sort( {order: 1} )
       .find();
     return await _projectsData;
 });

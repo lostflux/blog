@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 
-const search = () => console.log("search");
+// const search = () => console.log("search");
 const textBar = ref(null);
 
 </script>
@@ -26,16 +26,16 @@ export default {
   name: "SearchBar",
   methods: {
     search() {
-      console.log("searching");
+      // console.log("searching");
     },
     focus() {
-      console.log("focusing");
+      // console.log("focusing");
       this.$refs.textBar.focus();
     },
   },
   mounted() {
-    console.log("mounted searchBar");
-    console.log(this.$refs.textBar);
+    // console.log("mounted searchBar");
+    // console.log(this.$refs.textBar);
   },
 }
 </script>

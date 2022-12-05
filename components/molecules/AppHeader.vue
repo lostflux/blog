@@ -155,7 +155,7 @@ export default {
         //   document.body.style.overflow = "auto";
         // }
         this.height = this.$el.offsetHeight || 0;
-        console.log(`height: ${this.height}`);
+        // console.log(`height: ${this.height}`);
       },
       deep: true,
     },
@@ -250,12 +250,12 @@ const searchBar = ref(null);
 
 
 const closeMenu = () => {
-  console.log(`Menu Closed!`);
+  // console.log(`Menu Closed!`);
   menuOpen.value = false;
 }
 
 const openMenu = () => {
-  console.log(`Menu Opened!`);
+  // console.log(`Menu Opened!`);
   menuOpen.value = true;
   document.getElementById("searchbar")?.focus();
   // searchBar.value.focus();
@@ -263,18 +263,18 @@ const openMenu = () => {
 }
 
 const toggleMenu = () => {
-  console.log(`
-  menuOpen: ${menuOpen.value !== null}
-  buttonRef: ${buttonRef.value !== null}
-  header: ${headerRef.value !== null}
-  searchBar: ${searchBar.value !== null}
-`);
+//   console.log(`
+//   menuOpen: ${menuOpen.value !== null}
+//   buttonRef: ${buttonRef.value !== null}
+//   header: ${headerRef.value !== null}
+//   searchBar: ${searchBar.value !== null}
+// `);
 
-  console.log(`Menu Toggled!`);
+  // console.log(`Menu Toggled!`);
   buttonRef.value.toggle();
   headerRef.value.menuOpen = !headerRef.value.menuOpen;
   // headerRef.value.toggleMenu();
-  console.log(`menuOpen: ${headerRef.value.menuOpen}`);
+  // console.log(`menuOpen: ${headerRef.value.menuOpen}`);
   menuOpen.value
     ? closeMenu()
     : openMenu();

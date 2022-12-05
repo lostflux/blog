@@ -18,18 +18,13 @@ export default {
       page: true,
       surround: true,
       // Will fetch `content/_theme.yml` and put it in `globals.theme` if present.
-      globals: {
-        theme: {
-          where: {
-            _id: 'content:_theme.yml'
-          },
-          without: ['_']
-        }
-      },
       // Will use `theme` global to search for a fallback `layout` key.
       layoutFallbacks: ['theme'],
       // Will inject `[...slug].vue` as the root page.
-      injectPage: true
+      injectPage: true,
+      ignores: [
+        'content/jobs',
+      ],
     }    
   },
   ssr: true,
@@ -88,17 +83,4 @@ export default {
       '2xl': 1536
     },
   },
-  head: {
-    title: 'my website title',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'my website description'
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/assets/connection.svg' }]
-  }
 }

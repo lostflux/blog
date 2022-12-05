@@ -23,7 +23,7 @@ import { useState } from '~/src/stateful';
 const [isMounted, setMounted] = useState(false); 
 
 onMounted(() => {
-  console.log("Mounted!");
+  // console.log("Mounted!");
   setTimeout(() => {
     setMounted(true);
   }, loaderDelay);

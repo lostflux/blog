@@ -54,6 +54,7 @@ export default {
   .project-top 
     @include mixins.flex-between
     margin-bottom: 35px
+
     .folder 
       color: colors.color("green")
       svg 
@@ -125,6 +126,7 @@ export default {
       font-family: typography.font("font-mono")
       font-size: typography.font-size("xxs")
       line-height: 1.75
+
       &:not(:last-of-type) 
         margin-right: 15px
 

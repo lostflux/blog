@@ -12,8 +12,7 @@ tech:
 featured: false
 ---
 
-A program that encodes text using Huffman encoding, a lossless compression algorithm.
-To achieve this, a frequency tree is built from the text, and then the tree is traversed
-to assign binary codes to each character.
-The most frequent characters are assigned the shortest codes, and the least frequent
-characters have the more lengthy codes which increases storage efficiency.
+A program that encodes text using a lossless compression algorithm.
+A **_frequency tree_** is built from the text, thereafter binary codes
+are assigned to each character **_having the most frequent characters
+get shortest codes_**.

@@ -47,8 +47,8 @@
 
     watch: {
       selected(newSelected: boolean) {
-        console.log(`selected changed to ${newSelected}`);
-        console.log(`style is ${this.style}`);
+        // console.log(`selected changed to ${newSelected}`);
+        // console.log(`style is ${this.style}`);
         
         // re-render the component
         this.$forceUpdate();

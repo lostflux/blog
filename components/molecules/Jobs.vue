@@ -164,6 +164,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/default"
+// @use "~/styles/default"
 
 </style>

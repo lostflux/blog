@@ -11,8 +11,14 @@
 
 .jobs-section
   max-width: 700px
+
   .inner
     display: flex
+    width: 700px
+
+    @media (max-width: 900px)
+      width: 100%
+    
     @media (max-width: 600px)
       display: block
     

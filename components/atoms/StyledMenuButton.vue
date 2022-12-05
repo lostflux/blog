@@ -1,9 +1,9 @@
 <template>
   <!-- <button class="menu-button"> -->
     <!-- {{ menuOpen ? "&#x3e" : "&#x3c" }} -->
-    <div class="menu-button-container">
+    <!-- <div class="menu-button-container"> -->
       <Icon type="menu" class="menu-button" />
-    </div>
+    <!-- </div> -->
 </template>
 
 <script lang="ts">

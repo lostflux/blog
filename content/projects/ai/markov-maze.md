@@ -1,17 +1,17 @@
 ---
 order: 1
-date: '10'
-year: '2021'
+month: 10
+year: 2021
 title: 'Robot Colocation'
 cover: 'featured-robot-colocation.gif'
 repo: 'https://github.com/siavava/ai/tree/main/06-HiddenMarkovModels'
 tech:
   - Python
-  - (Hidden) Markov Models
+  - Markov Decision Processes
   - Robotics
   - AI
 category: 'featured-project'
-show: 'true'
+featured: true
 ---
 
 A common problem in robotics is localizing a robot in an environment

@@ -1,25 +1,26 @@
 ---
-title: "Introduction"
-author: "Amittai"
-description: 'What a lovely page.'
+title: "Altair's Portfolio"
+description: 'This blog talks about science, math, art, and computing.'
 image:
-  src: '/assets/image.jpg'
+  src: '/assets/connection.svg'
   alt: 'An image showcasing My Page.'
   width: 400
   height: 300
 head:
   meta:
     - name: 'keywords'
-      content: 'nuxt, vue, content'
+      content: 'blog, coding, mathematics, portfolio'
     - name: 'robots'
       content: 'index, follow'
     - name: 'author'
-      content: 'NuxtLabs'
+      content: 'Altair'
     - name: 'copyright'
-      content: '© 2022 NuxtLabs'
+      content: '© 2022 Altair'
 ---
-Learn how to use @nuxt/content.
-<!--more-->
-Full amount of content beyond the more divider.
 
-Lol I thought this was an error message?
+<hero></hero>
+<about></about>
+<jobs></jobs>
+<featured></featured>
+<projects></projects>
+<contact></contact>

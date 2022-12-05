@@ -30,7 +30,7 @@ export default {
 
 *
   box-sizing: border-box
-  min-width: 16px
+  min-width: 10px
 
 html, body
   margin: 0
@@ -44,22 +44,25 @@ body
   align-items: center
 
 .wrapper-menu
-  width: 50px
-  height: 50px
+  width: 30px  // 50px
+  height: 30px // 50px
   display: flex
   flex-direction: column
   justify-content: space-between
   cursor: pointer
   transition: transform 330ms ease-out
 
+  // background-color: yellow
+  margin-top: 25px
+
 .wrapper-menu.open
   transform: rotate(-45deg)  
 
 .line-menu
   background-color: colors.color("green")
-  border-radius: 5px
+  border-radius: 1px
   width: 100%
-  height: 6px
+  height: 2px
 
 .line-menu.half
   width: 50%
@@ -69,7 +72,7 @@ body
   transform-origin: right
 
 .open .line-menu.start
-  transform: rotate(-90deg) translateX(3px)
+  transform: rotate(-90deg) translateX(2px)
 
 .line-menu.end
   align-self: flex-end
@@ -77,7 +80,7 @@ body
   transform-origin: left
 
 .open .line-menu.end
-  transform: rotate(-90deg) translateX(-3px)
+  transform: rotate(-90deg) translateX(-2px)
 
 
 </style>

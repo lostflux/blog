@@ -1,7 +1,7 @@
 ---
 order: 6
-date: '3'
-year: '2022'
+month: 3
+year: 2022
 title: 'Wordle, Grep'
 cover: 'featured-wordle.gif'
 repo: 'https://github.com/siavava/tau'
@@ -10,7 +10,7 @@ tech:
   - Cabal
   - Functional Programming
 category: 'featured-project'
-show: 'true'
+featured: true
 ---
 
 Wordle and Grep replicas implemented in Haskell, a purely functional programming language.

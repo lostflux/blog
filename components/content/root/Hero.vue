@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <section class="hero">
     <ContentDoc
       path="profile/hero"
-      class="hero"
       tag="div"
+      class="hero-container"
     />
   </section>
 </template>
@@ -54,4 +54,12 @@ export default {
   
   .email-link
     @include mixins.big-button
+
+    p
+      font-family: typography.font("font-mono")
+      font-size: typography.font-size("s")
+      font-weight: 600
+
+      &:hover, &:focus, &:active
+        color: colors.color("green")
 </style>

@@ -1,22 +1,25 @@
 <template>
-  <body>
-    <div id="root">
-      <a class="skip-to-content" href="#content"/>
-      <AppHeader/>
-        <!-- <div id="content"> -->
+  <div id="root">
+    <AppHeader/>
+    <body>
+      <main>
+        <a class="skip-to-content" href="#content"/>
+        <!-- <body> -->
           <slot id="content"/>
-          <!-- <Nuxt id="content"/> -->
-        <!-- </div> -->
-      <AppFooter/>
-    </div>
-  </body>
+
+      </main>
+    </body>
+    <!-- <Head /> -->
+    <!-- </body> -->
+    <AppFooter/>
+  </div>
 </template>
 
 <style lang="sass">
 // @use "../styles/default"
 </style>
 
-<script lang="ts">
+<!-- <script lang="ts">
   export default {
     name: "DefaultLayout",
     props: {
@@ -30,54 +33,10 @@
       }
     }
   }
-</script>
+</script> -->
 
-<script setup lang="ts">
-
-import { useState, useEffect, useRef } from "~/src/stateful";
-
-const isHome = useRoute().path === "/";
-const [isLoading, setIsLoading] = useState(isHome);
-const [isMounted, setMounted] = useState(false);
+<!-- <script setup lang="ts">
 
 
-/// either fix the functionality or drop these...
-isMounted;
-setMounted;
-setIsLoading;
 
-// Sets target="_blank" rel="noopener noreferrer" on external links
-const handleExternalLinks = () => {
-  const allLinks = Array.from(document.querySelectorAll('a'));
-  if (allLinks.length > 0) {
-    allLinks.forEach(link => {
-      if (link.host !== window.location.host) {
-        link.setAttribute('rel', 'noopener noreferrer');
-        link.setAttribute('target', '_blank');
-      }
-    });
-  }
-};
-
-
-useEffect(() => {
-  if (isLoading) {
-    return;
-  }
-
-  if (location.hash) {
-    const id = location.hash.substring(1); // location.hash without the '#'
-    console.log(`id: ${id}`);
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView();
-        el.focus();
-      }
-    }, 0);
-  }
-
-  handleExternalLinks();
-}, [useRef(isLoading)]);
-
-</script>
+</script> -->

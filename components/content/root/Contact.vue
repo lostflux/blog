@@ -1,6 +1,6 @@
 <template>
-  <section class="contact-section">
-    <h2 class="heading overline"> What's Next?</h2>
+  <section id="contact" class="contact-section">
+    <h2 class="numbered-heading overline"> What's Next?</h2>
     <ContentDoc :value="contact" />
     <a
       :href="`mailto:${ contact.email }`"
@@ -32,8 +32,9 @@ const { data: contact } = await useAsyncData(
 
 .contact-section
   max-width: 600px
-  margin: 0 auto 100px
+  margin: 0 auto //100px remove bottom margin
   text-align: center
+
   @media (max-width: 768px) 
     margin: 0 auto 50px
   
@@ -44,6 +45,8 @@ const { data: contact } = await useAsyncData(
     font-family: typography.font("font-mono")
     font-size: typography.font-size("m")
     font-weight: 400
+    text-decoration: none
+    // background-color: yellow
     
     &:before 
       bottom: 0
@@ -54,8 +57,9 @@ const { data: contact } = await useAsyncData(
     
   
   // .title
-  h2
+  * > h2
     font-size: clamp(40px, 5vw, 60px)
+    font-weight: 600
   
   .email-link
     @include mixins.big-button

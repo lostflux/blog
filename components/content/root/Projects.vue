@@ -1,6 +1,8 @@
 <template>
   <StyledArchivedProjectsSection>
-    <h2>Other Noteworthy Projects</h2>
+    <h2 class="other-projects-header">
+      Other Noteworthy Projects
+    </h2>
 
     <Link class="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
       view the archive
@@ -34,16 +36,16 @@
                     </div>
                     <div class="project-links">
                       <a
-                        v-if="project?.repo != null"
+                        v-if="project.repo"
                         :href="project.repo"
                         aria-label="GitHub Link"
                         target="_blank"
                         rel="noreferrer"
                       >
-                          <Icon type="GitHub" />
+                        <Icon type="GitHub" />
                       </a>
                       <a
-                        v-if="project?.url != null"
+                        v-if="project.url"
                         :href="project.url"
                         aria-label="External Link"
                         class="external"
@@ -56,8 +58,8 @@
 
                   <h3 class="project-title">
                     <a
-                      v-if="project?.url != null"
-                      :href="project.url"
+                      v-if="(project?.url || project.repo)"
+                      :href="project.url ? project.url : project.repo"
                       target="_blank"
                       rel="noreferrer">
                       {{ project.title }}
@@ -66,10 +68,7 @@
                       {{ project.title }}
                     </span>
                   </h3>
-
-                  <p class="project-description">
-                    {{ project.description }}
-                  </p>
+                  <ContentDoc :value="project" />
                 </header>
 
                 <footer>
@@ -109,9 +108,9 @@ const GRID_LIMIT = 6;
 const { data: projectData } = await useAsyncData(
   `archived-projects-${useRoute().path}`,
   async () => {
-    const _projectsData = queryContent<MarkdownParsedContent>("projects/all")
-      .where( {show: true} )
-      .sort( {date: -1} )
+    const _projectsData = queryContent<MarkdownParsedContent>("projects")
+      .where({ featured: false })
+      .sort({ month: -1, year: -1, order: 1 })
       .find();
     return await _projectsData;
 });
@@ -171,10 +170,22 @@ onUnmounted(() => {
 </script>
 
 <style lang="sass">
+@use "~/styles/typography"
 .list-enter-active, .list-leave-active
   transition: all 2s ease
 
 .list-enter, .list-leave-to
   opacity: 0
   transform: translateY(30px)
+
+.other-projects-header
+  font-weight: 600
+
+* > h3
+  font-weight: 600
+
+// * > p
+//   font-weight: 400
+//   font-size: typography.font-size("m")
+
 </style>

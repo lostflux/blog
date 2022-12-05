@@ -2,26 +2,6 @@
 
 
 export default {
-  head: {
-    title: 'Altair: Personal Portfolio and Blog',
-    titleTemplate: '%s - Altair',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Altair is a personal website for Siavava',
-      }
-    ],
-    link: [ { rel: 'icon', type: 'image/svg', href: '/assets/connection.svg' } ],
-    keywords: [ "engineering", "coding", "software", "portfolio", "art"],
-    author: "Altair"
-  
-  },
-  pwa: {
-    icon: 'icon.png?v1'
-  },
   typescript: {
     shim: false,
     strict: false,
@@ -32,8 +12,25 @@ export default {
     "@nuxt/image-edge",
   ],
   content: {
-    documentDriven: false,
-    // base: "/content",
+    documentDriven: {
+      // Will fetch navigation, page and surround.
+      navigation: true,
+      page: true,
+      surround: true,
+      // Will fetch `content/_theme.yml` and put it in `globals.theme` if present.
+      globals: {
+        theme: {
+          where: {
+            _id: 'content:_theme.yml'
+          },
+          without: ['_']
+        }
+      },
+      // Will use `theme` global to search for a fallback `layout` key.
+      layoutFallbacks: ['theme'],
+      // Will inject `[...slug].vue` as the root page.
+      injectPage: true
+    }    
   },
   ssr: true,
   
@@ -91,4 +88,17 @@ export default {
       '2xl': 1536
     },
   },
+  head: {
+    title: 'my website title',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'my website description'
+      }
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/assets/connection.svg' }]
+  }
 }

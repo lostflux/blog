@@ -294,11 +294,13 @@ const toggleMenu = () => {
   z-index: 11
   padding: 0 50px
   
-  position: fixed
+  position: sticky
   top: 0
   left: 0
   width: 100vw
   height: auto
+  max-width: 100% //1300px
+  margin: auto
 
   max-height: 100vh
   overflow-y: scroll
@@ -307,10 +309,11 @@ const toggleMenu = () => {
 
   // trick: make header stick out a bit
   // by filtering it with grayscale.
-  filter: grayscale(30%) !important
+  // filter: grayscale(30%) !important
 
   // blur when there's content underneath
-  backdrop-filter: blur(8px)
+  // background-color: colors.color("navy")
+  backdrop-filter: blur(16px)
 
   pointer-events: auto !important
   user-select: auto !important
@@ -318,7 +321,7 @@ const toggleMenu = () => {
 
 
   // center nav on the header when header is wider than nav.
-  margin: 0 auto
+  // margin: 0 auto
 
 
   @media (max-width: 1080px)
@@ -345,7 +348,7 @@ const toggleMenu = () => {
   column-gap: 20px
 
   position: relative
-  max-width: 1600px
+  max-width: 1300px
   width: auto
   margin: 0 auto
 
@@ -369,7 +372,7 @@ const toggleMenu = () => {
   display: block
   position: relative
   overflow: hidden
-  max-width: 1600px
+  max-width: 1300px
   width: 100%
   flex-direction: column
   min-height: auto

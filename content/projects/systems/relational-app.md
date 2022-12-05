@@ -1,7 +1,7 @@
 ---
-order: 2
-date: '10'
-year: '2022'
+order: 1
+month: 10
+year: 2022
 title: 'Relational Database App'
 cover: 'featured-relational-db.gif'
 repo: 'https://github.com/siavava/relational'
@@ -11,7 +11,7 @@ tech:
   - Relational Design
   - Database Systems
 category: 'featured-project'
-show: 'true'
+featured: true
 ---
 
 A fully functional relational database app built with a

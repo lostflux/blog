@@ -10,7 +10,7 @@
 @use "../styles/geometry"
 
 .jobs-section
-  max-width: 700px
+  max-width: 800px
 
   .inner
     display: flex

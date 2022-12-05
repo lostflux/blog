@@ -25,7 +25,7 @@ programming language and functional programming patterns in general.
 When not coding or studying Math, I am probably sleeping,
 playing online chess, shooting photos that I will never
 put out into the world, or, on occassion, playing
-[Assassin's Creed](https://www.ubisoft.com/en-us/game/assassins-creed/assassins-creed) (origins, anyone?).
+[Assassin's Creed](https://www.ubisoft.com/en-us/game/assassins-creed/assassins-creed) ([Origins](https://www.ubisoft.com/en-us/game/assassins-creed/origins), anyone?).
 
 I am most recently learning Database Systems (check out my projects section)
 and Computer Vision, but I am generally looking for opportunities

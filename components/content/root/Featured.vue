@@ -76,6 +76,13 @@
   
 </template>
 
+<style lang="sass" scoped>
+
+.project-title
+  font-weight: 600
+
+</style>
+
 <script lang="ts">
   export default {
     name: "Featured",
@@ -104,9 +111,9 @@ const hasCompany = (project: any) => typeof project.company !== 'undefined';
 const { data } = await useAsyncData(
   `projects-${useRoute().path}`,
   async () => {
-    const _projectsData = queryContent("projects/featured")
-      .where( {show: "true"} )
-      .sort( {order: 1} )
+    const _projectsData = queryContent("projects")
+      .where({ featured: true })
+      .sort({ month: -1, year: -1, order: 1 })
       .find();
     return await _projectsData;
 });

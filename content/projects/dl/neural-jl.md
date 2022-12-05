@@ -1,7 +1,7 @@
 ---
 order: 4
-date: '1'
-year: '2021'
+month: 1
+year: 2021
 title: 'Neural Networks'
 cover: 'featured-neural-networks.gif'
 url: 'https://issuu.com/dartmouthjournalofscience/docs/21w_dujs_print_v1/16'
@@ -11,7 +11,7 @@ tech:
   - Neural Computing
   - Deep Learning
 category: 'featured-project'
-show: 'true'
+featured: true
 ---
 
 As part of a publication exploring the emergence and the state of the art

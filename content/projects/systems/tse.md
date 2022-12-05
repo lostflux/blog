@@ -1,7 +1,7 @@
 ---
 order: 5
-date: '2'
-year: '2021'
+month: 2
+year: 2021
 title: 'Tiny Search Engine'
 cover: 'featured-search-engine.gif'
 repo: 'https://github.com/siavava/tse'
@@ -11,7 +11,7 @@ tech:
   - Make
   - Web Crawling
 category: 'featured-project'
-show: 'true'
+featured: true
 ---
 
 A hyper-efficient search engine that crawls webpages (whose domain can be restricted

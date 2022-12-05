@@ -41,3 +41,10 @@ const { data } = await useAsyncData(
     name: "About"
   }
 </script>
+
+<style lang="sass">
+
+.numbered-heading
+  font-weight: 600
+
+</style>

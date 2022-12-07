@@ -93,8 +93,8 @@ export default {
   },
   googleFonts: {
     families: {
-      "DM": true, // [200, 300, 400, 500, 600, 700],
-      // "DM Mono": true, //[200, 300, 400, 500, 600, 700],
+      "DM Sans": true, // [200, 300, 400, 500, 600, 700],
+      "DM Mono": true, //[200, 300, 400, 500, 600, 700],
     },
     // prefetch: true,
     download: true,

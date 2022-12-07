@@ -12,9 +12,11 @@
 }
 
 $fonts-map: (
-  "font-sans": "Calibre",
+  // "font-sans": "Calibre",
+  "font-sans": "DM Sans",
   
-  "font-mono": "SF Mono",
+  // "font-mono": "SF Mono",
+  "font-mono": "DM Mono"
 );
 
 // $fonts-map: (
@@ -23,13 +25,25 @@ $fonts-map: (
 //   "font-mono": "SF Mono, Fira Code, Fira Mono, Roboto Mono, monospace",
 // );
 
+// $font-sizes: (
+//   "xxs": 12px,
+//   "xs": 13px,
+//   "s": 14px,
+//   "m": 16px,
+//   "l": 18px,
+//   "xl": 20px,
+//   "xxl": 22px,
+//   "heading": 32px
+// );
+
 $font-sizes: (
-  "xxs": 12px,
-  "xs": 13px,
-  "s": 14px,
-  "m": 16px,
-  "l": 18px,
-  "xl": 20px,
-  "xxl": 22px,
-  "heading": 32px
+  "xxs": 11px,
+  "xs": 12px,
+  "s": 13px,
+  "m": 15px,
+  "l": 17px,
+  "xl": 19px,
+  "xxl": 21px,
+  "heading": 31px,
+  "big-heading": 80px
 );

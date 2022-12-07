@@ -25,6 +25,8 @@ export default {
   align-items: flex-start
   min-height: 100vh
   padding: 0
+  // max-width: 800px
+  margin: 0 auto
   // position: static
 
   @media (max-width: 480px) and (min-height: 700px)

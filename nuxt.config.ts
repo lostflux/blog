@@ -90,5 +90,14 @@ export default {
         href: "/favicon.png",
       }
     ]
-  }
+  },
+  googleFonts: {
+    families: {
+      "DM": true, // [200, 300, 400, 500, 600, 700],
+      // "DM Mono": true, //[200, 300, 400, 500, 600, 700],
+    },
+  },
+  buildModules: [
+    "@nuxt/google-fonts",
+  ]
 }

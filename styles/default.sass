@@ -156,7 +156,9 @@ h1, h2, h3, h4, h5, h6
 
 .big-heading 
   margin: 0
-  font-size: clamp(40px, 8vw, 80px)
+  // font-size: clamp(40px, 8vw, 80px)
+  // font-size: typography.font-size("big-heading")
+  font-size: clamp(40px, 8vw, typography.font-size("big-heading"))
 
 .medium-heading 
   margin: 0

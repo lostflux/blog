@@ -96,8 +96,18 @@ export default {
       "DM": true, // [200, 300, 400, 500, 600, 700],
       // "DM Mono": true, //[200, 300, 400, 500, 600, 700],
     },
+    // prefetch: true,
+    download: true,
+    base64: false,
+    fontsDir: "fonts",
+    // base64: true,
+    // inject: true,
+    // fontsDir: "fonts",
+    // fontsPath: "~assets/fonts",
+    // stylePath: "styles/google-fonts.scss",
+    // overwriting: false,
   },
   buildModules: [
-    "@nuxt/google-fonts",
+    "@nuxtjs/google-fonts",
   ]
 }

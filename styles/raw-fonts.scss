@@ -200,3 +200,136 @@
 }
 
 @debug('fonts loaded');
+
+
+// dm-sans regular := 400
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('DM Sans Regular'),
+    url('~/assets/fonts/DMSans/DMSans-Regular.ttf') format('truetype');
+}
+
+// dm-sans regular := 400 italic
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('DM Sans Regular Italic'),
+    url('~/assets/fonts/DMSans/DMSans-Italic.ttf') format('truetype');
+}
+
+// dm-sans medium := 500 normal
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('DM Sans Medium'),
+    url('~/assets/fonts/DMSans/DMSans-Medium.ttf') format('truetype');
+}
+
+// dm-sans medium := 500 italic
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('DM Sans Medium Italic'),
+    url('~/assets/fonts/DMSans/DMSans-MediumItalic.ttf') format('truetype');
+}
+
+// dm-sans bold := 600 normal
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('DM Sans Bold'),
+    url('~/assets/fonts/DMSans/DMSans-Bold.ttf') format('truetype');
+}
+
+// dm-sans bold := 600 italic
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('DM Sans Bold Italic'),
+    url('~/assets/fonts/DMSans/DMSans-BoldItalic.ttf') format('truetype');
+}
+
+// dm-mono light := 400
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('DM Mono Regular'),
+    url('~/assets/fonts/DMMono/DMMono-Light.ttf') format('truetype');
+}
+
+// dm-mono light := 400 italic
+@font-face {
+  font-family: 'DM Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('DM Mono Regular Italic'),
+    url('~/assets/fonts/DMMono/DMMono-LightItalic.ttf') format('truetype');
+}
+
+// dm-mono regular := 500
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('DM Mono Medium'),
+    url('~/assets/fonts/DMMono/DMMono-Regular.ttf') format('truetype');
+}
+
+// dm-mono regular := 500 italic
+@font-face {
+  font-family: 'DM Mono';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('DM Mono Medium Italic'),
+    url('~/assets/fonts/DMMono/DMMono-Italic.ttf') format('truetype');
+}
+
+// dm-mono bold := 600
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('DM Mono Bold'),
+    url('~/assets/fonts/DMMono/DMMono-Medium.ttf') format('truetype');
+}
+
+// dm-mono bold := 600 italic
+@font-face {
+  font-family: 'DM Mono';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('DM Mono Bold Italic'),
+    url('~/assets/fonts/DMMono/DMMono-MediumItalic.ttf') format('truetype');
+}

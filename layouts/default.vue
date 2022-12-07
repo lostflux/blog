@@ -5,18 +5,22 @@
       <main>
         <a class="skip-to-content" href="#content"/>
         <!-- <body> -->
-          <slot id="content"/>
-
+          <div class="container">
+            <slot id="content"/>
+          </div>
+          <!-- <slot id="content"/> -->
       </main>
     </body>
-    <!-- <Head /> -->
-    <!-- </body> -->
     <AppFooter/>
   </div>
 </template>
 
 <style lang="sass">
-// @use "../styles/default"
+@use "../styles/default"
+
+.container
+  max-width: 1000px
+  margin: 0 auto
 </style>
 
 <!-- <script lang="ts">

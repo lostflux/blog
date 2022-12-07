@@ -14,8 +14,11 @@ category: 'featured-project'
 featured: true
 ---
 
-As part of a publication exploring the emergence and the state of the art
-of machine learning, how they work, and the utilities and caveats that
-that they afford us, I implemented neural networks to demonstrate
+As part of a <highlight> publication
+exploring the emergence and the state of the art
+in machine learning</highlight> and most-importantly
+<highlight> the utilities and caveats </highlight>
+that machine learning afford us,
+I implemented <highlight> neural networks </highlight> to demonstrate
 how predictions work in the context of simple classification
 and regression problems.

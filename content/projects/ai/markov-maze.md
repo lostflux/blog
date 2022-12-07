@@ -14,8 +14,9 @@ category: 'featured-project'
 featured: true
 ---
 
-A common problem in robotics is localizing a robot in an environment
-given sensor readings. This project uses hidden markov models,
-the forward-backward algorithm, and the viterbi algorithm
+A common problem in robotics is localizing a robot in a novel environment
+given sensor readings. This project uses <highlight> hidden markov models </highlight>
+&mdash; the <highlight> forward-backward </highlight> algorithms and the <highlight> viterbi </highlight> algorithm &mdash;
 to decipher where a robot _most likely_ is in
-a maze given its immediate readings and what we know re. its sensor accuracies.
+a maze given its immediate readings and what we know regarding
+the environment. Emissions due to <highlight> sensor inaccuracies are also factored in </highlight>.

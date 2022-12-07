@@ -11,8 +11,8 @@ category: 'featured-project'
 featured: false
 ---
 
-A bot that uses **_hidden markov models_** to tag parts of speech in a sentence.
-We use the **_viterbi algorithm_** to generate a sequence of tags for the sentence
-keeping in mind the
-<span style="color: yellow"> tag probabilities </span> for each word and the
-<span style="color: yellow"> transition probabilities </span> between tags. 
+A bot that uses <highlight> hidden markov models </highlight> to tag parts of speech in a sentence.
+We use the <highlight> viterbi algorithm </highlight> to <highlight> generate a sequence of tags </highlight>
+for the sentence keeping in mind the
+<highlight> tag probabilities for each word </highlight> and the
+<highlight> transition probabilities between tags </highlight>. 

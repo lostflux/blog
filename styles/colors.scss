@@ -23,6 +23,8 @@ $colors: (
   "pink": #f57dff,
   "blue": #57cbff,
   "black": #000000,
+
+  "highlight": yellow,
 );
 
 @function color($color-name) {

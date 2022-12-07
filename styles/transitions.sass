@@ -1,0 +1,73 @@
+// Description: Transitions for page transitions
+
+@use "geometry"
+
+.translate-card-enter-active, .translate-card-leave-active
+  transition: all 2s ease
+
+.translate-card-enter, .translate-card-leave-to
+  opacity: 0
+  transform: translateY(30px)
+    
+.fade-in
+  opacity: 100%
+  transform: scale(100%)
+  blur: 5px
+
+  -webkit-transition: all 600ms geometry.var("default-easing") 600ms
+  -moz-transition: all 600ms geometry.var("default-easing") 600ms
+  -o-transition: all 600ms geometry.var("default-easing") 600ms
+  -ms-transition: all 600ms geometry.var("default-easing") 600ms
+  transition: all 600ms geometry.var("default-easing") 600ms
+
+  &.hidden
+    opacity: 40%
+    transform: translateY(20px)
+    transform: scale(90%)
+    blur: 5px
+
+    -webkit-transition: all 600ms geometry.var("default-easing") 1000ms
+    -moz-transition: all 600ms geometry.var("default-easing") 1000ms
+    -o-transition: all 600ms geometry.var("default-easing") 1000ms
+    -ms-transition: all 600ms geometry.var("default-easing") 1000ms
+    transition: all 600ms geometry.var("default-easing") 1000ms
+
+/* Fade up */
+.fadeup-enter 
+  opacity: 0.01
+  transform: translateY(20px)
+  transition: opacity 300ms geometry.var("default-easing"), transform 300ms geometry.var("default-easing")
+
+.fadeup-enter-active 
+  opacity: 1
+  transform: translateY(0px)
+  transition: opacity 300ms geometry.var("default-easing"), transform 300ms geometry.var("default-easing")
+
+
+/* Fade down */
+.fadedown-enter 
+  opacity: 0.01
+  transform: translateY(-20px)
+  transition: opacity 300ms geometry.var("default-easing"), transform 300ms geometry.var("default-easing")
+
+.fadedown-enter-active 
+  opacity: 1
+  transform: translateY(0px)
+  transition: opacity 300ms geometry.var("default-easing"), transform 300ms geometry.var("default-easing")
+
+  
+/* Fade */
+.fade-enter 
+  opacity: 0
+
+.fade-enter-active 
+  opacity: 1
+  transition: opacity 300ms geometry.var("default-easing")
+
+.fade-exit 
+  opacity: 1
+
+.fade-exit-active 
+  opacity: 0
+  transition: opacity 300ms geometry.var("default-easing")
+

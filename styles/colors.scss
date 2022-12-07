@@ -1,42 +1,70 @@
 @use "sass:map";
 
-$red: #DC4D4D;
-// $red: #A80506;
-// $red: #E30707;
-$black: #040404;
+$palette: (
+  "primary-highlight": #BD998F,
 
-$colors: (
-  "dark-navy": #020c1b,
-  // "navy": $black,
-  "navy": #0a192f,
-  "light-navy": #112240,
-  "lightest-navy": #233554,
-  "navy-shadow": rgba(2, 12, 27, 0.7),
-  "dark-slate": #495670,
-  "slate": #8892b0,
-  "light-slate": #a8b2d1,
-  "lightest-slate": #ccd6f6,
-  "white": #e6f1ff,
-  // "green": #64ffda,
-  "green": $red,
-  "green-tint": rgba(100, 255, 218, 0.1),
-  "pink": #f57dff,
-  "blue": #57cbff,
-  "black": #000000,
+  "secondary-highlight": #BD998F,
 
-  "highlight": yellow,
+  "info-background": rgba(5, 95, 249, 0.1),
+  "info-foreground": #7aade0,
+  "success-background": rgba(6, 251, 128, 0.1),
+  "success-foreground": #CFF09E,
+  "error-background": rgba(96, 32, 32, 0.1),
+  "error-foreground": #fcb9b9,
+  "warning-background": rgba(137, 33, 30, 0.15),
+  "warning-foreground": #fd7c7c,
+  "critical-background": rgba(238, 12, 12, 0.15),
+  "critical-foreground": #f42e4f,
+
+
+  "teal": #00ffd9,
+  "purple": #a374ff,
+  "khaki": #ffd074,
+  "white": #ecf7fa,
+  "black": #050505,
+  "ochre": #ff4e20,
+  "pastel": #fdfd96,
+
+  "one": #EE765C,
+  "two": #3A594D,
+  "three": #BD8FC0,
+
+  "background": #191919,
+  "dark-background": #000000,
+  "light-background": #2e2e2e,
+  "lightest-background": #383838,
+  "fancy-background": lighten(#0a192f, 40%),
+  "shadow": rgba(#000000, 0.1),
+
+  "dark-foreground": #888888,
+  "foreground": #bbbbbb,
+  "light-foreground": #dedede,
+  "lightest-foreground": #ffffff,
 );
 
+
+
+
+
 @function color($color-name) {
-  $result: map.get($colors, $color-name);
+  $result: map.get($palette, $color-name);
   @return $result;
 }
-@function darken($color, $amount: 50%) {
-  $black: color("black");
-  @return mix($color, $black, $amount);
+
+:export {
+  teal: color("teal");
+  purple: color("purple");
+  khaki: color("khaki");
+  white: color("white");
+  black: color("black");
 }
 
-@function invert($color, $amount: 100%) {
-  $inverse: change-color($color, $hue: hue($color) + 180);
-  @return mix($inverse, $color, $amount);
+@function highlight-color($n) {
+  @if $n == '1' {
+    @return color("teal");
+  } @else if $n == '2' {
+    @return color("purple");
+  } @else {
+    @return color("khaki");
+  }
 }

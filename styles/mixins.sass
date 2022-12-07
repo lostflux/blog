@@ -3,44 +3,38 @@
 @use "typography"
 @use "geometry"
 
-$border-radius: geometry.radius("small")
-
 @mixin button
-  color: colors.color("green")
-  background-color: transparent
-  // border: 1px solid colors.color("green")
   border-radius: geometry.var("border-radius")
   font-size: typography.font-size("xs")
-  font-family: typography.font("font-mono")
+  font-family: typography.font("monospace")
   line-height: 1
-  text-decoration: none
   cursor: pointer
-  padding: 1.25rem 1.75rem
-  transition: geometry.var("default-transition")
   padding: 1.25rem 1.75rem
 
   margin-top: 50px
-  color: colors.color("lightest-slate")
-  background-color: colors.color("green-tint")
-  border: none  // remove terrible border
-  outline: none
-
+  color: colors.color("lightest-foreground")
+  background: linear-gradient(35deg, colors.color("primary-highlight-tint"), transparent)
+  background-size: 100% 200%
+  background-position: right
   &:hover, &:focus, &:active
-    // background-color: colors.color("green-tint")
-    color: colors.color("green")
+    background-position: left
+    color: colors.color("primary-highlight")
     outline: none
-  &:after
-    display: none !important
+
+
 
 @mixin flex-center
   display: flex
   justify-content: center
   align-items: center
 
+
+
 @mixin flex-between
   display: flex
   justify-content: space-between
   align-items: center
+
 
 
 @mixin link
@@ -51,111 +45,342 @@ $border-radius: geometry.radius("small")
   position: relative
   transition: geometry.var("default-transition")
   &:hover, &:active, &:focus
-    color: colors.color("green")
+    color: colors.color("primary-highlight")
     outline: 0
 
 
+
 @mixin inline-link
-  display: inline-block
+  display: inline
   text-decoration: none
   text-decoration-skip-ink: auto
   position: relative
   transition: geometry.var("default-transition")
-  color: colors.color("green")
-  &:hover,
-  &:focus,
-  &:active
-    color: colors.color("green")
-    outline: 0
-    &:after
-      width: 100%
+  color: colors.color("primary-highlight")
+  outline: none
 
-    & > *
-      color: colors.color("green") !important
-      transition: geometry.var("default-transition")
+  &:hover > span
+    color: colors.color("primary-highlight")
+    border-bottom: 1px solid colors.color("primary-highlight")
 
-  &:after
-    content: ''
-    display: block
-    width: 0
-    height: 1px
-    position: relative
-    bottom: 0.37em
-    background-color: colors.color("green")
-    transition: geometry.var("default-transition")
-    opacity: 0.5
+  & > span
+
+    border-bottom: 1px dotted colors.color("primary-highlight")
+
+
 
 @mixin small-button
-  color: colors.color("green")
+  color: colors.color("primary-highlight")
   background-color: transparent
-  border: 1px solid colors.color("green")
+  border: 1px solid colors.color("primary-highlight")
   border-radius: geometry.var("border-radius")
   padding: 0.75rem 1rem
   font-size: typography.font-size("xs")
-  font-family: typography.font("font-mono")
+  font-family: typography.font("monospace")
+  // font-weight: 600
   line-height: 1
   text-decoration: none
   cursor: pointer
   transition: geometry.var("default-transition")
   &:hover, &:focus, &:active
-    background-color: colors.color("green-tint")
+    background-color: colors.color("primary-highlight-tint")
     outline: none
 
   &:after
     display: none !important
+
+
 
 @mixin big-button
-  color: colors.color("green")
-  background-color: transparent
-  border: 1px solid colors.color("green")
-  border-radius: geometry.var("border-small")
-  padding: 1.25rem 1.75rem
-  font-size: typography.font-size("s")
-  font-family: typography.font("font-mono")
-  line-height: 1
-  text-decoration: none
-  cursor: pointer
-  transition: geometry.var("default-transition")
+  color: colors.color("primary-highlight")
+  font-size: typography.font-size("m")
+  font-family: typography.font("sans-serif")
+  transition: all 1.5s ease-in-out
+  text-transform: lowercase
+  // border: 2px solid colors.color("light-background")
+  background-color: colors.color("light-background")
+  padding: 0 20px
+  // padding-top: 4px
+  border-radius: 20px
+  line-height: 2
 
-  margin-top: 50px
-  color: colors.color("lightest-slate")
-  border: none  // remove terrible border
-  background-color: colors.color("green-tint")
-  outline: none
+  -webkit-transition: all 0.5s ease-in-out
+  -moz-transition: all 0.5s ease-in-out
+  -ms-transition: all 0.5s ease-in-out
+  -o-transition: all 0.5s ease-in-out
+  transition: all 0.5s ease-in-out
 
-  &:hover,
-  &:focus,
-  &:active
-    background-color: colors.color("green-tint")
-    outline: none
-    color: colors.color("green")
-  &:after
-    display: none !important
+
+  &:hover
+    background: colors.color("lightest-background")
+
+
 
 @mixin box-shadow
-  box-shadow: 0 10px 30px -15px colors.color("navy-shadow")
+  box-shadow: 0 10px 30px -15px colors.color("shadow")
   transition: geometry.transition(all, 0.2s, ease-in-out)
 
-  &:hover,
-  &:focus
-    box-shadow: 0 20px 30px -15px colors.color("navy-shadow")
+  &:is(:hover, :focus)
+    box-shadow: 0 20px 30px -15px colors.color("shadow")
+
+
 
 @mixin styled-list
-  padding: 0
-  margin: 0
-  list-style: none
-  font-size: typography.font-size("l")
   li
     position: relative
-    padding-left: 30px
+    padding-left: 20px
     margin-bottom: 10px
-    &:before 
-      content: '▹'
+    font-weight: 400
+    line-height: inherit
+
+    &::before 
+      content: '-'
       position: absolute
       left: 0
-      color: colors.color("green")
+      color: colors.color("primary-highlight")
+      font-family: typography.font("monospace")
+      font-weight: 300
+
+      transition: all 0.2s ease-out
+
+    &:hover::before
+      content: '\2192'
+      transform: translateX(5px)
+
+
+
+@mixin small-list
+  @include styled-list 
+
+  display: grid
+  grid-gap: 0 10px
+  padding: 0
+  margin: 1em 0
+
+  li
+    font-family: typography.font("monospace")
+    font-weight: 400
+    font-size: typography.font-size("xs")
+    line-height: 1.5rem
+
+    &::before
+      font-weight: 400
+
+@mixin small-list-inline
+  display: flex
+  flex-wrap: wrap
+  position: relative
+  margin: 25px 0 10px
+  padding: 0
+  list-style: none
+  z-index: 2
+  pointer-events: none
+
+  li
+    margin: 0 20px 5px 0
+    color: colors.color("light-foreground")
+    font-family: typography.font("monospace")
+    font-size: typography.font-size("xs")
+    white-space: nowrap
+  
+  @media (max-width: 768px) 
+    margin: 10px 0
+    li 
+      margin: 0 10px 5px 0
+      color: colors.color("lightest-foreground")
+
+
 
 @mixin reset-list
   list-style: none
   padding: 0
   margin: 0
+
+
+
+@mixin fancy-card
+  position: relative
+  transition: scale 250ms ease
+
+  *
+    position: relative
+    z-index: 12 !important
+
+    &::hover
+      color: white !important
+
+
+  &::before
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: linear-gradient(130deg, transparent 0 33%, colors.color("teal") 46%, colors.color("purple") 73.5%, colors.color("ochre") 100%)
+    background-position: 0% 0%
+    background-size: 300% 300%
+    z-index: 10
+    pointer-events: none
+    transition: background-position 350ms ease, transform 650ms ease
+
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    width: 98%
+    height: 100%
+    background: radial-gradient(colors.color("white") 8%, transparent 8%)
+    background-size: 10px 10px
+    transition: background-position 650ms ease, transform 650ms ease
+    z-index: 11
+    pointer-events: none
+    transform: translateX(2%)
+
+  &:hover
+    border-color: transparent
+    scale: 1.005
+    
+    &::before
+      background-position: 100% 100%
+
+      *
+        color: colors.color("white") !important
+
+    &::after
+      transform: translateX(0%)
+
+
+
+@mixin split
+  display: flex
+  flex-direction: row
+  gap: 2em
+  font-size: typography.font-size(m)
+
+  @media screen and ( max-width: 540px )
+    flex-direction: column
+    gap: 1em
+
+    & > :first-child
+      width: 100%
+
+    & > :last-child
+      width: 100%
+
+  &:not(:last-child)
+    margin-bottom: 2em
+
+  // first descendant
+  & > :first-child
+    width: 20%
+    gap: 0.5em
+    display: flex
+
+    @media screen and ( max-width: 540px )
+      margin-top: 2em
+
+  & > :last-child
+    width: 80%
+
+    @media screen and ( max-width: 540px )
+      width: 100%
+    
+  .range
+    font-size: typography.font-size(xs)
+    color: colors.color(dark-foreground)
+    gap: 1rem
+
+    .date
+      width: 40%
+
+
+  
+@mixin line-split
+  width: min(100%, 1600px)
+  position: relative
+  display: flex
+  flex-direction: row
+  color: foreground
+  padding: 0
+  font-size: typography.font-size(m)
+  flex-grow: 1
+
+  @media screen and (max-width: 1150px)
+    flex-direction: column
+    border-left: 1px solid colors.color(light-background)
+    margin-left: 1em
+    width: min(calc(100% - 1em), 1600px)
+    padding-left: 0
+
+  & > *
+    padding-left: 15px
+
+  .left, .right
+    padding-left: 1em
+    font-size: typography.font-size(m)
+
+  .left
+    width: clamp(30%, 30svw, 50%)
+    border-right: 1px solid colors.color(light-background)
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    margin: 0
+
+    @media screen and (max-width: 1150px)
+      width: auto
+      border-right: none
+      align-items: flex-start
+      flex-grow: 0
+
+    .table-of-contents
+      margin-left: 0 !important
+      width: 85% !important
+      z-index: 500
+
+  .right
+    font-size: typography.font-size(m)
+    width: min(100%, 75.5ch)
+    padding-right: 1em
+    display: flex
+    flex-direction: column
+    align-items: space-between
+    position: relative
+    padding-top: 397px
+
+    @media screen and (max-width: 1150px)
+      padding-top: 0
+      flex-grow: 1      // keep footer at bottom of page.
+
+    .content
+      width: min(100%, 72ch)
+      height: 100%
+      font-size: typography.font-size("m")
+      height: 100% !important
+      flex-grow: 1
+      display: flex
+      flex-direction: column
+      align-items: space-between
+
+      .content-container
+        flex-grow: 1
+        display: flex
+        width: 100%
+
+        & > :deep(div)
+          width: 100% !important
+
+        // center text vertically
+        align-items: space-between
+
+        &::before
+          padding-bottom: 100% // Minimum aspect ratio
+          content: ''
+          float: left
+
+        &::after
+          display: table
+          content: ''
+          clear: both

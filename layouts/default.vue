@@ -1,46 +1,28 @@
 <template>
   <div id="root">
-    <AppHeader/>
-    <body>
-      <main>
-        <a class="skip-to-content" href="#content"/>
-        <!-- <body> -->
-          <div class="container">
-            <slot id="content"/>
-          </div>
-          <!-- <slot id="content"/> -->
-      </main>
-    </body>
-    <AppFooter/>
+    <main>
+      <slot id="content" />
+    </main>
+    <AppFooter identifier="in-page" />
   </div>
 </template>
 
-<style lang="sass">
-@use "../styles/default"
+<style lang="sass" scoped>
+@use "@/styles/colors"
+@use "@/styles/typography"
 
-.container
-  max-width: 1000px
+#root
+  height: 100svh
+  display: flex
+  flex-direction: column
+  // flex-grow: 1
+  justify-content: space-between
+
+main
   margin: 0 auto
+  width: min(100svw, 640px)
+  margin: auto
+  font-weight: 400
+  font-size: typography.font-size(s)
+
 </style>
-
-<!-- <script lang="ts">
-  export default {
-    name: "DefaultLayout",
-    props: {
-      title: {
-        type: String,
-        default: "Default Layout"
-      },
-      children: {
-        type: Object,
-        default: null
-      }
-    }
-  }
-</script> -->
-
-<!-- <script setup lang="ts">
-
-
-
-</script> -->

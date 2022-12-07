@@ -99,6 +99,7 @@ export default {
     // prefetch: true,
     download: true,
     base64: false,
+    inject: true,
     fontsDir: "fonts",
     // base64: true,
     // inject: true,

@@ -1,109 +1,50 @@
 <template>
   <header
     ref="headerRef"
-    :class="menuOpen ? 'header menu-open' : 'header'"
+    :class="{
+      'header': true,
+      'collapse-into-page': scrolledToTop}"
     :style="style"
   >
-    <div class="nav-container">
-      <Nav class="nav-in-container"/>
-      <StyledMenuButton
-        @click="toggleMenu"
-        :aria-expanded="menuOpen ? 'true' : 'false'"
-        :aria-label="menuOpen ? 'Close Menu' : 'Open Menu'"
-        ref="buttonRef"
-        class="menu-button"/>
-    </div>
     <div
-      v-show="menuOpen"
-      class="site-menu">
-      <SearchBar ref="searchBar" class="search-bar"/>
-      <div class="menu-columns-wrapper">
-        <div class="menu-column">
-          <NuxtLink
-            :to="path"
-            class="menu-column-header"
-          >
-            <strong> Current Page </strong>
-          </NuxtLink>
-          <NuxtLink
-            v-for="item in dummyData"
-            :to="path"
-            class="menu-column-item"
-          >
-            {{ item }}
-          </NuxtLink>
-        </div>
-        <div class="menu-column">
-          <NuxtLink
-            :to="path"
-            class="menu-column-header"
-          >
-            <strong> Blog </strong>
-          </NuxtLink>
-          <NuxtLink
-            v-for="item in dummyData"
-            :to="path"
-            class="menu-column-item"
-          >
-            {{ item }}
-          </NuxtLink>
-        </div>
-        <div class="menu-column">
-          <NuxtLink
-            :to="path"
-            class="menu-column-header"
-          >
-            <strong> Publications </strong>
-          </NuxtLink>
-          <NuxtLink
-            v-for="item in dummyData"
-            :to="path"
-            class="menu-column-item"
-          >
-            {{ item }}
-          </NuxtLink>
-        </div>
-        <div class="menu-column">
-          <NuxtLink
-            :to="path"
-            class="menu-column-header"
-          >
-            <strong> Research </strong>
-          </NuxtLink>
-          <NuxtLink
-            v-for="item in dummyData"
-            :to="path"
-            class="menu-column-item"
-          >
-            {{ item }}
-          </NuxtLink>
-        </div>
-      </div>
-      <div class="menu-extras">
-        <div class="menu-extras-links">
-          <NuxtLink
-            to="/"
-            class="menu-column-header"
-          >
-            About
-          </NuxtLink>
-          <NuxtLink
-            to="/"
-            class="menu-column-header"
-          >
-            Misc
-          </NuxtLink>
-        </div>
-        <div class="menu-extras-footer">
-          <AppFooter class="menu-footer"/>
+      v-if="tocVisible && toc.links.length > 0"
+      class="header-toc-plus-button"
+    >
+      <div class="toc-wrapper">
+        <button
+          :class="{
+            'header-toc-button': true,
+            'expanded': tocExpanded,
+          }"
+          @click="tocExpanded = !tocExpanded"
+        >
+          <span> Table of Contents</span>
+          <Icon
+            :class="{
+              'expand-icon': true,
+              'expanded': tocExpanded
+            }"
+            type="expand"
+          />
+        </button>
+        <div
+          :class="{
+            'header-toc': true,
+            'header-toc-hidden': (!tocExpanded) || menuOpen,
+          }"
+        >
+          <slot />
         </div>
       </div>
     </div>
   </header>
 </template>
 
-
 <script lang="ts">
+const {
+  navHeight, navLinks,
+} = useConfig();
+
 export default {
   name: "AppHeader",
   data() {
@@ -113,351 +54,287 @@ export default {
       scrollHeight: 0,
       height: 0,
       menuOpen: false,
+      anchors: [],
+      tocExpanded: false,
     };
   },
   computed: {
     hidden() {
-      return this.scrollHeight == this.height;
+      return this.scrollHeight === this.height;
     },
     revealed() {
-      return this.scrollHeight == 0;
+      return this.scrollHeight === 0;
     },
     style() {
       return this.scrolledToTop
-        ? `box-shadow: none`
+        ? "box-shadow: none; background-color: none;"
         : `transform: translateY(-${this.scrollHeight}px)`;
     },
     scrolledToTop() {
       return this.lastScrollPosition <= 0;
     },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-    
-    // set height initially.
-    // this.height = this.$refs.header?.offsetHeight || 0;
-    this.height = this.$el.offsetHeight;
-
-    // update height on resize!
-    // window.addEventListener("resize", () => {
-    //   this.height = this.$refs.header?.offsetHeight || 0;
-    // });
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
+    route() {
+      const { path } = useTrimmedPath();
+      return path;
+    },
   },
   watch: {
     menuOpen: {
-      handler: function(newVal, oldVal) {
-        // if (this.menuOpen) {
-        //   document.body.style.overflow = "hidden";
-        // } else {
-        //   document.body.style.overflow = "auto";
-        // }
+      handler() {
         this.height = this.$el.offsetHeight || 0;
-        // console.log(`height: ${this.height}`);
       },
       deep: true,
     },
+    anchors() {
+      // this.$forceUpdate();
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+
+    // set height initially.
+    this.height = navHeight;
+
+    this.setup();
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     toggleMenu() {
-      // if (this.menuOpen) {
-      //   document.body.style.overflow = "hidden";
-      // } else {
-      //   document.body.style.overflow = "auto";
-      // }
       this.height = this.$refs.header.offsetHeight || 0;
+    },
+    close() {
+      this.menuOpen = false;
+    },
+
+    setup() {
+      const { path } = useTrimmedPath();
+      if (path === "/") {
+        this.anchors = navLinks.homeLinks;
+      }
+
+      this.$forceUpdate();
     },
 
     /**
      * Handle scroll event.
-     * 
+     *
      * NOTE: `scroll position` increases as you go down the page.
      */
     handleScroll() {
-
-      /*
-        We track: 
-          - the height of the header
-          - the last scroll position of the window
-          - the current scroll height of the header: 0 <= scroll height <= height
-            - 0 = header is fully visible
-            - height = header is fully hidden
-          - the hidden status of the header
-            
-          
-        On scrolling down (going to hide header):
-          - if header hidden, do nothing
-
-          - if header not hidden:
-            - find offset from last scroll position to current scroll position
-            - add offset to scroll height
-            - if scroll height >= height,
-              set scroll height to height
-              and set header hidden to true
-              
-
-        On scrolling up:
-          - if header hidden, set to not hidden
-          - if scroll height == 0, do nothing
-          
-          - if scroll height > 0:
-            - find offset from last scroll position to current scroll position
-            - add offset from scroll height
-            - if scroll height <= 0,
-              set scroll height to 0
-      */
-
-
       const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
 
       // we want positive offset if scrolling down, negative if scrolling up
-      const offset = this.scrollSpeed  * (currentScrollPosition - this.lastScrollPosition);
+      const offset = this.scrollSpeed * (currentScrollPosition - this.lastScrollPosition);
       this.lastScrollPosition = currentScrollPosition;
 
-      if (offset > 0 && !this.hidden) {
-        // scrolling down
+      if (offset > 0 && !this.hidden && !this.menuOpen) {
         this.scrollHeight = Math.min(this.scrollHeight + offset, this.height);
         if (this.scrollHeight >= this.height) {
           this.scrollHeight = this.height;
         }
-      }
-      else if (offset < 0 && !this.revealed){
+      } else if (offset < 0 && !this.revealed) {
         this.scrollHeight = Math.max(0, this.scrollHeight + offset);
       }
-    }
+    },
   },
 };
 </script>
 
 <script lang="ts" setup>
-
-//
-//
-// MENU BUTTON STUFF
-//
-//
-
-const { path } = useRoute();
-
-const dummyData = [ "One", "Two", "Three", "Four" ];
+const { toc } = useContent();
+const { showToc } = useConfig();
+const tocVisible = await showToc();
 
 const menuOpen = ref(false);
-const buttonRef = ref(null);
+
 const headerRef = ref(null);
-const searchBar = ref(null);
-
-
-const closeMenu = () => {
-  // console.log(`Menu Closed!`);
-  menuOpen.value = false;
-}
-
-const openMenu = () => {
-  // console.log(`Menu Opened!`);
-  menuOpen.value = true;
-  document.getElementById("searchbar")?.focus();
-  // searchBar.value.focus();
-  // onClickOutside(header, closeMenu);
-}
-
-const toggleMenu = () => {
-//   console.log(`
-//   menuOpen: ${menuOpen.value !== null}
-//   buttonRef: ${buttonRef.value !== null}
-//   header: ${headerRef.value !== null}
-//   searchBar: ${searchBar.value !== null}
-// `);
-
-  // console.log(`Menu Toggled!`);
-  buttonRef.value.toggle();
-  headerRef.value.menuOpen = !headerRef.value.menuOpen;
-  // headerRef.value.toggleMenu();
-  // console.log(`menuOpen: ${headerRef.value.menuOpen}`);
-  menuOpen.value
-    ? closeMenu()
-    : openMenu();
-}
 </script>
 
-
 <style lang="sass">
-@use "~/styles/mixins"
-@use "~/styles/typography"
 @use "~/styles/colors"
+@use "~/styles/typography"
 @use "~/styles/geometry"
+@use "~/styles/mixins"
+@use "~/styles/transitions"
 
 .header
   @include mixins.flex-between
 
   z-index: 11
-  padding: 0 50px
-  
   position: sticky
   top: 0
   left: 0
-  width: 100vw
-  height: auto
-  max-width: 100% //1300px
-  margin: auto
-
-  max-height: 100vh
-  overflow-y: scroll
-
+  width: 100%
   display: table
+  padding: 0
 
   // trick: make header stick out a bit
   // by filtering it with grayscale.
   // filter: grayscale(30%) !important
 
   // blur when there's content underneath
-  // background-color: colors.color("navy")
-  backdrop-filter: blur(16px)
+  // background-color: colors.color("background")
+  background-color: rgba(colors.color("background"), 0.8)
+  backdrop-filter: blur(2px)
+  //background-color: red
 
   pointer-events: auto !important
   user-select: auto !important
   transition: geometry.var("default-transition")
 
-
-  // center nav on the header when header is wider than nav.
-  // margin: 0 auto
-
-
-  @media (max-width: 1080px)
-    padding: 0 40px
-  
-  @media (max-width: 768px)
-    padding: 0 25px
-
   @media (prefers-reduced-motion: no-preference)
-    box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
-    box-shadow: 0 10px 30px -10px colors.color("navy-shadow")
+    box-shadow: 0 10px 30px -10px colors.color("shadow")
 
+  max-height: 90vh
+  overflow-y: scroll
 
-  // when menu is open,
-  // make header not exceed the height of the screen
-  // and make overflowing content scrollable
-  &.menu-open
-    max-height: 100vh
-    overflow-y: scroll
+  -webkit-transition: all 0.1s ease-in-out
+  -ms-transition: all 0.1s ease-in-out
+  -moz-transition: all 0.1s ease-in-out
+  -o-transition: all 0.1s ease-in-out
+  transition: all 0.1s ease-in-out
 
-.nav-container
-  display: flex
-  justify-content: space-between
-  column-gap: 20px
+  //&.collapse-into-page
+  //  border-bottom: 1px solid colors.color(lightest-background)
 
+  .footer-link
+    background: none !important
+    border: 2px solid colors.color("light-background") !important
+
+    &:hover
+      background: colors.color("light-background") !important
+
+.header-nav
+  @include mixins.flex-between
   position: relative
-  max-width: 1300px
-  width: auto
+  color: colors.color("light-foreground")
+  font-family: typography.font("monospace")
+  counter-reset: item
   margin: 0 auto
-
-.nav-in-container
-  margin: 10px
-  max-width: 100%
-  height: auto
-  padding-top: 20px
-  padding-bottom: 20px
-  margin: auto
-
-.menu-button
-  position: absolute
-  right: 0
-  top: 1px
-  width: 50px
-  height: 50px
-
+  height: geometry.var("header-height")
+  max-height: geometry.var("header-height")
+  width: min(100%, 1300px)
 
 .site-menu
   display: block
   position: relative
-  overflow: hidden
   max-width: 1300px
   width: 100%
-  flex-direction: column
-  min-height: auto
-  max-height: auto
-  margin: auto
-  margin-top: 20px
-  margin-bottom: 20px
-  overflow: hidden
-  border-top: 1px solid colors.color("lightest-navy")
-  color: colors.color("lightest-slate")
+  margin: 0 auto
+  overflow-y: scroll
+  color: colors.color("light-foreground")
   font-weight: 500
   line-height: 2
+  max-height: 0
 
-.menu-columns-wrapper
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: space-between
-  height: 100%
+  &.menu-open
+    max-height: 80vh
+
+  -webkit-transition: all 0.1s ease-in-out
+  -ms-transition: all 0.1s ease-in-out
+  -moz-transition: all 0.1s ease-in-out
+  -o-transition: all 0.1s ease-in-out
+  transition: all 0.1s ease-in-out
+
+.search-bar
+  align-content: center
+  vertical-align: middle
+  height: geometry.var("nav-height")
   width: 100%
-  margin: 40px 0 40px 0
-  border-top: 1px solid colors.color("lightest-navy")
-  color: inherit
 
-.menu-column
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  height: 100%
-  width: 25%
-  padding-left: 10px
-  margin-top: 40px
+.header-toc-plus-button
+  position: relative
+  //padding: 10px 0
+  //margin: 0 auto
+  //border-bottom: 2px dotted colors.color("lightest-background")
+  font-size: typography.font-size(m)
+  margin: 0
+  margin-left: 1em
 
-  @media (max-width: 1080px)
-    width: 50%
-    flex: 0 50%
+  .toc-wrapper
+    width: fit-content //100%
+    max-width: 70ch
+    padding: 10px 1em
+    border-left: 1px solid colors.color(light-background)
+    margin: 0
 
-  @media (max-width: 768px)
+  .header-toc-button
     width: 100%
-    flex: 0 100%
+    height: 20px
+    display: flex
+    flex-direction: row
+    white-space: nowrap
+    align-items: flex-start
 
+    text-transform: uppercase
+    font-size: typography.font-size(xs)
+    font-weight: 500
+    display: flex
+    place-items: center
+    gap: 10px
 
-.menu-column-header
-  font-family: typography.font("font-sans")
-  font-size: typography.font-size("xl")
-  color: colors.color("lightest-slate")
+    margin-top: 0
+    padding-top: 0
+    line-height: 1.5
 
-.menu-column-item
-  font-family: typography.font("font-sans")
-  font-size: typography.font-size("m")
-  color: colors.color("light-slate")
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    -o-user-select: none
+    user-select: none
 
-.menu-extras
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  height: 100%
-  width: 100%
-  border-top: 1px solid colors.color("lightest-navy")
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+    -webkit-tap-highlight-color: transparent
 
-.menu-extras-links
-  display: flex
-  justify-items: center
-  flex-direction: column
-  margin-left: 10px
-  align-items: left
-  margin: 40px
-  color: colors.color("green")
+  .header-toc
+    padding-top: 10px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    -o-user-select: none
+    user-select: none
 
-.menu-extras-footer
-  width: 50%
+    -webkit-transition: all 0.1s ease-in-out
+    -ms-transition: all 0.1s ease-in-out
+    -moz-transition: all 0.1s ease-in-out
+    -o-transition: all 0.1s ease-in-out
+    transition: all 0.1s ease-in-out
 
-  @media (max-width: 768px)
-    width: 100%
+    overflow: hidden
+    max-height: 100%
 
-.menu-footer
-  float: right
-  margin-top: 20px
-  top: 0px
-  width: 100%
+    * > .toc > .title
+      display: none !important
 
+    &.header-toc-hidden
+      max-height: 0
+      padding-top: 0
 
+// hide toc on desktop
+@media (min-width: 1150px)
 
-.search-bar, .search-icon
-  margin-top: 20px
-  margin-bottom: 20px
+  .header-toc-plus-button
+    display: none
+
+.toc-current-page
+
+  * > .toc > .title
+    display: none
+
+  .toc-link-1
+    color: colors.color("lightest-foreground") !important
+    font-family: typography.font("sans-serif") !important
+    font-size: typography.font-size("m") !important
+
+    font-weight: 400 !important
+    line-height: 2.5em !important
+
+    &::before
+      content: none !important
+
+  * > .toc .toc-link-2
+    display: none
 
 </style>

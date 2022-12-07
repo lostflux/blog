@@ -1,0 +1,21 @@
+# Default state for all rules
+default: true
+# Disable 'different heading style' and 'headings should be surrounded by blank lines'
+MD003: false
+
+# Disable list indent
+MD007: false
+MD022: false
+# Disable max line length
+MD013: false
+# Allow duplicated heading for different sections
+MD024: false
+# Allow multiple top-level headings
+MD025: false
+# Allow non blank lines around list
+MD032: false
+# Allow inline HTML
+MD033: false
+# Allow bare urls
+MD034: false
+MD046: false

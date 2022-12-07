@@ -199,9 +199,6 @@
     url('~/assets/fonts/SFMono/SFMono-SemiboldItalic.woff2') format('woff2');
 }
 
-@debug('fonts loaded');
-
-
 // dm-sans regular := 400
 @font-face {
   font-family: 'DM Sans';
@@ -333,3 +330,864 @@
     local('DM Mono Bold Italic'),
     url('~/assets/fonts/DMMono/DMMono-MediumItalic.ttf') format('truetype');
 }
+
+
+// brown light := 400
+@font-face {
+  font-family: 'Brown';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Brown Light'),
+    url('~/assets/fonts/Brown/BrownLight-Regular.ttf') format('truetype');
+}
+
+// brown light italic
+@font-face {
+  font-family: 'Brown';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Brown Light Italic'),
+    url('~/assets/fonts/Brown/BrownLight-Italic.ttf') format('truetype');
+}
+
+// brown medium := 500
+@font-face {
+  font-family: 'Brown';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Brown Medium'),
+    url('~/assets/fonts/Brown/BrownMedium-Regular.ttf') format('truetype');
+}
+
+// brown medium italic
+@font-face {
+  font-family: 'Brown';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Brown Medium Italic'),
+    url('~/assets/fonts/Brown/BrownMedium-Italic.ttf') format('truetype');
+}
+
+// brown bold := 600
+@font-face {
+  font-family: 'Brown';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Brown Bold'),
+    url('~/assets/fonts/Brown/Brown-Bold.ttf') format('truetype');
+}
+
+// brown bold italic
+@font-face {
+  font-family: 'Brown';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Brown Bold Italic'),
+    url('~/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
+}
+
+
+// brown bold-italic
+@font-face {
+  font-family: 'Brown';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Brown Bold Italic'),
+    url('~/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
+}
+
+// brown extra-bold
+// @font-face {
+//   font-family: 'Brown';
+//   font-style: normal;
+//   font-weight: 700;
+//   font-display: swap;
+//   src:
+//     local('Brown ExtraBold'),
+//     url('~/assets/fonts/Brown/BrownExtraBold Regular.ttf') format('truetype');
+// }
+
+// // brown extra-bold condensed
+// @font-face {
+//   font-family: 'Brown';
+//   font-style: normal;
+//   font-weight: 700;
+//   font-display: swap;
+//   src:
+//     local('Brown ExtraBold Condensed'),
+//     url('~/assets/fonts/Brown/BrownExtraBoldCondensed Regular.ttf') format('truetype');
+// }
+
+// brown heavy
+@font-face {
+  font-family: 'Brown';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Brown Heavy'),
+    url('~/assets/fonts/Brown/BrownHeavy-Regular.ttf') format('truetype');
+}
+
+
+
+
+
+
+
+// Brandon Grotesk Thin := 200
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Thin'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_thin.otf') format('truetype');
+}
+
+// Brandon Grotesk Thin Italic := 200 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Thin Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_thin_it.otf') format('truetype');
+}
+
+// Brandon Grotesk Light := 300
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Light'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_light.otf') format('truetype');
+}
+
+// Brandon Grotesk Light Italic := 300 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Light Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_light_it.otf') format('truetype');
+}
+
+// Brandon Grotesk Regular := 400
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Regular'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_reg.otf') format('truetype');
+}
+
+// Brandon Grotesk Regular Italic := 400 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Regular Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_reg_it.otf') format('truetype');
+}
+
+// Brandon Grotesk Medium := 500
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Medium'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_med.otf') format('truetype');
+}
+
+// Brandon Grotesk Medium Italic := 500 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Medium Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_med_it.otf') format('truetype');
+}
+
+// Brandon Grotesk Bold := 600
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Bold'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_bld.otf') format('truetype');
+}
+
+// Brandon Grotesk Bold Italic := 600 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Bold Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_bld_it.otf') format('truetype');
+}
+
+// Brandon Grotesk Black := 700
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Black'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_blk.otf') format('truetype');
+}
+
+// Brandon Grotesk Black Italic := 700 italic
+@font-face {
+  font-family: 'Brandon Grotesk';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Brandon Grotesk Black Italic'),
+    url('~/assets/fonts/BrandonGrotesk/Brandon_blk_it.otf') format('truetype');
+}
+
+
+// Rubik Fade Regular := 400
+@font-face {
+  font-family: 'Rubik Fade';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Rubik Fade Regular'),
+    url('~/assets/fonts/RubikFade/RubikFadeRegular.ttf') format('truetype');
+}
+
+// megrim regular := 400
+@font-face {
+  font-family: 'Megrim';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Megrim Regular'),
+    url('~/assets/fonts/Megrim/Megrim-Regular.ttf') format('truetype');
+}
+
+// fredericka regular := 400
+// @font-face {
+//   font-family: 'Fredericka the Great';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+//   src:
+//     local('Fredericka the Great Regular'),
+//     url('~/assets/fonts/Fredericka/Fredericka.ttf') format('truetype');
+// }
+
+// macondo regulat := 400
+@font-face {
+  font-family: 'Macondo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Macondo Regular'),
+    url('~/assets/fonts/Macondo/Macondo-Regular.ttf') format('truetype');
+}
+
+// rubik-puddles regular := 400
+@font-face {
+  font-family: 'Rubik Puddles';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Rubik Puddles Regular'),
+    url('~/assets/fonts/RubikPuddles/RubikPuddles-Regular.ttf') format('truetype');
+}
+
+// red-hat-mono variable-weight
+@font-face {
+  font-family: 'Red Hat Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src:
+    local('Red Hat Mono Thin'),
+    local('Red Hat Mono ExtraLight'),
+    local('Red Hat Mono Light'),
+    local('Red Hat Mono Regular'),
+    local('Red Hat Mono Medium'),
+    local('Red Hat Mono SemiBold'),
+    local('Red Hat Mono Bold'),
+    local('Red Hat Mono ExtraBold'),
+    local('Red Hat Mono Black'),
+    url('~/assets/fonts/RedHatMono/RedHatMono.ttf') format('truetype');
+}
+
+// red-hat-mono italic
+@font-face {
+  font-family: 'Red Hat Mono';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src:
+    local('Red Hat Mono Thin Italic'),
+    local('Red Hat Mono ExtraLight Italic'),
+    local('Red Hat Mono Light Italic'),
+    local('Red Hat Mono Italic'),
+    local('Red Hat Mono Medium Italic'),
+    local('Red Hat Mono SemiBold Italic'),
+    local('Red Hat Mono Bold Italic'),
+    local('Red Hat Mono ExtraBold Italic'),
+    local('Red Hat Mono Black Italic'),
+    url('~/assets/fonts/RedHatMono/RedHatMono-Italic.ttf') format('truetype');
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500;600;700;800&family=Fredericka+the+Great&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// // twitch fonts
+// @font-face {
+//   font-family: 'Twitch';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+//   src:
+//     url('~/assets/fonts/Twitch/twitch.ttf') format('truetype'),
+//     url('~/assets/fonts/Twitch/twitch.otf') format('truetype');
+// }
+
+// matter light
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-Light.otf') format('truetype');
+}
+
+// matter light italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-LightItalic.otf') format('truetype');
+}
+
+// matter regular
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-Regular.otf') format('truetype');
+}
+
+// matter regular italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-RegularItalic.otf') format('truetype');
+}
+
+// matter medium
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-Medium.otf') format('truetype');
+}
+
+// matter medium italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-MediumItalic.otf') format('truetype');
+}
+
+// matter semibold
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-SemiBold.otf') format('truetype');
+}
+
+// matter semibold italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-SemiBoldItalic.otf') format('truetype');
+}
+
+// matter bold
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-Bold.otf') format('truetype');
+}
+
+// matter bold italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-BoldItalic.otf') format('truetype');
+}
+
+// matter heavy
+@font-face {
+  font-family: 'Matter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-Heavy.otf') format('truetype');
+}
+
+// matter heavy italic
+@font-face {
+  font-family: 'Matter';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/Matter/Matter-HeavyItalic.otf') format('truetype');
+}
+
+
+// ANTIQUE OLIVE
+
+// antique olive light
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Light.ttf') format('truetype');
+}
+
+// antique olive light italic
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-LightItalic.ttf') format('truetype');
+}
+
+// antique olive regular
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Regular.ttf') format('truetype');
+}
+
+// antique olive regular italic
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-RegularItalic.ttf') format('truetype');
+}
+
+// antique olive medium
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Medium.ttf') format('truetype');
+}
+
+// antique olive medium italic
+// @font-face {
+//   font-family: 'Antique Olive';
+//   font-style: italic;
+//   font-weight: 500;
+//   font-display: swap;
+//   src:
+//     url('~/assets/fonts/antique-olive/AntiqueOlive-MediumItalic.ttf') format('truetype');
+// }
+
+// antique olive Bold
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Bold.ttf') format('truetype');
+}
+
+// antique olive Bold condensed
+// @font-face {
+//   font-family: 'Antique Olive';
+//   font-style: normal;
+//   font-weight: 700;
+//   font-display: swap;
+//   src:
+//     url('~/assets/fonts/antique-olive/AntiqueOlive-BoldCondensed.ttf') format('truetype');
+// }
+
+// antique olive heavy
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Heavy.ttf') format('truetype');
+}
+
+// antique olive heavy italic
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-HeavyItalic.ttf') format('truetype');
+}
+
+// antique olive black
+@font-face {
+  font-family: 'Antique Olive';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src:
+    url('~/assets/fonts/antique-olive/AntiqueOlive-Black.ttf') format('truetype');
+}
+
+// apercu
+
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProLight.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProLightItalic.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProRegular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProItalic.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProMedium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProMediumItalic.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProBold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProBoldItalic.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Apercu Pro Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Apercu/ApercuProMono.otf') format('truetype');
+}
+
+// cohere variable font
+@font-face {
+  font-family: 'Cohere Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('~/assets/fonts/Cohere/CohereVariable.woff2') format('truetype');
+}
+
+// cohere regular font
+@font-face {
+  font-family: 'Cohere Regular';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('~/assets/fonts/Cohere/CohereRegular.woff2') format('truetype');
+}
+
+@font-face {
+  font-family: 'Adelle Regular';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('~/assets/fonts/AdelleRegular/AdelleRegular.woff') format('truetype');
+}
+
+
+// inter font
+
+
+/* -------------------------------------------------------
+Variable font.
+Usage:
+
+  html { font-family: 'Inter', sans-serif; }
+  @supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
+  }
+*/
+@font-face {
+  font-family: 'Inter Variable';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  // font-named-instance: 'Regular';
+  src: url("~/assets/fonts/Inter/Inter-Variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'Inter Variable';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url("~/assets/fonts/Inter/Inter-Variable-Italic.woff2") format("woff2");
+}
+
+
+/* --------------------------------------------------------------------------
+[EXPERIMENTAL] Multi-axis, single variable font.
+
+Slant axis is not yet widely supported (as of February 2019) and thus this
+multi-axis single variable font is opt-in rather than the default.
+
+When using this, you will probably need to set font-variation-settings
+explicitly, e.g.
+
+  * { font-variation-settings: "slnt" 0deg }
+  .italic { font-variation-settings: "slnt" 10deg }
+
+*/
+@font-face {
+  font-family: 'Inter Variable Experimental';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: oblique 0deg 10deg;
+  src: url("~/assets/fonts/Inter/Inter-Variable-Experimental.woff2") format("woff2");
+}
+
+
+// Canela font
+// path: ~/assets/fonts/Canela/Canela/Canela-Regular-Trial.otf
+@font-face {
+  font-family: 'Canela';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Canela/CanelaText/CanelaText-Regular-Trial.otf') format('truetype');
+}
+
+// Helvetica Font
+// path: ~/assets/fonts/Helvetica/Helvetica-Regular.otf
+@font-face {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Helvetica/Helvetica.ttf') format('truetype');
+}
+
+// SF Pro Display
+// path: ~/assets/fonts/SFPro/SF-Pro-Text-Regular.otf
+
+// thin
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Thin.woff2') format('truetype');
+}
+
+// regular
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Regular.woff2') format('truetype');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-RegularItalic.woff2') format('truetype');
+}
+
+// semibold
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Semibold.woff2') format('truetype');
+}
+
+// bold
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Bold.woff2') format('truetype');
+}
+
+
+// light
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Light.woff2') format('truetype');
+}
+
+// regular
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Regular.woff2') format('truetype');
+}
+
+// regular italic
+@font-face {
+  font-family: 'Graphik';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-RegularItalic.woff2') format('truetype');
+}
+
+// semibold
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Semibold.woff2') format('truetype');
+}
+
+// bold
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Bold.woff2') format('truetype');
+}
+
+@debug('fonts loaded');

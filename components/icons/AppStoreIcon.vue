@@ -5,7 +5,8 @@
     x="0px"
     y="0px"
     viewBox="0 0 512 512"
-    xmlSpace="preserve">
+    xmlSpace="preserve"
+  >
     <title>Apple App Store</title>
     <g>
       <g>
@@ -47,7 +48,7 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "AppStoreIcon",
-  }
+export default {
+  name: "AppStoreIcon",
+};
 </script>

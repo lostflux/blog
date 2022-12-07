@@ -1,18 +1,18 @@
 <template>
   <svg
-  stroke="currentColor"
-  strokeWidth="2"
-  strokeLinecap="round"
-  strokeLinejoin="round"
-  class="feather feather-instagram"
-  fill="#000000"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 30 30"
-  width="30px"
-  height="30px"
->
-  <path
-    d= "M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    class="instagram-icon feather feather-instagram"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 30 30"
+    width="30px"
+    height="30px"
+  >
+    <path
+      d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953
         L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27
         L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047
         L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3
@@ -22,13 +22,16 @@
         C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15
         C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15
         A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"
-  />
-</svg>
-
+    />
+  </svg>
 </template>
 
 <script lang="ts">
 export default {
   name: "InstagramIcon",
-}
+};
 </script>
+<style lang="sass" scoped>
+.instagram-icon
+  fill: none
+</style>

@@ -1,24 +1,0 @@
-     100 files     200 files     300 files     400 files     500 files     600 files     697 text files.
-classified 487 filesDuplicate file check 487 files (327 known unique)Unique:      100 files                                          Unique:      200 files                                          Unique:      300 files                                               398 unique files.                              
-Counting:  100Counting:  200Counting:  300     391 files ignored.
-
-1 error:
-Line count, exceeded timeout:  ./.output/public/_nuxt/index.fe517dd8.js
-
-github.com/AlDanial/cloc v 1.94  T=1.30 s (305.0 files/s, 59406.0 lines/s)
--------------------------------------------------------------------------------
-Language                     files          blank        comment           code
--------------------------------------------------------------------------------
-JSON                            13             64              0          41521
-JavaScript                     273            466           3110          26677
-Vuejs Component                 49            235             61           1813
-TypeScript                      23            179             74           1780
-Sass                             8            168             30            530
-SCSS                             4             54             20            249
-Markdown                        15             21              0            163
-SVG                              2              2              0            140
-CSS                             10              5              0            133
-YAML                             1              4              4             16
--------------------------------------------------------------------------------
-SUM:                           398           1198           3299          73022
--------------------------------------------------------------------------------

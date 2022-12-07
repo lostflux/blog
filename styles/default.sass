@@ -3,23 +3,33 @@
 @use "theme"
 @use "mixins"
 @use "geometry"
+@use "transitions"
 
 html
   box-sizing: border-box
-  width: 100%
+  height: 100svh
+  width: 100vw
+  max-width: 100vw
   scroll-behavior: smooth
 
-*, *:before, *:after
-  box-sizing: inherit
+*, *::before, *::after
+  box-sizing: border-box
+  padding: 0
+  margin: 0
+
+// *, *::before, *::after
+//   outline: 1px solid red !important
+//   opacity: 1 !important
+//   visibility: visible !important
 
 ::selection
-  background-color: colors.color("lightest-navy")
-  color: colors.color("lightest-slate")
+  background-color: rgba(colors.color(light-background), 0.4)
+  color: colors.color(lightest-foreground)
 
 
 /* Provide basic, default focus styles.*/
 :focus
-  outline: 2px dashed colors.color("green")
+  outline: 2px dashed colors.color("primary-highlight")
   outline-offset: 3px
 
 /*
@@ -34,107 +44,53 @@ html
   platform, provide enhanced focus styles for keyboard
   focus. */
 :focus-visible 
-  outline: 2px dashed colors.color("green")
+  outline: 2px dashed colors.color("primary-highlight")
   outline-offset: 3px
 
 /* Scrollbar Styles */
 html 
   scrollbar-width: thin
-  scrollbar-color: colors.color("dark-slate") colors.color("navy")
-
-::-webkit-scrollbar 
-  width: 12px
+  scrollbar-color: colors.color(foreground) // colors.color(")
 
 ::-webkit-scrollbar-track 
-  background: colors.color(navy)
+  background: colors.color(light-background)
 
 ::-webkit-scrollbar-thumb 
-  background-color: colors.color("dark-slate")
-  border: 3px solid colors.color("navy")
+  background: colors.color(dark-foreground)
+  border: 3px solid
   border-radius: 10px
 
+  &:hover
+    background: colors.color(primary-highlight)
+    border: 3px solid
+
+
+
 body
-  
   /////// INITIALIZE COUNTERS
   counter-reset: sections items
   
   margin: 0
-  width: 100%
-  min-height: 100%
-  overflow-x: hidden
+  max-width: 100vw
+  min-width: 100vw
+  overflow-x: scroll //hidden
+  height: fit-content
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
-  background-color: colors.color("navy")
-  color: colors.color("slate")
-  font-family: typography.font("font-sans")
+  background-color: colors.color("background")
+  color: colors.color("foreground")
+  font-family: typography.font("sans-serif")
   font-size: typography.font-size("xl")
-  line-height: 1.3
+  line-height: 1.7
+
+
   @media (max-width: 480px) 
     font-size: typography.font-size("l")
   
-  &.hidden 
-    overflow: hidden
-  
-  &.blur 
-    overflow: hidden
-    header 
-      background-color: transparent
-    
-    #content > * 
-      filter: blur(5px) brightness(0.7)
-      transition: geometry.var("default-transition")
-      pointer-events: none
-      user-select: none
-    
-  
 
-.root
-  min-height: 100vh
-  display: grid
-  grid-template-rows: 1fr auto
-  grid-template-columns: 100%
-
-main
-  margin: 0 auto
-  width: 100%
-  max-width: 1300px
-  min-height: 100vh
-    padding: 0px 150px
-
-  @media (max-width: 1080px) 
-    padding: 0px 100px
-  
-  @media (max-width: 768px) 
-    padding: 0px 50px
-  
-  @media (max-width: 480px) 
-    padding: 0px 25px
-
-  /// removed padding before footer.
-  // padding: 200px 150px
-
-  // @media (max-width: 1080px) 
-  //   padding: 200px 100px
-  
-  // @media (max-width: 768px) 
-  //   padding: 150px 50px
-  
-  // @media (max-width: 480px) 
-  //   padding: 125px 25px
-  
-  &.fill-height 
-    padding: 0 150px
-    
-    @media (max-width: 1080px) 
-      padding: 0 100px
-    
-    @media (max-width: 768px) 
-      padding: 0 50px
-    
-    @media (max-width: 480px) 
-      padding: 0 25px
-    
-  
+:root
+  min-height: 100svh
+  min-width: 100vw
 
 section 
   margin: 0 auto
@@ -146,66 +102,70 @@ section
   
   @media (max-width: 480px) 
     padding: 60px 0
-  
+
+  &.footnotes
+    margin-top: 3em
+    margin-bottom: 20px
+    border-top: 1px solid colors.color("light-background")
+    padding-top: 1em !important
+    padding-bottom: 0
+    line-height: 2
+    color: colors.color(dark-foreground)
+
+
+    // grab the links and add some space!!
+    & > * > * > *
+      padding: 0.2em 0
+
 
 h1, h2, h3, h4, h5, h6 
   margin: 0 0 10px 0
   font-weight: 600
-  color: colors.color("lightest-slate")
+  color: colors.color("lightest-foreground")
   line-height: 1.1
 
-.big-heading 
-  margin: 0
-  // font-size: clamp(40px, 8vw, 80px)
-  // font-size: typography.font-size("big-heading")
-  font-size: clamp(40px, 8vw, typography.font-size("big-heading"))
+// .big-heading 
+//   margin: 0
+//   font-size: clamp(40px, 8vw, typography.font-size("big-heading"))
+//   font-variation-settings: "cuts" 300
 
-.medium-heading 
-  margin: 0
-  font-size: clamp(40px, 8vw, 60px)
+// .medium-heading 
+//   margin: 0
+//   font-size: clamp(40px, 8vw, 60px)
 
-.numbered-heading 
-  display: flex
-  align-items: center
-  position: relative
-  margin: 10px 0 40px
-  width: 100%
-  font-size: clamp(26px, 5vw, typography.font-size("heading"))
-  white-space: nowrap
+// .numbered-heading 
+//   display: flex
+//   align-items: center
+//   position: relative
+//   margin: 10px 0 40px
+//   width: 100%
+//   font-size: clamp(26px, 5vw, typography.font-size("heading"))
+//   font-family: typography.font("fancy")
+//   white-space: nowrap
+//   font-variation-settings: "cuts" 300
+//   font-weight: 700
   
-  &::before 
-    position: relative
-    bottom: 4px
-    counter-increment: sections 1
-    content: '0' counter(sections) '.'
-    margin-right: 10px
-    color: colors.color("green")
-    font-family: typography.font("font-mono")
-    font-size: clamp(typography.font-size("m"), 3vw, typography.font-size("xl"))
-    font-weight: 400
+//   &::before
+//     content: '0' counter(sections) '.'
+//     counter-increment: sections
 
-    @media (max-width: 480px) 
-      margin-bottom: -3px
-      margin-right: 5px
+//     position: relative
+//     margin-right: 0.5em
+
+//     color: colors.color("primary-highlight")
+//     font-family: typography.font("monospace")
+//     font-size: typography.font-size("xl")
+//     font-weight: 400
     
   
-  &::after 
-    content: ''
-    display: block
-    position: relative
-    top: -5px
-    width: 300px
-    height: 1px
-    margin-left: 20px
-    background-color: colors.color("lightest-navy")
-    @media (max-width: 1080px) 
-      width: 200px
-    
-    @media (max-width: 768px) 
-      width: 100%
-    
-    @media (max-width: 600px) 
-      margin-left: 10px
+//   &::after 
+//     content: ''
+//     position: relative
+//     margin: auto
+//     width: 100%
+//     height: 1px
+//     margin-left: 0.5em
+//     background: colors.color("lightest-background")
     
   
 
@@ -214,255 +174,163 @@ img, svg, .image-wrapper
   max-width: 100%
   vertical-align: middle
 
-img[alt=""],
-img:not([alt]) 
-  filter: blur(5px)
+  -moz-user-select: none !important
+  -webkit-user-select: none !important
+  user-select: none !important
 
-svg 
-  width: 100%
-  height: 100%
-  fill: currentColor
-  vertical-align: middle
-  stroke-width: 3px
+  -moz-user-drag: none !important
+  -webkit-user-drag: none !important
+  user-drag: none !important
 
-  &.feather 
-    fill: none
+// img[alt=""], img:not([alt]) 
+//   filter: blur(5px)
+
+// svg
+//   transition: color 0.3s ease-in-out
   
 
-a 
-  display: inline-block
-  text-decoration: none
-  text-decoration-skip-ink: auto
-  color: inherit
-  position: relative
-  transition: geometry.var("default-transition")
+// a 
+//   display: inline-block
+//   text-decoration: none
+//   text-decoration-skip-ink: auto
+//   color: inherit
+//   position: relative
+//   transition: geometry.var("default-transition")
 
-  &:hover, &:focus 
-    color: colors.color("green")
+//   &:hover, &:focus 
+//     color: colors.color("primary-highlight")
   
-  &.inline-link 
-    @include mixins.inline-link
+//   &.inline-link 
+//     @include mixins.inline-link
   
 
-button 
-  cursor: pointer
-  border: 0
-  border-radius: 0
+// button 
+//   cursor: pointer
+//   border: 0
+//   border-radius: 0
 
-input, textarea 
+:is(input, textarea)
   border-radius: 0
   outline: 0
 
   &:focus 
     outline: 0
   
-  &:focus,
-  &:active 
-    &::placeholder 
-      opacity: 0.5
+  &:id(focus, :active)::placeholder 
+    opacity: 1
     
   
 
-p 
-  margin: 0 0 15px 0
+// p 
+//   margin: 0 0 15px 0
 
-  &:last-child, &:last-of-type 
-    margin: 0
+//   &:last-child, &:last-of-type 
+//     margin: 0
   
-  & > a 
-    @include mixins.inline-link
-  
-  & > code 
-    background-color: colors.color("light-navy")
-    color: colors.color("white")
-    font-size: typography.font-size("s")
-    border-radius: geometry.var("border-radius")
-    padding: 0.3em 0.5em
-  
-
-ul
-  &.styled-list 
-    padding: 0
-    margin: 0
-    list-style: none
-    font-size: typography.font-size("l")
-
-
-    li 
-      position: relative
-      padding-left: 30px
-      margin-bottom: 10px
-
-      &:before 
-        content: '▹'
-        position: absolute
-        left: 0
-        color: colors.color("green")
+//   & > a 
+//     @include mixins.inline-link
       
-.styled-content
-  display: flex
-  flex-direction: column
-  min-height: 100vh
+// .styled-content
+//   display: flex
+//   flex-direction: column
+//   min-height: 100svh
 
-blockquote 
-  border-left-color: colors.color("green")
-  border-left-style: solid
-  border-left-width: 1px
-  margin-left: 0px
-  margin-right: 0px
-  padding-left: 1.5rem
+// blockquote 
+//   border-left-color: colors.color("primary-highlight")
+//   border-left-style: solid
+//   border-left-width: 1px
+//   margin-left: 0px
+//   margin-right: 0px
+//   padding-left: 1.5rem
 
-  p 
-    font-style: italic
-    font-size: 24px
+//   p 
+//     font-style: italic
+//     font-size: 24px
   
 
-hr 
-  background-color: colors.color("lightest-navy")
-  height: 1px
-  border-width: 0px
-  border-style: initial
-  border-color: initial
-  border-image: initial
-  margin: 1rem
+// hr 
+//   background-color: colors.color("lightest-background")
+//   height: 1px
+//   border-width: 0px
+//   border-style: initial
+//   border-color: initial
+//   border-image: initial
+//   margin: 1rem
 
-code 
-  font-family: typography.font("font-mono")
-  font-size: typography.font-size("m")
+// code 
+//   font-family: typography.font("monospace")
+//   font-size: typography.font-size("m")
 
-.skip-to-content 
-  @include mixins.button
-  position: absolute
-  top: auto
-  left: -999px
-  width: 1px
-  height: 1px
-  overflow: hidden
-  z-index: -99
+// .skip-to-content 
+//   @include mixins.button
+//   position: absolute
+//   top: auto
+//   left: -999px
+//   width: 1px
+//   height: 1px
+//   overflow: hidden
+//   z-index: -99
 
 
-  &:focus, &:active 
-    background-color: colors.color("green")
-    color: colors.color("navy")
-    top: 0
-    left: 0
-    width: auto
-    height: auto
-    overflow: auto
-    z-index: 99
+//   &:focus, &:active 
+//     background-color: colors.color("primary-highlight")
+//     color: colors.color("background")
+//     top: 0
+//     left: 0
+//     width: auto
+//     height: auto
+//     overflow: auto
+//     z-index: 99
   
 
-.logo
-  color: colors.color("green")
+// .logo
+//   color: colors.color("primary-highlight")
 
-.overline 
-  color: colors.color("green")
-  font-family: typography.font("font-mono")
-  font-size: typography.font-size("m")
-  font-weight: 400
+// .overline 
+//   color: colors.color("primary-highlight")
+//   font-family: typography.font("monospace")
+//   font-size: typography.font-size("m")
+//   font-weight: 400
 
-.subtitle 
-  color: colors.color("green")
-  margin: 0 0 20px 0
-  font-size: typography.font-size("m")
-  font-family: typography.font("font-mono")
-  font-weight: 400
-  line-height: 1.5
+// .subtitle 
+//   color: colors.color("primary-highlight")
+//   margin: 0 0 20px 0
+//   font-size: typography.font-size("m")
+//   font-family: typography.font("monospace")
+//   font-weight: 400
+//   line-height: 1.5
 
-  @media (max-width: 1080px) 
-    font-size: typography.font-size("s")
+//   @media (max-width: 1080px) 
+//     font-size: typography.font-size("s")
   
-  @media (max-width: 768px) 
-    font-size: typography.font-size("xs")
+//   @media (max-width: 768px) 
+//     font-size: typography.font-size("xs")
   
-  a 
-    @include mixins.inline-link
-    line-height: 1.5
+//   a 
+//     @include mixins.inline-link
+//     line-height: 1.5
+  
+// .breadcrumb 
+//   display: flex
+//   align-items: center
+//   margin-bottom: 50px
+//   color: colors.color("primary-highlight")
+
+
+//   .arrow 
+//     display: block
+//     margin-right: 10px
+//     padding-top: 4px
+  
+//   a 
+//     @include mixins.inline-link
+//     font-family: typography.font("monospace")
+//     font-size: typography.font-size("s")
+//     font-weight: 600
+//     line-height: 1.5
+//     text-transform: uppercase
+//     letter-spacing: 0.1em
   
 
-.breadcrumb 
-  display: flex
-  align-items: center
-  margin-bottom: 50px
-  color: colors.color("green")
-
-
-  .arrow 
-    display: block
-    margin-right: 10px
-    padding-top: 4px
-  
-  a 
-    @include mixins.inline-link
-    font-family: typography.font("font-mono")
-    font-size: typography.font-size("s")
-    font-weight: 600
-    line-height: 1.5
-    text-transform: uppercase
-    letter-spacing: 0.1em
-  
-
-.image-outer-wrapper 
-  height: 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////
-  
-/** All about transitions */
-/* Fade up */
-.fadeup-enter-from
-  opacity: 0.01
-  transform: translateY(20px)
-  transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
-
-.fadeup-enter-to
-  opacity: 1
-  transform: translateY(0px)
-  transition: opacity 300ms geometry.var("easing"), transform 300ms var("easing")
-
-/* Fade down */
-.fadedown-enter-from
-  opacity: 0.01
-  transform: translateY(-20px)
-  transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
-
-.fadedown-enter-to
-  opacity: 1
-  transform: translateY(0px)
-  transition: opacity 300ms geometry.var("easing"), transform 300ms geometry.var("easing")
-
-/* Fade */
-.fade-enter-from
-  opacity: 0
-
-.fade-enter-to
-  opacity: 1
-  transition: opacity 0.3s geometry.var("easing")
-
-.fade-leave-from
-  opacity: 1
-
-.fade-leave-to
-  opacity: 0
-  transition: opacity 0.3s geometry.var("easing")
+// .image-outer-wrapper 
+//   height: 100%

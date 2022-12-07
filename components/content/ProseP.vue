@@ -1,5 +1,5 @@
 <template>
-  <p class="paragraph">
+  <p class="prose-p">
     <slot />
   </p>
 </template>
@@ -10,35 +10,10 @@
 @use "~/styles/geometry"
 @use "~/styles/mixins"
 
-.paragraph
-  font-family: typography.font("font-sans")
+.prose-p
+  font-family: typography.font("sans-serif")
   font-size: typography.font-size("m")
-  color: colors.color("light-slate")
-
-  ul
-    display: grid
-    grid-template-columns: repeat(2, minmax(140px, 200px))
-    grid-gap: 0 10px
-    padding: 0
-    margin: 20px 0 0 0
-    overflow: hidden
-    list-style: none
-
-    li
-      position: relative
-      margin-bottom: 10px
-      padding-left: 20px
-      font-family: typography.font("font-mono")
-      font-size: typography.font-size("xs")
-
-      &:before
-        content: '▹'
-        position: absolute
-        left: 0
-        color: colors.color("green")
-        font-size: typography.font-size("s")
-        line-height: 12px
-
-  a
-    @include mixins.inline-link
+  margin-bottom: 1em
+  line-height: 1.7rem
+  margin: 0 0 1.5em 0
 </style>

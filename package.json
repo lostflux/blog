@@ -27,7 +27,7 @@
     "sass": "latest",
     "sass-loader": "latest",
     "scrollreveal": "^4.0.9",
-    "shiki": "^0.11.1",
+    "shiki": "^0.12.1",
     "sr": "^1.0.4",
     "vue-freezeframe": "^5.0.2",
     "vue-styled-components": "^1.0.4"

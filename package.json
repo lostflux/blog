@@ -45,6 +45,6 @@
     "vue-router": "^4.1.6",
     "vue-scroll-reveal": "^1.0.11",
     "vuex": "^4.1.0",
-    "vite": "^3.0.4"
+    "vite": "^4.0.3"
   }
 }

@@ -15,7 +15,11 @@
             <a class="skip-to-content" href="#content"/>
             <div class="container">
               <div class="content">
-                <slot id="content"/>
+                <div>
+                  <slot id="content"/>
+                  <BlogComments />
+                  <AuthenticationForm />
+                </div>
               </div>
             </div>
           </div>
@@ -34,9 +38,13 @@
 </template>
 
 <script setup lang="ts">
-
 const { path: currentPage } = useRoute();
 const { toc } = useContent();
+// await db.collection("comments").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     comments.value.push(doc.data());
+//   });
+// });
 </script>
 
 <style lang="sass" scoped>

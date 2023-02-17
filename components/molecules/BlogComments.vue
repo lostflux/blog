@@ -10,31 +10,47 @@
         There are no comments yet. Be the first to comment!
       </div>
   
-      <div class="comment" v-for="comment in allComments" :key="comment.id">
-        <div class="comment-header">
-          <div class="comment-author">
-            <!-- <img
-              class="comment-author-avatar"
-              :src="comment.avatar"
-              :alt="comment.author"
-            /> -->
-            <div class="comment-author-name">
-              {{ comment.author }}
+      <template v-for="comment in allComments">
+        <div class="comment" v-if="comment.text" :key="comment.id">
+          <div class="comment-header">
+            <div class="comment-author">
+              <!-- <img
+                class="comment-author-avatar"
+                :src="comment.avatar"
+                :alt="comment.author"
+              /> -->
+              <div class="comment-author-name">
+                {{ comment.author }}
+              </div>
+              <span
+                class="comment-date"
+                v-if="comment.date"
+              >
+                <!-- show date as Day, Mon YYYY -->
+                {{ new Date(comment.date).toLocaleDateString('en-US',
+                  { 
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                  })
+                }}
+              </span>
             </div>
+            <!-- <div class="comment-date">
+            </div> -->
           </div>
-          <div class="comment-date">
-            {{ comment.date }}
+          <div class="comment-body">
+            {{ comment.text }}
           </div>
         </div>
-        <div class="comment-body">
-          {{ comment.text }}
-        </div>
-      </div>
+      
+      </template>
     </div>
 
 
     <div class="new-comment">
-      <h2 class="section-subtitle"> We'd love to hear your thoughts!</h2>
+      <h2 class="section-subtitle">Thoughts?</h2>
       <form class="form">
         <textarea
           id="comment"
@@ -62,18 +78,14 @@ import { getFirestore, collection, addDoc, getDocs } from "@firebase/firestore";
 
 const db = getFirestore();
 
-const comments = ref([]);
-
-const querySnapshot = await getDocs(collection(db, "comments"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});
-
 </script>
 
+
+
+
+
 <script lang="ts">
-import { getAuth } from "@firebase/auth";
-import { unHashPath, hashPath } from "~/src/utils/paths";
+import { getAuth, signOut } from "@firebase/auth";
 export default {
   name: 'BlogComments',
 
@@ -81,20 +93,34 @@ export default {
   data() {
     return {
       comment: '',
-      allComments: []
+      allComments: [],
+      showAuthPopup: false,
     };
+  },
+  watch: {
+    showAuthPopup() {
+      if (this.showAuthPopup && typeof document != 'undefined') {
+        document.getElementById('auth-form-container')
+          .classList.remove('hidden');
+          this.showAuthPopup = false;
+      }
+    }
   },
 
   methods: {
+    // reset auth visibility
+    resetAuthVisibility() {
+      this.showAuthPopup = false;
+    },
     // update comments
     updateComments() {
       const db = getFirestore();
       const auth = getAuth();
       const { currentUser} = auth;
-      const { path } = useRoute();
+      const { path } = useRoute()
 
       this.allComments = [];
-      const comments = [];
+      // const comments = [];
       getDocs(collection(db, "comments"))
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -102,47 +128,54 @@ export default {
             const comment = {
               id: doc.id,
               text: doc.data().text,
-              author: doc.data().author,
-              date: doc.data().date,
+              author: doc.data().author || "Anonymous",
+              date: doc.data().date || null,
             }
-            comments.push(comment);
+            this.allComments.push(comment);
           });
-          // get user info
-          const usersRef = collection(db, "users");
-          comments.forEach( (comment) => {
-            const q = query(usersRef, where("state", "==", "CA"));
-          getDocs(collection(db, "users"))
-            .then((querySnapshot) => {
-                // find user with matching author id
-                querySnapshot.
-              }
-              this.allComments = comments;
-            })
-            .catch((error) => {
-              console.log("Error getting documents: ", error);
-            });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
         });
+        
+      // sort comments by date
+      this.allComments.sort((a, b) => {
+        const aDate = a.date ? new Date(a.date) : null;
+        const bDate = b.date ? new Date(b.date) : null;
+        return aDate
+          ? (bDate ? (aDate.valueOf() - bDate.valueOf()) : 1)
+          : (bDate ? -1 : 0);
+      });
+
+          
     },
 
 
     // submitComment
     submitComment() {
-      if (!this.comment) {
+      if (!this.comment) return;
+
+      // if user not logged in, show login popup
+      const auth  = getAuth();
+      const { currentUser } = auth;
+      
+      
+      if (!currentUser) {
+        this.showAuthPopup = true;
         return;
+      } else {
+        console.log(`currentUser: ${currentUser.email}`);
+
+        // TODO: REMOVE -- sign out current user
+        signOut(auth);
       }
 
       console.log(`Comment: ${this.comment}`);
       
       const db = getFirestore();
-      const auth = getAuth();
-      const { currentUser} = auth;
+      // const auth = getAuth();
+      // const { currentUser} = auth;
       const { path } = useRoute();
       const newComment = {
         text: this.comment,
-        author: currentUser?.uid || "Anonymous",
+        author: currentUser?.displayName,
         date: new Date().toISOString(),
         path: path
       }
@@ -167,15 +200,6 @@ export default {
     this.updateComments();
   }
 };
-
-
-function where(arg0: string, arg1: string, arg2: string): any {
-throw new Error("Function not implemented.");
-}
-
-function query(citiesRef: any, arg1: any) {
-throw new Error("Function not implemented.");
-}
 </script>
 
 <style lang="sass" scoped>
@@ -215,6 +239,10 @@ section.comments
         padding: 1rem
         border: 1px solid colors.color("lightest-background")
         border-radius: 0.5rem
+        opacity: 0.5
+
+        &:active, &:focus
+          opacity: 1
 
 
     .button-container
@@ -232,4 +260,20 @@ section.comments
       border: 1px solid colors.color("lightest-background")
       border-radius: 0.5rem
       line-height: 1.5
+
+      .comment-header
+        margin: 0.5rem 0 1rem 0
+        .comment-author
+          .comment-author-name
+            font-weight: 600
+            // margin-bottom: 0.5rem
+            width: 100%
+            text-align: left
+            color: colors.color("secondary-highlight")
+          
+          .comment-date
+            font-size: 0.8rem
+            color: colors.color("primary-highlight")
+            text-align: left
+
 </style>

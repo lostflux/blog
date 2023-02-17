@@ -17,8 +17,11 @@
               <div class="content">
                 <div>
                   <slot id="content"/>
-                  <BlogComments />
-                  <AuthenticationForm />
+                  <BlogComments ref="commentsSection" />
+                  <AuthenticationForm
+                    id="auth-form-container"
+                    class="hidden"
+                  />
                 </div>
               </div>
             </div>
@@ -40,11 +43,35 @@
 <script setup lang="ts">
 const { path: currentPage } = useRoute();
 const { toc } = useContent();
-// await db.collection("comments").get().then((querySnapshot) => {
-//   querySnapshot.forEach((doc) => {
-//     comments.value.push(doc.data());
-//   });
-// });
+
+// reference to comments section for detecting when to show auth popup
+const commentsSection = ref<HTMLElement | null>(null);
+
+// auth popup visibility
+const authPopUpVisible = ref(false);
+
+// auth section ref
+const authSection = ref<HTMLElement | null>(null);
+
+// function to toggle auth popup
+const toggleAuthPopup = () => {
+  authPopUpVisible.value = !authPopUpVisible.value;
+  // commentsSection.value.showAuthPopup = authPopUpVisible.value;
+};
+</script>
+
+<script lang="ts">
+// export default {
+//   data() {
+
+//   },
+//   computed: {
+    
+//   },
+//   watch: {
+
+//   }
+// }
 </script>
 
 <style lang="sass" scoped>

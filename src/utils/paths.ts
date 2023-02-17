@@ -24,3 +24,12 @@ export function joinPaths(...paths: string[]) {
   });
   return paths.join('/').replace(/\/+/g, '/');
 }
+
+export function hashPath(path: string) {
+  const trimmedPath = path.split('#')[0];
+  return trimmedPath.replace('/', '#');
+}
+
+export function unHashPath(path: string) {
+  return path.replace('#', '/');
+}

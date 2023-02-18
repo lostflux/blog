@@ -198,8 +198,6 @@ export default {
     // set height initially.
     this.height = navHeight; //this.$el.offsetHeight;
 
-    this.route = useRoute().path;
-
     this.setup();
 
     // const rawAnchors = document.getElementsByTagName("h2");
@@ -226,11 +224,6 @@ export default {
       },
       deep: true,
     },
-    $route(oldVal, newVal) {
-      // console.log(`Route changed from ${oldVal} to ${newVal}`)
-      // this.setup();
-      // this.$forceUpdate();
-    },
     anchors() {
       // this.$forceUpdate();
     }
@@ -247,34 +240,6 @@ export default {
       const { path } = useRoute();
       if (path === "/") {
         this.anchors = navLinks.homeLinks;
-      } else {
-
-        // const { toc } = useContent();
-        // console.log(`toc: ${typeof toc.links}`);
-        // for (var _link in toc.links) {
-        //   console.log(_link);
-        //   this.anchors.push({
-        //     title: _link.text,
-        //     _path: `#${_link.id}`,
-        //   });
-        // }
-
-        // toc.links.forEach((link) => {
-        //   this.anchors.push({
-        //     title: link.title,
-        //     _path: `${path}#${link.id}`,
-        //   });
-        // });
-
-        // this.anchors = 
-        
-        // this.anchors = [];
-        // const rawAnchors = document.getElementsByTagName("h2");
-        // for (let i=0; i<Math.min(5, rawAnchors.length); i++) {
-        //   const title = rawAnchors.item(i).innerText;
-        //   const _path = `${path}#${rawAnchors.item(i).id.toString()}`;
-        //   this.anchors.push({ title, _path });
-        // }
       }
       
       this.$forceUpdate();

@@ -4,7 +4,7 @@
   strokeWidth="2"
   strokeLinecap="round"
   strokeLinejoin="round"
-  class="feather feather-instagram"
+  class="instagram-icon feather feather-instagram"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 30 30"
@@ -32,3 +32,7 @@ export default {
   name: "InstagramIcon",
 }
 </script>
+<style lang="sass" scoped>
+.instagram-icon
+  fill: none
+</style>

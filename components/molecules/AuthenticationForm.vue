@@ -1,7 +1,7 @@
 <template>
   <div class="auth-form-container" @click.self="closePopUp">
     <div class="auth-form">
-      <h1 class="title">Sign In</h1>
+      <h1 class="title"> {{ panes[activeTabId] }} </h1>
       <StyledTabList class="tab-list">
         <StyledTabButton
           v-for="pane, i in panes"
@@ -20,6 +20,7 @@
         > 
         {{ pane }}
         </StyledTabButton>
+        <StyledHighlight class="highlight" ref="highlight" mode="horizontal" />
       </StyledTabList>
       <StyledTabPanels class="tab-panels">
         <StyledTabPanel
@@ -66,7 +67,7 @@
                 type="button"
                 @click="() => {i == 0 ? signIn() : signUp()}"
               >
-                {{ i == 0 ? 'Sign In' : 'Sign Up' }}
+                {{ panes[i] }}
               </button>
             </div>
           </form>
@@ -77,40 +78,29 @@
 </template>
 
 <script lang="ts" setup>
-const panes = ['Sign In', 'Sign Up'];
-// const closePopUp = () => {
-//   console.log('closePopUp');
-//   if (typeof document != 'undefined') {
-//     const authFormContainer = document.getElementById('auth-form-container');
-//     if (authFormContainer) {
-//       authFormContainer.classList.add('hidden');
-//     }
-//   }
-// };
+const panes = ['sign in', 'sign up'];
 
 
 const tabs = ref([]);
 const tabButtons = ref([]);
 var highlight = ref(null);
 
-var activeTabId = 0;
+var activeTabId = ref(0);
 const tabFocus = new NumRefManager(panes.length - 1);
 
 const setActiveTabId = (id: number) => {
 
   // mute old tab if active
-  tabs.value[activeTabId]?.muteTab();
+  tabs.value[activeTabId.value]?.muteTab();
 
   // change active tab to current
   tabFocus.value = id;
 
-  activeTabId = id;
-  tabs.value[activeTabId]?.activateTab();
+  activeTabId.value = id;
+  tabs.value[activeTabId.value]?.activateTab();
 
   // show the corresponding tab panel
   highlight.value?.highlight(id)
-
-  console.log(`active tab id: ${activeTabId}`)
 
 }
 
@@ -134,6 +124,8 @@ watch(tabFocus.ref, focusTab);
 </script>
 
 <script lang="ts">
+import { createAvatar } from '@dicebear/core';
+import { lorelei } from '@dicebear/collection';
 
 import {
   createUserWithEmailAndPassword,
@@ -141,6 +133,13 @@ import {
   updateProfile,
   getAuth
 } from '@firebase/auth';
+
+import {
+  getFirestore,
+  doc,
+  addDoc,
+collection
+} from '@firebase/firestore';
 import { NumRefManager } from '~/src/utils';
 
 export default {
@@ -171,18 +170,28 @@ export default {
       }
 
       
-      const auth = getAuth();
-      console.log(`signUp: ${this.email}, ${this.password}`);
+      const auth = getAuth()
 
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = auth.currentUser;
+          
           updateProfile(user, {
             displayName: this.username,
           })
 
-          console.log(`user: ${user}`)
+          // add avatar to avatars collection
+          const db = getFirestore();
+
+          const avatar = createAvatar(lorelei, {
+            seed: user.uid,
+          });
+          const newUserAvatar = {
+            uid: user.uid,
+            avatar: avatar.toString()
+          }
+          addDoc(collection(db, "avatars"), newUserAvatar);
           // ...
           // close sign-in popup after sign-in;
           this.closePopUp();
@@ -199,13 +208,11 @@ export default {
     // sign in
     signIn() {
       const auth = getAuth();
-      console.log(`signIn: ${this.email}, ${this.password}`);
 
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(`user: ${user}`)
           // ...
           // close sign-in popup after sign-in;
           this.closePopUp();
@@ -218,7 +225,6 @@ export default {
         })
     },
     closePopUp() {
-      console.log('closePopUp');
       if (typeof document != 'undefined') {
         const authFormContainer = document.getElementById('auth-form-container');
         if (authFormContainer) {
@@ -246,15 +252,16 @@ export default {
   height: 100%
   display: block
   background: colors.color("dark-background")
-  // z-index: 11
-  background-color: rgba(colors.color("dark-background"), 0.9)
-  // mouse-events: none
+  z-index: 99
+  background-color: rgba(colors.color("dark-background"), 0.95)
+  display: flex
+  // align-items: center
+  // justify-content: center
   
   &.hidden
     display: none
 
   .tab-list
-    // @apply mixins.flex-center
     display: flex-column
     width: fit-content
     margin: 0 auto
@@ -269,31 +276,38 @@ export default {
     text-align: center
     display: inline
 
+    &.active
+      border-bottom: 2px solid colors.color("primary-highlight")
+
   .tab-panels
-    min-height: 400px
-    margin: 0
+    min-height: 20em
+    margin: 0 !important
+    padding: 0 !important
 
 .auth-form
-  margin: 40vh auto
+  margin: auto
   font-size: 20px
   color: colors.color("primary-highlight")
   font-size: typography.font-size("xl")
-  font-family: typography.font("font-sans")
-  align-content: center
-  max-width: 600px
-  opacity: 1
-  padding: 2rem 2rem 0rem 2rem
+  font-family: typography.font("sans-serif")
+  // align-content: center
+  width: clamp(400px, 50%, 500px)
+  overflow: hidden
+  // opacity: 1
+  padding: 2rem
+  padding-bottom: 0
   border: 1px solid colors.color("lightest-background")
   border-radius: 0.5rem
-  background-color: colors.color("dark-background")
+  background-color: colors.color("background")
   
   position: relative
-  z-index: 20
   pointer-events: auto
+
+  @include mixins.box-shadow
 
   .title
     font-size: typography.font-size("xxl")
-    font-family: typography.font("font-sans")
+    font-family: typography.font("sans-serif")
     color: colors.color("primary-highlight")
     width: fit-content
     margin: 0 auto
@@ -301,7 +315,7 @@ export default {
     margin-bottom: 2rem
 
   .sign-in-context
-    color: colors.color("primary-foreground")
+    color: colors.color("secondary-highlight") !important
     margin: 2rem 1rem
     line-height: 1.5rem
     color: colors.color("foreground")
@@ -320,8 +334,6 @@ export default {
     // add bottom border to last of type
     &:last-of-type
       border-bottom: 1px solid colors.color("lightest-background")
-
-
 
     &::placeholder
       font-size: typography.font-size("xl")

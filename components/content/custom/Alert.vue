@@ -38,7 +38,7 @@ export default {
 
 .alert-container
   margin: 1em 0
-  padding: 2em 1em 0.5em 1em
+  padding: 1em 1em 0.5em 1em
   border-radius: 0.5rem
 
   & > ul > li::before

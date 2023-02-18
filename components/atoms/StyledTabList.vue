@@ -14,7 +14,6 @@ export default {
 
 .styled-tab-list
   position: relative
-  z-index: 3
   width: max-content
   padding: 0
   margin: 0
@@ -22,32 +21,10 @@ export default {
   @media (max-width: 600px)
     display: flex
     overflow-x: auto
-    // width: calc(100% + 100px)
     width: auto
-    // padding-left: 50px
-    // margin-left: -50px
     margin-bottom: 30px
 
   @media (max-width: 480px)
-    // width: calc(100% + 50px)
     width: auto
-    // padding-left: 25px
-    // margin-left: -25px
-
-  // li
-  //   &:first-of-type
-  //     @media (max-width: 600px)
-  //       margin-left: 50px
-
-  //     @media (max-width: 480px)
-  //       margin-left: 25px
-
-
-  //   &:last-of-type
-  //     @media (max-width: 600px)
-  //       padding-right: 50px
-
-  //     @media (max-width: 480px)
-  //       padding-right: 25px
 
 </style>

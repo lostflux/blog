@@ -53,7 +53,7 @@
 @use "../styles/geometry"
 
 *
-  z-index: 1
+  // z-index: 1
 
 .title-container
   width: 100%

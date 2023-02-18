@@ -191,6 +191,7 @@ const { toc } = useContent();
 .toc
   line-height: 2
   counter-reset: toc-1
+  position: relative
 
   .title
     font-size: typography.font-size("xl")

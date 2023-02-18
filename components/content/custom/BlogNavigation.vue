@@ -94,9 +94,6 @@ const { toc } = useContent();
   line-height: 2
   counter-reset: toc-0
 
-  // border-top: 1px solid colors.color("primary-highlight")
-  // border-bottom: 1px solid colors.color("primary-highlight")
-
   .title
     font-size: typography.font-size("xl")
     color: colors.color("primary-highlight")
@@ -148,19 +145,18 @@ const { toc } = useContent();
         font-weight: 600
 
 
-.navigation-old
-  line-height: 2
-  width: max-content
-  // font-size: typography.font-size("m")
-  color: colors.color("lightest-foreground")
-  font-weight: 600
+// .navigation-old
+//   line-height: 2
+//   width: max-content
+//   color: colors.color("lightest-foreground")
+//   font-weight: 600
 
-  display: flex
-  flex-direction: column
+//   display: flex
+//   flex-direction: column
 
-  border-left: 3px solid colors.color("light-background")
-  padding-left: 1em
-  border-top: 1px solid colors.color("primary-highlight")
+//   border-left: 3px solid colors.color("light-background")
+//   padding-left: 1em
+//   border-top: 1px solid colors.color("primary-highlight")
 
 </style>
 

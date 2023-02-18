@@ -34,25 +34,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   };
 
   const app = initializeApp(firebaseConfig);
-  console.log(app);
-
-  console.log(`firebaseConfig: ${firebaseConfig.apiKey}`);
-  
-  // Initialize Firebase
-  // if (typeof window !== 'undefined') {
-  //   // const app = initializeApp({
-  //   //   apiKey: config.apiKey,
-  //   //   authDomain: config.authDomain,
-  //   //   projectId: config.projectId,
-  //   //   storageBucket: config.storageBucket,
-  //   //   messagingSenderId: config.messagingSenderId,
-  //   //   appId: config.appId,
-  //   //   measurementId: config.measurementId
-  //   // });
-  //   const app = initializeApp(firebaseConfig);
-  //   console.log(app);
-  //   console.log(config);
-  // }
 })
 
 

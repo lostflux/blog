@@ -1,6 +1,9 @@
 <template>
   <div
-    class="styled-highlight"
+    :class="{
+      'styled-highlight': true,
+      'horizontal': mode === 'horizontal'
+    }"
     :style="style"
   >
     <!-- <slot /> -->
@@ -15,6 +18,12 @@ const tabWidth = 120;
 
   export default {
     name: "StyledHighlight",
+    props: {
+      mode: {
+        type: String,
+        default: "",
+      },
+    },
     data() {
       return {
         index : 0,
@@ -28,6 +37,14 @@ const tabWidth = 120;
     },
     computed: {
       style() {
+        if (this.mode === "horizontal") {
+          return `
+            -webkit-transform: translateX(${this.index * tabWidth}px);
+            -moz-transform: translateX(${this.index * tabWidth}px);
+            -ms-transform: translateX(${this.index * tabWidth}px);
+            -o-transform: translateX(${this.index * tabWidth}px);
+            transform: translateX(${this.index * tabWidth}px);`
+        }
         return this.vertical
           ? `
               -webkit-transform: translateY(${this.index * tabHeight}px);
@@ -116,6 +133,14 @@ const tabWidth = 120;
   transform: translateY(geometry.var("tab-height"))
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)
   transition-delay: 0.1s
+
+  &.horizontal
+    top: auto
+    top: auto
+    bottom: 0
+    width: geometry.var("tab-width")
+    max-width: geometry.var("tab-width")
+    height: 2px
 
   @media (max-width: 600px) 
     top: auto

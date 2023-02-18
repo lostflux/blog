@@ -17,7 +17,7 @@
               <div class="content">
                 <div>
                   <slot id="content"/>
-                  <BlogComments ref="commentsSection" />
+                  <BlogComments id="blog-comments" ref="commentsSection" />
                   <AuthenticationForm
                     id="auth-form-container"
                     class="hidden"
@@ -187,6 +187,7 @@ hr
 
 .article-blog-navigation-footer
   width: 100%
+  z-index: 0
 
   padding: 0 12vw
   margin: 0 auto

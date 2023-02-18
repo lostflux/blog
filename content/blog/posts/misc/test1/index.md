@@ -5,12 +5,12 @@ category:
   - misc
   - featured
   - development
-draft: true
+draft: false
 layout: article
 date: 2022-12-21
 image: title-image.jpg
 caption: This is the image caption.
-navigation: false
+navigation: true
 ---
 
 <!-- ![Title Image](/blog/posts/misc/test1/title-image.jpg) -->

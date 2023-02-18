@@ -190,6 +190,9 @@ export default {
   color: colors.color("primary-highlight")
   padding: 1em
 
+  & > svg
+    fill: none
+
 .filename
   position: absolute
   margin: 1em

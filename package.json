@@ -33,6 +33,8 @@
     "vue-styled-components": "^1.0.4"
   },
   "dependencies": {
+    "@dicebear/collection": "^5.3.4",
+    "@dicebear/core": "^5.3.4",
     "@nuxt/content": "nuxt/content#feat/rehype-plugins",
     "@nuxt/vite-builder": "latest",
     "axios": ">=1.3.3",

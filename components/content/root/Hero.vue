@@ -337,8 +337,16 @@ export default {
   .cyber
     font-family: typography.font("twitch")
     text-transform: uppercase
-    font-weight: 600
-    // font-size: clamp(40px, 6vw, 80px)
+    font-size: clamp(30px, 2vw, 80px)
+    // background: yellow
+    font-weight: 400
+    
+    // make the text transparent with outline 
+    // to make it look like it's glowing
+    color: transparent
+    -webkit-text-stroke: 1px colors.color("primary-highlight")
+    text-shadow: 0 0 10px colors.color("primary-highlight")
+
 
   .hero-background
     position: fixed

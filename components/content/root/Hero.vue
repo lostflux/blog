@@ -82,7 +82,8 @@ export default {
   computed: {
     font() {
       const fonts = [
-        "fredericka",
+        "cyber",
+        // "fredericka",
         // "megrim",
         // "macondo",
         // "rubik-puddles",
@@ -173,7 +174,7 @@ export default {
     justify-content: space-between
     text-align: left
 
-    background-color: rgba(colors.color(background), 0.4)
+    // background-color: rgba(colors.color(background), 0.4)
     backdrop-filter: blur(10px)
 
 
@@ -332,6 +333,12 @@ export default {
     font-family: typography.font("rubik-puddles")
     
     font-weight: 500
+
+  .cyber
+    font-family: typography.font("twitch")
+    text-transform: uppercase
+    font-weight: 600
+    // font-size: clamp(40px, 6vw, 80px)
 
   .hero-background
     position: fixed

@@ -48,7 +48,7 @@ body.home
 #blob
   position: fixed
   background-color: white
-  height: 300px
+  height: 40vmin
   aspect-ratio: 1
   border-radius: 50%
   z-index: 1
@@ -57,7 +57,7 @@ body.home
   transform: translate(-50%, -50%)
 
   background: linear-gradient(to right, aquamarine, mediumpurple)
-  animation: rotate 20s infinite
+  animation: rotate 5s infinite
 
 
 @keyframes rotate

@@ -3,24 +3,33 @@
     <!-- <div class="hero-background rubik-puddles">
       ALT
     </div> -->
-    <div class="hero-content-container">
-      <h1 class="hero-h1">
-        Hi, my name is
+    <div class="hero-container">
+      
+
+      <div
+        v-for="(callout, i) in heroCallOuts" 
+        :class="
+          {
+            'big-title': true,
+            'inactive': activeCallOut != i
+          }"
+      >
+        {{ callout }}
+      </div>
+
+      <h1 class="pique">
+        sure, let's talk about it.
       </h1>
 
-      <h2 class="big-heading" :class="font">
-        Altair.
-      </h2>
-
-      <h3 class="hero-h3 big-heading reduced">
+      <!-- <h3 class="hero-h3 big-heading reduced">
         I build systems at scale.
-      </h3>
+      </h3> -->
 
-      <ContentDoc
+      <!-- <ContentDoc
         path="profile/hero"
         tag="div"
         class="hero-container"
-      />
+      /> -->
     </div>
     <div class="hero-footer">
       <div class="name">
@@ -28,7 +37,7 @@
           altair
         </div> -->
       </div>
-      <div class="single-item">
+      <!-- <div class="single-item">
         <div class="item-title">
           {{ heroFootItems[footItemIndex].title }}
         </div>
@@ -53,13 +62,13 @@
         <NuxtLink class="down-link-inner" to="/#about">
           <Icon type="down-arrow" />
         </NuxtLink>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-  import { heroFootItems } from "~/src/config";
+  import { heroFootItems, heroCallOuts } from "~/src/config";
 </script>
 
 <script lang="ts">
@@ -68,6 +77,7 @@ export default {
   data() {
     return {
       footItemIndex: 0,
+      activeCallOut: 0,
     }
   },
   methods: {
@@ -130,31 +140,35 @@ export default {
   padding-top: calc(geometry.var("nav-height"))
   padding: 0 20px
 
-  // position: relative
-  // @media(min-width: 1080px)
-  //   & > :is(h1), & > * > :is(h1, h2, h3)
-  //     opacity: 0.6
+  .hero-container
+    .big-title
+      font-family: typography.font("big-heading")
+      text-transform: lowercase
+      font-size: clamp(30px, 2vw, 80px)
+      font-weight: 800
+      font-size: 80px
 
-  //     &:hover, &:focus
-  //       opacity: 1
-  // --x: 500
-  // --y: 200
+      &.inactive
+        display: none
 
-  // &::before
-  //   content: ''
-  //   color: colors.color(secondary-highlight)
-  //   // opacity: 0.5
-  //   $size: max(20vh, 10vw)
-    
-  //   position: absolute
-  //   left: var(--x)
-  //   top: var(--y)
-  //   width: $size
-  //   height: $size
-  //   transform: translate(-50%, -50%)
-  //   transition: all 0.5s ease-out
-  //   background: radial-gradient(circle closest-side, rgba(colors.color("primary-highlight"), 0.4), transparent)
-    
+      &::after
+        content: '...?'
+        margin-left: 10px
+
+  .pique
+    margin: 0px 0 10px 4px
+
+    color: colors.color("primary-highlight")
+    font-family: typography.font("sans-serif")
+    // text-transform: uppercase
+
+    font-size: clamp(typography.font-size("s"), 1vw, typography.font-size("m"))
+    font-weight: 800
+    width: 100%
+
+    @media (max-width: 480px)
+      margin: 0 0 20px 2px
+  
 
   .hero-footer
     position: absolute
@@ -270,82 +284,81 @@ export default {
 
 
 
+
+
+
+
+  // .hero-h2
+  //   // margin: 0px 0 10px 4px
+
+  //   color: colors.color("primary-highlight")
+  //   font-family: typography.font("monospace")
+  //   text-transform: uppercase
+
+  //   font-size: clamp(typography.font-size("xxs"), 1vw, typography.font-size("m"))
+  //   font-weight: 600
+  //   width: 100%
+
+  //   @media (max-width: 480px)
+  //     margin: 0 0 20px 2px
     
-
-  .hero-content-container
-    width: auto
-
-
-  .hero-h1
-    margin: 0px 0 10px 4px
-
-    color: colors.color("primary-highlight")
-    font-family: typography.font("monospace")
-    text-transform: uppercase
-
-    font-size: clamp(typography.font-size("xxs"), 1vw, typography.font-size("m"))
-    font-weight: 600
-    width: 100%
-
-    @media (max-width: 480px)
-      margin: 0 0 20px 2px
-    
-  h3
-    margin-top: 10px
-    color: colors.color("foreground")
-    line-height: 0.9
-    padding-top: 0.3em
-    font-size: clamp(2.5rem, 4vw, 4rem) !important
+  // h3
+  //   margin-top: 10px
+  //   color: colors.color("foreground")
+  //   line-height: 0.9
+  //   padding-top: 0.3em
+  //   font-size: clamp(2.5rem, 4vw, 4rem) !important
   
-  p
-    margin: 20px 0
-    max-width: 540px
-    opacity: 1 !important
+  // p
+  //   margin: 20px 0
+  //   max-width: 540px
+  //   opacity: 1 !important
   
-  .email-link
-    @include mixins.big-button
-    text-transform: uppercase !important
+  // .email-link
+  //   @include mixins.big-button
+  //   text-transform: uppercase !important
 
-  .reduced
-    font-size: clamp(30px,6vw, 80px)
+  // .reduced
+  //   font-size: clamp(30px,6vw, 80px)
 
-  .rubik
-    font-family: typography.font("rubik-fade")
-    font-weight: 400
-    font-size: clamp(40px, 6vw, 80px)
+  // .rubik
+  //   font-family: typography.font("rubik-fade")
+  //   font-weight: 400
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .megrim
-    font-family: typography.font("megrim")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .megrim
+  //   font-family: typography.font("megrim")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .fredericka
-    font-family: typography.font("fredericka")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .fredericka
+  //   font-family: typography.font("fredericka")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .macondo
-    font-family: typography.font("macondo")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .macondo
+  //   font-family: typography.font("macondo")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .rubik-puddles
-    font-family: typography.font("rubik-puddles")
+  // .rubik-puddles
+  //   font-family: typography.font("rubik-puddles")
     
-    font-weight: 500
+  //   font-weight: 500
 
-  .cyber
-    font-family: typography.font("twitch")
-    text-transform: uppercase
-    font-size: clamp(30px, 2vw, 80px)
-    // background: yellow
-    font-weight: 400
+  // .cyber
+  //   font-family: typography.font("big-heading")
+  //   text-transform: lowercase
+  //   font-size: clamp(30px, 2vw, 80px)
+  //   // background: yellow
+  //   font-weight: 800
+  //   font-size: 80px
     
     // make the text transparent with outline 
     // to make it look like it's glowing
-    color: transparent
-    -webkit-text-stroke: 1px colors.color("primary-highlight")
-    text-shadow: 0 0 10px colors.color("primary-highlight")
+    // color: transparent
+    // -webkit-text-stroke: 1px colors.color("primary-highlight")
+    // text-shadow: 0 0 10px colors.color("primary-highlight")
 
 
   .hero-background

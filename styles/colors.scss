@@ -105,6 +105,13 @@ $neon: (
 $theme: $navy;
 
 
+$palette: (
+  "teal": #16f1d1,
+  "purple": #a374ff,
+  "khaki": #ffd074,
+  "white": #ecf7fa,
+  "black": #282723,
+);
 
 
 @function color($color-name) {

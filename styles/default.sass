@@ -62,7 +62,6 @@ body
   
   margin: 0
   width: 100%
-  // min-height: 100%
   overflow-x: hidden
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
@@ -74,19 +73,6 @@ body
   @media (max-width: 480px) 
     font-size: typography.font-size("l")
   
-  // &.hidden 
-  //   overflow: hidden
-  
-  &.blur 
-    overflow: hidden
-    header 
-      background-color: transparent
-    
-    #content > * 
-      filter: blur(5px) brightness(0.7)
-      transition: geometry.var("default-transition")
-      pointer-events: none
-      user-select: none
     
 #root
   display: flex
@@ -103,26 +89,6 @@ body
   grid-template-rows: 1fr auto
   grid-template-columns: 100%
 
-main
-  margin: 0 auto
-  width: 100%
-  max-width: 1300px
-  height: max-content
-  padding: 0 clamp(0.5em, 3vw, 3em)
-  
-  &.fill-height 
-    padding: 0 150px
-    
-    @media (max-width: 1080px) 
-      padding: 0 100px
-    
-    @media (max-width: 768px) 
-      padding: 0 50px
-    
-    @media (max-width: 480px) 
-      padding: 0 25px
-    
-  
 
 section 
   margin: 0 auto

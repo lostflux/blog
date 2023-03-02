@@ -151,21 +151,9 @@ $palette: (
 }
 
 :export {
-  teal: color("teal");
-  purple: color("purple");
-  khaki: color("khaki");
-  white: color("white");
-  black: color("black");
-}
-
-@function highlight-color($n) {
-
-  @debug $n;
-  @if $n == '1' {
-    @return color("teal");
-  } @else if $n == '2' {
-    @return color("purple");
-  } @else {
-    @return color("khaki");
-  }
+  teal: color(teal);
+  purple: color(purple);
+  khaki: color(khaki);
+  white: color(white);
+  black: color(black);
 }

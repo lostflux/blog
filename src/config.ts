@@ -111,10 +111,10 @@ const nonTocRoutes = [
 ];
 
 const heroCallOuts = [
-    "tech"
-  , "art"
-  , "math"
-  , "physics"
+    { field: "tech", action: "build" }
+  , { field: "art", action: "create" }
+  , { field: "math", action: "solve" }
+  , { field: "physics", action: "explore" }
 ]
 
 export {

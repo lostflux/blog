@@ -127,26 +127,38 @@ h1, h2, h3, h4, h5, h6
   font-size: clamp(40px, 8vw, 60px)
 
 .numbered-heading 
-  display: flex
-  align-items: center
-  position: relative
-  margin: 10px 0 40px
-  width: 100%
-  font-size: clamp(26px, 5vw, typography.font-size("heading"))
+  // display: flex
+  // align-items: center
+  // position: relative
+  // margin: 10px 0 40px
+  // width: 100%
+  // font-size: clamp(26px, 5vw, typography.font-size("heading"))
   white-space: nowrap
+
+  font-family: typography.font("sans-serif")
+  text-transform: uppercase
+  font-size: clamp(16px, 1vw, 20px)
+  font-weight: 600
+  // background: yellow
+  width: fit-content
+  margin: 20px auto
+  color: colors.color("teal")
+  
+
+
   
   &::before
-    content: '0' counter(sections) '.'
+    // content: '0' counter(sections) '.'
+    opacity: 0.4
+
+    &::hover, &::focus, &::active
+      opacity: 0.8
+
     counter-increment: sections
 
     position: relative
     margin-right: 0.5em
     margin-bottom: 0.5em
-
-    color: colors.color("primary-highlight")
-    font-family: typography.font("monospace")
-    font-size: typography.font-size("xl")
-    font-weight: 400
     
   
   &::after 

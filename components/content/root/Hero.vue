@@ -4,22 +4,35 @@
       ALT
     </div> -->
     <div class="hero-container">
-      
+      <div class="blurb-container">
+        <div class="big-title">
+          <span class="strike-through">
+            Talkers
+          </span>
+          <span>Doers.</span>
+        </div>
+        <h1
+          class="pique"
+          :style="{ 'color': getColor(activeCallOutIndex) }"
+        >
+          sure, let's talk about it.
+        </h1>
 
-      <div
-        v-for="(callout, i) in heroCallOuts" 
-        :class="
-          {
-            'big-title': true,
-            'inactive': activeCallOut != i
-          }"
-      >
-        {{ callout }}
+        <div class="digression">
+          <span class="normal"> but first, let's </span>
+          <span
+            class="highlight"
+            id="action"
+            :style="{ 'color':getColor(activeCallOutIndex) }"
+          >
+            {{ currentAction }}
+          </span>
+        </div>
+    
       </div>
 
-      <h1 class="pique">
-        sure, let's talk about it.
-      </h1>
+
+
 
       <!-- <h3 class="hero-h3 big-heading reduced">
         I build systems at scale.
@@ -37,7 +50,7 @@
           altair
         </div> -->
       </div>
-      <!-- <div class="single-item">
+      <div class="single-item">
         <div class="item-title">
           {{ heroFootItems[footItemIndex].title }}
         </div>
@@ -62,7 +75,7 @@
         <NuxtLink class="down-link-inner" to="/#about">
           <Icon type="down-arrow" />
         </NuxtLink>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>
@@ -77,19 +90,84 @@ export default {
   data() {
     return {
       footItemIndex: 0,
-      activeCallOut: 0,
+      activeCallOutIndex: 0,
+      heroColorsDict: {
+        "teal": "#16f1d1",
+        "purple": "#a374ff",
+        "khaki": "#ffd074",
+        "white": "#ecf7fa",
+        "black": "#282723"
+      },
+      currentAction: heroCallOuts[0].action,
     }
   },
+
   methods: {
+    changeAction() {
+      const curr = this.activeCallOutIndex % heroCallOuts.length;
+      const nextAction = heroCallOuts[curr].action;
+      const actionElement = document.getElementById("action");
+
+      if (actionElement.innerText.length > nextAction.length) {
+        actionElement.innerText = actionElement.innerText.slice(0, nextAction.length);
+      } else {
+        for (let i = actionElement.innerText.length; i < nextAction.length; i++) {
+          actionElement.innerText += "?";
+        }
+      }
+
+      // randomize the entire word
+      let iterations = 0;
+      const shuffle = setInterval(() => {
+        if (iterations >= 2 * nextAction.length) {
+          clearInterval(shuffle);
+        }
+        
+        actionElement.innerText = actionElement.innerText
+          .split("")
+          .map((char, index) => {
+
+            const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+            const modIndex = iterations - nextAction.length;
+            if (iterations < nextAction.length) {
+              return (index <= iterations)
+                ? randomChar
+                : char;
+            } else {
+            return (index === modIndex)
+              ? nextAction.charAt(index)
+              : char;
+            }
+          }).join("");
+          iterations++;
+      });
+    },
+    getColor(index: number) {
+      const i = index % this.heroColors.length;
+      return this.heroColors[i];
+    },
     tick() {
       setTimeout(() => {
         this.footItemIndex = (this.footItemIndex + 1) % heroFootItems.length;
+        this.activeCallOutIndex = this.activeCallOutIndex + 1 % 1000;
+        this.changeAction();
         this.tick();
       }, 4000);
 
     }
   },
   computed: {
+    activeCallOut() {
+      const index = this.activeCallOutIndex % heroCallOuts.length;
+      return heroCallOuts[index];
+    },
+    heroColors() {
+      return [
+        this.heroColorsDict.teal,
+        this.heroColorsDict.purple,
+        this.heroColorsDict.khaki,
+      ]
+    },
     font() {
       const fonts = [
         "cyber",
@@ -112,16 +190,13 @@ export default {
     }
   },
   mounted() {
+    this.changeAction();
     this.tick();
-    // let hero = document.getElementById('hero');
-    // hero.addEventListener('mousemove', e => {
-    //   let rect = hero.getBoundingClientRect();
-    //   let x = e.clientX - rect.left;
-    //   let y = e.clientY - rect.top;
-    //   hero.style.setProperty('--x', x + 'px');
-    //   hero.style.setProperty('--y', y + 'px');
-    // });
-    // this.$forceUpdate();
+  },
+  watch: {
+    currentAction() {
+      this.$forceUpdate();
+    }
   }
 }
 </script>
@@ -139,35 +214,60 @@ export default {
   min-height: calc(100vh - geometry.var("nav-height"))
   padding-top: calc(geometry.var("nav-height"))
   padding: 0 20px
+  width: 100%
 
   .hero-container
-    .big-title
-      font-family: typography.font("big-heading")
-      text-transform: lowercase
-      font-size: clamp(30px, 2vw, 80px)
-      font-weight: 800
-      font-size: 80px
+    .blurb-container
+      width: fit-content
 
+      transition: all 0.5s ease-in-out
       &.inactive
         display: none
+      .big-title
+        width: fit-content
+        font-family: typography.font("big-heading")
+        color: colors.color("white")
+        font-size: clamp(20px, 10vw, 100px)
+        font-weight: 800
+        margin: 0
+        padding: 0
 
-      &::after
-        content: '...?'
-        margin-left: 10px
+        & > .strike-through
+          // background: yellow
+          text-decoration: line-through
+          text-decoration-thickness: 2px
+          color: colors.color(foreground)
 
-  .pique
-    margin: 0px 0 10px 4px
+    .pique
+      margin: 0px 0 10px 4px
 
-    color: colors.color("primary-highlight")
-    font-family: typography.font("sans-serif")
-    // text-transform: uppercase
+      // color: colors.color("purple")
+      font-family: typography.font("sans-serif")
+      // text-transform: uppercase
 
-    font-size: clamp(typography.font-size("s"), 1vw, typography.font-size("m"))
-    font-weight: 800
-    width: 100%
+      font-size: clamp(typography.font-size("l"), 3vw, typography.font-size("xl"))
+      font-weight: 800
+      width: 100%
 
-    @media (max-width: 480px)
-      margin: 0 0 20px 2px
+      @media (max-width: 480px)
+        margin: 0 0 20px 2px
+
+    .digression
+      font-family: typography.font("sans-serif")
+      font-weight: 400
+      margin: 0 0 20px 4px
+
+      &:is(:last-child)::after
+        content: '.'
+        color: colors.color("white")
+    
+      .normal
+        color: colors.color("white")
+
+
+
+      @media (max-width: 480px)
+        margin: 0 0 20px 2px
   
 
   .hero-footer

@@ -10,20 +10,23 @@
 @use "~/styles/mixins"
 
 blockquote
+  // all: unset
   width: 100%
   text-align: center
   position: relative
-  margin: 2rem auto
-  border-left: none
+  margin: 2rem auto !important
+  border-left: none !important
+  // background: yellow
 
   padding: 3rem 2rem 0 2rem
 
   .paragraph
+    // all: unset
     width: 80%
-    margin: auto
-    font-size: clamp(1rem, 1.7vw, 1.5rem) //1.2em
-    font-weight: 500
-    line-height: 1.5
+    margin: 0 auto !important
+    font-size: clamp(1rem, 1.7vw, 1.5rem) !important
+    font-weight: 500 !important
+    line-height: 1.5 !important
     color: colors.color("lightest-foreground")
 
 

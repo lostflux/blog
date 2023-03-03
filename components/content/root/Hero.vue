@@ -303,6 +303,7 @@ export default {
       // margin: 0 80px 80px 0margin
       margin-right: 10%
       margin-bottom: 10%
+      display: none
       
 
 

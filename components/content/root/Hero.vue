@@ -299,7 +299,9 @@ export default {
       align-items: center
       justify-content: center
       float: right
-      margin: 0 80px 80px 0
+      // margin: 0 80px 80px 0margin
+      margin-right: 10%
+      margin-bottom: 10%
       
 
 

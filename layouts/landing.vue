@@ -38,15 +38,16 @@
   width: 100vw !important
   // background-color: green
 
-  body.home
+  body
     // all: unset
     // width: 100% !important
-    margin: 0
-    padding: 0
+    margin: 0 auto
+    padding: 0 20px !important
+    // box-sizing: border-box
 
-    main.home
-      width: 100vw !important
-      margin: 0
+    main
+      // width: 100% !important
+      margin: 0 auto
       padding: 0
       
 

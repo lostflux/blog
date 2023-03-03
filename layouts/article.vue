@@ -106,8 +106,8 @@ const toggleAuthPopup = () => {
   .right-panel
     min-width: 240px
     max-width: 240px
-    margin-right: 10px
-    margin-left: 10px
+    // margin-right: 10px
+    margin-left: 20px
     padding: geometry.var("nav-height") 0
     height: fit-content
     position: sticky

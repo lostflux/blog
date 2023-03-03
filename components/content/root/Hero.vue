@@ -3,30 +3,52 @@
     <!-- <div class="hero-background rubik-puddles">
       ALT
     </div> -->
-    <div class="hero-content-container">
-      <h1 class="hero-h1">
-        Hi, my name is
-      </h1>
+    <div class="hero-container">
+      <div class="blurb-container">
+        <div class="big-title">
+          <span class="strike-through">
+            Talkers
+          </span>
+          <span>Doers.</span>
+        </div>
+        <h1
+          class="pique"
+          :style="{ 'color': getColor(activeCallOutIndex) }"
+        >
+          sure, let's talk about it.
+        </h1>
 
-      <h2 class="big-heading" :class="font">
-        Altair.
-      </h2>
+        <div class="digression">
+          <span class="normal"> but first, let's </span>
+          <span
+            class="highlight"
+            id="action"
+            :style="{ 'color':getColor(activeCallOutIndex) }"
+          >
+            {{ currentAction }}
+          </span>
+        </div>
+    
+      </div>
 
-      <h3 class="hero-h3 big-heading reduced">
+
+
+
+      <!-- <h3 class="hero-h3 big-heading reduced">
         I build systems at scale.
-      </h3>
+      </h3> -->
 
-      <ContentDoc
+      <!-- <ContentDoc
         path="profile/hero"
         tag="div"
         class="hero-container"
-      />
+      /> -->
     </div>
     <div class="hero-footer">
-      <div class="name">
-        <!-- <div class="name-inner">
+      <!-- <div class="name">
+        <div class="name-inner">
           altair
-        </div> -->
+        </div>
       </div>
       <div class="single-item">
         <div class="item-title">
@@ -48,10 +70,13 @@
             {{ heroFootItems[index].subscript }}
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="down-link">
         <NuxtLink class="down-link-inner" to="/#about">
-          <Icon type="down-arrow" />
+          <Icon
+            type="down-arrow"
+            :style="{ 'color':getColor(activeCallOutIndex) }"
+            />
         </NuxtLink>
       </div>
     </div>
@@ -59,7 +84,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { heroFootItems } from "~/src/config";
+  import { heroFootItems, heroCallOuts } from "~/src/config";
 </script>
 
 <script lang="ts">
@@ -68,21 +93,88 @@ export default {
   data() {
     return {
       footItemIndex: 0,
+      activeCallOutIndex: 0,
+      heroColorsDict: {
+        "teal": "#16f1d1",
+        "purple": "#a374ff",
+        "khaki": "#ffd074",
+        "white": "#ecf7fa",
+        "black": "#282723"
+      },
+      currentAction: heroCallOuts[0].action,
     }
   },
+
   methods: {
+    changeAction() {
+      const curr = this.activeCallOutIndex % heroCallOuts.length;
+      const nextAction = heroCallOuts[curr].action;
+      const actionElement = document.getElementById("action");
+
+      if (actionElement.innerText.length > nextAction.length) {
+        actionElement.innerText = actionElement.innerText.slice(0, nextAction.length);
+      } else {
+        for (let i = actionElement.innerText.length; i < nextAction.length; i++) {
+          actionElement.innerText += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+        }
+      }
+
+      // randomize the entire word
+      let iterations = 0;
+      const shuffle = setInterval(() => {
+        if (iterations >= 2 * nextAction.length) {
+          clearInterval(shuffle);
+        }
+        
+        actionElement.innerText = actionElement.innerText
+          .split("")
+          .map((char, index) => {
+
+            const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+            const modIndex = iterations - nextAction.length;
+            if (iterations < nextAction.length) {
+              return (index <= iterations)
+                ? randomChar
+                : char;
+            } else {
+            return (index === modIndex)
+              ? nextAction.charAt(index)
+              : char;
+            }
+          }).join("");
+          iterations++;
+      }, 60);
+    },
+    getColor(index: number) {
+      const i = index % this.heroColors.length;
+      return this.heroColors[i];
+    },
     tick() {
-      setTimeout(() => {
+      setInterval(() => {
         this.footItemIndex = (this.footItemIndex + 1) % heroFootItems.length;
-        this.tick();
-      }, 4000);
+        this.activeCallOutIndex = this.activeCallOutIndex + 1 % 1000;
+        this.changeAction();
+        // this.tick();
+      }, 5000);
 
     }
   },
   computed: {
+    activeCallOut() {
+      const index = this.activeCallOutIndex % heroCallOuts.length;
+      return heroCallOuts[index];
+    },
+    heroColors() {
+      return [
+        this.heroColorsDict.teal,
+        this.heroColorsDict.purple,
+        this.heroColorsDict.khaki,
+      ]
+    },
     font() {
       const fonts = [
-        "fredericka",
+        "cyber",
+        // "fredericka",
         // "megrim",
         // "macondo",
         // "rubik-puddles",
@@ -101,16 +193,13 @@ export default {
     }
   },
   mounted() {
+    this.changeAction();
     this.tick();
-    // let hero = document.getElementById('hero');
-    // hero.addEventListener('mousemove', e => {
-    //   let rect = hero.getBoundingClientRect();
-    //   let x = e.clientX - rect.left;
-    //   let y = e.clientY - rect.top;
-    //   hero.style.setProperty('--x', x + 'px');
-    //   hero.style.setProperty('--y', y + 'px');
-    // });
-    // this.$forceUpdate();
+  },
+  watch: {
+    currentAction() {
+      this.$forceUpdate();
+    }
   }
 }
 </script>
@@ -128,32 +217,70 @@ export default {
   min-height: calc(100vh - geometry.var("nav-height"))
   padding-top: calc(geometry.var("nav-height"))
   padding: 0 20px
+  width: 100%
+  position: relative
+  // background: yellow !important
 
-  // position: relative
-  // @media(min-width: 1080px)
-  //   & > :is(h1), & > * > :is(h1, h2, h3)
-  //     opacity: 0.6
+  .hero-container
+    .blurb-container
+      width: fit-content
+      font-family: typography.font("matter")
 
-  //     &:hover, &:focus
-  //       opacity: 1
-  // --x: 500
-  // --y: 200
+      // transition: all 0.5s ease-in-out
+      &.inactive
+        display: none
+      .big-title
+        width: fit-content
+        font-family: typography.font("big-heading")
+        color: colors.color("white")
+        font-size: clamp(20px, 8vw, 100px)
+        font-weight: 800
+        margin: 0
+        padding: 0
 
-  // &::before
-  //   content: ''
-  //   color: colors.color(secondary-highlight)
-  //   // opacity: 0.5
-  //   $size: max(20vh, 10vw)
+        & > .strike-through
+          // background: yellow
+          text-decoration: line-through
+          text-decoration-thickness: 2px
+          color: colors.color(foreground)
+
+    .pique
+      margin: 0px 0 10px 4px
+
+      // color: colors.color("purple")
+      // font-family: typography.font("sans-serif")
+      // text-transform: uppercase
+
+      font-size: clamp(typography.font-size("l"), 3vw, typography.font-size("xl"))
+      font-weight: 800
+      width: 100%
+      // animate change of color
+      -webkit-transition: all 3s ease-in-out
+      -moz-transition: all 3s ease-in-out
+      -ms-transition: all 3s ease-in-out
+      -o-transition: all 3s ease-in-out
+      transition: all 3s ease-in-out
+
+      @media (max-width: 480px)
+        margin: 0 0 20px 2px
+
+
+    .digression
+      // font-family: typography.font("sans-serif")
+      font-weight: 400
+      margin: 0 0 20px 4px
+
+      &:is(:last-child)::after
+        content: '.'
+        color: colors.color("white")
     
-  //   position: absolute
-  //   left: var(--x)
-  //   top: var(--y)
-  //   width: $size
-  //   height: $size
-  //   transform: translate(-50%, -50%)
-  //   transition: all 0.5s ease-out
-  //   background: radial-gradient(circle closest-side, rgba(colors.color("primary-highlight"), 0.4), transparent)
-    
+      .normal
+        color: colors.color("white")
+
+
+      @media (max-width: 480px)
+        margin: 0 0 20px 2px
+  
 
   .hero-footer
     position: absolute
@@ -164,73 +291,6 @@ export default {
     @media(max-height: 1020px)
       position: relative
       padding: 2rem 0
-    
-    padding: 2rem clamp(0px, 5vw, 5rem)
-    min-height: 10%
-    height: clamp(130px, 10vh, 150px)
-    width: 100%
-    display: flex
-    justify-content: space-between
-    text-align: left
-
-    background-color: rgba(colors.color(background), 0.4)
-    backdrop-filter: blur(10px)
-
-
-    .name
-      font-size: clamp(1.8rem, 1.6vw, 1rem)
-      color: colors.color(foreground)
-      font-weight: 600
-      font-family: typography.font(fredericka)
-      justify-content: center
-      align-items: center
-      display: flex
-
-    .item
-      flex: 1
-      display: flex
-      flex-direction: column
-      justify-content: center
-      align-items: center
-      transition: all 0.5s ease-out
-
-      @media(max-width: 960px)
-        display: none
-
-    .single-item
-      display: none
-
-      @media(max-width: 960px)
-        flex: 1
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: left
-        display: flex
-
-        .item-title
-          font-size: clamp(1.7rem, 1.6vw, 1.5rem)
-          margin-bottom: 0.5rem
-          color: rgba(colors.color(lightest-foreground), 0.9)
-          width: 100%
-
-        .item-subscript
-          font-size: clamp(0.8rem, 1.6vw, 1rem)
-          color: colors.color(foreground)
-          width: 100%
-      
-
-    .item-title
-      font-weight: 600
-      font-size: clamp(0.9rem, 2vw, 1.2rem)
-      margin-bottom: 0.5rem
-      color: rgba(colors.color(lightest-foreground), 0.9)
-      width: 100%
-
-    .item-subscript
-      font-size: clamp(0.7rem, 1.6vw, 1rem)
-      color: colors.color(foreground)
-      width: 100%
 
     .down-link
       height: 60px
@@ -238,6 +298,13 @@ export default {
       display: flex
       align-items: center
       justify-content: center
+      position: relative
+      float: right
+      // margin: 0 80px 80px 0margin
+      margin-right: 10%
+      margin-bottom: 10%
+      display: none
+      
 
 
       .down-link-inner
@@ -250,6 +317,13 @@ export default {
         svg
           // animate up and down
           animation: up-down 1s ease-in-out infinite alternate
+          margin: auto
+          // animate change of color
+          -webkit-transition: color 3s ease-in-out
+          -moz-transition: color 3s ease-in-out
+          -ms-transition: color 3s ease-in-out
+          -o-transition: color 3s ease-in-out
+          transition: color 3s ease-in-out
 
 
 
@@ -266,72 +340,154 @@ export default {
               transform: translateY(-5px)
             100%
               transform: translateY(0)
-
-
-
     
+    // padding: 2rem clamp(0px, 5vw, 5rem)
+    // min-height: 10%
+    // height: clamp(130px, 10vh, 150px)
+    // width: 100%
+    // display: flex
+    // justify-content: space-between
+    // text-align: left
 
-  .hero-content-container
-    width: auto
+    // // background-color: rgba(colors.color(background), 0.4)
+    // backdrop-filter: blur(10px)
 
 
-  .hero-h1
-    margin: 0px 0 10px 4px
+    // .name
+    //   font-size: clamp(1.8rem, 1.6vw, 1rem)
+    //   color: colors.color(foreground)
+    //   font-weight: 600
+    //   font-family: typography.font(fredericka)
+    //   justify-content: center
+    //   align-items: center
+    //   display: flex
 
-    color: colors.color("primary-highlight")
-    font-family: typography.font("monospace")
-    text-transform: uppercase
+    // .item
+    //   flex: 1
+    //   display: flex
+    //   flex-direction: column
+    //   justify-content: center
+    //   align-items: center
+    //   transition: all 0.5s ease-out
 
-    font-size: clamp(typography.font-size("xxs"), 1vw, typography.font-size("m"))
-    font-weight: 600
-    width: 100%
+    //   @media(max-width: 960px)
+    //     display: none
 
-    @media (max-width: 480px)
-      margin: 0 0 20px 2px
+    // .single-item
+    //   display: none
+
+    //   @media(max-width: 960px)
+    //     flex: 1
+    //     display: flex
+    //     flex-direction: column
+    //     justify-content: center
+    //     align-items: left
+    //     display: flex
+
+    //     .item-title
+    //       font-size: clamp(1.7rem, 1.6vw, 1.5rem)
+    //       margin-bottom: 0.5rem
+    //       color: rgba(colors.color(lightest-foreground), 0.9)
+    //       width: 100%
+
+    //     .item-subscript
+    //       font-size: clamp(0.8rem, 1.6vw, 1rem)
+    //       color: colors.color(foreground)
+    //       width: 100%
+      
+
+    // .item-title
+    //   font-weight: 600
+    //   font-size: clamp(0.9rem, 2vw, 1.2rem)
+    //   margin-bottom: 0.5rem
+    //   color: rgba(colors.color(lightest-foreground), 0.9)
+    //   width: 100%
+
+    // .item-subscript
+    //   font-size: clamp(0.7rem, 1.6vw, 1rem)
+    //   color: colors.color(foreground)
+    //   width: 100%
+
+
+
+
+
+
+
+
+
+  // .hero-h2
+  //   // margin: 0px 0 10px 4px
+
+  //   color: colors.color("primary-highlight")
+  //   font-family: typography.font("monospace")
+  //   text-transform: uppercase
+
+  //   font-size: clamp(typography.font-size("xxs"), 1vw, typography.font-size("m"))
+  //   font-weight: 600
+  //   width: 100%
+
+  //   @media (max-width: 480px)
+  //     margin: 0 0 20px 2px
     
-  h3
-    margin-top: 10px
-    color: colors.color("foreground")
-    line-height: 0.9
-    padding-top: 0.3em
-    font-size: clamp(2.5rem, 4vw, 4rem) !important
+  // h3
+  //   margin-top: 10px
+  //   color: colors.color("foreground")
+  //   line-height: 0.9
+  //   padding-top: 0.3em
+  //   font-size: clamp(2.5rem, 4vw, 4rem) !important
   
-  p
-    margin: 20px 0
-    max-width: 540px
-    opacity: 1 !important
+  // p
+  //   margin: 20px 0
+  //   max-width: 540px
+  //   opacity: 1 !important
   
-  .email-link
-    @include mixins.big-button
-    text-transform: uppercase !important
+  // .email-link
+  //   @include mixins.big-button
+  //   text-transform: uppercase !important
 
-  .reduced
-    font-size: clamp(30px,6vw, 80px)
+  // .reduced
+  //   font-size: clamp(30px,6vw, 80px)
 
-  .rubik
-    font-family: typography.font("rubik-fade")
-    font-weight: 400
-    font-size: clamp(40px, 6vw, 80px)
+  // .rubik
+  //   font-family: typography.font("rubik-fade")
+  //   font-weight: 400
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .megrim
-    font-family: typography.font("megrim")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .megrim
+  //   font-family: typography.font("megrim")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .fredericka
-    font-family: typography.font("fredericka")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .fredericka
+  //   font-family: typography.font("fredericka")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .macondo
-    font-family: typography.font("macondo")
-    font-weight: 500
-    font-size: clamp(40px, 6vw, 80px)
+  // .macondo
+  //   font-family: typography.font("macondo")
+  //   font-weight: 500
+  //   font-size: clamp(40px, 6vw, 80px)
 
-  .rubik-puddles
-    font-family: typography.font("rubik-puddles")
+  // .rubik-puddles
+  //   font-family: typography.font("rubik-puddles")
     
-    font-weight: 500
+  //   font-weight: 500
+
+  // .cyber
+  //   font-family: typography.font("big-heading")
+  //   text-transform: lowercase
+  //   font-size: clamp(30px, 2vw, 80px)
+  //   // background: yellow
+  //   font-weight: 800
+  //   font-size: 80px
+    
+    // make the text transparent with outline 
+    // to make it look like it's glowing
+    // color: transparent
+    // -webkit-text-stroke: 1px colors.color("primary-highlight")
+    // text-shadow: 0 0 10px colors.color("primary-highlight")
+
 
   .hero-background
     position: fixed

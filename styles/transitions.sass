@@ -50,17 +50,9 @@
 
   
 /* Fade */
-.fade-enter 
-  opacity: 0
-
-.fade-enter-active 
-  opacity: 1
-  transition: opacity 300ms geometry.var("default-easing")
-
-.fade-exit 
-  opacity: 1
-
-.fade-exit-active 
-  opacity: 0
-  transition: opacity 300ms geometry.var("default-easing")
-
+.fade-enter-from, .fade-leave-to
+  -webkit-transition: all 0.5s geometry.var("default-easing")
+  -moz-transition: all 0.5s geometry.var("default-easing")
+  -ms-transition: all 0.5s geometry.var("default-easing")
+  -o-transition: all 0.5s geometry.var("default-easing")
+  transition: all 0.5s geometry.var("default-easing")

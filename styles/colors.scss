@@ -114,8 +114,12 @@ $palette: (
 
 
   "primary-highlight": #DC4D4D,
+  // "primary-highlight": #16f1d1,
+
+
   "primary-highlight-tint": rgba(202, 85, 85, 0.11) ,
-  "secondary-highlight": rgb(187, 255, 0),
+  // "secondary-highlight": rgb(187, 255, 0),
+  "secondary-highlight": #ffd074,
   
   "background": #0a192f,
   "dark-background": #020c1b,
@@ -159,8 +163,6 @@ $palette: (
 }
 
 @function highlight-color($n) {
-
-  @debug $n;
   @if $n == '1' {
     @return color("teal");
   } @else if $n == '2' {

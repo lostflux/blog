@@ -22,7 +22,7 @@ and we print a leader-board of the players' scores.
 
 <br/>
 
-:highlight[**Collaborative project with [Alphonso Bradham][alphonso]**
+:highlight[Collaborative project with [Alphonso Bradham][alphonso]
 and [Zimehr Abbasi][zimehr]].
 
 [alphonso]: https://www.linkedin.com/in/alphonso-bradham

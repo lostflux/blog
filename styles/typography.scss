@@ -12,7 +12,8 @@
 }
 
 $fonts-map: (
-  "sans-serif": "Matter",
+  // "sans-serif": "Matter",
+  "sans-serif": "Calibre",
   // "sans-serif": "Brown",
   // "sans-serif": "DM Sans",
   // "sans-serif": "Brandon Grotesk",
@@ -38,7 +39,9 @@ $fonts-map: (
 
   "big-heading": "Antique Olive",
 
-  "antique-olive": "Antique Olive"
+  "antique-olive": "Antique Olive",
+
+  "headings": "Antique Olive",
 );
 
 $font-sizes: (

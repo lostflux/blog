@@ -3,6 +3,10 @@
 </template>
 
 <style lang="sass" scoped>
+@use "~/styles/typography"
+
+// li
+//   font-size: typography.font-size("m")
 
 //! This overrides mixins.small-list.li
 // li

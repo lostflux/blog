@@ -40,19 +40,20 @@ export default {
   margin: 1em 0
   padding: 1em 1em 0.5em 1em
   border-radius: 0.5rem
+  // font-size: inherit
 
   & > ul
-    font-size: inherit !important
+    // font-size: inherit !important
     margin: 0.5em 0 0.5em 0.5em
     
     li
-      margin: 0
-      line-height: 1.75
-      font-size: inherit !important
-      font-size: inherit !important
+      // margin: 0
+      // line-height: 1.75
+      // font-size: inherit !important
+      // font-size: inherit !important
 
-    &::before
-      color: inherit !important
+      &::before
+        color: inherit !important
 
   .alert-icon
     width: 1.5em
@@ -61,9 +62,10 @@ export default {
     padding-bottom: 0.25em
 
   .title-container
-    margin-bottom: 1em
+    margin-bottom: 0.5em
     display: flex
     flex-direction: row
+    // background: yellow
 
     .title
       font-weight: 600

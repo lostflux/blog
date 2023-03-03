@@ -5,7 +5,7 @@
     <ul
       class="toc"
     >
-      <span class="title"> Table of Contents </span>
+      <span class="title"> On this page </span>
       <li
         v-for="link in toc.links"
         :key="link.text"
@@ -194,12 +194,14 @@ const { toc } = useContent();
   position: relative
 
   .title
-    font-size: typography.font-size("xl")
     color: colors.color("primary-highlight")
-    font-weight: 600
+    font-weight: 800
     line-height: 2
-    text-decoration: underline
     min-width: 100%
+
+    text-transform: uppercase
+    font-size: typography.font-size("l")
+    font-family: typography.font("headings")
 
   .toc-link-1
     // margin-left: 1em

@@ -6,8 +6,9 @@
 
 <style lang="sass">
 @use "~/styles/mixins"
+@use "~/styles/typography"
 .prose-ul
   @include mixins.styled-list
-  margin-left: 0.5em
+  // font-size: typography.font-size("xs")
 
 </style>

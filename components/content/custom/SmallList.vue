@@ -1,7 +1,7 @@
 <template>
-  <ul class="small-list">
+  <div class="small-list">
     <slot />
-  </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -18,6 +18,7 @@
   @include mixins.small-list
   display: block
   max-width: 100%
+  font-size: inherit
 
   &.columned
     -webkit-columns: 2

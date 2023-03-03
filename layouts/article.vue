@@ -10,22 +10,22 @@
         <div class="left-panel">
           <BlogNavigation class="article-blog-navigation" />
         </div>
-        <body>
-          <div class="content">
+        <body class="article-body">
+          <!-- <div class="content"> -->
             <a class="skip-to-content" href="#content"/>
-            <div class="container">
-              <div class="content">
-                <div>
-                  <slot id="content"/>
+            <!-- <div class="container"> -->
+              <div class="content" id="content">
+                <!-- <div> -->
+                  <slot/>
                   <BlogComments id="blog-comments" ref="commentsSection" />
                   <AuthenticationForm
                     id="auth-form-container"
                     class="hidden"
                   />
-                </div>
+                <!-- </div> -->
               </div>
-            </div>
-          </div>
+            <!-- </div> -->
+          <!-- </div> -->
         </body>
         <div class="right-panel">
           <TableOfContents
@@ -74,12 +74,27 @@ const toggleAuthPopup = () => {
 // }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @use "../styles/default"
 @use "../styles/typography"
 @use "../styles/colors"
 @use "../styles/geometry"
 // @use "../styles/mixins"
+
+#content
+  font-size: typography.font-size("m") !important
+  line-height: 1.7
+
+main
+  max-width: 1280px
+  // width: 95vw
+  width: 100%
+  // width: fit-content
+  margin: 0 auto
+  padding: 0 3vw
+
+  & > *
+    max-width: 100% !important
 
 .article-blog-navigation
   position: sticky
@@ -94,20 +109,26 @@ const toggleAuthPopup = () => {
   flex-direction: column
   min-height: 100vh
   gap: 2vh
-  // max-width: 100vw
-  // overflow: hidden
+  // font-size: typography.font-size("m")
+  // line-height: 1.7
 
 .body-and-panels
   display: flex
   flex-direction: row
   margin: 0 auto
   width: 100%
+  gap: 10px
+
+  // body
+  //   max-width: 70% !important
+    // background-color: yellow
+    // max-width: 70% !important
 
   .right-panel
     min-width: 240px
     max-width: 240px
-    margin-right: 10px
-    margin-left: 10px
+    // margin-right: 10px
+    margin-left: 20px
     padding: geometry.var("nav-height") 0
     height: fit-content
     position: sticky
@@ -121,8 +142,8 @@ const toggleAuthPopup = () => {
     min-width: 240px
     max-width: 240px
     width: 240px
-    margin-left: 10px
-    margin-right: 10px
+    // margin-left: 10px
+    margin-right: 20px
     padding: geometry.var("nav-height") 0
     height: fit-content
     position: sticky
@@ -131,30 +152,37 @@ const toggleAuthPopup = () => {
 
     @media(max-width: 1200px)
       display: none
-.container
-  position: relative
-  margin: 0 auto
-  padding: 0 1vw
-  font-size: typography.font-size("m")
-  display: flex
-  flex-direction: row
-  
-  @media(max-width: 1200px)
-    padding: 0
 
-
-  .content
-    // width: max(60vw, 75ch)
-    width: 100%
-    max-width: 85ch
+  .article-body
     margin: 0 auto
+    max-width: 65ch
+// .container
+//   position: relative
+//   margin: 0 auto
+//   padding: 0 1vw 0 0
+//   font-size: typography.font-size("m")
+//   display: flex
+//   flex-direction: row
+//   // background: yellow
+//   // width: 0%
+  
+//   @media(max-width: 1200px)
+//     padding: 0
 
-  // hide side-panel on mobile
-  @media (max-width: 1200px)
+
+//   .content
+//     width: max(60vw, 70ch)
+//     // background: yellow
+//     // width: 1050%
+//     max-width: 85ch
+//     margin: 0 auto
+
+//   // hide side-panel on mobile
+//   @media (max-width: 1200px)
     
-    .content
-      width: 100%
-      max-width: 85ch
+//     .content
+//       width: 100%
+//       max-width: 85ch
 
 
 h1

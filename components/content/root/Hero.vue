@@ -45,10 +45,10 @@
       /> -->
     </div>
     <div class="hero-footer">
-      <div class="name">
-        <!-- <div class="name-inner">
+      <!-- <div class="name">
+        <div class="name-inner">
           altair
-        </div> -->
+        </div>
       </div>
       <div class="single-item">
         <div class="item-title">
@@ -70,10 +70,13 @@
             {{ heroFootItems[index].subscript }}
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="down-link">
         <NuxtLink class="down-link-inner" to="/#about">
-          <Icon type="down-arrow" />
+          <Icon
+            type="down-arrow"
+            :style="{ 'color':getColor(activeCallOutIndex) }"
+            />
         </NuxtLink>
       </div>
     </div>
@@ -112,7 +115,7 @@ export default {
         actionElement.innerText = actionElement.innerText.slice(0, nextAction.length);
       } else {
         for (let i = actionElement.innerText.length; i < nextAction.length; i++) {
-          actionElement.innerText += "?";
+          actionElement.innerText += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
         }
       }
 
@@ -140,19 +143,19 @@ export default {
             }
           }).join("");
           iterations++;
-      });
+      }, 60);
     },
     getColor(index: number) {
       const i = index % this.heroColors.length;
       return this.heroColors[i];
     },
     tick() {
-      setTimeout(() => {
+      setInterval(() => {
         this.footItemIndex = (this.footItemIndex + 1) % heroFootItems.length;
         this.activeCallOutIndex = this.activeCallOutIndex + 1 % 1000;
         this.changeAction();
-        this.tick();
-      }, 4000);
+        // this.tick();
+      }, 5000);
 
     }
   },
@@ -215,19 +218,22 @@ export default {
   padding-top: calc(geometry.var("nav-height"))
   padding: 0 20px
   width: 100%
+  position: relative
+  // background: yellow !important
 
   .hero-container
     .blurb-container
       width: fit-content
+      font-family: typography.font("matter")
 
-      transition: all 0.5s ease-in-out
+      // transition: all 0.5s ease-in-out
       &.inactive
         display: none
       .big-title
         width: fit-content
         font-family: typography.font("big-heading")
         color: colors.color("white")
-        font-size: clamp(20px, 10vw, 100px)
+        font-size: clamp(20px, 8vw, 100px)
         font-weight: 800
         margin: 0
         padding: 0
@@ -242,18 +248,25 @@ export default {
       margin: 0px 0 10px 4px
 
       // color: colors.color("purple")
-      font-family: typography.font("sans-serif")
+      // font-family: typography.font("sans-serif")
       // text-transform: uppercase
 
       font-size: clamp(typography.font-size("l"), 3vw, typography.font-size("xl"))
       font-weight: 800
       width: 100%
+      // animate change of color
+      -webkit-transition: all 3s ease-in-out
+      -moz-transition: all 3s ease-in-out
+      -ms-transition: all 3s ease-in-out
+      -o-transition: all 3s ease-in-out
+      transition: all 3s ease-in-out
 
       @media (max-width: 480px)
         margin: 0 0 20px 2px
 
+
     .digression
-      font-family: typography.font("sans-serif")
+      // font-family: typography.font("sans-serif")
       font-weight: 400
       margin: 0 0 20px 4px
 
@@ -263,7 +276,6 @@ export default {
     
       .normal
         color: colors.color("white")
-
 
 
       @media (max-width: 480px)
@@ -279,73 +291,6 @@ export default {
     @media(max-height: 1020px)
       position: relative
       padding: 2rem 0
-    
-    padding: 2rem clamp(0px, 5vw, 5rem)
-    min-height: 10%
-    height: clamp(130px, 10vh, 150px)
-    width: 100%
-    display: flex
-    justify-content: space-between
-    text-align: left
-
-    // background-color: rgba(colors.color(background), 0.4)
-    backdrop-filter: blur(10px)
-
-
-    .name
-      font-size: clamp(1.8rem, 1.6vw, 1rem)
-      color: colors.color(foreground)
-      font-weight: 600
-      font-family: typography.font(fredericka)
-      justify-content: center
-      align-items: center
-      display: flex
-
-    .item
-      flex: 1
-      display: flex
-      flex-direction: column
-      justify-content: center
-      align-items: center
-      transition: all 0.5s ease-out
-
-      @media(max-width: 960px)
-        display: none
-
-    .single-item
-      display: none
-
-      @media(max-width: 960px)
-        flex: 1
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: left
-        display: flex
-
-        .item-title
-          font-size: clamp(1.7rem, 1.6vw, 1.5rem)
-          margin-bottom: 0.5rem
-          color: rgba(colors.color(lightest-foreground), 0.9)
-          width: 100%
-
-        .item-subscript
-          font-size: clamp(0.8rem, 1.6vw, 1rem)
-          color: colors.color(foreground)
-          width: 100%
-      
-
-    .item-title
-      font-weight: 600
-      font-size: clamp(0.9rem, 2vw, 1.2rem)
-      margin-bottom: 0.5rem
-      color: rgba(colors.color(lightest-foreground), 0.9)
-      width: 100%
-
-    .item-subscript
-      font-size: clamp(0.7rem, 1.6vw, 1rem)
-      color: colors.color(foreground)
-      width: 100%
 
     .down-link
       height: 60px
@@ -353,6 +298,9 @@ export default {
       display: flex
       align-items: center
       justify-content: center
+      float: right
+      margin: 0 80px 80px 0
+      
 
 
       .down-link-inner
@@ -365,6 +313,13 @@ export default {
         svg
           // animate up and down
           animation: up-down 1s ease-in-out infinite alternate
+          margin: auto
+          // animate change of color
+          -webkit-transition: color 3s ease-in-out
+          -moz-transition: color 3s ease-in-out
+          -ms-transition: color 3s ease-in-out
+          -o-transition: color 3s ease-in-out
+          transition: color 3s ease-in-out
 
 
 
@@ -381,6 +336,75 @@ export default {
               transform: translateY(-5px)
             100%
               transform: translateY(0)
+    
+    // padding: 2rem clamp(0px, 5vw, 5rem)
+    // min-height: 10%
+    // height: clamp(130px, 10vh, 150px)
+    // width: 100%
+    // display: flex
+    // justify-content: space-between
+    // text-align: left
+
+    // // background-color: rgba(colors.color(background), 0.4)
+    // backdrop-filter: blur(10px)
+
+
+    // .name
+    //   font-size: clamp(1.8rem, 1.6vw, 1rem)
+    //   color: colors.color(foreground)
+    //   font-weight: 600
+    //   font-family: typography.font(fredericka)
+    //   justify-content: center
+    //   align-items: center
+    //   display: flex
+
+    // .item
+    //   flex: 1
+    //   display: flex
+    //   flex-direction: column
+    //   justify-content: center
+    //   align-items: center
+    //   transition: all 0.5s ease-out
+
+    //   @media(max-width: 960px)
+    //     display: none
+
+    // .single-item
+    //   display: none
+
+    //   @media(max-width: 960px)
+    //     flex: 1
+    //     display: flex
+    //     flex-direction: column
+    //     justify-content: center
+    //     align-items: left
+    //     display: flex
+
+    //     .item-title
+    //       font-size: clamp(1.7rem, 1.6vw, 1.5rem)
+    //       margin-bottom: 0.5rem
+    //       color: rgba(colors.color(lightest-foreground), 0.9)
+    //       width: 100%
+
+    //     .item-subscript
+    //       font-size: clamp(0.8rem, 1.6vw, 1rem)
+    //       color: colors.color(foreground)
+    //       width: 100%
+      
+
+    // .item-title
+    //   font-weight: 600
+    //   font-size: clamp(0.9rem, 2vw, 1.2rem)
+    //   margin-bottom: 0.5rem
+    //   color: rgba(colors.color(lightest-foreground), 0.9)
+    //   width: 100%
+
+    // .item-subscript
+    //   font-size: clamp(0.7rem, 1.6vw, 1rem)
+    //   color: colors.color(foreground)
+    //   width: 100%
+
+
 
 
 

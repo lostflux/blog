@@ -4,12 +4,12 @@
     <!-- <div ref="blob" id="blob" /> -->
     <!-- <div class="blur"/> -->
     <AppHeader />
-    <body :class="{home: isHome}"> <!-- header in body == not sticky -->
+    <body> <!-- header in body == not sticky -->
       <main class="home">
         <a class="skip-to-content" href="#content" />
         <!-- <body> -->
-          <div class="container">
-            <slot id="content" />
+          <div class="content" id="content">
+            <slot />
           </div>
           <!-- <slot id="content"/> -->
         </main>
@@ -21,6 +21,10 @@
 <style lang="sass" scoped>
 // @use "~/styles/default"
 @use "~/styles/colors"
+@use "~/styles/typography"
+
+.content
+  font-size: typography.font-size("m")
 
 // #root
 //   // background: url("~/assets/images/noise.svg") !important
@@ -30,13 +34,13 @@
 //     background: rgba(colors.color("background"), 0.1) !important
 
 #root
-  all: unset
+  // all: unset
   width: 100vw !important
   // background-color: green
 
   body.home
-    all: unset
-    width: 100% !important
+    // all: unset
+    // width: 100% !important
     margin: 0
     padding: 0
 
@@ -51,12 +55,12 @@
         margin: 0 auto
 
 
-header
-  background-color: rgba(colors.color(background), 0.1) !important
+// header
+//   background-color: rgba(colors.color(background), 0.1) !important
 
 #root
   all: unset
-  background-color: #000000
+  // background-color: #000000
 
   z-index: 3
 

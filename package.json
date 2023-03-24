@@ -8,7 +8,7 @@
     "postinstall": "rm -rf ./node_modules/@types/react"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.4.3",
+    "@nuxt/content": "^2.5.2",
     "@nuxt/devtools": "^0.2.5",
     "@nuxt/image": "^0.7.1",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",

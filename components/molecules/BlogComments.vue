@@ -1,139 +1,141 @@
 <template>
-  <section class="comments">
-    <h1 class="section-title">Comments</h1>
+  <div class="comments-section-wrapper">
+    <section class="comments">
+      <!-- <h1 class="section-title">Comments</h1> -->
 
-    <div class="current-comments">
-      <div
-        v-if="!userInfo.getComments.length"
-        class="no-comments"
-      >
-        <Alert type="info">
-          There are no comments yet. Be the first to comment!
-        </Alert>
-      </div>
-  
-      <template v-for="(comment, i) in userInfo.getComments">
-        <BlogComment :comment="comment" :id="i" />
-        <!-- </div> -->
-      </template>
-    </div>
-
-
-    <div class="new-comment">
-      <h2 class="section-subtitle">Thoughts?</h2>
-
-      <!-- {{  userInfo.getSubscriptionPaths }} -->
-      
-      <p class="signed-in-info">
-
-        
-        <Alert :type="isLoggedIn ? 'info' : 'error'">
-          <div v-if="isLoggedIn">
-            You are signed in as <strong class="username"> {{ currentUser.displayName }}</strong>.
-            <br/>
-            <span v-if="userInfo.isSubscribed()">
-              You are subscribed to this article, you'll be notified when new comments are posted.
-            </span>
-            <span v-else>
-              You are not subscribed to this article.
-            </span>
-              <div>
-                <StyledButton @click="() => { userInfo.toggleSubscription() }">
-                  {{  userInfo.isSubscribed() ? 'Unsubscribe' : 'Subscribe' }}
-                </StyledButton>
-                <StyledButton href="/blog">manage subscriptions</StyledButton>
-                <StyledButton
-                  class="button"
-                  type="button"
-                  @click="() => userInfo.active ? _signOut() : signIn()"
-                >
-                  {{ userInfo.active ? "sign out" : "sign in" }}
-                </StyledButton>
-              </div>
-          </div>
-          <div v-else>
-            You are not signed in. <br/>
-            Sign in (or sign up) to comment/subscribe. <br/>
-            
-            <StyledButton
-            v-if="isLoggedIn"
-            class="button"
-            type="button"
-            @click="_signOut"
-          >
-            sign out
-          </StyledButton>
-          <StyledButton
-            v-else
-            class="button"
-            type="button"
-            @click="signIn"
-          >
-            sign in
-          </StyledButton>
-          </div>
-        
-      </Alert>
-          
-        <br/>
-        <br/>
-  
-          The development of sophisticated language and communication skills
-        <a href="https://www.theguardian.com/science/punctuated-equilibrium/2011/aug/04/1">
-          redefined human evolution
-        </a>
-          and, quite possibly, sparked the sequence of
-          events that led to modern civilization.
-        <br/>
-        <br/>
-          There is so much to get &mdash; and so much to give &mdash;
-          when we share thoughts, ideas, and opinions responsibly.
-        <br />
-          Let the world know what you think;
-          <strong class="username"> your ideas do matter </strong>.
-        <br/>
-        <br/>
-          I'll admit: sharing ideas can be scary,
-          especially when we are not even sure about them.
-        <br/>
-          If you can, that's amazing.
-          If not, a start is better than nothing.
-        </p>
-      <form class="form">
-        <textarea
-          id="comment"
-          class="input"
-          placeholder="Comment"
-          v-model="comment"
-        />
-        <div class="button-container">
-          <StyledButton
-            class="button"
-            type="button"
-            @click="submitComment"
-          >
-            comment
-        </StyledButton>
-          <StyledButton
-            v-if="isLoggedIn"
-            class="button"
-            type="button"
-            @click="_signOut"
-          >
-            sign out
-          </StyledButton>
-          <StyledButton
-            v-else
-            class="button"
-            type="button"
-            @click="signIn"
-          >
-            sign in
-        </StyledButton>
+      <div class="current-comments">
+        <div
+          v-if="!userInfo.getComments.length"
+          class="no-comments"
+        >
+          <Alert type="info">
+            There are no comments yet. Be the first to comment!
+          </Alert>
         </div>
-      </form>
-    </div>
-  </section>
+    
+        <template v-for="(comment, i) in userInfo.getComments">
+          <BlogComment :comment="comment" :id="i" />
+          <!-- </div> -->
+        </template>
+      </div>
+
+
+      <div class="new-comment">
+        <h2 class="section-subtitle">Thoughts?</h2>
+
+        <!-- {{  userInfo.getSubscriptionPaths }} -->
+        
+        <p class="signed-in-info">
+
+          
+          <Alert :type="isLoggedIn ? 'info' : 'error'">
+            <div v-if="isLoggedIn">
+              You are signed in as <strong class="username"> {{ currentUser.displayName }}</strong>.
+              <br/>
+              <span v-if="userInfo.isSubscribed()">
+                You are subscribed to this article, you'll be notified when new comments are posted.
+              </span>
+              <span v-else>
+                You are not subscribed to this article.
+              </span>
+                <div>
+                  <StyledButton @click="() => { userInfo.toggleSubscription() }">
+                    {{  userInfo.isSubscribed() ? 'Unsubscribe' : 'Subscribe' }}
+                  </StyledButton>
+                  <StyledButton href="/blog">manage subscriptions</StyledButton>
+                  <StyledButton
+                    class="button"
+                    type="button"
+                    @click="() => userInfo.active ? _signOut() : signIn()"
+                  >
+                    {{ userInfo.active ? "sign out" : "sign in" }}
+                  </StyledButton>
+                </div>
+            </div>
+            <div v-else>
+              You are not signed in. <br/>
+              Sign in (or sign up) to comment/subscribe. <br/>
+              
+              <StyledButton
+              v-if="isLoggedIn"
+              class="button"
+              type="button"
+              @click="_signOut"
+            >
+              sign out
+            </StyledButton>
+            <StyledButton
+              v-else
+              class="button"
+              type="button"
+              @click="signIn"
+            >
+              sign in
+            </StyledButton>
+            </div>
+          
+        </Alert>
+            
+          <br/>
+          <br/>
+    
+            The development of sophisticated language and communication skills
+          <a href="https://www.theguardian.com/science/punctuated-equilibrium/2011/aug/04/1">
+            redefined human evolution
+          </a>
+            and, quite possibly, sparked the sequence of
+            events that led to modern civilization.
+          <br/>
+          <br/>
+            There is so much to get &mdash; and so much to give &mdash;
+            when we share thoughts, ideas, and opinions responsibly.
+          <br />
+            Let the world know what you think;
+            <strong class="username"> your ideas do matter </strong>.
+          <br/>
+          <br/>
+            I'll admit: sharing ideas can be scary,
+            especially when we are not even sure about them.
+          <br/>
+            If you can, that's amazing.
+            If not, a start is better than nothing.
+          </p>
+        <form class="form">
+          <textarea
+            id="comment"
+            class="input"
+            placeholder="Comment"
+            v-model="comment"
+          />
+          <div class="button-container">
+            <StyledButton
+              class="button"
+              type="button"
+              @click="submitComment"
+            >
+              comment
+          </StyledButton>
+            <StyledButton
+              v-if="isLoggedIn"
+              class="button"
+              type="button"
+              @click="_signOut"
+            >
+              sign out
+            </StyledButton>
+            <StyledButton
+              v-else
+              class="button"
+              type="button"
+              @click="signIn"
+            >
+              sign in
+          </StyledButton>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -321,6 +323,15 @@ export default {
   cursor: pointer
   text-decoration: none !important
   background: yellow !important
+
+.comments-section-wrapper
+  position: fixed
+  top: 0
+  right: 0
+  width: 414px
+  background: colors.color("light-background")
+  z-index: 1
+  height: 100vh
 
 section.comments
   margin-top: 20px

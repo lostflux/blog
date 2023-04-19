@@ -6,16 +6,16 @@
     "sourceMap": true,
     "target": "ESNext",
     "allowJs": false,
-    // "module": "CommonJS",
-    // "moduleResolution": "Node",
-    // "lib": ["ESNext", "DOM", "es5", "es6", "DOM.Iterable"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM", "es5", "es6", "DOM.Iterable"],
     // "esModuleInterop": true,
     // "noUnusedLocals": true,
     // "resolveJsonModule": true,
     // "allowSyntheticDefaultImports": true,
     "types": [
       "@types/node", // standard node types
-      // "vite/client", // if using vite
+      "vite/client", // if using vite
       "@nuxt/types",
       "@nuxt/image"
       // ...

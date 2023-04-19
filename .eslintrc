@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "airbnb"
+  ],
+  // "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "rules": {
+    "strict": 0,
+    "quotes": [2, "single"],
+    "no-else-return": 0,
+    "new-cap": ["error", {"capIsNewExceptions": ["Router"]}],
+    "no-console": 0,
+    "import/no-unresolved": [2, { "caseSensitive": false } ],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
+    "no-underscore-dangle": 0,
+    "arrow-body-style": 0,
+    "one-var": ["error", { "uninitialized": "always", "initialized": "never" }],
+    "one-var-declaration-per-line": ["error", "initializations"],
+    "max-len": ["error", 200],
+    "no-extra-parens": 0,
+    "no-restricted-syntax": [0, "DebuggerStatement"],
+    "no-debugger": "warn",
+    "nuxt/rule-name": 2
+  },
+  "plugins": [
+    // "react"
+    "nuxt"
+  ]
+}

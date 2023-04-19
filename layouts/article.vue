@@ -44,6 +44,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const { path: currentPage } = useRoute();
 const { toc } = useContent();
 
+const hello = "hello  world";
+
 
 // reference to comments section for detecting when to show auth popup
 const commentsSection = ref<HTMLElement | null>(null);

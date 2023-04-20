@@ -2,14 +2,14 @@
   <div class="skills-dashboard">
     <slot />
   </div>
-  </template>
-  
-  <script lang="ts">
-  export default {
-    name: "SkillsDashboard",
-  }
-  </script>
-  
+</template>
+
+<script lang="ts">
+export default {
+  name: "SkillsDashboard",
+};
+</script>
+
   <style lang="scss">
   @use "~/styles/colors";
   .skills-dashboard {
@@ -18,7 +18,6 @@
     grid-gap: 1rem;
     column-rule: 1px solid colors.color("primary-highlight");
     grid-row: auto;
-  
+
   }
   </style>
-  

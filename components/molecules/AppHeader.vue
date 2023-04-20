@@ -7,25 +7,30 @@
     :style="style"
   >
     <nav class="header-nav">
-      <Logo class="header-logo"/>
+      <Logo class="header-logo" />
       <NavLinks class="header-nav-links" />
       <StyledMenuButton
-        @click="toggleMenu"
-        :aria-expanded="menuOpen ? 'true' : 'false'"
-        :aria-label="menuOpen ? 'Close Menu' : 'Open Menu'"
         ref="buttonRef"
-        class="menu-button"/>
+        :aria-expanded="menuOpen"
+        :aria-label="menuOpen ? 'Close Menu' : 'Open Menu'"
+        class="menu-button"
+        @click="toggleMenu"
+      />
     </nav>
     <div
       :class="{
         'site-menu': true,
         'menu-open': menuOpen,
-      }">
-      <SearchBar ref="searchBar" class="search-bar"/>
+      }"
+    >
+      <SearchBar
+        ref="searchBar"
+        class="search-bar"
+      />
       <div class="menu-columns-wrapper">
         <div
+          v-if="currentPage === '/' || (toc && toc.links && toc.links.length > 0)"
           class="menu-column toc-current-page"
-          v-if="currentPage === '/' || (toc && toc.links && toc.links.length > 0)"   
         >
           <NuxtLink
             :to="currentPage"
@@ -34,7 +39,10 @@
             <strong> Current Page </strong>
           </NuxtLink>
           <ul v-if="currentPage === '/'">
-            <li v-for="anchor in navLinks.homeLinks">
+            <li
+              v-for="(anchor, i) in navLinks.homeLinks"
+              :key="i"
+            >
               <NuxtLink
                 :to="anchor._path"
                 class="menu-column-item"
@@ -43,7 +51,10 @@
               </NuxtLink>
             </li>
           </ul>
-          <TableOfContents v-else class="toc-current-page" />
+          <TableOfContents
+            v-else
+            class="toc-current-page"
+          />
         </div>
         <div class="menu-column">
           <NuxtLink
@@ -53,7 +64,10 @@
             <strong> Featured </strong>
           </NuxtLink>
           <ul>
-            <li v-for="item in featuredBlogs">
+            <li
+              v-for="(item, i) in featuredBlogs"
+              :key="i"
+            >
               <NuxtLink
                 :to="item._path"
                 class="menu-column-item"
@@ -71,7 +85,10 @@
             <strong> Latest </strong>
           </NuxtLink>
           <ul>
-            <li v-for="item in latestBlogs">
+            <li
+              v-for="(item, i) in latestBlogs"
+              :key="i"
+            >
               <NuxtLink
                 :to="item._path"
                 class="menu-column-item"
@@ -95,16 +112,16 @@
       </div>
       <div class="menu-extras">
         <div class="menu-extras-footer">
-          <AppFooter class="menu-footer in-header"/>
+          <AppFooter class="menu-footer in-header" />
         </div>
       </div>
     </div>
     <div
       v-if="currentPage === '/' || (toc && toc.links && toc.links.length > 0)"
-      v-show="nonTocRoutes.indexOf(route) == -1"
-      class="header-toc-plus-button">
+      v-show="nonTocRoutes.indexOf(route) === -1"
+      class="header-toc-plus-button"
+    >
       <div class="toc-wrapper">
-
         <button
           :class="{
             'header-toc-button': true,
@@ -115,17 +132,18 @@
           <span style="margin-right: 0.5em;"> Table of Contents</span>
           <Icon
             :class="{
-              'expand-icon': true, 
+              'expand-icon': true,
               'expanded': tocExpanded
             }"
-            type="expand" />
+            type="expand"
+          />
         </button>
         <div
           :class="{
             'header-toc': true,
             'header-toc-hidden': (!tocExpanded) || menuOpen,
-            }"
-          >
+          }"
+        >
           <slot />
         </div>
       </div>
@@ -134,8 +152,8 @@
 </template>
 
 <script lang="ts">
-
-import { navHeight, nonTocRoutes } from "~/modules/config";
+import { navHeight, nonTocRoutes, navLinks } from "~/modules/config";
+import { loaderDelay as timeout } from "~/modules/utils";
 
 export default {
   name: "AppHeader",
@@ -152,14 +170,14 @@ export default {
   },
   computed: {
     hidden() {
-      return this.scrollHeight == this.height;
+      return this.scrollHeight === this.height;
     },
     revealed() {
-      return this.scrollHeight == 0;
+      return this.scrollHeight === 0;
     },
     style() {
       return this.scrolledToTop
-        ? `box-shadow: none; background-color: none;`
+        ? "box-shadow: none; background-color: none;"
         : `transform: translateY(-${this.scrollHeight}px)`;
     },
     scrolledToTop() {
@@ -169,27 +187,27 @@ export default {
       return useRoute().path;
     },
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-    
-    // set height initially.
-    this.height = navHeight; //this.$el.offsetHeight;
-
-    this.setup();
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
   watch: {
     menuOpen: {
-      handler: function(newVal, oldVal) {
+      handler() {
         this.height = this.$el.offsetHeight || 0;
       },
       deep: true,
     },
     anchors() {
       // this.$forceUpdate();
-    }
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+
+    // set height initially.
+    this.height = navHeight; // this.$el.offsetHeight;
+
+    this.setup();
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     toggleMenu() {
@@ -204,80 +222,39 @@ export default {
       if (path === "/") {
         this.anchors = navLinks.homeLinks;
       }
-      
+
       this.$forceUpdate();
     },
 
     /**
      * Handle scroll event.
-     * 
+     *
      * NOTE: `scroll position` increases as you go down the page.
      */
     handleScroll() {
-
-      /*
-        We track: 
-          - the height of the header
-          - the last scroll position of the window
-          - the current scroll height of the header: 0 <= scroll height <= height
-            - 0 = header is fully visible
-            - height = header is fully hidden
-          - the hidden status of the header
-            
-          
-        On scrolling down (going to hide header):
-          - if header hidden, do nothing
-
-          - if header not hidden:
-            - find offset from last scroll position to current scroll position
-            - add offset to scroll height
-            - if scroll height >= height,
-              set scroll height to height
-              and set header hidden to true
-              
-
-        On scrolling up:
-          - if header hidden, set to not hidden
-          - if scroll height == 0, do nothing
-          
-          - if scroll height > 0:
-            - find offset from last scroll position to current scroll position
-            - add offset from scroll height
-            - if scroll height <= 0,
-              set scroll height to 0
-      */
-
-
       const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
 
       // we want positive offset if scrolling down, negative if scrolling up
-      const offset = this.scrollSpeed  * (currentScrollPosition - this.lastScrollPosition);
+      const offset = this.scrollSpeed * (currentScrollPosition - this.lastScrollPosition);
       this.lastScrollPosition = currentScrollPosition;
 
       if (offset > 0 && !this.hidden && !this.menuOpen) {
-        // scrolling down
         this.scrollHeight = Math.min(this.scrollHeight + offset, this.height);
         if (this.scrollHeight >= this.height) {
           this.scrollHeight = this.height;
         }
-      }
-      else if (offset < 0 && !this.revealed){
+      } else if (offset < 0 && !this.revealed) {
         this.scrollHeight = Math.max(0, this.scrollHeight + offset);
       }
-    }
+    },
   },
 };
 </script>
 
 <script lang="ts" setup>
-
-
-import { navLinks } from "~/modules/config";
-import { loaderDelay as timeout } from '~/modules/utils';
-import { useUserInfo } from "~~/composables/users";
 // import { UserInfo } from "~/modules/users";
 
-const userInfo = useUserInfo();
+// const userInfo = useUserInfo();
 
 const { path: currentPage } = useRoute();
 const { toc } = useContent();
@@ -287,10 +264,9 @@ const buttonRef = ref(null);
 const headerRef = ref(null);
 const searchBar = ref(null);
 
-
 const closeMenu = () => {
   menuOpen.value = false;
-}
+};
 
 const openMenu = () => {
   menuOpen.value = true;
@@ -300,60 +276,64 @@ const openMenu = () => {
       document.getElementById("searchbar")?.focus();
     }, timeout);
   }
-}
+};
 
 const toggleMenu = () => {
   buttonRef.value.toggle();
   headerRef.value.menuOpen = !headerRef.value.menuOpen;
-  menuOpen.value
-    ? closeMenu()
-    : openMenu();
-}
+  if (headerRef.value.menuOpen) {
+    openMenu();
+  } else {
+    closeMenu();
+  }
+};
 
-/// DATA 
+/// DATA
 const { data: featuredBlogs } = await useAsyncData(
-  `featured-blogs-meta`,
+  "featured-blogs-meta",
   async () => {
     const _blogs = queryContent("blog/posts")
       .where({ draft: false })
-      .where({ category: { $contains: "featured" } } )
+      .where({ category: { $contains: "featured" } })
       .only(["_path", "title", "date", "description"])
       .limit(7)
       .sort({ date: -1 })
       .find();
-    return await _blogs;
-});
+    return _blogs;
+  },
+);
 
 /// PUBLICATIONS
 const { data: latestBlogs } = await useAsyncData(
-  `publication-blogs-meta`,
+  "publication-blogs-meta",
   async () => {
     const _blogs = queryContent("blog/posts")
       .where({ draft: false })
-      .only(["_path", "title", "date", "description", "tags",])
+      .only(["_path", "title", "date", "description", "tags"])
       .limit(7)
       .sort({ date: -1 })
       .find();
-    return await _blogs;
-});
+    return _blogs;
+  },
+);
 
 /// RESEARCH
-const { data: researchMeta } = await useAsyncData(
-  `research-blogs-meta`,
-  async () => {
-    const _blogs = queryContent("blog/posts")
-      .where({ draft: false })
+// const { data: researchMeta } = await useAsyncData(
+//   "research-blogs-meta",
+//   async () => {
+//     const _blogs = queryContent("blog/posts")
+//       .where({ draft: false })
 
-      // select blogs that have publications as one of the categories
-      .where({ category: { $contains: "research" } } )
-      .only(["_path", "title", "date", "description", "tags",])
-      .limit(5)
-      .sort({ date: -1 })
-      .find();
-    return await _blogs;
-});
+//       // select blogs that have publications as one of the categories
+//       .where({ category: { $contains: "research" } })
+//       .only(["_path", "title", "date", "description", "tags"])
+//       .limit(5)
+//       .sort({ date: -1 })
+//       .find();
+//     return _blogs;
+//   },
+// );
 </script>
-
 
 <style lang="sass">
 @use "~/styles/colors"
@@ -410,7 +390,6 @@ const { data: researchMeta } = await useAsyncData(
     &:hover
       background: colors.color("light-background") !important
 
-
 .header-nav
   @include mixins.flex-between
   position: relative
@@ -438,10 +417,9 @@ const { data: researchMeta } = await useAsyncData(
   .menu-button
     position: relative
     height: 70px
-    aspect-ratio: 1 / 1 
+    aspect-ratio: 1 / 1
     margin: auto 0
     padding: 15px 0px 15px 5px
-
 
 .site-menu
   display: block
@@ -494,7 +472,6 @@ const { data: researchMeta } = await useAsyncData(
     width: 100%
     flex: 0 100%
 
-
 .menu-column-header
   font-family: typography.font("sans-serif")
   font-size: typography.font-size("xl")
@@ -512,7 +489,6 @@ const { data: researchMeta } = await useAsyncData(
   height: 100%
   width: 100%
   border-top: 1px solid colors.color("light-background")
-
 
 .menu-extras-footer
   width: 100%
@@ -547,7 +523,7 @@ const { data: researchMeta } = await useAsyncData(
   position: relative
   padding: 10px 0
   margin: 0 auto
-  min-height: 40px 
+  min-height: 40px
   border-top: 3px dotted colors.color("lightest-background")
   border-bottom: 3px dotted colors.color("lightest-background")
   // background: none
@@ -585,7 +561,6 @@ const { data: researchMeta } = await useAsyncData(
 
     &.expanded
       color: colors.color('primary-highlight')
-    
 
   .header-toc
     padding-top: 10px
@@ -611,14 +586,11 @@ const { data: researchMeta } = await useAsyncData(
       max-height: 0
       padding-top: 0
 
-
-
 // hide toc on desktop
 @media (min-width: 1200px)
-  
+
   .header-toc-plus-button
     display: none
-
 
 .toc-current-page
 
@@ -668,7 +640,6 @@ const { data: researchMeta } = await useAsyncData(
       justify-content: center
       background: yellow
       line-height: 1.5
-
 
       .user-name
         font-family: typography.font("sans-serif")

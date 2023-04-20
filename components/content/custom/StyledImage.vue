@@ -9,16 +9,16 @@
         formats="AUTO, WEBP, AVIF"
         alt="head shot"
         loading="lazy"
-      />
+      >
       <!-- <slot /> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: "StyledImage",
-  }
+export default {
+  name: "StyledImage",
+};
 </script>
 
 <style lang="sass">
@@ -37,36 +37,35 @@
   // @media (max-width: 768px)
   //   margin: 50px auto 0 auto
   //   width: 70%
-  
-  .wrapper 
+
+  .wrapper
     @include mixins.box-shadow
     display: block
     position: relative
     width: 100%
     border-radius: geometry.var("border-radius")
     // background-color: colors.color("primary-highlight")
-    
-    &:hover, &:focus 
+
+    &:hover, &:focus
       outline: 0
 
-      &:after 
+      &:after
         top: 10px
         left: 10px
-      
-      .img 
+
+      .img
         filter: grayscale(30%) contrast(1)
         mix-blend-mode: normal
-      
-    
-    .img 
+
+    .img
       position: relative
       border-radius: geometry.var("border-radius")
       mix-blend-mode: grayscale(100%)
       filter: grayscale(70%) contrast(1)
       transition: geometry.var("default-transition")
       z-index: 2
-    
-    &:before, &:after 
+
+    &:before, &:after
       content: ''
       display: block
       position: absolute
@@ -74,14 +73,14 @@
       height: 100%
       border-radius: geometry.var("border-radius")
       transition: geometry.var("default-transition")
-    
-    &:before 
+
+    &:before
       top: 0
       left: 0
       background-color: colors.color("background")
       mix-blend-mode: screen
-    
-    &:after 
+
+    &:after
       border: 2px solid colors.color("primary-highlight")
       top: 20px
       left: 20px

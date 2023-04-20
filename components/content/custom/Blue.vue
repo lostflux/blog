@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "Blue",
-  }
+export default {
+  name: "Blue",
+};
 </script>
 
 <style lang="sass" scoped>

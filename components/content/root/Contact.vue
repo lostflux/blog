@@ -1,7 +1,14 @@
 <template>
-  <section id="contact" class="contact-section">
-    <h2 class="numbered-heading overline"> What's Next?</h2>
-    <h2 class="title">{{ contact.title }}</h2>
+  <section
+    id="contact"
+    class="contact-section"
+  >
+    <h2 class="numbered-heading overline">
+      What's Next?
+    </h2>
+    <h2 class="title">
+      {{ contact.title }}
+    </h2>
     <ContentDoc :value="contact" />
     <!-- <a
       :href="`mailto:${ contact.email }`"
@@ -14,16 +21,17 @@
 
 <script lang="ts" setup>
 
-import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types';
+import { MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
 
 const { data: contact } = await useAsyncData(
   `contact-${useRoute().path}`,
   async () => {
     const _contactData = queryContent<MarkdownParsedContent>("profile")
-      .where( { category: "contact" } )
+      .where({ category: "contact" })
       .findOne();
     return await _contactData;
-});
+  },
+);
 </script>
 
 <style lang="sass">
@@ -36,10 +44,10 @@ const { data: contact } = await useAsyncData(
   margin: 0 auto
   text-align: center
 
-  @media (max-width: 768px) 
+  @media (max-width: 768px)
     margin: 0 auto 50px
-  
-  .overline 
+
+  .overline
     display: block
     margin-bottom: 20px
     color: colors.color("primary-highlight")
@@ -47,22 +55,22 @@ const { data: contact } = await useAsyncData(
     font-size: typography.font-size("m")
     font-weight: 400
     text-decoration: none
-    
-    &:before 
+
+    &:before
       bottom: 0
       font-size: typography.font-size("s")
       font-weight: 600
-    
-    &:after 
+
+    &:after
       display: none
 
   .title
     font-size: clamp(40px, 5vw, 60px)
     font-weight: 600
     color: colors.color("lightest-foreground")
-  
+
   .email-link
     @include mixins.big-button
     margin-top: 50px
-  
+
 </style>

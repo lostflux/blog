@@ -11,14 +11,14 @@
         :key="link.text"
       >
         <a
-          :href="`#${link.id}`"
           :id="`link-${link.id}`"
+          :href="`#${link.id}`"
           :class="{
-          'toc-link level-1': true,
-          'active': activeTocElementIds.includes(link.id) ||
-            (link.children &&
-              link.children.some(child => activeTocElementIds.includes(child.id)))
-        }"
+            'toc-link level-1': true,
+            'active': activeTocElementIds.includes(link.id) ||
+              (link.children &&
+                link.children.some(child => activeTocElementIds.includes(child.id)))
+          }"
         >
           {{ link.text }}
         </a>
@@ -26,15 +26,14 @@
           <li
             v-for="child in link.children"
             :key="child.text"
-            
           >
             <a
-              :href="`#${child.id}`"
               :id="`link-${child.id}`"
+              :href="`#${child.id}`"
               :class="{
-              'toc-link level-2': true,
-              'active': activeTocElementIds.includes(child.id),
-            }"
+                'toc-link level-2': true,
+                'active': activeTocElementIds.includes(child.id),
+              }"
             >
               {{ child.text }}
             </a>
@@ -46,12 +45,12 @@
 </template>
 
 <script lang="ts">
-import { 
+import {
   elementIsInWindow,
   elementIsAtBottom,
   elementIsAtTop,
   elementIsBelowScreen,
-  elementIsAboveScreen
+  elementIsAboveScreen,
 } from "~/modules/utils";
 
 export default {
@@ -59,7 +58,7 @@ export default {
   props: {
     activeTocItem: {
       type: String,
-      default: ""
+      default: "",
     },
   },
   data() {
@@ -68,7 +67,7 @@ export default {
       scrollY: 0,
       scrollDirection: "down",
       activeTocItems: new Set<Element>(),
-    }
+    };
   },
   computed: {
     activeTocElementIds(): string[] {
@@ -85,14 +84,13 @@ export default {
     },
 
     tocItemsInViewport(): Element[] {
-
       this.refreshKey;
 
       // ignore in ssr more
       if (typeof window === "undefined") {
         return [];
       }
-      
+
       const tocItemsInViewport: Element[] = [];
 
       this.tocItemsOrdered.forEach((tocItem: Element) => {
@@ -103,12 +101,41 @@ export default {
       return tocItemsInViewport;
     },
   },
+  watch: {
+    // when route changes, register event listeners in case they haven't been registered yet
+    $route() {
+      this.refreshKey += 1;
+      this.activeTocItems = new Set<Element>();
+      this.handleScroll();
+      window.addEventListener("scroll", this.handleScroll);
+      window.addEventListener("resize", this.handleScroll);
+    },
+  },
+
+  mounted() {
+    // ignore in ssr more
+    if (typeof window === "undefined") {
+      return;
+    }
+    this.handleScroll();
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleScroll);
+  },
+
+  unmounted() {
+    // ignore in ssr more
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleScroll);
+  },
 
   methods: {
     updateActiveTocItems() {
-      const tocItemsInViewport = this.tocItemsInViewport;
+      const { tocItemsInViewport } = this;
       this.tocItemsOrdered.forEach((tocItem: Element) => {
-      const elemIndex = this.tocItemsOrdered.indexOf(tocItem);
+        const elemIndex = this.tocItemsOrdered.indexOf(tocItem);
         if (tocItemsInViewport.includes(tocItem)) {
           this.activeTocItems.add(tocItem);
 
@@ -119,7 +146,6 @@ export default {
               this.activeTocItems.add(predecessor);
             }
           }
-
         } else if (elementIsBelowScreen(tocItem)) {
           this.activeTocItems.delete(tocItem);
         } else if (elementIsAboveScreen(tocItem)) {
@@ -131,7 +157,6 @@ export default {
       });
     },
     handleScroll() {
-
       this.refreshKey = this.refreshKey == 999 ? 0 : this.refreshKey + 1;
 
       const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
@@ -143,45 +168,12 @@ export default {
       this.updateActiveTocItems();
     },
   },
-
-
-  mounted: function () {
-    // ignore in ssr more
-    if (typeof window === "undefined") {
-      return;
-    }
-    this.handleScroll();
-    window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener("resize", this.handleScroll);
-  },
-
-
-  unmounted: function () {
-    // ignore in ssr more
-    if (typeof window === "undefined") {
-      return;
-    }
-    window.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener("resize", this.handleScroll);
-  },
-  watch: {
-    // when route changes, register event listeners in case they haven't been registered yet
-    $route() {
-      this.refreshKey += 1;
-      this.activeTocItems = new Set<Element>();
-      this.handleScroll();
-      window.addEventListener("scroll", this.handleScroll);
-      window.addEventListener("resize", this.handleScroll);
-    },
-  }
-}
+};
 </script>
 
 <script lang="ts" setup>
 const { path } = useRoute();
 const { toc } = useContent();
-
-
 
 </script>
 
@@ -219,15 +211,12 @@ const { toc } = useContent();
       border-left: 3px solid colors.color("dark-foreground")
       color: colors.color("primary-highlight") !important
 
-    
-
     &.level-1
       padding-left: 1em
       font-size: typography.font-size("s")
 
       &:hover
         transform: scale(1.02) translateX(2px)
-      
 
     &.level-2
       padding-left: 2em
@@ -241,4 +230,3 @@ const { toc } = useContent();
       color: colors.color("primary-highlight")
 
 </style>
-

@@ -1,7 +1,7 @@
 <template>
   <div
-    class="styled-tab-panel"
     v-show="active === 1"
+    class="styled-tab-panel"
   >
     <slot />
   </div>
@@ -15,7 +15,7 @@ export default {
     identifier: {
       type: Number,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
       active: this.$props.identifier === 0 ? 1 : 0,
     };
   },
-  methods : {
+  methods: {
     activateTab() {
       // console.log(`activated tab!!`);
       this.active = 1;
@@ -37,7 +37,7 @@ export default {
       this.$refs.tab.focus();
     },
   },
-}
+};
 </script>
 
 <style lang="sass">
@@ -57,22 +57,20 @@ export default {
   left: 0
   right: 0
   overflow: auto
-  
+
   ul
     @include mixins.styled-list
-    
-  
-  h3 
+
+  h3
     margin-bottom: 2px
     font-size: typography.font("xxl")
     font-weight: 500
     line-height: 1.3
 
-    .company 
+    .company
       color: colors.color("primary-highlight")
-    
-  
-  .range 
+
+  .range
     margin-bottom: 25px
     color: colors.color("light-foreground")
     font-family: typography.font("monospace")

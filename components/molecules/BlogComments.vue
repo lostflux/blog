@@ -12,100 +12,106 @@
             There are no comments yet. Be the first to comment!
           </Alert>
         </div>
-    
-        <template v-for="(comment, i) in userInfo.getComments">
-          <BlogComment :comment="comment" :id="i" />
+
+        <template
+          v-for="(com, i) in userInfo.getComments"
+          :key="i"
+        >
+          <BlogComment
+            :id="i"
+            :comment="com"
+          />
           <!-- </div> -->
         </template>
       </div>
 
-
       <div class="new-comment">
-        <h2 class="section-subtitle">Thoughts?</h2>
+        <h2 class="section-subtitle">
+          Thoughts?
+        </h2>
 
         <!-- {{  userInfo.getSubscriptionPaths }} -->
-        
-        <p class="signed-in-info">
 
-          
+        <p class="signed-in-info">
           <Alert :type="isLoggedIn ? 'info' : 'error'">
             <div v-if="isLoggedIn">
               You are signed in as <strong class="username"> {{ currentUser.displayName }}</strong>.
-              <br/>
+              <br>
               <span v-if="userInfo.isSubscribed()">
                 You are subscribed to this article, you'll be notified when new comments are posted.
               </span>
               <span v-else>
                 You are not subscribed to this article.
               </span>
-                <div>
-                  <StyledButton @click="() => { userInfo.toggleSubscription() }">
-                    {{  userInfo.isSubscribed() ? 'Unsubscribe' : 'Subscribe' }}
-                  </StyledButton>
-                  <StyledButton href="/blog">manage subscriptions</StyledButton>
-                  <StyledButton
-                    class="button"
-                    type="button"
-                    @click="() => userInfo.active ? _signOut() : signIn()"
-                  >
-                    {{ userInfo.active ? "sign out" : "sign in" }}
-                  </StyledButton>
-                </div>
+              <div>
+                <StyledButton @click="() => { userInfo.toggleSubscription() }">
+                  {{ userInfo.isSubscribed() ? 'Unsubscribe' : 'Subscribe' }}
+                </StyledButton>
+                <StyledButton href="/blog">
+                  manage subscriptions
+                </StyledButton>
+                <StyledButton
+                  class="button"
+                  type="button"
+                  @click="() => userInfo.active ? _signOut() : signIn()"
+                >
+                  {{ userInfo.active ? "sign out" : "sign in" }}
+                </StyledButton>
+              </div>
             </div>
             <div v-else>
-              You are not signed in. <br/>
-              Sign in (or sign up) to comment/subscribe. <br/>
-              
+              You are not signed in. <br>
+              Sign in (or sign up) to comment/subscribe. <br>
+
               <StyledButton
-              v-if="isLoggedIn"
-              class="button"
-              type="button"
-              @click="_signOut"
-            >
-              sign out
-            </StyledButton>
-            <StyledButton
-              v-else
-              class="button"
-              type="button"
-              @click="signIn"
-            >
-              sign in
-            </StyledButton>
+                v-if="isLoggedIn"
+                class="button"
+                type="button"
+                @click="_signOut"
+              >
+                sign out
+              </StyledButton>
+              <StyledButton
+                v-else
+                class="button"
+                type="button"
+                @click="signIn"
+              >
+                sign in
+              </StyledButton>
             </div>
-          
-        </Alert>
-            
-          <br/>
-          <br/>
-    
-            The development of sophisticated language and communication skills
+          </Alert>
+
+          <br>
+          <br>
+
+          The development of sophisticated language and communication skills
           <a href="https://www.theguardian.com/science/punctuated-equilibrium/2011/aug/04/1">
             redefined human evolution
           </a>
-            and, quite possibly, sparked the sequence of
-            events that led to modern civilization.
-          <br/>
-          <br/>
-            There is so much to get &mdash; and so much to give &mdash;
-            when we share thoughts, ideas, and opinions responsibly.
-          <br />
-            Let the world know what you think;
-            <strong class="username"> your ideas do matter </strong>.
-          <br/>
-          <br/>
-            I'll admit: sharing ideas can be scary,
-            especially when we are not even sure about them.
-          <br/>
-            If you can, that's amazing.
-            If not, a start is better than nothing.
-          </p>
+          and, quite possibly, sparked the sequence of
+          events that led to modern civilization.
+          <br>
+          <br>
+          There is so much to get &mdash; and so much to give &mdash;
+          when we share thoughts, ideas, and opinions responsibly.
+          <br>
+          Let the world know what you think;
+          <strong class="username"> your ideas do matter </strong>.
+          <br>
+          <br>
+          I'll admit: sharing ideas can be scary,
+          especially when we are not even sure about them.
+          <br>
+          If you can, that's amazing.
+          If not, a start is better than nothing.
+        </p>
         <form class="form">
           <textarea
             id="comment"
+            v-model="comment"
             class="input"
             placeholder="Comment"
-            v-model="comment"
           />
           <div class="button-container">
             <StyledButton
@@ -114,7 +120,7 @@
               @click="submitComment"
             >
               comment
-          </StyledButton>
+            </StyledButton>
             <StyledButton
               v-if="isLoggedIn"
               class="button"
@@ -130,7 +136,7 @@
               @click="signIn"
             >
               sign in
-          </StyledButton>
+            </StyledButton>
           </div>
         </form>
       </div>
@@ -139,20 +145,20 @@
 </template>
 
 <script lang="ts" setup>
-import { getCommentDateAsString, normalizePath } from '~/modules/utils';
 </script>
 
 <script lang="ts">
 import { getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
-import markdownParser from '@nuxt/content';
-import { useUserInfo } from '~/composables/users';
-import type { Comment, UserInfo, BlogPostMeta } from "~/modules/utils";
+import { normalizePath } from "~/modules/utils";
+import useUserInfo from "~/composables/users";
+import type { Comment } from "~/modules/utils";
+
 export default {
-  name: 'BlogComments',
+  name: "BlogComments",
 
   data() {
     return {
-      comment: '',
+      comment: "",
       // allComments: new Array<Comment>(),
       showAuthPopup: false,
       // avatar: '',
@@ -164,6 +170,37 @@ export default {
     };
   },
 
+  computed: {
+
+    /**
+     * Get the currently logged in user.
+     *
+     * The target is undefined in SSR mode, so ignore in SSR mode.
+     */
+    currentUser() {
+      this.userDependency;
+      // ignore in SSR mode.
+      if (typeof document === "undefined") return null;
+
+      const { currentUser } = getAuth();
+
+      return currentUser;
+    },
+
+    /**
+     * Check if a user is logged in.
+     *
+     * The target is undefined in SSR mode, so ignore in SSR mode.
+     */
+    isLoggedIn() {
+      this.userDependency;
+      // ignore in SSR mode.
+      if (typeof document === "undefined") return false;
+
+      return !!this.currentUser;
+    },
+  },
+
   watch: {
 
     /**
@@ -171,10 +208,10 @@ export default {
      * when flag is set.
      */
     showAuthPopup() {
-      if (this.showAuthPopup && typeof document != 'undefined') {
-        document.getElementById('auth-form-container')
-          .classList.remove('hidden');
-          this.showAuthPopup = false;
+      if (this.showAuthPopup && typeof document !== "undefined") {
+        document.getElementById("auth-form-container")
+          .classList.remove("hidden");
+        this.showAuthPopup = false;
       }
     },
 
@@ -185,21 +222,33 @@ export default {
     userDependency() {
       this.$forceUpdate();
     },
-    
+
     userInfo() {
       // this.toggleUserDependency();
       this.$forceUpdate();
-    }
+    },
+  },
+
+  /**
+   * On mount (client-side only),
+   *
+   * do some initial setup.
+   */
+  mounted() {
+    // this._updateComments();
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, () => {
+      this.toggleUserDependency();
+    });
   },
 
   methods: {
-
 
     // reset auth visibility
     resetAuthVisibility() {
       this.showAuthPopup = false;
     },
-
 
     /**
      * Toggles whether all subs for current user are shown or not.
@@ -212,41 +261,33 @@ export default {
       this.userDependency = (this.userDependency + 1) % 100;
     },
 
-
-
     async _signOut() {
-      const auth  = getAuth();
-      
+      const auth = getAuth();
+
       await signOut(auth);
     },
-
-
 
     signIn() {
       this.showAuthPopup = true;
     },
 
-
-
     /**
      * Submit a comment to the database.
-     * 
+     *
      * If user is not logged in, show login popup.
-     * 
+     *
      * If user is logged in but has no avatar,
      *   generate an avatar and submit comment.
      */
     submitComment() {
-
       if (!this.comment) return;
-      
+
       const { path } = useRoute();
 
       // if user not logged in, show login popup
-      const auth  = getAuth();
+      const auth = getAuth();
       const { currentUser } = auth;
-      
-      
+
       if (!currentUser) {
         this.signIn();
         return;
@@ -256,59 +297,13 @@ export default {
         author: currentUser?.displayName,
         avatar: this.userInfo.avatar,
         date: new Date().toISOString(),
-        path: normalizePath(path)
-      }
+        path: normalizePath(path),
+      };
       this.userInfo.sendComment(newComment);
       // reset comment
       this.comment = "";
-    }
-  },
-
-
-  computed: {
-    
-    /**
-     * Get the currently logged in user.
-     * 
-     * The target is undefined in SSR mode, so ignore in SSR mode.
-     */
-    currentUser() {
-      this.userDependency;
-      // ignore in SSR mode.
-      if (typeof document == 'undefined') return;
-
-      const { currentUser } = getAuth();
-
-      return currentUser;
     },
-
-    /**
-     * Check if a user is logged in.
-     * 
-     * The target is undefined in SSR mode, so ignore in SSR mode.
-     */
-    isLoggedIn() {
-      this.userDependency;
-      // ignore in SSR mode.
-      if (typeof document == 'undefined') return false;
-
-      return this.currentUser ? true : false;
-    }
   },
-
-  /**
-   * On mount (client-side only),
-   * 
-   * do some initial setup.
-   */
-  mounted () {
-    // this._updateComments();
-
-    const auth  = getAuth();
-    onAuthStateChanged(auth, () => {
-      this.toggleUserDependency();
-    });
-  }
 };
 </script>
 
@@ -345,15 +340,13 @@ section.comments
   -o-transition: all 0.1s ease-in-out
   transition: all 0.1s ease-in-out
 
-
-
   .section-title
     color: colors.color("secondary-highlight")
     margin-top: 1rem
     margin-bottom: 1rem
     font-weight: 600
     font-size: 1.5rem
-    
+
   .section-subtitle
     color: colors.color("secondary-highlight")
 
@@ -372,7 +365,7 @@ section.comments
 
         &:hover
           cursor: pointer
-      
+
     .form
 
       .input
@@ -388,7 +381,6 @@ section.comments
 
         &:active, &:focus
           opacity: 1
-
 
     .button-container
       width: max-content
@@ -415,7 +407,6 @@ section.comments
   max-height: 60vh
   overflow-y: scroll
 
-  
   &::-webkit-scrollbar
     display: none !important
 
@@ -449,7 +440,7 @@ section.comments
       margin-bottom: 1rem
       @include mixins.box-shadow
       border-radius: geometry.var("border-radius")
-      
+
     .sub-actions
       width: 100%
       .unsubscribe-button
@@ -457,14 +448,14 @@ section.comments
         margin: 1rem auto
         width: 100%
         font-weight: 600
-        
+
         background-color: colors.color("secondary-highlight")
         color: colors.color("lightest-background")
         border: 1px solid colors.color("secondary-highlight")
-        
+
         &:hover
           cursor: pointer
-          
+
           background-color: colors.color("light-background")
           color: colors.color("secondary-highlight")
           border: 1px solid colors.color("secondary-highlight")

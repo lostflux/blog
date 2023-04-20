@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "Highlight",
-  }
+export default {
+  name: "Highlight",
+};
 </script>
 
 <style lang="sass">

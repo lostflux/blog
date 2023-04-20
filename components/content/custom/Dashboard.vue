@@ -1,13 +1,13 @@
 <template>
-<div class="skills-dashboard">
-  <slot />
-</div>
+  <div class="skills-dashboard">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
 export default {
   name: "Dashboard",
-}
+};
 </script>
 
 <style lang="sass">

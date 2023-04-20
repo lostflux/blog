@@ -17,10 +17,9 @@
 // import { getCommentDateAsString } from "~/modules/utils";
 // import { useUserInfo } from "~/composables/users";
 
-
 // // /**
 // //  * Comment Interface
-// //  */ 
+// //  */
 // // export interface Comment {
 // //   text: string,
 // //   author: string,
@@ -49,9 +48,9 @@
 
 // /**
 //  * Subscribes the user to a specific page.
-//  * 
+//  *
 //  * @param path (optional) path to subscribe to.
-//  * 
+//  *
 //  * if not provided, uses current route.
 //  */
 // export async function subscribe(_path? : string){
@@ -62,7 +61,7 @@
 
 //   // remove trailing slash if present
 //   path = normalizePath(path);
-  
+
 //   const q = query(
 //     collection(db, "subscriptions"),
 //     where("page", "==", path)
@@ -94,7 +93,7 @@
 // /**
 //  * Unsubscribes the current user from a page
 //  * @param _path (optional) path to unsubscribe from.
-//  * 
+//  *
 //  * if not provided, uses current route.
 //  */
 // export async function unsubscribe(_path? : string) {
@@ -102,9 +101,9 @@
 
 //   var path = _path || useRoute().path;
 //   const { currentUser } = getAuth();
-  
+
 //   path = normalizePath(path);
-  
+
 //   const q = query(collection(
 //     db, "subscriptions"),
 //     where("page", "==", path));
@@ -130,14 +129,14 @@
 
 // // /**
 // //  * Gets all subscriptions for the current user
-// //  * 
+// //  *
 // //  * @returns array of all subscriptions
-// //  * 
+// //  *
 // //  */
 // // export async function getAllSubscriptions() {
 // //   const db = getFirestore();
 // //   const { currentUser } = getAuth();
-  
+
 // //   // get all documents that have user email in subscribers
 // //   const q = query(
 // //     collection(db, "subscriptions"),
@@ -153,7 +152,7 @@
 // //         return normalizePath(path);
 // //       })
 // //     ));
-    
+
 // //     await queryContent<MarkdownParsedContent>()
 // //       .where({ _path: { $in: paths } })
 // //       .find()
@@ -179,9 +178,9 @@
 // // /**
 // //  * Checks if user is subscribed to a specific page
 // //  * @param _path (optional) path to check for subscription
-// //  * 
+// //  *
 // //  * @returns true if user is subscribed, false otherwise
-// //  * 
+// //  *
 // //  */
 // // export async function syncSubscriptionStatus(_path?: string) {
 // //   const db = getFirestore();
@@ -191,8 +190,8 @@
 // //   // if user is not logged in, return
 // //   if (!currentUser) return false;
 
-// //   path = normalizePath(path); 
-  
+// //   path = normalizePath(path);
+
 // //   // query for current page in subscriptions
 // //   const q = query(
 // //     collection(db, "subscriptions"),
@@ -220,11 +219,11 @@
 
 // // /**
 // //  * Gets all comments for a specific page
-// //  * 
+// //  *
 // //  * @param _path (optional) path to get comments for
-// //  * 
+// //  *
 // //  * @returns array of comments
-// //  * 
+// //  *
 // //  * Returns empty array if no comments or an error occurs.
 // //  */
 // // export function getCommentsByRoute(_path?: string) {
@@ -245,7 +244,7 @@
 // //   return getDocs(q).then((querySnapshot) => {
 // //     const _results: Comment[] = [];
 // //     querySnapshot.forEach((doc) => {
-      
+
 // //       const comment: Comment = {
 // //         text: doc.data().text,
 // //         author: doc.data().author || "anon",
@@ -253,7 +252,7 @@
 // //         date: doc.data().date,
 // //         path: doc.data().page || "",
 // //       }
-      
+
 // //       _results.push(comment);
 // //     });
 // //     return _results;
@@ -262,9 +261,9 @@
 
 // /**
 //  * Gets the avatar of the current user.
-//  * 
+//  *
 //  * If nonexistent, generates a new one and saves it to the database.
-//  * 
+//  *
 //  * @returns the (possibly new) avatar of the current user
 //  */
 // export async function getUserAvatar() {
@@ -309,9 +308,9 @@
 
 // /**
 //  * Sends a comment to the database
-//  * 
+//  *
 //  * @param comment comment to send
-//  * 
+//  *
 //  * @returns true if comment was sent successfully, false otherwise
 //  */
 // export function sendComment(comment: Comment) {
@@ -330,7 +329,7 @@
 // // export async function sendEmailToSubs(_path: string, comment: Comment) {
 // //   const db = getFirestore();
 // //   const { currentUser } = getAuth();
-  
+
 // //   const path = normalizePath(_path);
 
 // //   // get subscribers to current page
@@ -343,10 +342,10 @@
 // //   getDocs(q).then((querySnapshot) => {
 
 // //     // snapshot should contain single document with array of subscribers
-// //     const _rawSubs: Array<Array<string>> = 
+// //     const _rawSubs: Array<Array<string>> =
 // //       querySnapshot.docs.map(doc => doc.data().subscribers);
 
-// //     // if subscribers are > 0, 
+// //     // if subscribers are > 0,
 // //     //    create message body with link to current page
 // //     //    add message to mail collection
 
@@ -358,20 +357,18 @@
 
 // //     if (_subscribers.length === 0) return;
 // //     if (comment.text === '') return;
-    
+
 // //     const outMail = {
 // //       to: _subscribers,
 // //       message: {
 // //         subject: `altair.fyi`,
 // //         text: `
 // //   There is a new comment on a post you are subscribed to.
-  
-// //   At ${getCommentDateAsString(new Date(comment.date))}, ${comment.author} said: 
-  
-  
+
+// //   At ${getCommentDateAsString(new Date(comment.date))}, ${comment.author} said:
+
 // //   ${comment.text}
-  
-  
+
 // //   Check it out here: https://altair.fyi${path}.`,
 // //       // html: ''
 // //       }
@@ -385,5 +382,3 @@
 // //     });
 // //   });
 // // }
-
-

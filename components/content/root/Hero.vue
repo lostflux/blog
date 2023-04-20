@@ -1,38 +1,35 @@
 <template>
   <section id="hero">
     <div class="hero">
-    <!-- <div class="hero-background rubik-puddles">
+      <!-- <div class="hero-background rubik-puddles">
       ALT
     </div> -->
-    <div class="hero-container">
-      <div class="blurb-container">
-        <div class="big-title">
-          <span class="strike-through">
-            {{ "Talkers" }}
-          </span>
-          <span>Doers.</span>
-        </div>
-        <h1
-          class="pique"
-          :style="{ 'color': getColor(activeCallOutIndex) }"
-        >
-          sure, let's talk about it.
-        </h1>
-
-        <div class="digression">
-          <span class="normal"> but first, let's </span>
-          <span
-            class="highlight"
-            id="action"
-            :style="{ 'color':getColor(activeCallOutIndex) }"
+      <div class="hero-container">
+        <div class="blurb-container">
+          <div class="big-title">
+            <span class="strike-through">
+              {{ "Talkers" }}
+            </span>
+            <span>Doers.</span>
+          </div>
+          <h1
+            class="pique"
+            :style="{ 'color': getColor(activeCallOutIndex) }"
           >
-            {{ currentAction }}
-          </span>
+            sure, let's talk about it.
+          </h1>
+
+          <div class="digression">
+            <span class="normal"> but first, let's </span>
+            <span
+              id="action"
+              class="highlight"
+              :style="{ 'color':getColor(activeCallOutIndex) }"
+            >
+              {{ currentAction }}
+            </span>
+          </div>
         </div>
-    
-      </div>
-
-
 
       <!-- <h3 class="hero-h3 big-heading reduced">
         I build systems at scale.
@@ -43,9 +40,9 @@
         tag="div"
         class="hero-container"
       /> -->
-    </div>
-    <div class="hero-footer">
-      <!-- <div class="name">
+      </div>
+      <div class="hero-footer">
+        <!-- <div class="name">
         <div class="name-inner">
           altair
         </div>
@@ -71,21 +68,24 @@
           </div>
         </div>
       </div> -->
-      <div class="down-link">
-        <NuxtLink class="down-link-inner" to="/#about">
-          <Icon
-            type="down-arrow"
-            :style="{ 'color':getColor(activeCallOutIndex) }"
+        <div class="down-link">
+          <NuxtLink
+            class="down-link-inner"
+            to="/#about"
+          >
+            <Icon
+              type="down-arrow"
+              :style="{ 'color':getColor(activeCallOutIndex) }"
             />
-        </NuxtLink>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-  import { heroFootItems, heroCallOuts } from "~/modules/config";
+import { heroFootItems, heroCallOuts } from "~/modules/config";
 </script>
 
 <script lang="ts">
@@ -96,14 +96,61 @@ export default {
       footItemIndex: 0,
       activeCallOutIndex: 0,
       heroColorsDict: {
-        "teal": "#16f1d1",
-        "purple": "#a374ff",
-        "khaki": "#ffd074",
-        "white": "#ecf7fa",
-        "black": "#282723"
+        teal: "#16f1d1",
+        purple: "#a374ff",
+        khaki: "#ffd074",
+        white: "#ecf7fa",
+        black: "#282723",
       },
       currentAction: heroCallOuts[0].action,
-    }
+      changingAction: null,
+    };
+  },
+  computed: {
+    activeCallOut() {
+      const index = this.activeCallOutIndex % heroCallOuts.length;
+      return heroCallOuts[index];
+    },
+    heroColors() {
+      return [
+        this.heroColorsDict.teal,
+        this.heroColorsDict.purple,
+        this.heroColorsDict.khaki,
+      ];
+    },
+    font() {
+      const fonts = [
+        "cyber",
+        // "fredericka",
+        // "megrim",
+        // "macondo",
+        // "rubik-puddles",
+        // "DM Mono",
+      ];
+      return fonts[Math.floor(Math.random() * fonts.length)];
+    },
+    footItems() {
+      const active = [];
+
+      for (let i = this.footItemIndex; i < this.footItemIndex + 3; i++) {
+        const index = i % heroFootItems.length;
+        active.push(index);
+      }
+      return active;
+    },
+  },
+  watch: {
+    currentAction() {
+      this.$forceUpdate();
+    },
+  },
+  mounted() {
+    // this.changeAction();
+    this.tick();
+  },
+
+  unmounted() {
+    clearInterval(this.changingActions);
   },
 
   methods: {
@@ -126,11 +173,10 @@ export default {
         if (iterations >= 2 * nextAction.length) {
           clearInterval(shuffle);
         }
-        
+
         actionElement.innerText = actionElement.innerText
           .split("")
           .map((char, index) => {
-
             const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
             const modIndex = iterations - nextAction.length;
             if (iterations < nextAction.length) {
@@ -138,12 +184,12 @@ export default {
                 ? randomChar
                 : char;
             } else {
-            return (index === modIndex)
-              ? nextAction.charAt(index)
-              : char;
+              return (index === modIndex)
+                ? nextAction.charAt(index)
+                : char;
             }
           }).join("");
-          iterations++;
+        iterations++;
       }, 60);
     },
     getColor(index: number) {
@@ -151,57 +197,14 @@ export default {
       return this.heroColors[i];
     },
     tick() {
-      setInterval(() => {
+      this.changingActions = setInterval(() => {
         this.footItemIndex = (this.footItemIndex + 1) % heroFootItems.length;
-        this.activeCallOutIndex = this.activeCallOutIndex + 1 % 1000;
+        this.activeCallOutIndex += 1 % 1000;
         this.changeAction();
       }, 5000);
-
-    }
-  },
-  computed: {
-    activeCallOut() {
-      const index = this.activeCallOutIndex % heroCallOuts.length;
-      return heroCallOuts[index];
     },
-    heroColors() {
-      return [
-        this.heroColorsDict.teal,
-        this.heroColorsDict.purple,
-        this.heroColorsDict.khaki,
-      ]
-    },
-    font() {
-      const fonts = [
-        "cyber",
-        // "fredericka",
-        // "megrim",
-        // "macondo",
-        // "rubik-puddles",
-        // "DM Mono",
-      ]
-      return fonts[Math.floor(Math.random() * fonts.length)];
-    },
-    footItems() {
-      const active = [];
-      
-      for (let i = this.footItemIndex; i < this.footItemIndex + 3; i++) {
-        const index = i % heroFootItems.length;
-        active.push(index);
-      }
-      return active;
-    }
   },
-  mounted() {
-    // this.changeAction();
-    this.tick();
-  },
-  watch: {
-    currentAction() {
-      this.$forceUpdate();
-    }
-  }
-}
+};
 </script>
 
 <style lang="sass">
@@ -227,7 +230,7 @@ export default {
     position: absolute
     top: 0
     left: 0
-    
+
   min-height: calc(100vh - 2 *  geometry.var("nav-height"))
   width: 100%
   position: relative
@@ -273,38 +276,27 @@ export default {
       @media (max-width: 480px)
         margin: 0 0 20px 2px
 
-
     .digression
       // font-family: typography.font("sans-serif")
       font-weight: 400
       margin: 0.5rem 0 1.5rem 0.2rem
 
-
       &:is(:last-child)::after
         content: '.'
         color: colors.color("white")
-    
+
       .normal
         color: colors.color("white")
 
-
       @media (max-width: 480px)
         margin: 0 0 20px 2px
-  
 
   .hero-footer
     position: absolute
     bottom: 0
     right: 0
-    // bottom: 0
-    // right: 0
     width: 100%
-    // background: red
     align-self: flex-end
-
-    // @media(max-height: 1020px)
-    //   position: relative
-    //   padding: 2rem 0
 
     .down-link
       height: 60px
@@ -315,20 +307,14 @@ export default {
       position: absolute
       bottom: 0
       right: 0
-      // float: right
-      // margin: 0 80px 80px 0margin
       margin-right: 10%
       margin-bottom: 10%
-      // display: none
-      // background-color: yellow
       float: right
-      
-
 
       .down-link-inner
         width: 100%
         height: 100%
-        
+
         &:is(:hover, :focus, :selected)
           color: colors.color(lightest-foreground)
 
@@ -343,8 +329,6 @@ export default {
           -o-transition: color 3s ease-in-out
           transition: color 3s ease-in-out
 
-
-
           &:is(:hover, :selected, :focus)
             stroke-width: 1px
             cursor: pointer
@@ -358,162 +342,5 @@ export default {
               transform: translateY(-5px)
             100%
               transform: translateY(0)
-    
-    // padding: 2rem clamp(0px, 5vw, 5rem)
-    // min-height: 10%
-    // height: clamp(130px, 10vh, 150px)
-    // width: 100%
-    // display: flex
-    // justify-content: space-between
-    // text-align: left
-
-    // // background-color: rgba(colors.color(background), 0.4)
-    // backdrop-filter: blur(10px)
-
-
-    // .name
-    //   font-size: clamp(1.8rem, 1.6vw, 1rem)
-    //   color: colors.color(foreground)
-    //   font-weight: 600
-    //   font-family: typography.font(fredericka)
-    //   justify-content: center
-    //   align-items: center
-    //   display: flex
-
-    // .item
-    //   flex: 1
-    //   display: flex
-    //   flex-direction: column
-    //   justify-content: center
-    //   align-items: center
-    //   transition: all 0.5s ease-out
-
-    //   @media(max-width: 960px)
-    //     display: none
-
-    // .single-item
-    //   display: none
-
-    //   @media(max-width: 960px)
-    //     flex: 1
-    //     display: flex
-    //     flex-direction: column
-    //     justify-content: center
-    //     align-items: left
-    //     display: flex
-
-    //     .item-title
-    //       font-size: clamp(1.7rem, 1.6vw, 1.5rem)
-    //       margin-bottom: 0.5rem
-    //       color: rgba(colors.color(lightest-foreground), 0.9)
-    //       width: 100%
-
-    //     .item-subscript
-    //       font-size: clamp(0.8rem, 1.6vw, 1rem)
-    //       color: colors.color(foreground)
-    //       width: 100%
-      
-
-    // .item-title
-    //   font-weight: 600
-    //   font-size: clamp(0.9rem, 2vw, 1.2rem)
-    //   margin-bottom: 0.5rem
-    //   color: rgba(colors.color(lightest-foreground), 0.9)
-    //   width: 100%
-
-    // .item-subscript
-    //   font-size: clamp(0.7rem, 1.6vw, 1rem)
-    //   color: colors.color(foreground)
-    //   width: 100%
-
-
-
-
-
-
-
-
-
-  // .hero-h2
-  //   // margin: 0px 0 10px 4px
-
-  //   color: colors.color("primary-highlight")
-  //   font-family: typography.font("monospace")
-  //   text-transform: uppercase
-
-  //   font-size: clamp(typography.font-size("xxs"), 1vw, typography.font-size("m"))
-  //   font-weight: 600
-  //   width: 100%
-
-  //   @media (max-width: 480px)
-  //     margin: 0 0 20px 2px
-    
-  // h3
-  //   margin-top: 10px
-  //   color: colors.color("foreground")
-  //   line-height: 0.9
-  //   padding-top: 0.3em
-  //   font-size: clamp(2.5rem, 4vw, 4rem) !important
-  
-  // p
-  //   margin: 20px 0
-  //   max-width: 540px
-  //   opacity: 1 !important
-  
-  // .email-link
-  //   @include mixins.big-button
-  //   text-transform: uppercase !important
-
-  // .reduced
-  //   font-size: clamp(30px,6vw, 80px)
-
-  // .rubik
-  //   font-family: typography.font("rubik-fade")
-  //   font-weight: 400
-  //   font-size: clamp(40px, 6vw, 80px)
-
-  // .megrim
-  //   font-family: typography.font("megrim")
-  //   font-weight: 500
-  //   font-size: clamp(40px, 6vw, 80px)
-
-  // .fredericka
-  //   font-family: typography.font("fredericka")
-  //   font-weight: 500
-  //   font-size: clamp(40px, 6vw, 80px)
-
-  // .macondo
-  //   font-family: typography.font("macondo")
-  //   font-weight: 500
-  //   font-size: clamp(40px, 6vw, 80px)
-
-  // .rubik-puddles
-  //   font-family: typography.font("rubik-puddles")
-    
-  //   font-weight: 500
-
-  // .cyber
-  //   font-family: typography.font("big-heading")
-  //   text-transform: lowercase
-  //   font-size: clamp(30px, 2vw, 80px)
-  //   // background: yellow
-  //   font-weight: 800
-  //   font-size: 80px
-    
-    // make the text transparent with outline 
-    // to make it look like it's glowing
-    // color: transparent
-    // -webkit-text-stroke: 1px colors.color("primary-highlight")
-    // text-shadow: 0 0 10px colors.color("primary-highlight")
-
-
-  .hero-background
-    position: fixed
-    opacity: 0.1
-    max-width: 100%
-    width: 100%
-    font-size: 50vw
-    color: colors.color("critical-foreground")
-    mouse-events: none
 
 </style>

@@ -7,7 +7,7 @@
 <script lang="ts">
 export default {
   name: "StyledTabPanels",
-}
+};
 </script>
 
 <style lang="sass">
@@ -22,10 +22,10 @@ export default {
   min-height: 512px
   color: colors.color("light-foreground")
 
-  @media (max-width: 600px) 
+  @media (max-width: 600px)
     margin-left: 0
     margin-top: 20px
-  
+
   * > ul
     font-size: typography.font-size("m")
 </style>

@@ -6,8 +6,8 @@
 
 <script lang="ts">
 export default {
-  name: 'StyledButton'
-}
+  name: "StyledButton",
+};
 </script>
 
 <style lang="sass">
@@ -23,4 +23,3 @@ export default {
     cursor: pointer
     border: 2px solid transparent
 </style>
-

@@ -2,14 +2,16 @@ import { Ref } from "nuxt/dist/app/compat/vue-demi";
 
 /**
  * Manage the state of a number ref in a clean way.
- * 
+ *
  * Supports, setting, incrementing, decrementing, and resetting.
- * 
+ *
  * Access the raw ref through the `ref` property.
  */
 class NumRefManager {
   ref: Ref<number>;
+
   max: number;
+
   min: number = 0;
 
   constructor(max?: number, min?: number) {
@@ -29,14 +31,14 @@ class NumRefManager {
   public next = () => {
     const val = this.ref.value + 1;
     this.ref.value = val > this.max ? this.min : val;
-  }
+  };
 
   public prev = () => {
     const val = this.ref.value - 1;
     this.ref.value = val < this.min ? this.max : val;
-  }
+  };
 }
 
 export {
-  NumRefManager
-}
+  NumRefManager,
+};

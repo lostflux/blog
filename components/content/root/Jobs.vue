@@ -1,6 +1,8 @@
 <template>
   <StyledJobsSection id="jobs">
-    <h2 class="numbered-heading">Work Experience</h2>
+    <h2 class="numbered-heading">
+      Work Experience
+    </h2>
     <div class="inner hide fade-in">
       <StyledTabList
         role="tablist"
@@ -9,18 +11,18 @@
       >
         <StyledTabButton
           v-for="job, i in jobs"
-          :identifier="i"
           ref="tabButtons"
+          :identifier="i"
           :tabindex="activeTabId === i ? '0' : '-1'"
           :aria-controls="`panel-${i}`"
           :aria-selected="activeTabId === i ? true : false"
+          role="tab"
           @click="
             () => {
               setActiveTabId(i);
               selectTab(i);
             }"
-          role="tab"
-        > 
+        >
           <span>
             {{ `${job.company}` }}
           </span>
@@ -35,17 +37,20 @@
         >
           <StyledTabPanel
             v-for="job, i in jobs"
-            :key="i"
-            :identifier="i"
-            ref="tabs"
-            role="tabpanel"
             :id="`panel-${i}`"
+            :key="i"
+            ref="tabs"
+            :identifier="i"
+            role="tabpanel"
           >
             <h3>
               {{ job.title }}
               <span class="company">
                 &nbsp;@&nbsp;
-                <a :href="job.url" class="link">
+                <a
+                  :href="job.url"
+                  class="link"
+                >
                   {{ job.company }}
                 </a>
               </span>
@@ -63,24 +68,24 @@
 
 <script setup lang="ts">
 
-import {
-  NumRefManager
-} from "~/modules/utils";
-import { KEY_CODES } from '~/modules/utils';
 import { ref } from "vue";
 import { MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
+import {
+  NumRefManager,
+  KEY_CODES,
+} from "~/modules/utils";
 
-
-// read 'job-info' data from Markdown files 
+// read 'job-info' data from Markdown files
 const { data: jobsData } = await useAsyncData(
   `jobs-${useRoute().path}`,
   async () => {
     const _jobsData = queryContent<MarkdownParsedContent>("jobs")
-      .where( { category: "jobs-info" } )
-      .sort( { date: -1 } )
+      .where({ category: "jobs-info" })
+      .sort({ date: -1 })
       .find();
     return await _jobsData;
-});
+  },
+);
 
 // parse job info and store in an array, sorted by date
 // const jobs = Array<ParsedJobInfo>();
@@ -88,21 +93,14 @@ const jobs = jobsData.value
   ? jobsData.value
   : [];
 
-
-
-var activeTabId = 0;
+let activeTabId = 0;
 const tabFocus = new NumRefManager(jobs.length - 1);
-
-
-
-
 
 const tabs = ref([]);
 const tabButtons = ref([]);
-var highlight = ref(null);
+const highlight = ref(null);
 
 const setActiveTabId = (id: number) => {
-
   // mute old tab if active
   tabs.value[activeTabId]?.muteTab();
 
@@ -113,15 +111,14 @@ const setActiveTabId = (id: number) => {
   tabs.value[activeTabId]?.activateTab();
 
   // show the corresponding tab panel
-  highlight.value?.highlight(id)
-
-}
+  highlight.value?.highlight(id);
+};
 
 const focusTab = () => {
   tabButtons.value[tabFocus.value]?.focus();
 };
 
-var selectedTab = 0;
+let selectedTab = 0;
 const selectTab = (id: number) => {
   if (id !== selectedTab) {
     tabButtons.value[selectedTab]?.deselect();
@@ -159,7 +156,7 @@ const onKeyDown = (event) => {
 <script lang="ts">
 export default {
   name: "Jobs",
-}
+};
 </script>
 
 <style lang="sass" scoped>

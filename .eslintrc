@@ -1,6 +1,6 @@
 {
   "extends": [
-    "@nuxtjs/eslint-config-typescript",
+    "@nuxt/eslint-config",
     "plugin:nuxt/recommended",
     "airbnb"
   ],
@@ -14,11 +14,15 @@
   },
   "rules": {
     "strict": 0,
-    "quotes": [2, "single"],
+    "quotes": [2, "double"],
     "no-else-return": 0,
     "new-cap": ["error", {"capIsNewExceptions": ["Router"]}],
     "no-console": 0,
-    "import/no-unresolved": [2, { "caseSensitive": false } ],
+    "no-undef": 0,
+    "no-param-reassign": 0,
+    "no-unused-expressions": 0,
+    "no-plusplus": 0,
+    "import/no-unresolved": [0, { "caseSensitive": false } ],
     "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     "no-underscore-dangle": 0,
     "arrow-body-style": 0,
@@ -28,10 +32,14 @@
     "no-extra-parens": 0,
     "no-restricted-syntax": [0, "DebuggerStatement"],
     "no-debugger": "warn",
-    "nuxt/rule-name": 2
+    // "nuxt/rule-name": 2,
+    "import/extensions": 0,
+    "vue/no-multiple-template-root": 0,
+    "vue/multi-word-component-names": 0
   },
   "plugins": [
     // "react"
-    "nuxt"
-  ]
+    // "nuxt"
+  ],
+  "root": false
 }

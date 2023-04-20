@@ -1,5 +1,7 @@
 <template>
-  <li class="prose-li"><slot /></li>
+  <li class="prose-li">
+    <slot />
+  </li>
 </template>
 
 <style lang="sass" scoped>

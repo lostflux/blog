@@ -2,9 +2,9 @@
   <button
     class="menu-button"
     :class="clicked ? 'clicked' : ''"
-    @click="click"
     aria-controls="primary-navigation"
     aria-expanded="false"
+    @click="click"
   >
     <svg
       class="hamburger"
@@ -15,7 +15,9 @@
         width="80%"
         height="6px"
         fill="currentColor"
-        x="10" y="40" rx="0"
+        x="10"
+        y="40"
+        rx="0"
       />
 
       <rect
@@ -23,33 +25,34 @@
         width="56%"
         height="6px"
         fill="currentColor"
-        x="34" y="60" rx="0"
+        x="34"
+        y="60"
+        rx="0"
       />
 
     </svg>
-
   </button>
 </template>
 
 <script lang="ts">
 
-  export default  {
-    name: "StyledMenuButton",
-    data() {
-      return {
-        menuOpen: false,
-        clicked: false,
-      }
+export default {
+  name: "StyledMenuButton",
+  data() {
+    return {
+      menuOpen: false,
+      clicked: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.menuOpen = !this.menuOpen;
     },
-    methods: {
-      toggle() {
-        this.menuOpen = !this.menuOpen;
-      },
-      click() {
-        this.clicked = !this.clicked;
-      },
+    click() {
+      this.clicked = !this.clicked;
     },
-  }
+  },
+};
 </script>
 
 <style lang="sass" scoped>
@@ -70,7 +73,7 @@
     -ms-transition: 0.1s
     -o-transition: 0.1s
     transition: 0.1s
-    
+
     -webkit-transform-origin: center
     -moz-transform-origin: center
     -ms-transform-origin: center
@@ -108,5 +111,5 @@
       -ms-transform: rotate(-45deg)
       -o-transform: rotate(-45deg)
       transform: rotate(-45deg)
-    
+
 </style>

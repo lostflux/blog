@@ -1,14 +1,16 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 
+import autoprefixer from "autoprefixer";
 
 export default {
-  publicRuntimeConfig: {apiKey: process.env.API_KEY,
+  publicRuntimeConfig: {
+    apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
-    projectId:  process.env.PROJECT_ID,
+    projectId: process.env.PROJECT_ID,
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.APP_ID,
-    measurementId: process.env.MEASUREMENT_ID
+    measurementId: process.env.MEASUREMENT_ID,
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
@@ -21,7 +23,7 @@ export default {
     "@nuxt/content",
     "@nuxt/ui",
     "@nuxt/image-edge",
-    '@nuxt/devtools',
+    "@nuxt/devtools",
     "@pinia/nuxt",
   ],
   devtools: {
@@ -41,31 +43,31 @@ export default {
       // Will inject `[...slug].vue` as the root page.
       injectPage: true,
       ignores: [
-        'content/jobs',
+        "content/jobs",
       ],
     },
     markdown: {
       remarkPlugins: [
-        "remark-math"
+        "remark-math",
       ],
       rehypePlugins: [
-        "rehype-katex"
-      ]
+        "rehype-katex",
+      ],
     },
     highlight: {
       theme: "github-dark",
       preload: [
-        'bash',
-        'c',
-        'cpp',
-        'java',
-        'julia',
-        'python',
-        'haskell',
-        'f#',
-        'vue',
-      ]
-    }
+        "bash",
+        "c",
+        "cpp",
+        "java",
+        "julia",
+        "python",
+        "haskell",
+        "f#",
+        "vue",
+      ],
+    },
   },
   ssr: true,
 
@@ -74,10 +76,10 @@ export default {
       hid: "icon",
       rel: "icon",
       type: "image/x-icon",
-      href: "/favicon.png"
-    }
+      href: "/favicon.png",
+    },
   ],
-  
+
   css: [
     "~/styles/raw-fonts.scss",
     "~/styles/typography.scss",
@@ -92,15 +94,15 @@ export default {
   components: {
     dirs: [
       "~/components/icons",
-      '~/components/atoms',
-      '~/components/molecules',
-      '~/components',
-    ]
+      "~/components/atoms",
+      "~/components/molecules",
+      "~/components",
+    ],
   },
   compilerOptions: {
     isCustomElement: [
-      'vue-freezeframe',
-    ]
+      "vue-freezeframe",
+    ],
   },
   plugins: [
     { src: "~/plugins/resize.ts", mode: "client" },
@@ -117,8 +119,8 @@ export default {
         //   props: [],
         //   needRuntime: false,
         // })
-      }
-    }
+      },
+    },
   },
   image: {
     // The screen sizes predefined by `@nuxt/image`:
@@ -129,7 +131,7 @@ export default {
       lg: 1024,
       xl: 1280,
       xxl: 1536,
-      '2xl': 1536
+      "2xl": 1536,
     },
   },
   head: {
@@ -138,14 +140,14 @@ export default {
         rel: "icon",
         type: "image/png",
         href: "/favicon.png",
-      }
-    ]
+      },
+    ],
   },
   googleFonts: {
     families: {
       "DM+Sans": true, // [200, 300, 400, 500, 600, 700],
-      "DM+Mono": true, //[200, 300, 400, 500, 600, 700],
-      "Space+Mono": true, //[200, 300, 400, 500, 600, 700],
+      "DM+Mono": true, // [200, 300, 400, 500, 600, 700],
+      "Space+Mono": true, // [200, 300, 400, 500, 600, 700],
     },
     prefetch: true,
     preconnect: true,
@@ -173,24 +175,20 @@ export default {
   ],
   layouts: {
     default: "~/layouts/clean.vue",
-    // error: "~/layouts/error.vue",
   },
-
-  // router: {
-  //   middleware: 'trailingSlashRedirect',
-  //   trailingSlash: false,
-  // },
-
-  // redirect: [
-  //   {
-  //       from: '^[\\w\\.\\/]*(?<!\\/)(\\?.*\\=.*)*$',
-  //       to: (from, req) => {
-  //           const matches = req.url.match(/^.*(\?.*)$/)
-  //           if (matches.length > 1) {
-  //               return matches[0].replace(matches[1], '') + '/' + matches[1]
-  //           }
-  //           return matches[0]
-  //       }
-  //    }
-  // ],
-}
+  build: {
+    postcss: {
+      plugins: [
+        autoprefixer(),
+      ],
+      postcssOptions: {
+        // preset name
+        // order: "cssnanoLast",
+        // ordered plugin names
+        // order: ["postcss-import", "postcss-preset-env", "cssnano"],
+        // Function to calculate plugin order
+        // order: (names, presets) => presets.cssnanoLast(names),
+      },
+    },
+  },
+};

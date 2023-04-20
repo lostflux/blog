@@ -4,6 +4,12 @@
   </ul>
 </template>
 
+<script lang="ts">
+export default {
+  name: "StyledProjectsGrid",
+};
+</script>
+
 <style lang="sass">
 @use "~/styles/mixins"
 
@@ -14,12 +20,3 @@
     position: relative
     z-index: 1
 </style>
-
-<script lang="ts">
-  export default {
-    name: "StyledProjectsGrid",
-  }
-</script>
-
-
-

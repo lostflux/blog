@@ -1,6 +1,8 @@
 <template>
   <section class="about-section">
-    <h2 class="numbered-heading">About Me</h2>
+    <h2 class="numbered-heading">
+      About Me
+    </h2>
     <div class="inner">
       <slot />
     </div>
@@ -10,7 +12,7 @@
 <script lang="ts">
 export default {
   name: "StyledAboutSection",
-}
+};
 </script>
 
 <style lang="sass">
@@ -25,10 +27,9 @@ export default {
     display: grid
     // grid-template-columns: 3fr 2fr
     grid-gap: 50px
-    @media (max-width: 768px) 
+    @media (max-width: 768px)
       display: block
 
   ul
     width: fit-content
 </style>
-

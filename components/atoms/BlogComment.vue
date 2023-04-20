@@ -1,38 +1,41 @@
 <template>
   <div class="comment-wrapper">
     <div
-      class="comment"
-      :id="`comment-${id}`"
       v-if="comment.text"
+      :id="`comment-${id}`"
+      class="comment"
     >
       <div class="comment-header">
         <div
-        v-if="comment.avatar && comment.text"
-        class="comment-avatar"
-        v-html="comment.avatar"
-      />
+          v-if="comment.avatar && comment.text"
+          class="comment-avatar"
+          v-html="comment.avatar"
+        />
         <div class="comment-meta">
           <span class="comment-author">
             {{ comment.author }}
           </span>
           <span
-            class="comment-date"
             v-if="comment.date"
+            class="comment-date"
           >
             {{ new Date(comment.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
           </span>
         </div>
       </div>
       <div class="comment-body">
-        <ContentRenderer class="markdown-comment" :value="parsedMarkdown" />
+        <ContentRenderer
+          class="markdown-comment"
+          :value="parsedMarkdown"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import markdownParser from "@nuxt/content/transformers/markdown";
 import { Comment, getCommentDateAsString } from "~/modules/utils";
-import markdownParser from '@nuxt/content/transformers/markdown';
 
 export default {
   name: "BlogComment",
@@ -50,9 +53,9 @@ export default {
   async setup(props) {
     return {
       parsedMarkdown: await markdownParser.parse(props.id, props.comment.text),
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="sass">
@@ -63,8 +66,6 @@ export default {
   display: flex
   flex-direction: row
   width: 100%
-
-
 
   .comment
     // margin-top: 0
@@ -119,7 +120,7 @@ export default {
           // background: green
           line-height: 20px
           height:  20px
-      
+
         .comment-date
           font-size: 0.9em
           // margin-left: 0.5em

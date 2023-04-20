@@ -1,40 +1,50 @@
 <template>
   <figure class="prose-img-wrapper">
-    <img class="prose-img" :src="refinedSrc" :alt="alt" :width="width" :height="height">
-    <caption v-if="alt" class="prose-img-alt">
+    <img
+      class="prose-img"
+      :src="refinedSrc"
+      :alt="alt"
+      :width="width"
+      :height="height"
+    >
+    <caption
+      v-if="alt"
+      class="prose-img-alt"
+    >
       {{ alt }}
-    </caption> 
+    </caption>
   </figure>
 </template>
 
 <script setup lang="ts">
-import { withBase } from 'ufo'
-import { useRuntimeConfig, computed } from '#imports'
+import { withBase } from "ufo";
+import { useRuntimeConfig, computed } from "#imports";
+
 const props = defineProps({
   src: {
     type: String,
-    default: ''
+    default: "",
   },
   alt: {
     type: String,
-    default: ''
+    default: "",
   },
   width: {
     type: [String, Number],
-    default: undefined
+    default: undefined,
   },
   height: {
     type: [String, Number],
-    default: undefined
-  }
-})
+    default: undefined,
+  },
+});
 const refinedSrc = computed(() => {
-  return withBase(props.src, useRoute().path)
+  return withBase(props.src, useRoute().path);
   // if (props.src?.startsWith('/') && !props.src.startsWith('//')) {
   //   // return withBase(props.src, useRuntimeConfig().app.baseURL)
   // }
   // return props.src
-})
+});
 </script>
 
 <style lang="sass" scoped>
@@ -48,7 +58,7 @@ const refinedSrc = computed(() => {
   display: flex
   flex-direction: column
   align-items: center
-  
+
   .prose-img
     max-width: 100%
     max-height: 100%

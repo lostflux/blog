@@ -10,13 +10,22 @@
           Target page is empty.
         </p>
         <div class="buttons">
-          <button class="error-page-button" @click="$router.back()">
+          <button
+            class="error-page-button"
+            @click="$router.back()"
+          >
             Go back
           </button>
-          <NuxtLink class="error-page-button" to="/">
+          <NuxtLink
+            class="error-page-button"
+            to="/"
+          >
             Go home
           </NuxtLink>
-          <NuxtLink class="error-page-button" to="/blog">
+          <NuxtLink
+            class="error-page-button"
+            to="/blog"
+          >
             Show me the blog
           </NuxtLink>
         </div>
@@ -28,7 +37,7 @@
 <script lang="ts">
 export default {
   name: "404",
-}
+};
 </script>
 
 <style lang="sass" scoped>
@@ -36,7 +45,6 @@ export default {
 @use "~/styles/colors"
 @use "~/styles/typography"
 @use "~/styles/geometry"
-
 
 .not-found
   @include mixins.flex-center
@@ -82,7 +90,6 @@ export default {
     .error-message-paragraph
       font-size: clamp(20px, 2vw, typography.font-size("xl"))
       color: colors.color("primary-highlight")
-      
 
     .error-page-button
       @include mixins.big-button

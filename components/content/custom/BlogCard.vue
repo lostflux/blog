@@ -13,37 +13,44 @@
     <!-- <div v-if="blog.date" class="blog-date">
       {{ getCommentDateAsString(new Date(blog.date)) }}
     </div> -->
-    <ContentRenderer v-if="blog.excerpt" :value="blog" :excerpt="true" />
-    <img 
+    <ContentRenderer
+      v-if="blog.excerpt"
+      :value="blog"
+      :excerpt="true"
+    />
+    <img
       alt="blog image"
       class="blog-image"
       :src="`${blog._path}/${blog.image}`"
-    />
+    >
     <div class="blog-actions">
-      <NuxtLink :to="blog._path" class="blog-click">
+      <NuxtLink
+        :to="blog._path"
+        class="blog-click"
+      >
         <StyledButton
           type="danger"
           size="small"
           class="blog-card-button"
-          >
+        >
           view
         </StyledButton>
       </NuxtLink>
       <StyledButton
-        @click="() => { toggleSubscription(blog._path) }"
         type="danger"
         size="small"
         class="blog-card-button"
-        >
-        {{  userInfo.isSubscribed(blog._path) ? 'Unsubscribe' : 'Subscribe'  }}
+        @click="() => { toggleSubscription(blog._path) }"
+      >
+        {{ userInfo.isSubscribed(blog._path) ? 'Unsubscribe' : 'Subscribe' }}
       </StyledButton>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useUserInfo } from '~/composables/users';
-import { ParsedContent } from '@nuxt/content/dist/runtime/types';
+import { ParsedContent } from "@nuxt/content/dist/runtime/types";
+import useUserInfo from "~/composables/users";
 
 export default {
   name: "BlogList",
@@ -56,14 +63,14 @@ export default {
   data() {
     return {
       userInfo: useUserInfo(),
-    }
+    };
   },
-  methods: { 
+  methods: {
     toggleSubscription(blogPath: string) {
       this.userInfo.toggleSubscription(blogPath);
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="sass" scoped>
@@ -117,7 +124,6 @@ export default {
     border-radius: geometry.var("border-radius")
     max-height: 200px
     object-fit: cover
-    
 
   .blog-actions
     width: fit-content
@@ -142,8 +148,8 @@ export default {
       width: 30px
       height: 30px
       color: colors.color("secondary-highlight")
-      
+
       &::hover
         cursor: pointer
-  
+
 </style>

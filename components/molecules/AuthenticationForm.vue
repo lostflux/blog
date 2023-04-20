@@ -1,66 +1,76 @@
 <template>
-  <div class="auth-form-container" @click.self="closePopUp">
+  <div
+    class="auth-form-container"
+    @click.self="closePopUp"
+  >
     <div class="auth-form">
-      <h1 class="title"> {{ panes[activeTabId] }} </h1>
+      <h1 class="title">
+        {{ panes[activeTabId] }}
+      </h1>
       <StyledTabList class="tab-list">
         <StyledTabButton
-          v-for="pane, i in panes"
+          v-for="(pane, i) in panes"
+          :key="i"
+          ref="tabButtons"
           :identifier="i"
           class="tab-button"
-          ref="tabButtons"
           :tabindex="activeTabId === i ? '0' : '-1'"
           :aria-controls="`panel-${i}`"
           :aria-selected="activeTabId === i ? true : false"
+          role="tab"
           @click="
             () => {
               setActiveTabId(i);
               selectTab(i);
             }"
-          role="tab"
-        > 
-        {{ pane }}
+        >
+          {{ pane }}
         </StyledTabButton>
-        <StyledHighlight class="highlight" ref="highlight" mode="horizontal" />
+        <StyledHighlight
+          ref="highlight"
+          class="highlight"
+          mode="horizontal"
+        />
       </StyledTabList>
       <StyledTabPanels class="tab-panels">
         <StyledTabPanel
           v-for="pane, i in panes"
-          :key="i"
-          :identifier="i"
-          ref="tabs"
-          role="tabpanel"
           :id="`panel-${1}`"
+          :key="i"
+          ref="tabs"
+          :identifier="i"
+          role="tabpanel"
           class="tab-panel"
         >
           <div class="sign-in-context">
             {{ i == 0
               ? 'Sign in to your account.'
               : 'Create a new account.'
-             }}
+            }}
           </div>
           <form class="">
             <input
-              type="username"
+              v-if="i == 1"
               id="username"
+              v-model="username"
+              type="username"
               class="input"
               placeholder="username"
-              v-model="username"
-              v-if="i == 1"
-            />
+            >
             <input
-              type="email"
               id="email"
+              v-model="email"
+              type="email"
               class="input"
               placeholder="Email"
-              v-model="email"
-            />
+            >
             <input
-              type="password"
               id="password"
+              v-model="password"
+              type="password"
               class="input"
               placeholder="Password"
-              v-model="password"
-            />
+            >
             <div class="button-container">
               <button
                 class="button"
@@ -78,19 +88,33 @@
 </template>
 
 <script lang="ts" setup>
-const panes = ['sign in', 'sign up'];
+import { createAvatar } from "@dicebear/core";
+import { lorelei } from "@dicebear/collection";
 
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  getAuth,
+} from "@firebase/auth";
+
+import {
+  getFirestore,
+  addDoc,
+  collection,
+} from "@firebase/firestore";
+import { NumRefManager } from "~/modules/utils";
+
+const panes = ["sign in", "sign up"];
 
 const tabs = ref([]);
 const tabButtons = ref([]);
-var highlight = ref(null);
+const highlight = ref(null);
 
-var activeTabId = ref(0);
+const activeTabId = ref(0);
 const tabFocus = new NumRefManager(panes.length - 1);
 
 const setActiveTabId = (id: number) => {
-
-  // mute old tab if active
   tabs.value[activeTabId.value]?.muteTab();
 
   // change active tab to current
@@ -100,15 +124,14 @@ const setActiveTabId = (id: number) => {
   tabs.value[activeTabId.value]?.activateTab();
 
   // show the corresponding tab panel
-  highlight.value?.highlight(id)
-
-}
+  highlight.value?.highlight(id);
+};
 
 const focusTab = () => {
   tabButtons.value[tabFocus.value]?.focus();
 };
 
-var selectedTab = 0;
+let selectedTab = 0;
 const selectTab = (id: number) => {
   if (id !== selectedTab) {
     tabButtons.value[selectedTab]?.deselect();
@@ -119,67 +142,46 @@ const selectTab = (id: number) => {
 
 // Only re-run the effect if tabFocus changes
 watch(tabFocus.ref, focusTab);
-
-
 </script>
 
 <script lang="ts">
-import { createAvatar } from '@dicebear/core';
-import { lorelei } from '@dicebear/collection';
-
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  getAuth
-} from '@firebase/auth';
-
-import {
-  getFirestore,
-  doc,
-  addDoc,
-collection
-} from '@firebase/firestore';
-import { NumRefManager } from '~/modules/utils';
 
 export default {
-  name: 'AuthenticationForm',
+  name: "AuthenticationForm",
 
   // data
   data() {
     return {
-      username: '',
-      email: '',
-      password: ''
+      username: "",
+      email: "",
+      password: "",
     };
   },
 
   methods: {
     // sign up
     signUp() {
-
       const validation = [
         !(this.username.length < 5),
         !(this.email.length < 5),
         !(this.password.length < 5),
-      ]
+      ];
 
       if (!validation.every((v) => v)) {
-        console.error('validation error');
+        console.error("validation error");
         return;
       }
 
-      
-      const auth = getAuth()
+      const auth = getAuth();
 
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = auth.currentUser;
-          
+
           updateProfile(user, {
             displayName: this.username,
-          })
+          });
 
           // add avatar to avatars collection
           const db = getFirestore();
@@ -189,8 +191,8 @@ export default {
           });
           const newUserAvatar = {
             uid: user.uid,
-            avatar: avatar.toString()
-          }
+            avatar: avatar.toString(),
+          };
           addDoc(collection(db, "avatars"), newUserAvatar);
           // ...
           // close sign-in popup after sign-in;
@@ -199,36 +201,35 @@ export default {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
+          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
           // ..
-        })
-
+        });
     },
 
     // sign in
     signIn() {
       const auth = getAuth();
 
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // ...
-          // close sign-in popup after sign-in;
-          this.closePopUp();
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
-          // ..
-        })
+      signInWithEmailAndPassword(auth, this.email, this.password);
+      // .then((userCredential) => {
+      //   // Signed in
+      //   const { user } = userCredential;
+      //   // ...
+      //   // close sign-in popup after sign-in;
+      //   this.closePopUp();
+      // })
+      // .catch((error) => {
+      //   const errorCode = error.code;
+      //   const errorMessage = error.message;
+      //   console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
+      //   // ..
+      // });
     },
     closePopUp() {
-      if (typeof document != 'undefined') {
-        const authFormContainer = document.getElementById('auth-form-container');
+      if (typeof document !== "undefined") {
+        const authFormContainer = document.getElementById("auth-form-container");
         if (authFormContainer) {
-          authFormContainer.classList.add('hidden');
+          authFormContainer.classList.add("hidden");
         }
       }
     },
@@ -255,7 +256,7 @@ export default {
   z-index: 99
   background-color: rgba(colors.color("dark-background"), 0.95)
   display: flex
-  
+
   &.hidden
     display: none
 
@@ -297,7 +298,7 @@ export default {
   border: 1px solid colors.color("lightest-background")
   border-radius: 0.5rem
   background-color: colors.color("background")
-  
+
   position: relative
   pointer-events: auto
 

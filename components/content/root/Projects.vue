@@ -7,107 +7,114 @@
     <!-- <NuxtLink class="inline-link archive-link" to="/archive" ref="revealArchiveLink">
       view the archive
     </NuxtLink> -->
-        <TransitionGroup
-          component="null"
-          ref="projectsGrid"
-          tag="ul"
-          class="projects-grid"
-        >
-          <Transition
-            v-for="project, i in projects"
-            v-show="i < currentlyShowing"
-            :key="i"
-             class="fadeup"
-            :timeout="i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300"
-            :exit="false"
-            mode="in-out"
-            tag="StyledArchivedProject"
-            :style="{
-              transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-            }"
-          >
-            <StyledArchivedProject
-            >
-              <div class="project-inner">
-                <header class="archived-project-text">
-                  <div class="project-top">
-                    <div class="folder">
-                      <Icon type="Folder" />
-                    </div>
-                    <div class="project-links">
-                      <a
-                        v-if="project.repo"
-                        :href="project.repo"
-                        aria-label="GitHub Link"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Icon type="GitHub" />
-                      </a>
-                      <a
-                        v-if="project.url"
-                        :href="project.url"
-                        aria-label="External Link"
-                        class="external"
-                        target="_blank"
-                        rel="noreferrer">
-                        <Icon type="External" />
-                      </a>
-                    </div>
-                  </div>
-
-                  <h3 class="project-title">
-                    <a
-                      v-if="(project?.url || project.repo)"
-                      :href="project.url ? project.url : project.repo"
-                      target="_blank"
-                      rel="noreferrer">
-                      {{ project.title }}
-                    </a>
-                    <span v-else>
-                      {{ project.title }}
-                    </span>
-                  </h3>
-                  <ContentDoc :value="project" />
-                </header>
-
-                <Date v-if="project.date" class="archived-project-date" :weekday="false" :date="project.date" />
-
-                <footer>
-                  <ul class="project-tech-list">
-                    <li
-                      v-for="tech, i in project?.tech"
-                      :key="i"
-                    >
-                      {{ tech }}
-                    </li>
-                  </ul>
-                </footer>
+    <TransitionGroup
+      ref="projectsGrid"
+      component="null"
+      tag="ul"
+      class="projects-grid"
+    >
+      <Transition
+        v-for="project, i in projects"
+        v-show="i < currentlyShowing"
+        :key="i"
+        class="fadeup"
+        :timeout="i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300"
+        :exit="false"
+        mode="in-out"
+        tag="StyledArchivedProject"
+        :style="{
+          transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+        }"
+      >
+        <StyledArchivedProject>
+          <div class="project-inner">
+            <header class="archived-project-text">
+              <div class="project-top">
+                <div class="folder">
+                  <Icon type="Folder" />
+                </div>
+                <div class="project-links">
+                  <a
+                    v-if="project.repo"
+                    :href="project.repo"
+                    aria-label="GitHub Link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Icon type="GitHub" />
+                  </a>
+                  <a
+                    v-if="project.url"
+                    :href="project.url"
+                    aria-label="External Link"
+                    class="external"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Icon type="External" />
+                  </a>
+                </div>
               </div>
-            </StyledArchivedProject>
-          </Transition>
-        </TransitionGroup>
+
+              <h3 class="project-title">
+                <a
+                  v-if="(project?.url || project.repo)"
+                  :href="project.url ? project.url : project.repo"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {{ project.title }}
+                </a>
+                <span v-else>
+                  {{ project.title }}
+                </span>
+              </h3>
+              <ContentDoc :value="project" />
+            </header>
+
+            <Date
+              v-if="project.date"
+              class="archived-project-date"
+              :weekday="false"
+              :date="project.date"
+            />
+
+            <footer>
+              <ul class="project-tech-list">
+                <li
+                  v-for="tech, i in project?.tech"
+                  :key="i"
+                >
+                  {{ tech }}
+                </li>
+              </ul>
+            </footer>
+          </div>
+        </StyledArchivedProject>
+      </Transition>
+    </TransitionGroup>
 
     <StyledButton
       v-if="projects.length > 6"
-      class="more-button"
-      ref="showMoreButton"
       id="more-button"
-      @click="toggleShowMore">
+      ref="showMoreButton"
+      class="more-button"
+      @click="toggleShowMore"
+    >
       Show {{ showMore ? 'Less' : 'More' }}
-      </StyledButton>
+    </StyledButton>
   </StyledArchivedProjectsSection>
 </template>
 
 <script lang="ts" setup>
 
-import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types';
-import { delimiter } from 'path';
+import { MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
+import { delimiter } from "path";
 
-const projectsGrid = ref<HTMLElement | null>(null); 
+const projectsGrid = ref<HTMLElement | null>(null);
 const GRID_LIMIT = 6;
 
-// read 'job-info' data from Markdown files 
+// read 'job-info' data from Markdown files
 const { data: projectData } = await useAsyncData(
   `archived-projects-${useRoute().path}`,
   async () => {
@@ -116,8 +123,8 @@ const { data: projectData } = await useAsyncData(
       .sort({ date: -1 })
       .find();
     return await _projectsData;
-});
-
+  },
+);
 
 const projects = projectData.value;
 
@@ -145,7 +152,7 @@ function hideAnotherProject() {
   }
 }
 
-var timer = null; /// debug: I should catch this on destruction!
+let timer = null; /// debug: I should catch this on destruction!
 onMounted(() => {
   timer = setInterval(() => {
     showMore.value
@@ -161,9 +168,9 @@ onUnmounted(() => {
 </script>
 
 <script lang="ts">
-  export default {
-    name: "Projects",
-  }
+export default {
+  name: "Projects",
+};
 </script>
 
 <style lang="sass">

@@ -1,8 +1,14 @@
 <template>
   <div class="code-container">
     <div class="top-container">
-      <span class="filename" v-if="filename">{{ filename }}</span>
-      <span class="language" v-if="language">{{ language }}</span>
+      <span
+        v-if="filename"
+        class="filename"
+      >{{ filename }}</span>
+      <span
+        v-if="language"
+        class="language"
+      >{{ language }}</span>
       <div class="copy-container">
         <button
           class="copy-button"
@@ -10,7 +16,7 @@
         >
           <svg
             v-if="copied"
-            fill="none" 
+            fill="none"
             viewBox="0 0 24 24"
             class="w-4 h-4"
           >
@@ -34,19 +40,19 @@
               d="M19.0781 6H8.67187C7.19624 6 6 7.19624 6 8.67187V19.0781C6 20.5538 7.19624
                  21.75 8.67187 21.75H19.0781C20.5538 21.75 21.75 20.5538 21.75
                  19.0781V8.67187C21.75 7.19624 20.5538 6 19.0781 6Z"
-                 stroke="currentColor"
-                 stroke-width="1.49375"
-                 stroke-linejoin="round"
+              stroke="currentColor"
+              stroke-width="1.49375"
+              stroke-linejoin="round"
             />
             <path
               d="M17.9766 6L18 4.875C17.998 4.17942 17.7208 3.51289 17.229 3.02103C16.7371
                  2.52918 16.0706 2.25198 15.375 2.25H5.25C4.45507 2.25235 3.69338 2.56917
                  3.13128 3.13128C2.56917 3.69338 2.25235 4.45507 2.25 5.25V15.375C2.25198
                  16.0706 2.52918 16.7371 3.02103 17.229C3.51289 17.7208 4.17942 17.998 4.87518H6"
-                 stroke="currentColor"
-                 stroke-width="1.49375"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
+              stroke="currentColor"
+              stroke-width="1.49375"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
         </button>
@@ -54,7 +60,7 @@
     </div>
     <div class="code-internal-1">
       <div class="code-internal-2">
-        <slot class="code"/>
+        <slot class="code" />
       </div>
     </div>
   </div>
@@ -69,22 +75,22 @@ export default {
   props: {
     code: {
       type: String,
-      default: ''
+      default: "",
     },
     language: {
       type: String,
-      default: null
+      default: null,
     },
     filename: {
       type: String,
-      default: null
+      default: null,
     },
     highlights: {
       type: Array as () => number[],
-      default: () => []
-    }
-  }
-}
+      default: () => [],
+    },
+  },
+};
 </script>
 
 <style lang="sass">
@@ -101,7 +107,7 @@ export default {
   border-radius: 0.3rem
   font-size: typography.font-size("m")
   min-width: 100%
-  
+
   counter-reset: line
 
   .code-internal-1
@@ -124,7 +130,6 @@ export default {
 
         &::-webkit-scrollbar
           display: none
-
 
         code
           font-family: typography.font("monospace")

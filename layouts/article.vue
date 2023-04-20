@@ -1,5 +1,8 @@
 <template>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  >
   <div id="root">
     <AppHeader>
       <TableOfContents />
@@ -12,8 +15,11 @@
         </div>
         <body class="article-body">
           <div class="content">
-            <slot id="content"/>
-            <BlogComments id="blog-comments" ref="commentsSection" />
+            <slot id="content" />
+            <BlogComments
+              id="blog-comments"
+              ref="commentsSection"
+            />
             <AuthenticationForm
               id="auth-form-container"
               class="hidden"
@@ -22,56 +28,51 @@
         </body>
         <div class="right panel">
           <TableOfContents
-            class="table-of-contents"
             v-if="currentPage === '/' || (toc && toc.links && toc.links.length > 0)"
-            />
+            class="table-of-contents"
+          />
         </div>
       </div>
-      </main>
+    </main>
     <BlogNavigation class="article-blog-navigation-footer fancy-background" />
     <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useUserInfo}  from "~/composables/users";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "@firebase/auth";
+import useUserInfo from "~/composables/users";
 
 // import twitter widgets
 // import "https://platform.twitter.com/widgets.js";
 
-
 const { path: currentPage } = useRoute();
 const { toc } = useContent();
-
-const hello = "hello  world";
-
 
 // reference to comments section for detecting when to show auth popup
 const commentsSection = ref<HTMLElement | null>(null);
 
 // auth popup visibility
-const authPopUpVisible = ref(false);
+// const authPopUpVisible = ref(false);
 
 // auth section ref
-const authSection = ref<HTMLElement | null>(null);
+// const authSection = ref<HTMLElement | null>(null);
 
 // function to toggle auth popup
-const toggleAuthPopup = () => {
-  authPopUpVisible.value = !authPopUpVisible.value;
-};
+// const toggleAuthPopup = () => {
+//   authPopUpVisible.value = !authPopUpVisible.value;
+// };
 
 onMounted(() => {
   const userInfo = useUserInfo();
   // listen for auth state changes
   const auth = getAuth();
   userInfo.update();
-  onAuthStateChanged(auth, (_user) => {
+  onAuthStateChanged(auth, () => {
     userInfo.update();
   });
 });
 </script>
-
 
 <style lang="sass" scoped>
 @use "../styles/default"
@@ -116,7 +117,6 @@ onMounted(() => {
   width: min(100%, 80ch)
   font-size: typography.font-size("m")
 
-
 h1
   font-size: 36px
   font-weight: 600
@@ -151,7 +151,7 @@ hr
 
   padding: 0 12vw
   margin: 0 auto
-  
+
   display: none
 
   @media(max-width: 1200px)

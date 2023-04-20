@@ -1,15 +1,25 @@
 <template>
-  <div class="logo" tabindex="-1">
-    <NuxtLink  class="logo-link" to="/" aria-label="home">
-      <Icon type="logo" class="raw-logo"/>
+  <div
+    class="logo"
+    tabindex="-1"
+  >
+    <NuxtLink
+      class="logo-link"
+      to="/"
+      aria-label="home"
+    >
+      <Icon
+        type="logo"
+        class="raw-logo"
+      />
     </NuxtLink>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "Logo"
-  }
+export default {
+  name: "Logo",
+};
 </script>
 
 <style lang="sass">

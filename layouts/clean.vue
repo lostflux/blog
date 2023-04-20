@@ -1,5 +1,8 @@
 <template>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  >
   <div class="container">
     <h1> clean</h1>
     <slot />
@@ -15,7 +18,3 @@
   background-color: white !important
   margin: 100vh
 </style>
-
-<script setup lang="ts">
-
-</script>

@@ -2,14 +2,18 @@
   <div class="site-search">
     <form class="site-search-form">
       <input
+        id="searchbar"
+        ref="textBar"
         type="text"
         class="site-search-input"
-        id="searchbar"
         tabindex="1"
         placeholder="search @altair.fyi"
-        ref="textBar"
+      >
+      <Icon
+        type="search"
+        class="search-icon"
+        @click="search"
       />
-    <Icon type="search" class="search-icon" @click="search" />
     </form>
   </div>
 </template>
@@ -24,6 +28,10 @@ const textBar = ref(null);
 <script lang="ts">
 export default {
   name: "SearchBar",
+  mounted() {
+    // console.log("mounted searchBar");
+    // console.log(this.$refs.textBar);
+  },
   methods: {
     search() {
       // console.log("searching");
@@ -33,11 +41,7 @@ export default {
       this.$refs.textBar.focus();
     },
   },
-  mounted() {
-    // console.log("mounted searchBar");
-    // console.log(this.$refs.textBar);
-  },
-}
+};
 </script>
 
 <style lang="sass">

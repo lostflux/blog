@@ -11,6 +11,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive("resizetrack", {
     mounted(el, binding) {
       el.id = binding.value;
-    }
+    },
   });
 });

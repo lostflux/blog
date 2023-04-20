@@ -6,17 +6,21 @@
           <!-- <Icon :type="`blog-${primaryCategory}`" class="category-icon" /> -->
           <ul class="category-labels">
             <li
-              class="category-label"
               v-for="_category in categories"
-              @click="showCategory(_category)" 
+              class="category-label"
               purpose="button"
+              @click="showCategory(_category)"
             >
-              {{  _category  }}
+              {{ _category }}
             </li>
           </ul>
         </div>
-        <h1 class="title-heading">{{title}}</h1>
-        <div class="title-description">{{description}}</div>
+        <h1 class="title-heading">
+          {{ title }}
+        </h1>
+        <div class="title-description">
+          {{ description }}
+        </div>
         <Date :date="date" />
       </div>
       <figure
@@ -27,16 +31,48 @@
           class="title-image"
           :src="`${path}/${image}`"
           alt="Title Image"
-        />
+        >
         <figcaption
           v-if="caption"
-          class="title-image-caption">
+          class="title-image-caption"
+        >
           {{ caption }}
         </figcaption>
       </figure>
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+const { path } = useRoute();
+const {
+  primaryCategory, categories, image, caption, date, title, description,
+} = await queryContent(path)
+  .only(["category", "date", "image", "caption", "title", "description"])
+  .findOne()
+  .then((data) => {
+    return {
+      categories: data.category.filter((category) => category !== "featured"),
+      primaryCategory: data.category[0] || data.category,
+      date: data.date,
+      title: data.title,
+      description: data.description,
+      image: data.image || null,
+      caption: data.caption || null,
+    };
+  });
+
+function showCategory(category) {
+  console.log(`Showing category: ${category}`);
+  return category !== "featured";
+}
+</script>
+
+<script lang="ts">
+export default {
+  name: "BlogTitle",
+};
+</script>
 
 <style lang="sass" scoped>
 @use "../styles/typography"
@@ -88,14 +124,12 @@
           flex-direction: row
           cursor: pointer
 
-
           .category-label
             font-size: clamp(typography.font-size("xs"), 1vw, typography.font-size("m"))
             font-weight: 600
             font-family: typography.font("monospace")
             text-transform: capitalize
             text-transform: uppercase
-            
 
             &:not(:last-child)::after
               content: "/"
@@ -123,7 +157,6 @@
         font-weight: 600
         text-transform: uppercase
 
-
   .title-image-wrapper
     margin: auto
     margin-top: 2em
@@ -132,12 +165,10 @@
     flex-direction: column
     align-items: center
 
-
   .title-image
     @include mixins.box-shadow
     border-radius: geometry.var("border-radius")
-    
-    
+
   .title-image-caption
     width: fit-content
     align-self: flex-end
@@ -148,36 +179,4 @@
     font-style: italic
     color: colors.color("primary-highlight")
 
-
-
-
 </style>
-
-<script lang="ts" setup>
-const { path } = useRoute();
-const { primaryCategory, categories, image, caption, date, title, description } = await queryContent(path)
-.only(['category', 'date', 'image', 'caption', 'title', 'description'])
-.findOne()
-.then((data) => {
-  return {
-    categories: data.category.filter((category) => category !== "featured"),
-    primaryCategory: data.category[0] || data.category,
-    date: data.date,
-    title: data.title,
-    description: data.description,
-    image: data.image || null,
-    caption: data.caption || null,
-  };
-});
-
-function showCategory(category) {
-  console.log(`Showing category: ${category}`);
-  return category !== "featured";
-}
-</script>
-
-<script lang="ts">
-export default {
-  name: 'BlogTitle',
-}
-</script>

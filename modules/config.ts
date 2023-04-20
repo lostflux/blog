@@ -1,62 +1,60 @@
-
-
-const email = 'amittaijoel@outlook.com';
+const email = "amittaijoel@outlook.com";
 
 const social = [
-    {
-      title: 'GitHub',
-      _path: 'https://github.com/siavava',
-    },
-    {
-      title: 'Instagram',
-      _path: 'https://www.instagram.com/siavava',
-    },
-    {
-      title: 'Twitter',
-      _path: 'https://twitter.com/siavava',
-    },
-    {
-      title: 'Linkedin',
-      _path: 'https://www.linkedin.com/in/siavava',
-    },
-  ];
+  {
+    title: "GitHub",
+    _path: "https://github.com/siavava",
+  },
+  {
+    title: "Instagram",
+    _path: "https://www.instagram.com/siavava",
+  },
+  {
+    title: "Twitter",
+    _path: "https://twitter.com/siavava",
+  },
+  {
+    title: "Linkedin",
+    _path: "https://www.linkedin.com/in/siavava",
+  },
+];
 
 const homeLinks = [
-    {
-      title: 'About',
-      _path: '/#about',
-    },
-    {
-      title: 'Experience',
-      _path: '/#jobs',
-    },
-    {
-      title: 'Work',
-      _path: '/#projects',
-    },
-    {
-      title: 'Contact',
-      _path: '/#contact',
-    },
-  ];
+  {
+    title: "About",
+    _path: "/#about",
+  },
+  {
+    title: "Experience",
+    _path: "/#jobs",
+  },
+  {
+    title: "Work",
+    _path: "/#projects",
+  },
+  {
+    title: "Contact",
+    _path: "/#contact",
+  },
+];
 
 const otherLinks = [
-    {
-      title: 'Blog',
-      _path: '/blog',
-      show: true,
-    },
-    {
-      title: 'Resume',
-      _path: '/resume',
-      show: true,
-    },
-    {
-      title: 'Art Portfolio',
-      _path: '/portfolio',
-      show: true,
-    },
-  ].filter((link) => link.show);
+  {
+    title: "Blog",
+    _path: "/blog",
+    show: true,
+  },
+  {
+    title: "Resume",
+    _path: "/resume",
+    show: true,
+  },
+  {
+    title: "Art Portfolio",
+    _path: "/portfolio",
+    show: true,
+  },
+].filter((link) => link.show);
 
 const navLinks = { homeLinks, otherLinks };
 
@@ -69,7 +67,7 @@ const heroFootItems = [
     title: "Theory of Computation",
     subscript: "algorithms, automata theory",
   },
-  { 
+  {
     title: "Design",
     subscript: "responsive and interactive experiences",
   },
@@ -88,19 +86,21 @@ const heroFootItems = [
 ];
 
 const srConfig = (delay = 200, viewFactor = 0.25) => ({
-  origin: 'bottom',
-  distance: '20px',
+  origin: "bottom",
+  distance: "20px",
   duration: 500,
   delay,
   rotate: { x: 0, y: 0, z: 0 },
   opacity: 0,
   scale: 1,
-  easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+  easing: "cubic-bezier(0.645, 0.045, 0.355, 1)",
   mobile: true,
   reset: false,
-  useDelay: 'always',
+  useDelay: "always",
   viewFactor,
-  viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
+  viewOffset: {
+    top: 0, right: 0, bottom: 0, left: 0,
+  },
 });
 
 const navHeight = 70; // px
@@ -111,19 +111,19 @@ const nonTocRoutes = [
 ];
 
 const heroCallOuts = [
-    { field: "tech", action: "build" }
-  , { field: "art", action: "create" }
-  , { field: "math", action: "solve" }
-  , { field: "physics", action: "explore" }
-]
+  { field: "tech", action: "build" },
+  { field: "art", action: "create" },
+  { field: "math", action: "solve" },
+  { field: "physics", action: "explore" },
+];
 
 export {
-    email
+  email
   , social
   , navLinks
   , heroFootItems
   , srConfig
   , navHeight
   , nonTocRoutes
-  , heroCallOuts
+  , heroCallOuts,
 };

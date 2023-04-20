@@ -14,7 +14,7 @@
     position: relative
     padding-left: 1.5em
     margin-bottom: 0.7em
-    
+
     &::before
       content: counter(ol-count) '.'
       position: absolute

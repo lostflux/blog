@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "SmallList",
-  }
+export default {
+  name: "SmallList",
+};
 </script>
 
 <style lang="sass">
@@ -24,7 +24,6 @@
     -moz-columns: 2
     -ms-grid-columns: 2
     columns: 2
-
 
     grid-template-columns: repeat(2, minmax(140px, 200px))
     grid-gap: 1em

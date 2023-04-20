@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "StyledText",
-  }
+export default {
+  name: "StyledText",
+};
 </script>
 
 <style lang="sass">
@@ -24,5 +24,5 @@
 
   a
     @include mixins.inline-link
-    
+
 </style>

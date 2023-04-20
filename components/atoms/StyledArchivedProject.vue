@@ -8,8 +8,7 @@
 
 export default {
   name: "StyledArchivedProject",
-}
-
+};
 
 </script>
 
@@ -19,22 +18,20 @@ export default {
 @use "~/styles/geometry"
 @use "~/styles/mixins"
 
-
 .styled-archived-list-item
   position: relative
   cursor: default
   transition: geometry.var("default-transition")
 
-  @media (prefers-reduced-motion: no-preference) 
-    &:is(:hover, :focus-within, .project-inner) 
+  @media (prefers-reduced-motion: no-preference)
+    &:is(:hover, :focus-within, .project-inner)
       transform: translateY(-7px)
-      
 
-  a 
+  a
     position: relative
     z-index: 1
-  
-  .project-inner 
+
+  .project-inner
     @include mixins.box-shadow
     @include mixins.flex-between
     flex-direction: column
@@ -46,50 +43,45 @@ export default {
     background-color: colors.color("light-background")
     transition: geometry.var("default-transition")
     overflow: none
-  
-  .project-top 
+
+  .project-top
     @include mixins.flex-between
     margin-bottom: 35px
 
-    .folder 
+    .folder
       color: colors.color("primary-highlight")
-      svg 
+      svg
         width: 40px
         height: 40px
-      
-    
-    .project-links 
+
+    .project-links
       display: flex
       align-items: center
       margin-right: -10px
       color: colors.color("light-slate")
-      
-      a 
+
+      a
         @include mixins.flex-center
         padding: 5px 7px
-        
-        &.external 
-          
-          svg 
+
+        &.external
+
+          svg
             width: 22px
             height: 22px
             margin-top: -4px
-          
-        
-        svg 
+
+        svg
           width: 20px
           height: 20px
-        
-      
-    
-  
-  .project-title 
+
+  .project-title
     margin: 0 0 10px
     color: colors.color("lightest-slate")
     font-size: typography.font-size("xxl")
-    a 
+    a
       position: static
-      &:before 
+      &:before
         content: ''
         display: block
         position: absolute
@@ -98,29 +90,25 @@ export default {
         height: 100%
         top: 0
         left: 0
-      
-    
-  
-  .project-description 
+
+  .project-description
     color: colors.color("light-slate")
     font-size: 17px
-    
-    a 
+
+    a
       @include mixins.inline-link
-    
-  
-  .project-tech-list 
+
+  .project-tech-list
     @include mixins.small-list-inline
-    
-    
+
     li
       margin-left: 0
       margin: 0 0px 5px 0
       font-weight: 600
-      
+
       color: colors.color("secondary-highlight")
 
-      &:not(:last-of-type)::after 
+      &:not(:last-of-type)::after
         content: "/"
         margin-left: 1em
         margin-right: 1em

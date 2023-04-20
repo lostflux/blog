@@ -1,15 +1,17 @@
 // import { getUserAvatar } from "~/modules/users";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { defineStore } from "pinia";
-import { getFirestore, collection, addDoc, getDocs, query, where, doc, setDoc, getDoc, orderBy } from "firebase/firestore";
-import { getCommentDateAsString, normalizePath } from "~/modules/utils";
-import { UserInfo, Comment, BlogPostMeta } from "~/modules/utils";
+import {
+  getFirestore, collection, addDoc, getDocs, query, where, setDoc, orderBy,
+} from "firebase/firestore";
 import { MarkdownParsedContent } from "@nuxt/content/dist/runtime/types";
 import { createAvatar } from "@dicebear/core";
 import { lorelei } from "@dicebear/collection";
-import markdownParser from '@nuxt/content';
+import {
+  getCommentDateAsString, normalizePath, UserInfo, Comment, BlogPostMeta,
+} from "~/modules/utils";
 
-export const useUserInfo = defineStore("userInfo", {
+const useUserInfo = defineStore("userInfo", {
 
   state: () => ({
     active: false,
@@ -37,8 +39,8 @@ export const useUserInfo = defineStore("userInfo", {
     },
     getSubscriptionCount() {
       return this.subscriptions.size;
-    }
-    
+    },
+
   },
 
   actions: {
@@ -69,57 +71,54 @@ export const useUserInfo = defineStore("userInfo", {
       }
     },
 
-    async updateSubscriptions(clear: boolean = false) {
-
+    async updateSubscriptions(clear = false) {
       const allSubscriptions = await this.getAllSubscriptions();
-    
+
       if (clear) {
         this.subscriptions = allSubscriptions;
       } else {
-        
-    
         // remove any subscriptions that are no longer valid
         this.subscriptions = new Set<string>([...this.subscriptions].filter((sub) => {
-          return allSubscriptions.indexOf(sub) !== -1;
+          return allSubscriptions.includes(sub);
         }));
-    
+
         // add any new subscriptions
         allSubscriptions.forEach((sub) => {
-            this.subscriptions.add(sub);
+          this.subscriptions.add(sub);
         });
       }
-    }, 
+    },
 
-  /**
+    /**
     * Subscribes the user to a specific page.
-    * 
+    *
     * @param path (optional) path to subscribe to.
-    * 
+    *
     * if not provided, uses current route.
     */
-    async subscribe(_path? : string){
+    async subscribe(_path? : string) {
       const db = getFirestore();
       // const userInfo = useUserInfo();
       const { currentUser } = getAuth();
       const path = normalizePath(_path || useRoute().path);
       const q = query(
         collection(db, "subscriptions"),
-        where("page", "==", path)
+        where("page", "==", path),
       );
 
       return getDocs(q).then((querySnapshot) => {
-        if (querySnapshot.size == 0) {
+        if (querySnapshot.size === 0) {
           addDoc(collection(db, "subscriptions"), {
             page: path,
-            subscribers: [currentUser.email]
+            subscribers: [currentUser.email],
           });
         } else {
           querySnapshot.forEach((doc) => {
-            const subscribers = doc.data().subscribers;
+            const { subscribers } = doc.data();
             subscribers.push(currentUser.email);
             setDoc(doc.ref, {
               page: path,
-              subscribers: subscribers
+              subscribers,
             });
           });
         }
@@ -133,49 +132,47 @@ export const useUserInfo = defineStore("userInfo", {
 
     toggleSubscription(blogPath?: string) {
       const path = normalizePath(blogPath || useRoute().path);
-      this.isSubscribed(path)
-        ? this.unsubscribe(path)
-        : this.subscribe(path);
+      if (this.isSubscribed(path)) {
+        this.unsubscribe(path);
+      } else {
+        this.subscribe(path);
+      }
     },
 
     /**
      * Sends email to all subscribers of a page
      * on a new comment.
-     * 
+     *
      * @param comment comment to send email about
      */
     async sendEmailToSubs(comment: Comment) {
       const db = getFirestore();
       const { currentUser } = getAuth();
-      
+
       const path = normalizePath(useRoute().path);
-    
+
       // get subscribers to current page
       const q = query(
         collection(db, "subscriptions"),
-        where("page", "==", path)
+        where("page", "==", path),
       );
-    
+
       // add notification message to mail collection
       getDocs(q).then((querySnapshot) => {
-    
         // snapshot should contain single document with array of subscribers
-        const _rawSubs: Array<Array<string>> = 
-          querySnapshot.docs.map(doc => doc.data().subscribers);
-    
+        const _rawSubs: Array<Array<string>> = querySnapshot.docs.map((_doc) => _doc.data().subscribers);
+
         const _subscribers = _rawSubs[0] || [];
-        _subscribers.filter(email => {
-          email !== currentUser?.email &&
-          email.length !== 0
-        });
-    
+        const otherSubscriber = (email) => email !== currentUser?.email;
+        _subscribers.filter(otherSubscriber);
+
         if (_subscribers.length === 0) return;
-        if (comment.text === '') return;
-        
+        if (comment.text === "") return;
+
         const outMail = {
           to: _subscribers,
           message: {
-            subject: `altair.fyi`,
+            subject: "altair.fyi",
             text: `
       There is a new comment on a post you are subscribed to.
       
@@ -187,22 +184,20 @@ export const useUserInfo = defineStore("userInfo", {
       
       Check it out here: https://altair.fyi${path}.`,
           // html: ''
-          }
-        }
+          },
+        };
         // add message to mail collection
-        return addDoc(collection(db, "mail"), outMail)
-        .then(() => { return true; })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-          return false;
-        });
+        addDoc(collection(db, "mail"), outMail)
+          .catch((error) => {
+            console.error(`Error adding document: ${error}`);
+          });
       });
     },
 
     /**
      * Unsubscribes the current user from a page
      * @param _path (optional) path to unsubscribe from.
-     * 
+     *
      * if not provided, uses current route.
      */
     async unsubscribe(_path? : string) {
@@ -210,21 +205,22 @@ export const useUserInfo = defineStore("userInfo", {
 
       const path = normalizePath(_path || useRoute().path);
       const { currentUser } = getAuth();
-      
-      const q = query(collection(
-        db, "subscriptions"),
-        where("page", "==", path));
+
+      const q = query(
+        collection(db, "subscriptions"),
+        where("page", "==", path),
+      );
 
       try {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          const subscribers = doc.data().subscribers;
+          const { subscribers } = doc.data();
           const remainingSubscribers = subscribers.filter((email) => {
             return email !== currentUser.email;
           });
           setDoc(doc.ref, {
             page: path,
-            subscribers: remainingSubscribers
+            subscribers: remainingSubscribers,
           });
         });
         this.updateSubscriptions();
@@ -237,30 +233,29 @@ export const useUserInfo = defineStore("userInfo", {
 
     /**
      * Gets all subscriptions for the current user
-     * 
-     * @returns array of all subscriptions
-     * 
+     *
+     * @returns {Array} array of all subscriptions
+     *
      */
     async getAllSubscriptions() {
       const db = getFirestore();
       const { currentUser } = getAuth();
-      
+
       // get all documents that have user email in subscribers
       const q = query(
         collection(db, "subscriptions"),
-        where("subscribers", "array-contains", currentUser.email)
+        where("subscribers", "array-contains", currentUser.email),
       );
 
       const _results: BlogPostMeta[] = [];
       return getDocs(q).then(async (querySnapshot) => {
-
         const paths = Array.from(new Set<string>(
           querySnapshot.docs.map((doc) => {
-            var path = doc.data().page;
+            const path = doc.data().page;
             return normalizePath(path);
-          })
+          }),
         ));
-        
+
         await queryContent<MarkdownParsedContent>()
           .where({ _path: { $in: paths } })
           .find()
@@ -269,7 +264,7 @@ export const useUserInfo = defineStore("userInfo", {
               _results.push({
                 title: page?.title || "",
                 path: page?._path || "",
-                category: page?.category[0] || page?.category || '',
+                category: page?.category[0] || page?.category || "",
                 description: page?.description || "",
                 date: page?.date || "",
                 image: page?.image || "",
@@ -277,18 +272,18 @@ export const useUserInfo = defineStore("userInfo", {
               });
             });
           });
-          return _results;
-        }).catch((error) => {
-          console.error("Error getting documents: ", error);
-          return _results;
+        return _results;
+      }).catch((error) => {
+        console.error("Error getting documents: ", error);
+        return _results;
       });
     },
 
     /**
      * Gets the avatar of the current user.
-     * 
+     *
      * If nonexistent, generates a new one and saves it to the database.
-     * 
+     *
      * @returns the (possibly new) avatar of the current user
      */
     async getUserAvatar() {
@@ -297,31 +292,28 @@ export const useUserInfo = defineStore("userInfo", {
 
       if (!currentUser) {
         console.error("Call to getUserAvatar with no user logged in.");
-        return '';
+        return "";
       }
 
       const q = query(
         collection(db, "avatars"),
-        where("uid", "==", currentUser.uid)
+        where("uid", "==", currentUser.uid),
       );
 
       return getDocs(q).then((querySnapshot) => {
-
         // if query is empty, generate new avatar
-        if (querySnapshot.size == 0) {
-
+        if (querySnapshot.size === 0) {
           const avatar = createAvatar(lorelei, {
             seed: `${currentUser?.uid} @ ${new Date().toISOString()}`,
           });
 
           const newUserAvatar = {
             uid: currentUser.uid,
-            avatar: avatar.toString()
-          }
+            avatar: avatar.toString(),
+          };
 
           addDoc(collection(db, "avatars"), newUserAvatar);
           return newUserAvatar.avatar;
-
         } else {
           // get first avatar in querySnapshot
           const doc = querySnapshot.docs[0];
@@ -333,11 +325,11 @@ export const useUserInfo = defineStore("userInfo", {
 
     /**
      * Gets all comments for a specific page
-     * 
+     *
      * @param _path (optional) path to get comments for
-     * 
+     *
      * @returns array of comments
-     * 
+     *
      * Returns empty array if no comments or an error occurs.
      */
     async getCommentsByRoute(_path?: string) {
@@ -349,34 +341,31 @@ export const useUserInfo = defineStore("userInfo", {
       const q = query(
         collection(db, "comments"),
         where("path", "==", path),
-        orderBy("date", "asc")
+        orderBy("date", "asc"),
       );
 
       await getDocs(q).then((querySnapshot) => {
         const _results: Comment[] = [];
         querySnapshot.forEach((doc) => {
-          
           const comment: Comment = {
             text: doc.data().text,
             author: doc.data().author || "anon",
             avatar: doc.data().avatar,
             date: doc.data().date,
             path: doc.data().page || "",
-          }
-          
+          };
+
           _results.push(comment);
         });
         this.currentRouteComments = _results;
       });
     },
 
-
-
     /**
      * Sends a comment to the database
-     * 
+     *
      * @param comment comment to send
-     * 
+     *
      * @returns true if comment was sent successfully, false otherwise
      */
     async sendComment(comment: Comment) {
@@ -385,11 +374,11 @@ export const useUserInfo = defineStore("userInfo", {
       comment.path = normalizePath(comment.path);
 
       await addDoc(collection(db, "comments"), comment)
-      .then(() => { return true; })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-        return false;
-      });
+        .then(() => { return true; })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+          return false;
+        });
 
       this.currentRouteComments.push(comment);
       this.sendEmailToSubs(comment);
@@ -400,7 +389,9 @@ export const useUserInfo = defineStore("userInfo", {
      */
     isSubscribed(_path?: string) {
       const path = normalizePath(_path || useRoute().path);
-      return this.getSubscriptionPaths.indexOf(path) !== -1;
+      return this.getSubscriptionPaths.includes(path);
     },
-  }
+  },
 });
+
+export default useUserInfo;

@@ -6,8 +6,8 @@
 
 <script lang="ts">
 export default {
-  name: 'QuoteAuthor',
-}
+  name: "QuoteAuthor",
+};
 </script>
 
 <style lang="sass">

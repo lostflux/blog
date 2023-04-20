@@ -10,8 +10,8 @@
 
 <script lang="ts">
 export default {
-  name: 'AnimatedStyledButton'
-}
+  name: "AnimatedStyledButton",
+};
 </script>
 
 <style lang="sass" scoped>
@@ -60,8 +60,6 @@ export default {
       right: 0
       // transform: translateX(100%)
       bottom: 0
-  
-
 
     .text
       overflow: hidden // Ensures the content is not revealed until the animation
@@ -87,4 +85,3 @@ export default {
     color: colors.color("primary-highlight")
     opacity: 100%
 </style>
-

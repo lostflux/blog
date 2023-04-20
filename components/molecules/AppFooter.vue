@@ -2,19 +2,22 @@
   <footer class="styled-footer">
     <div class="footer-inner">
       <div class="styled-links">
-          <StyledButton href="/">
-            home
-          </StyledButton>
-          <StyledButton href="/blog">
-            blog
-          </StyledButton>
+        <StyledButton href="/">
+          home
+        </StyledButton>
+        <StyledButton href="/blog">
+          blog
+        </StyledButton>
       </div>
       <div class="styled-credit-section">
-        <NuxtLink to="https://github.com/siavava/altair" target="_blank" class="year">
+        <NuxtLink
+          to="https://github.com/siavava/altair"
+          target="_blank"
+          class="year"
+        >
           {{ new Date().getFullYear() }} Amittai. All rights reserved.
         </NuxtLink>
       </div>
-
     </div>
   </footer>
 </template>
@@ -27,7 +30,6 @@
 //   forks?: Number;
 //   watchers?: Number;
 // }
-
 
 // const repoInfo = ref<GitHubInfo>({} as GitHubInfo);
 
@@ -46,9 +48,9 @@
 </script>
 
 <script lang="ts">
-  export default {
-    name: "AppFooter"
-  }
+export default {
+  name: "AppFooter",
+};
 </script>
 
 <style lang="sass" scoped>
@@ -80,7 +82,6 @@
     @media screen and (max-width: 768px)
       display: none
 
-
   .styled-credit-section
     color: inherit
     line-height: 3
@@ -91,8 +92,7 @@
 
     @media screen and (max-width: 768px)
       margin: 0 auto
-    
-    
+
     .year
       width: fit-content
       font-size: typography.font-size("m")
@@ -104,7 +104,6 @@
       &::before
         content: "©"
         font-family: typography.font("sans-serif")
-
 
     .github-stats
       font-family: typography.font("monospace")

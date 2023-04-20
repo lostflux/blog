@@ -29,16 +29,20 @@
                   'expanded': expandedCategories.has(category.title.toLowerCase()),
                 }"
               >
-              <button
-                :href="`${category._path}`"
-                :id="`link-${category._path}`"
-                @click.prevent="toggleCategory(category.title)"
-                class="category-label"
-              >
-                    <span class="category-label-text">
-                      {{ category.title }}
-                    </span>
-                    <Icon class="expand-icon" :id="`navigation-${category.title?.toLowerCase()}`" type="expand"/>
+                <button
+                  :id="`link-${category._path}`"
+                  :href="`${category._path}`"
+                  class="category-label"
+                  @click.prevent="toggleCategory(category.title)"
+                >
+                  <span class="category-label-text">
+                    {{ category.title }}
+                  </span>
+                  <Icon
+                    :id="`navigation-${category.title?.toLowerCase()}`"
+                    class="expand-icon"
+                    type="expand"
+                  />
                 </button>
 
                 <ul class="category-children">
@@ -51,15 +55,14 @@
                     }"
                   >
                     <a
-                      :href="`${child._path}`"
                       :id="`link-${child._path}`"
+                      :href="`${child._path}`"
                     >
                       {{ child.title }}
                     </a>
                   </li>
                 </ul>
               </li>
-            
             </template>
           </ul>
         </li>
@@ -74,35 +77,33 @@ export default {
   props: {
     activeTocItem: {
       type: String,
-      default: ""
+      default: "",
     },
   },
   data() {
     return {
       refreshKey: 0,
       expandedCategories: new Set<string>(),
-    }
-  },
-  async mounted() {
-    var { path: currentPath } = useRoute();
-
-    // trim trailing slash if any
-    currentPath = currentPath.replace(/\/$/, "");
-    
-    await queryContent("/blog")
-      .where({ _path: { $eq: currentPath } })
-      .findOne().then((page) => {
-
-      page?.category?.forEach((category) => {
-        this.toggleCategory(category);
-      });
-
-    });
+    };
   },
   watch: {
     expandedCategories() {
       this.$forceUpdate();
-    }
+    },
+  },
+  async mounted() {
+    let { path: currentPath } = useRoute();
+
+    // trim trailing slash if any
+    currentPath = currentPath.replace(/\/$/, "");
+
+    await queryContent("/blog")
+      .where({ _path: { $eq: currentPath } })
+      .findOne().then((page) => {
+        page?.category?.forEach((category) => {
+          this.toggleCategory(category);
+        });
+      });
   },
   methods: {
     toggleCategory(category) {
@@ -115,9 +116,9 @@ export default {
         this.expandedCategories.add(_category);
         element?.classList.add("expanded");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <script lang="ts" setup>
@@ -135,7 +136,6 @@ const { path } = useRoute();
 .navigation
   line-height: 2
   counter-reset: toc-0
-  
 
   .title
     font-size: typography.font-size("xl")
@@ -143,7 +143,6 @@ const { path } = useRoute();
     font-weight: 700
     line-height: 2
     width: 100%
-
 
   .blog-category
     font-size: typography.font-size("m")
@@ -185,7 +184,7 @@ const { path } = useRoute();
         right: 0
         // height: 1.2em
         // margin-top: 0.2em
-        
+
     .category-child
       font-size: typography.font-size("xs")
       font-weight: 400
@@ -201,4 +200,3 @@ const { path } = useRoute();
         font-weight: 600
 
 </style>
-

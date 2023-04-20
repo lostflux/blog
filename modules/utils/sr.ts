@@ -1,4 +1,4 @@
-import ScrollReveal from 'scrollreveal';
+import ScrollReveal from "scrollreveal";
 
 // async function mounted() {
 
@@ -10,11 +10,11 @@ import ScrollReveal from 'scrollreveal';
 
 // mounted();
 
-
-
 class SR {
   isSSR: boolean = true;
+
   _sr: scrollReveal.ScrollRevealObject;
+
   constructor() {
     console.log(`\n\nWindow: ${typeof window}`);
     console.log(`Document: ${typeof document}\n\n`);
@@ -40,16 +40,19 @@ class SR {
 
   public clean = (selector: string | HTMLElement | NodeListOf<Element>) => {
     if (this) this._sr.clean(selector);
-  }
-  
+  };
+
   public destroy = () => {
     if (this) this._sr.destroy();
-  }
+  };
 
-  public: scrollReveal.ScrollRevealObject
-  reveal( selector: string | HTMLElement | NodeListOf<Element>,
-      options?: scrollReveal.ScrollRevealObjectOptions,
-      interval?: number) {
+  public: scrollReveal.ScrollRevealObject;
+
+  reveal(
+    selector: string | HTMLElement | NodeListOf<Element>,
+    options?: scrollReveal.ScrollRevealObjectOptions,
+    interval?: number,
+  ) {
     if (!this) return null;
     if (options && interval) return this._sr.reveal(selector, options, interval);
     else if (options) return this._sr.reveal(selector, options);
@@ -60,7 +63,4 @@ class SR {
 
 const sr = new SR();
 
-
-
 export { sr as default };
-

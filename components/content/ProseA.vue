@@ -2,13 +2,13 @@
 defineProps({
   href: {
     type: String,
-    default: ''
+    default: "",
   },
   blank: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 </script>
 
 <template>

@@ -9,43 +9,43 @@ export default {
   props: {
     date: {
       type: String,
-      required: true
+      required: true,
     },
     weekday: {
       type: Boolean,
-      default: true
+      default: true,
     },
     day: {
       type: Boolean,
-      default: true
+      default: true,
     },
     month: {
       type: Boolean,
-      default: true
+      default: true,
     },
     year: {
       type: Boolean,
-      default: true
+      default: true,
     },
     left: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props) {
     const date = new Date(props.date);
     const options = {
-      weekday: props.weekday ? 'long' : undefined,
-      year: props.year ? 'numeric' : undefined,
-      month: props.month ? 'short' : undefined,
-      day: props.day ? '2-digit' : undefined
+      weekday: props.weekday ? "long" : undefined,
+      year: props.year ? "numeric" : undefined,
+      month: props.month ? "short" : undefined,
+      day: props.day ? "2-digit" : undefined,
     } as any;
 
     return {
-      formattedDate: date.toLocaleDateString("en-US", options)
-    }
+      formattedDate: date.toLocaleDateString("en-US", options),
+    };
   },
-}
+};
 </script>
 
 <style lang="sass" scoped>
@@ -61,7 +61,6 @@ export default {
   background: transparent
   // width: fit-content
 
-
   border-left: 1px solid
   border-right: none
 
@@ -76,5 +75,4 @@ export default {
     padding-right: 1rem
     justify-self: end
 
-  
 </style>

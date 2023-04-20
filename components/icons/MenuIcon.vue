@@ -5,7 +5,7 @@
       'open': open
     }"
     @click="open = !open"
-    >
+  >
     <!-- <div class="line-menu half start"></div> -->
     <!-- <div class="line-menu"></div> -->
     <!-- <div class="line-menu half end"></div> -->
@@ -17,16 +17,11 @@ export default {
   name: "MenuIcon",
   data() {
     return {
-      open: false
-    }
-  }
-}
+      open: false,
+    };
+  },
+};
 </script>
-
-
-
-
-
 
 <style lang="sass" scoped>
 
@@ -47,7 +42,7 @@ export default {
   transition: transform 330ms ease-out
 
 .wrapper-menu.open
-  transform: rotate(-45deg)  
+  transform: rotate(-45deg)
 
 .line-menu
   background-color: inherit
@@ -72,6 +67,5 @@ export default {
 
 .open .line-menu.end
   transform: rotate(-90deg) translateX(-2px)
-
 
 </style>

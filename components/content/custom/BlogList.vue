@@ -1,11 +1,14 @@
 <template>
-  <div class="blog-hero">
-    
-  </div>
+  <div class="blog-hero" />
   <div class="blog-list-container">
-    <div class="blog-category" v-if="userInfo.getSubscriptionCount">
+    <div
+      v-if="userInfo.getSubscriptionCount"
+      class="blog-category"
+    >
       <!-- <div v-for="blog in blogs.filter(blog => blog.category.)" -->
-      <div class="blog-category-section-title"> Subscribed </div>
+      <div class="blog-category-section-title">
+        Subscribed
+      </div>
       <!-- <Button class="scroll-button left">
         &lt;
       </Button>
@@ -13,12 +16,22 @@
         &gt;
       </Button> -->
       <div class="horizontal-scroll">
-        <BlogCard v-for="blog in blogsSubscribedTo(blogs)" :blog="blog" />
+        <BlogCard
+          v-for="(blog, i) in blogsSubscribedTo(blogs)"
+          :key="i"
+          :blog="blog"
+        />
       </div>
     </div>
 
-    <div v-for="category in categories" class="blog-category">
-      <div class="blog-category-section-title"> {{  category  }} </div>
+    <div
+      v-for="(category, i) in categories"
+      :key="i"
+      class="blog-category"
+    >
+      <div class="blog-category-section-title">
+        {{ category }}
+      </div>
       <!-- <Button class="scroll-button left">
         &lt;
       </Button>
@@ -26,28 +39,34 @@
         &gt;
       </Button> -->
       <div class="horizontal-scroll">
-        <BlogCard v-for="blog in blogsByCategory(category)" :key="blog.id" :blog="blog" />
+        <BlogCard
+          v-for="blog in blogsByCategory(category)"
+          :key="blog.id"
+          :blog="blog"
+        />
       </div>
     </div>
   </div>
 </template>
 
-
 <script lang="ts">
+import { ParsedContent } from "@nuxt/content/dist/runtime/types";
+import useUserInfo from "~/composables/users";
+
 export default {
   name: "BlogList",
   props: {
     subscribedOnly: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       userInfo: useUserInfo(),
-    }
+    };
   },
-  methods: { 
+  methods: {
     toggleSubscription(blogPath: string) {
       if (this.userInfo.isSubscribed(blogPath)) {
         this.userInfo.unsubscribe(blogPath);
@@ -60,15 +79,12 @@ export default {
       return allBlogs.filter((blog) => {
         return this.userInfo.isSubscribed(blog._path);
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <script lang="ts" setup>
-
-import { ParsedContent } from "@nuxt/content/dist/runtime/types";
-import { useUserInfo } from "~/composables/users";
 
 const { data: blogs } = await useAsyncData(
   `blogs-${useRoute().path}`,
@@ -77,12 +93,13 @@ const { data: blogs } = await useAsyncData(
       .where({ draft: false })
       .sort({ date: -1 })
       .find();
-    return await _blogs;
-});
+    return _blogs;
+  },
+);
 
 const categories = new Set<string>();
 blogs.value.forEach((blog) => {
-  if (typeof blog.category == "string") {
+  if (typeof blog.category === "string") {
     categories.add(blog.category);
   } else {
     blog.category.forEach((category) => {
@@ -93,14 +110,13 @@ blogs.value.forEach((blog) => {
 
 const blogsByCategory = (category: string) => {
   return blogs.value.filter((blog) => {
-    if (typeof blog.category == "string") {
-      return blog.category == category;
+    if (typeof blog.category === "string") {
+      return blog.category === category;
     } else {
       return blog.category.includes(category);
     }
   });
-}
-
+};
 
 </script>
 
@@ -125,7 +141,7 @@ const blogsByCategory = (category: string) => {
     width: 30px
     height: 30px
     color: colors.color("secondary-highlight")
-    
+
     &::hover
       cursor: pointer
 
@@ -143,10 +159,6 @@ const blogsByCategory = (category: string) => {
     text-transform: lowercase
 
     padding: 0 0 0 20px
-
-
-    
-
 
 .scroll-button
   position: absolute
@@ -178,7 +190,7 @@ const blogsByCategory = (category: string) => {
   overflow-x: scroll
   width: 100%
   position: relative
-  
+
   &::-webkit-scrollbar
     display: none
 

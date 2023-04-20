@@ -27,7 +27,6 @@
     font-weight: 500
     line-height: 1.5
     color: colors.color("secondary-highlight")
-    
 
   & > hr
     // max-width: 20%

@@ -1,7 +1,7 @@
 <template>
-  <div 
-  class="alert-container"
-  :class="type"
+  <div
+    class="alert-container"
+    :class="type"
   >
     <div class="title-container">
       <!-- <Icon :type="type" class="alert-icon" /> -->
@@ -15,21 +15,21 @@
 
 <script lang="ts">
 export default {
-  name: 'Alert',
+  name: "Alert",
   props: {
     type: {
       type: String,
-      default: 'info',
+      default: "info",
       validator: (value: string) => [
-        'info', 'success', 'error', 'warning', 'critical'
-      ].includes(value)
+        "info", "success", "error", "warning", "critical",
+      ].includes(value),
     },
     title: {
       type: String,
-      default: ''
-    }
-  }
-}
+      default: "",
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>
@@ -44,7 +44,7 @@ export default {
   & > ul
     font-size: inherit !important
     margin: 0.5em 0 0.5em 0.5em
-    
+
     li
       margin: 0
       line-height: 1.75
@@ -82,10 +82,9 @@ export default {
   &.info
     background-color: colors.color("info-background") !important
     color: colors.color("info-foreground") !important
-    
+
     & > .paragraph
       color: colors.color("info-foreground") !important
-
 
   &.success
     background-color: colors.color("success-background")
@@ -94,7 +93,6 @@ export default {
     & > .paragraph
       color: colors.color("success-foreground") !important
 
-
   &.error
     background-color: colors.color("error-background") !important
     color: colors.color("error-foreground") !important
@@ -102,14 +100,12 @@ export default {
     & > .paragraph
       color: colors.color("error-foreground") !important
 
-
   &.warning
     background-color: colors.color("warning-background")
     color: colors.color("warning-foreground")
 
     & > .paragraph
       color: colors.color("warning-foreground") !important
-
 
   &.critical
     background-color: colors.color("critical-background") !important

@@ -3,7 +3,11 @@
     <template v-if="(isHome && menuIsCollapsed)">
       <ol v-for="{ title, _path }, i in homeLinks">
         <TransitionGroup :component="null">
-          <Transition :key="i" :class="fadeDownClass" :timeout="timeout">
+          <Transition
+            :key="i"
+            :class="fadeDownClass"
+            :timeout="timeout"
+          >
             <li
               :key="i"
               :style="isHome ? { transitionDelay: '100ms' } : { transitionDelay: '0ms' }"
@@ -23,34 +27,32 @@
 </template>
 
 <script lang="ts" setup>
-  import { navLinks } from "~/modules/config";
-  import { loaderDelay } from '~/modules/utils';
+import { navLinks } from "~/modules/config";
+import { loaderDelay } from "~/modules/utils";
 
-  const { homeLinks } = navLinks;
+const { homeLinks } = navLinks;
 
-  const { path } = useRoute();
-  const isHome = path === "/";
-  const menuIsCollapsed = ref(true);
+const { path } = useRoute();
+const isHome = path === "/";
+const menuIsCollapsed = ref(true);
 
-  const timeout = isHome ? loaderDelay : 0;
-  const fadeDownClass = isHome ? 'fadedown' : '';
+const timeout = isHome ? loaderDelay : 0;
+const fadeDownClass = isHome ? "fadedown" : "";
 </script>
 
 <script lang="ts">
-  export default {
-    name: "NavLinks",
-  }
+export default {
+  name: "NavLinks",
+};
 </script>
 
 <style lang="sass">
-
 
 @use "~/styles/colors"
 @use "~/styles/typography"
 @use "~/styles/geometry"
 @use "~/styles/mixins"
 
-  
 .home-links
   display: flex
   margin: 0 auto
@@ -72,7 +74,7 @@
 
       a
         padding: 10px
-        
+
         &:before
           content: '0' counter(item) '.'
           margin-right: 5px

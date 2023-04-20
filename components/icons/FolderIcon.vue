@@ -23,13 +23,12 @@
       d="M23 4L27 4 27 13 25 15"
     />
   </svg>
-
 </template>
 
 <script lang="ts">
-  export default {
-    name: "FolderIcon",
-  }
+export default {
+  name: "FolderIcon",
+};
 </script>
 
 <style lang="sass" scoped>

@@ -4,6 +4,12 @@
   </section>
 </template>
 
+<script lang="ts">
+export default {
+  name: "StyledArchivedProjectsSection",
+};
+</script>
+
 <style lang="sass">
 
 @use "~/styles/mixins"
@@ -39,11 +45,5 @@
 
   .more-button
     margin: 80px auto 0
-    
-</style>
 
-<script lang="ts">
-export default {
-  name: "StyledArchivedProjectsSection",
-}
-</script>
+</style>

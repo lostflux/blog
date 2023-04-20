@@ -4,31 +4,35 @@
       aria-hidden="true"
       role="img"
       class="collapse"
-      width="24" height="24"
+      width="24"
+      height="24"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 24 24"
     >
-      <path 
+      <path
         fill="currentColor"
         d="M12 7.59L7.05 2.64L5.64 4.05L12 10.41l6.36-6.36l-1.41-1.41L12 7.59zM5.64
-            19.95l1.41 1.41L12 16.41l4.95 4.95l1.41-1.41L12 13.59l-6.36 6.36z"/>
+            19.95l1.41 1.41L12 16.41l4.95 4.95l1.41-1.41L12 13.59l-6.36 6.36z"
+      />
     </svg>
-  
-    <svg aria-hidden="true"
+
+    <svg
+      aria-hidden="true"
       role="img"
       class="expand"
       viewBox="0 0 24 24"
-      width="24" height="24"
+      width="24"
+      height="24"
       fill="currentColor"
     >
       <path
         fill="currentColor"
-        d="m12 19.24l-4.95-4.95l-1.41 1.42L12 22.07l6.36-6.36l-1.41-1.42L12 
-            19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95l1.41-1.42L12 1.93L5.64 8.29z"/>
+        d="m12 19.24l-4.95-4.95l-1.41 1.42L12 22.07l6.36-6.36l-1.41-1.42L12
+            19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95l1.41-1.42L12 1.93L5.64 8.29z"
+      />
     </svg>
-
   </div>
 </template>
 
@@ -44,8 +48,7 @@ export default {
   color: colors.color("light-foreground")
   aspect-ratio: 1/1
   height: 1.2em !important
-  
-  
+
   svg
     fill: none
     stroke: currentcolor
@@ -63,7 +66,7 @@ export default {
 
     .collapse
       display: block !important
-      
+
   -webkit-transition: all 0.1s ease-in-out
   -moz-transition: all 0.1s ease-in-out
   -ms-transition: all 0.1s ease-in-out

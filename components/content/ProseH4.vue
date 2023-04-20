@@ -1,15 +1,19 @@
 <template>
-  <h4 class="prose-h4" :id="id">
+  <h4
+    :id="id"
+    class="prose-h4"
+  >
     <slot />
   </h4>
 </template>
 
 <script setup lang="ts">
-import { useRuntimeConfig } from '#imports'
-defineProps<{ id: string }>()
-const heading = 4
-const { anchorLinks } = useRuntimeConfig().public.content
-const generate = anchorLinks?.depth >= heading && !anchorLinks?.exclude.includes(heading)
+import { useRuntimeConfig } from "#imports";
+
+defineProps<{ id: string }>();
+const heading = 4;
+const { anchorLinks } = useRuntimeConfig().public.content;
+const generate = anchorLinks?.depth >= heading && !anchorLinks?.exclude.includes(heading);
 </script>
 
 <style lang="sass" scoped>

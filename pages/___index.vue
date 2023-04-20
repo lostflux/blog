@@ -42,10 +42,9 @@ export default {
       {
         hid: "landing-page",
         name: "Landing Page",
-        content: "A summary of my work and experience."
-      }
-    ]
-  }
-}
+        content: "A summary of my work and experience.",
+      },
+    ],
+  },
+};
 </script>
-

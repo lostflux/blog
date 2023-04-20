@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "StyledProject",
-  }
+export default {
+  name: "StyledProject",
+};
 </script>
 
 <style lang="sass">
@@ -16,7 +16,6 @@
 @use "~/styles/colors"
 @use "~/styles/typography"
 @use "~/styles/geometry"
-
 
 .styled-project
   position: relative
@@ -27,37 +26,35 @@
 
   @media (max-width: 768px)
     @include mixins.box-shadow
-  
+
   &:not(:last-of-type)
     margin-bottom: 100px
     @media (max-width: 768px)
       margin-bottom: 70px
-    
+
     @media (max-width: 480px)
       margin-bottom: 30px
-    
-  
+
   &:nth-of-type(odd)
     .project-content
       grid-column: 7 / -1
       text-align: right
       @media (max-width: 1080px)
         grid-column: 5 / -1
-    
+
       @media (max-width: 768px)
         grid-column: 1 / -1
         padding: 40px 40px 30px
         text-align: left
-      
+
       @media (max-width: 480px)
         padding: 25px 25px 20px
-      
-    
+
       .project-tech-list
         justify-content: flex-end
         @media (max-width: 768px)
           justify-content: flex-start
-        
+
         li
           margin: 0 0 5px 20px
           @media (max-width: 768px)
@@ -72,14 +69,13 @@
           justify-content: flex-start
           margin-left: -10px
           margin-right: 0
-        
-      
+
     .project-image
       grid-column: 1 / 8
       @media (max-width: 768px)
         grid-column: 1 / -1
         height: 100%
-  
+
   .project-content
     position: relative
     grid-column: 1 / 7
@@ -90,10 +86,10 @@
     a
       z-index: 3
       pointer-events: all
-      
+
     @media (max-width: 1080px)
       grid-column: 1 / 9
-    
+
     @media (max-width: 768px)
       display: flex
       flex-direction: column
@@ -102,18 +98,17 @@
       overflow: hidden
       grid-column: 1 / -1
       padding: 40px 40px 30px
-    
+
     @media (max-width: 480px)
       padding: 30px 25px 20px
-    
-  
+
   .project-overline
     margin: 10px 0
     color: colors.color("primary-highlight")
     font-family: typography.font("monospace")
     font-size: typography.font-size("xs")
     font-weight: 400
-  
+
   .project-title
     color: colors.color("lightest-foreground")
     font-size: clamp(24px, 5vw, 28px)
@@ -129,8 +124,7 @@
 
     a
       pointer-events: all
-    
-  
+
   .project-description
     @include mixins.box-shadow
     position: relative
@@ -152,17 +146,15 @@
       pointer-events: none
       &:hover
         box-shadow: none
-      
-    
+
     a
       @include mixins.inline-link
-      
+
     strong
       color: colors.color("white")
       font-weight: normal
-    
-  
-  .project-tech-list 
+
+  .project-tech-list
     @include mixins.small-list-inline
 
     // add a comma after each list item except the last
@@ -171,14 +163,14 @@
       margin: 0 0px 5px 0 !important
       font-weight: 600
       color: colors.color("secondary-highlight")
-      
-      &:not(:last-of-type)::after 
+
+      &:not(:last-of-type)::after
         content: "/"
         margin-left: 1em
         margin-right: 1em
         color: colors.color("foreground")
-  
-  .project-links 
+
+  .project-links
     display: flex
     align-items: center
     position: relative
@@ -188,27 +180,24 @@
     z-index: 2
     width: fit-content
 
-    a 
+    a
       @include mixins.flex-center
       padding: 10px
-      &.external 
-        svg 
+      &.external
+        svg
           width: 22px
           height: 22px
           margin-top: -4px
-        
-      
-      svg 
+
+      svg
         width: 20px
         height: 20px
         stroke-width: 3px
-      
-    
-    .cta 
+
+    .cta
       @include mixins.small-button
       margin: 10px
-    
-  
+
   .project-image
     @include mixins.box-shadow
     grid-column: 6 / -1
@@ -216,29 +205,27 @@
     position: relative
     z-index: 1
 
-    @media (max-width: 768px) 
+    @media (max-width: 768px)
       grid-column: 1 / -1
       height: 100%
       opacity: 0.5
-      
-    
-    a 
+
+    a
       width: 100%
       height: 100%
       background-color: colors.color("primary-highlight")
       border-radius: geometry.var("border-radius")
       vertical-align: middle
 
-      &:is(:hover,:focus) 
+      &:is(:hover,:focus)
         background: transparent
         outline: 0
 
-        &:is(:before, img) 
+        &:is(:before, img)
           background: transparent
           filter: none
-        
-      
-      &:before 
+
+      &:before
         content: ''
         position: absolute
         width: 100%
@@ -251,13 +238,12 @@
         transition: geometry.var("default-transition")
         background-color: colors.color("background")
         mix-blend-mode: screen
-      
-    
+
       .img-project
         border-radius: geometry.var("border-radius")
         mix-blend-mode: multiply
         filter: grayscale(40%) contrast(1) brightness(70%)
-        
+
         @media (max-width: 768px)
           height: 100%
           min-width: 100%

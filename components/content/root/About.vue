@@ -1,6 +1,12 @@
 <template>
-  <StyledAboutSection id="about" class="about-section">
-    <ContentDoc path="profile/brief" class="doc" />
+  <StyledAboutSection
+    id="about"
+    class="about-section"
+  >
+    <ContentDoc
+      path="profile/brief"
+      class="doc"
+    />
     <!-- <StyledImage>
       <img
         src="~assets/images/profile-image.jpg"
@@ -16,9 +22,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "About"
-  }
+export default {
+  name: "About",
+};
 </script>
 
 <style lang="sass">

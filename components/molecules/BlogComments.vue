@@ -1,7 +1,65 @@
 <template>
-  <div class="comments-section-wrapper">
+  <div id="comments-section" ref="comments" class="comments-section-wrapper hidden">
     <section class="comments">
-      <!-- <h1 class="section-title">Comments</h1> -->
+      <div class="section-title">
+        Responses ({{ userInfo.getComments.length }})
+      </div>
+      <form class="new-comment">
+        <template
+          v-if="userInfo.active"
+        >
+          <div class="new-comment-header">
+            <div
+              alt="avatar"
+              class="avatar"
+              v-html="userInfo.avatar"
+            />
+            <div class="username">
+              {{ userInfo.getUserName }}
+            </div>
+            <StyledButton
+              class="auth-button"
+              type="button"
+              @click="() => userInfo.active ? _signOut() : signIn()"
+            >
+              {{ userInfo.active ? "sign out" : "sign in" }}
+            </StyledButton>
+          </div>
+          <textarea
+            id="comment"
+            ref="commentTextArea"
+            v-model="comment"
+            class="input"
+            placeholder="Comment"
+          />
+          <div class="blog-actions">
+            <!-- <StyledButton @click="() => { userInfo.toggleSubscription() }"> -->
+            <BookMarkIcon
+              :active="userInfo.isSubscribed()"
+              class="blog-action"
+              @click="() => userInfo.toggleSubscription()"
+            />
+            <NuxtLink to="/blog">
+              <ListIcon class="blog-action" />
+            </NuxtLink>
+
+            <StyledButton
+              class="respond-button"
+              type="button"
+              @click="submitComment"
+            >
+              Respond
+            </StyledButton>
+          </div>
+        </template>
+        <template v-else>
+          <div class="no-active-user">
+            Not logged in.
+          </div>
+        </template>
+      </form>
+      <!-- </section> -->
+      <!-- </div> -->
 
       <div class="current-comments">
         <div
@@ -20,131 +78,23 @@
           <BlogComment
             :id="i"
             :comment="com"
+            class="comment"
           />
-          <!-- </div> -->
         </template>
-      </div>
-
-      <div class="new-comment">
-        <h2 class="section-subtitle">
-          Thoughts?
-        </h2>
-
-        <!-- {{  userInfo.getSubscriptionPaths }} -->
-
-        <p class="signed-in-info">
-          <Alert :type="isLoggedIn ? 'info' : 'error'">
-            <div v-if="isLoggedIn">
-              You are signed in as <strong class="username"> {{ currentUser.displayName }}</strong>.
-              <br>
-              <span v-if="userInfo.isSubscribed()">
-                You are subscribed to this article, you'll be notified when new comments are posted.
-              </span>
-              <span v-else>
-                You are not subscribed to this article.
-              </span>
-              <div>
-                <StyledButton @click="() => { userInfo.toggleSubscription() }">
-                  {{ userInfo.isSubscribed() ? 'Unsubscribe' : 'Subscribe' }}
-                </StyledButton>
-                <StyledButton href="/blog">
-                  manage subscriptions
-                </StyledButton>
-                <StyledButton
-                  class="button"
-                  type="button"
-                  @click="() => userInfo.active ? _signOut() : signIn()"
-                >
-                  {{ userInfo.active ? "sign out" : "sign in" }}
-                </StyledButton>
-              </div>
-            </div>
-            <div v-else>
-              You are not signed in. <br>
-              Sign in (or sign up) to comment/subscribe. <br>
-
-              <StyledButton
-                v-if="isLoggedIn"
-                class="button"
-                type="button"
-                @click="_signOut"
-              >
-                sign out
-              </StyledButton>
-              <StyledButton
-                v-else
-                class="button"
-                type="button"
-                @click="signIn"
-              >
-                sign in
-              </StyledButton>
-            </div>
-          </Alert>
-
-          <br>
-          <br>
-
-          The development of sophisticated language and communication skills
-          <a href="https://www.theguardian.com/science/punctuated-equilibrium/2011/aug/04/1">
-            redefined human evolution
-          </a>
-          and, quite possibly, sparked the sequence of
-          events that led to modern civilization.
-          <br>
-          <br>
-          There is so much to get &mdash; and so much to give &mdash;
-          when we share thoughts, ideas, and opinions responsibly.
-          <br>
-          Let the world know what you think;
-          <strong class="username"> your ideas do matter </strong>.
-          <br>
-          <br>
-          I'll admit: sharing ideas can be scary,
-          especially when we are not even sure about them.
-          <br>
-          If you can, that's amazing.
-          If not, a start is better than nothing.
-        </p>
-        <form class="form">
-          <textarea
-            id="comment"
-            v-model="comment"
-            class="input"
-            placeholder="Comment"
-          />
-          <div class="button-container">
-            <StyledButton
-              class="button"
-              type="button"
-              @click="submitComment"
-            >
-              comment
-            </StyledButton>
-            <StyledButton
-              v-if="isLoggedIn"
-              class="button"
-              type="button"
-              @click="_signOut"
-            >
-              sign out
-            </StyledButton>
-            <StyledButton
-              v-else
-              class="button"
-              type="button"
-              @click="signIn"
-            >
-              sign in
-            </StyledButton>
-          </div>
-        </form>
       </div>
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
+const variable = ref(0);
+const { textarea: commentTextArea, input: comment } = useTextareaAutosize();
+
+const comments = ref(null);
+onClickOutside(comments, () => {
+  console.log(`clicked outside`);
+  comments.value.classList.add("hidden");
+});
 </script>
 
 <script lang="ts">
@@ -153,12 +103,13 @@ import { normalizePath } from "~/modules/utils";
 import useUserInfo from "~/composables/users";
 import type { Comment } from "~/modules/utils";
 
+
 export default {
   name: "BlogComments",
 
   data() {
     return {
-      comment: "",
+      // comment: "",
       // allComments: new Array<Comment>(),
       showAuthPopup: false,
       // avatar: '',
@@ -280,7 +231,9 @@ export default {
      *   generate an avatar and submit comment.
      */
     submitComment() {
-      if (!this.comment) return;
+      if (comment.value === '') return;
+
+      console.log("submitting;....")
 
       const { path } = useRoute();
 
@@ -293,7 +246,7 @@ export default {
         return;
       }
       const newComment: Comment = {
-        text: this.comment,
+        text: comment.value,
         author: currentUser?.displayName,
         avatar: this.userInfo.avatar,
         date: new Date().toISOString(),
@@ -301,7 +254,7 @@ export default {
       };
       this.userInfo.sendComment(newComment);
       // reset comment
-      this.comment = "";
+      comment.value = "";
     },
   },
 };
@@ -323,22 +276,77 @@ export default {
   position: fixed
   top: 0
   right: 0
-  width: 414px
   background: colors.color("light-background")
   z-index: 1
   height: 100vh
+  z-index: 100
+  overflow-y: scroll
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7)
+  width: 414px
+  
+  @media only screen and (max-width: 720px)
+    width: 100%
+    height: 90vh
+    top: 10vh
+    border-radius: 30px 30px 0 0
+    padding: 0 10px
+
+  &::-webkit-scrollbar
+    display: none
+
+  &.hidden
+    display: none
+    pointer-events: none
 
 section.comments
-  margin-top: 20px
-  margin-bottom: 20px
+  margin: 0 10px 20px 10px
   border-top: 1px solid colors.color("lightest-background")
-  padding-top: 3em !important
   padding-bottom: 0
   -webkit-transition: all 0.1s ease-in-out
   -ms-transition: all 0.1s ease-in-out
   -moz-transition: all 0.1s ease-in-out
   -o-transition: all 0.1s ease-in-out
   transition: all 0.1s ease-in-out
+  pointer-events: all
+
+
+  .new-comment
+    width: 100%
+    height: 100%
+    border-radius: 5px
+    padding: 0 20px
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5)
+
+    .new-comment-header
+      height: 50px
+      display: flex
+      flex-direction: row
+      align-items: center
+
+      margin-bottom: 20px
+      width: 100%
+
+      .avatar
+        height: 100%
+        aspect-ratio: 1/1
+
+      .username
+        margin-left: 10px
+        margin-top: 10px
+        font-weight: 600
+        color: colors.color("secondary-highlight")
+        width: fit-content
+
+      .auth-button
+        margin-left: auto
+        height: fit-content
+
+    .input
+      width: 100%
+      background: none
+
+      &::placeholder
+        color: colors.color("dark-foreground")
 
   .section-title
     color: colors.color("secondary-highlight")
@@ -367,7 +375,6 @@ section.comments
           cursor: pointer
 
     .form
-
       .input
         width: 100%
         height: 10rem
@@ -393,70 +400,35 @@ section.comments
         @include mixins.big-button
         margin: 1rem auto
 
-.all-subs-panel
-  overflow: hidden
-  width: 100%
-  height: auto !important
+.blog-actions
+  display: flex
+  flex-direction: row
+  gap: 20px
+  position: relative
+  padding: 20px 0
 
-  -webkit-transition: none
-  -ms-transition: none
-  -moz-transition: none
-  -o-transition: none
-  transition: none
-  height: fit-content !important
-  max-height: 60vh
-  overflow-y: scroll
+  .blog-action
+    height: 30px
+    width: 40px
+    aspect-ratio: 1/1
 
-  &::-webkit-scrollbar
-    display: none !important
+  .respond-button
+    // align self to right of parent
 
-  .active-subs-header
-    margin: 1rem 0
-    font-size: 1.5rem
-    font-weight: 600
-    // color: colors.color("secondary-highlight")
+    margin: 0
+    margin-left: auto
+    background: rgba(colors.color("primary-highlight"), 0.5)
+    color: colors.color("lightest-background")
 
-  .sub
-    .sub-title
-      font-weight: 600
-      font-size: 1.5rem
-      margin-bottom: 1rem
-      color: colors.color("secondary-highlight") !important
+.comments
+  display: flex
+  flex-direction: column
+  gap: 30px
 
-    .sub-description
-      font-size: 1rem
-      margin-bottom: 1rem
+  .comment
+    background: inherit
+    border-bottom: 1px solid colors.color("lightest-background")
+    margin-top: 20px
 
-    .sub-date
-      font-size: 0.8rem
-      margin-bottom: 1rem
-      font-family: typography.font("monospace")
-      font-weight: 600
-      font-size: 0.7em
-      color: colors.color("secondary-highlight") !important
-      text-transform: uppercase
 
-    .sub-image
-      margin-bottom: 1rem
-      @include mixins.box-shadow
-      border-radius: geometry.var("border-radius")
-
-    .sub-actions
-      width: 100%
-      .unsubscribe-button
-        @include mixins.big-button
-        margin: 1rem auto
-        width: 100%
-        font-weight: 600
-
-        background-color: colors.color("secondary-highlight")
-        color: colors.color("lightest-background")
-        border: 1px solid colors.color("secondary-highlight")
-
-        &:hover
-          cursor: pointer
-
-          background-color: colors.color("light-background")
-          color: colors.color("secondary-highlight")
-          border: 1px solid colors.color("secondary-highlight")
 </style>

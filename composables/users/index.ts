@@ -29,7 +29,7 @@ const useUserInfo = defineStore("userInfo", {
       return _subs.map((sub) => sub.path);
     },
     getComments() {
-      return this.currentRouteComments;
+      return this.currentRouteComments.reverse();
     },
     getUserName() {
       return this.userName;
@@ -52,11 +52,10 @@ const useUserInfo = defineStore("userInfo", {
         this.avatar = await this.getUserAvatar();
         this.email = newUser.email || "";
         this.uid = newUser.uid;
-        await this.getCommentsByRoute();
         await this.updateSubscriptions(true);
-
         onAuthStateChanged(getAuth(), () => this.update());
       }
+      await this.getCommentsByRoute();
     },
     async update() {
       const { currentUser: newUser } = getAuth();

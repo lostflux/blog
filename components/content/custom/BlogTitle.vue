@@ -3,7 +3,6 @@
     <div class="text-container">
       <div class="title">
         <div class="category">
-          <!-- <Icon :type="`blog-${primaryCategory}`" class="category-icon" /> -->
           <ul class="category-labels">
             <li
               v-for="_category in categories"
@@ -22,6 +21,25 @@
           {{ description }}
         </div>
         <Date :date="date" />
+      </div>
+      <div class="blog-actions">
+        <button class="blog-action composite left">
+          <Icon class="blog-action left" type="like" :active="false" />
+        </button>
+        <button class="blog-action composite left">
+          <Icon type="comment" :active="false" @click="showComments" />
+          <span class="action-text">
+            {{ userInfo.getComments.length }}
+          </span>
+
+        </button>
+        <button class="blog-action composite right">
+          <BookMarkIcon
+          :active="userInfo.isSubscribed()"
+          class="blog-action"
+          @click="() => userInfo.toggleSubscription()"
+        />
+        </button>
       </div>
       <figure
         v-if="image"
@@ -44,9 +62,11 @@
 </template>
 
 <script lang="ts" setup>
+// import useUserInfo from "@/composables/users";
+// const userInfo = useUserInfo();
 const { path } = useRoute();
 const {
-  primaryCategory, categories, image, caption, date, title, description,
+ categories, image, caption, date, title, description,
 } = await queryContent(path)
   .only(["category", "date", "image", "caption", "title", "description"])
   .findOne()
@@ -62,6 +82,13 @@ const {
     };
   });
 
+const showComments = () => {
+  const commentsContainer = document.getElementsByClassName("comments-section-wrapper")[0];
+  if (commentsContainer) {
+    commentsContainer.classList.remove("hidden");
+  }
+};
+
 function showCategory(category) {
   console.log(`Showing category: ${category}`);
   return category !== "featured";
@@ -69,6 +96,8 @@ function showCategory(category) {
 </script>
 
 <script lang="ts">
+import useUserInfo from "@/composables/users";
+const userInfo = useUserInfo();
 export default {
   name: "BlogTitle",
 };
@@ -178,5 +207,46 @@ export default {
     font-weight: 600
     font-style: italic
     color: colors.color("primary-highlight")
+
+  .blog-actions
+    width: 100%
+    height: 40px
+    border-top: 0.5px solid colors.color("lightest-background")
+    border-bottom: 0.5px solid colors.color("lightest-background")
+    display: flex
+    flex-direction: row
+    gap: 20px
+    place-items: center
+    padding: 0 1em
+    margin: 1em 0
+    pointer-events: all
+
+
+    .blog-action
+      height: 25px
+      width: 25px
+      pointer-events: all
+
+      &::hover
+        cursor: pointer
+
+      &.composite
+        display: flex
+        flex-direction: row
+        width: fit-content
+        align-items: center
+        justify-content: center
+        gap: 5px
+        
+        & > span
+          display: inline-flex
+          vertical-align: middle
+          font-size: 14px
+          font-weight: 600
+          line-height: 1
+
+      &.right
+        margin-left: auto
+      
 
 </style>

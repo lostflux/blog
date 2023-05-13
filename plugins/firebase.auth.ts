@@ -5,8 +5,8 @@ import { initializeApp } from "firebase/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
 // TODO: Move firebase config to global config file.
-  const config = useRuntimeConfig();
-  console.log(`config: ${config}`);
+  // const config = useRuntimeConfig();
+  // console.log(`config: ${Object.keys(config.content.transformers)}`);
 
   const firebaseConfig = {
     apiKey: "AIzaSyCtHIhBCYkQeafAn_ICQowTWumlPRwxkU0",
@@ -19,4 +19,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   };
 
   initializeApp(firebaseConfig);
+
+  // nuxtApp.datastore = app;
 });

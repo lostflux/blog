@@ -29,19 +29,23 @@
   <ExpandIcon v-else-if="type?.toLowerCase() === 'expand'" />
   <ExpandDiagonalIcon v-else-if="type?.toLowerCase() === 'expand-diagonal'" />
   <DownArrowIcon v-else-if="type?.toLowerCase() === 'down-arrow'" />
+  <LikeIcon v-else-if="type?.toLowerCase() === 'like'" :active="active" />
+  <CommentIcon v-else-if="type?.toLowerCase() === 'comment'" />
+  <BookMarkIcon v-else-if="type?.toLowerCase() === 'bookmark'" :active="active" />
   <ExternalLinkIcon v-else />
 </template>
 
 <script lang="ts">
-
-/// accept name as icon identifier
-
 export default {
   name: "Icon",
   props: {
     type: {
       type: String,
       required: true,
+    },
+    active: {
+      type: Boolean,
+      default: false,
     },
   },
 };

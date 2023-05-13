@@ -22,7 +22,7 @@
     "@nuxt/types": "^2.16.0",
     "@nuxt/ui": "^0.4.1",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@nuxtjs/google-fonts": "^3.0.0-0",
+    "@nuxtjs/google-fonts": "^3.0.0",
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/scrollreveal": "^0.0.8",
     "@vueblocks/vue-use-core": "^0.2.11",

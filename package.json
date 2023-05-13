@@ -63,7 +63,7 @@
     "postcss-cli": "^10.1.0",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1",
-    "styled-components": ">=5.3.6",
+    "styled-components": ">=5.3.10",
     "vite": "^4.1.4",
     "vue": "^3.2.47",
     "vue-resize-observer": "^2.0.16",

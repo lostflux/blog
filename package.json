@@ -18,7 +18,7 @@
     "@nuxt/devtools": "^0.2.5",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/image": "^0.7.1",
-    "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
+    "@nuxt/image-edge": "^1.0.0-28059208.2abef1b",
     "@nuxt/types": "^2.16.0",
     "@nuxt/ui": "^0.4.1",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",

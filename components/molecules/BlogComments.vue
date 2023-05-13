@@ -54,7 +54,13 @@
         </template>
         <template v-else>
           <div class="no-active-user">
-            Not logged in.
+          <StyledButton
+            class="auth-button"
+            type="button"
+            @click="() => userInfo.active ? _signOut() : signIn()"
+          >
+            {{ userInfo.active ? "sign out" : "sign in" }}
+          </StyledButton>
           </div>
         </template>
       </form>

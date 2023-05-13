@@ -65,9 +65,9 @@ const useUserInfo = defineStore("userInfo", {
         this.avatar = await this.getUserAvatar();
         this.email = newUser.email || "";
         this.uid = newUser.uid;
-        await this.getCommentsByRoute();
         await this.updateSubscriptions(false);
       }
+      await this.getCommentsByRoute();
     },
 
     async updateSubscriptions(clear = false) {

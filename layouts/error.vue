@@ -18,27 +18,24 @@
 </template>
 
 <script lang="ts">
+export default {
+  props: ["error"],
+  layout: "error", // you can set a custom layout for the error page
+}
 </script>
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
-import { useUserInfo } from "~~/composables/users";
-
-export default {
-  props: ["error"],
-  layout: "error", // you can set a custom layout for the error page
-};
+import useUserInfo from "~/composables/users";
 
 onMounted(() => {
-  const { updateUserInfo } = useUserInfo();
+  const userInfo = useUserInfo();
   // listen for auth state changes
   const auth = getAuth();
-  updateUserInfo();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // update user info
-      updateUserInfo();
-    }
+  userInfo.update();
+  onAuthStateChanged(auth, () => {
+    // update user info
+    userInfo.update();
   });
 });
 </script>

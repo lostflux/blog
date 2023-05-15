@@ -46,8 +46,8 @@
     "vue-styled-components": "^1.0.4"
   },
   "dependencies": {
-    "@dicebear/collection": "^5.3.4",
-    "@dicebear/core": "^5.3.4",
+    "@dicebear/collection": "^6.0.3",
+    "@dicebear/core": "^6.0.3",
     "@firebase/auth": "^0.23.0",
     "@firebase/firestore": "^3.10.1",
     "@nuxt/content": "nuxt/content#feat/rehype-plugins",

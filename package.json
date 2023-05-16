@@ -58,7 +58,7 @@
     "firebase": "^9.22.0",
     "ipx": "^1.1.0",
     "node-sass": ">=8.0.0",
-    "pinia": "^2.0.33",
+    "pinia": "^2.0.36",
     "postcss": "^8.4.22",
     "postcss-cli": "^10.1.0",
     "rehype-katex": "^6.0.2",

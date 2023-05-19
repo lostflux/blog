@@ -67,7 +67,7 @@
     "vite": "^4.1.4",
     "vue": "^3.2.47",
     "vue-resize-observer": "^2.0.16",
-    "vue-router": "^4.1.6",
+    "vue-router": "^4.2.1",
     "vue-scroll-reveal": "^1.0.11",
     "vuex": "^4.1.0"
   }

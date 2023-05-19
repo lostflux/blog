@@ -35,7 +35,7 @@
     "freezeframe": "^5.0.2",
     "frontmatter-markdown-loader": "^3.7.0",
     "gql-client": "^1.0.0",
-    "nuxt": "^3.2.2",
+    "nuxt": "^3.5.0",
     "sass": "latest",
     "sass-loader": "latest",
     "scrollreveal": "^4.0.9",

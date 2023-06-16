@@ -45,7 +45,7 @@
     "firebase": "^9.22.0",
     "ipx": "^1.1.0",
     "node-sass": ">=8.0.0",
-    "pinia": "^2.1.4",
+    "pinia": "^2.0.33",
     "rehype-katex": "^6.0.3",
     "remark-math": "^5.1.1",
     "ufo": "^1.1.2",

@@ -30,7 +30,7 @@
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-nuxt": "^4.0.0",
-    "nuxt": "^3.2.2",
+    "nuxt": "^3.5.3",
     "sass": "latest",
     "sass-loader": "latest"
   },

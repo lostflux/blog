@@ -26,7 +26,7 @@
     "@vueblocks/vue-use-vuex": "^0.2.11",
     "composition-api": "latest",
     "cross-env": "^7.0.3",
-    "eslint": "^8.38.0",
+    "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-nuxt": "^4.0.0",
     "nuxt": "^3.6.0",

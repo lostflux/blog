@@ -34,7 +34,7 @@
     "sass-loader": "latest"
   },
   "dependencies": {
-    "@dicebear/collection": "^6.0.3",
+    "@dicebear/collection": "^6.0.4",
     "@dicebear/core": "^6.0.3",
     "@firebase/auth": "^0.23.0",
     "@firebase/firestore": "^3.10.1",

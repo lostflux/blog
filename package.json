@@ -36,7 +36,7 @@
     "@dicebear/collection": "^6.0.3",
     "@dicebear/core": "^6.0.3",
     "@firebase/auth": "^1.0.0",
-    "@firebase/firestore": "^3.10.1",
+    "@firebase/firestore": "^4.0.0",
     "@nuxt/vite-builder": "^3.6.2",
     "@nuxtjs/algolia": "^1.7.0",
     "@nuxtjs/redirect-module": "^0.3.1",

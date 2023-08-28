@@ -3,7 +3,7 @@ title: loud
 category:
   - moments
 draft: true
-layout: moment
+layout: article
 date: 2023-07-26 23:00:00
 navigation: false
 

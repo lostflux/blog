@@ -99,7 +99,7 @@ export default {
 
 .code-container
   //background: colors.color("light-background")
-  background: rgba(colors.color(light-background), 0.7)
+  background: rgba(colors.color(light-background), 0.2)
   position: relative
   margin: 1rem 0
   padding: 0.5rem
@@ -149,7 +149,6 @@ export default {
               &::before
                 content: '+'
                 color: colors.color("critical-foreground")
-                // color: colors.color("primary-highlight")
                 border-right: 1px solid
 
             &::before
@@ -159,8 +158,8 @@ export default {
               content: counter(line)
               margin-right: 1em
               padding-right: 0.5em
-              color: colors.color("foreground")
-              border-right: 1px solid colors.color("lightest-background")
+              color: colors.color(dark-foreground)
+              border-right: 1px solid colors.color(dark-foreground)
 
             &:hover
               background-color: rgba(colors.color("lightest-background"), 0.7)
@@ -170,36 +169,36 @@ export default {
                 content: counter(line)
                 padding-right: 0.5em
                 color: colors.color("lightest-foreground")
-                border-right: 1px solid
+                border-right: 1px solid colors.color(foreground)
 
-.language
-  padding: 0 1em
-  margin: auto 0
-  padding-top: 7px
-  line-height: 1
-  font-weight: 400
-  text-transform: capitalize
+  .language
+    padding: 0 1em
+    margin: auto 0
+    padding-top: 7px
+    line-height: 1
+    font-weight: 400
+    text-transform: capitalize
 
-.top-container
-  display: flex
-  justify-content: flex-end
-  margin-bottom: 1rem
-  border-bottom: 1px solid colors.color("lightest-background")
+  .top-container
+    display: flex
+    justify-content: flex-end
+    margin-bottom: 1rem
+    border-bottom: 1px solid colors.color(dark-foreground)
 
-.copy-button
-  font: typography.font("monospace")
-  color: colors.color("primary-highlight")
-  padding: 1em
+  .copy-button
+    font: typography.font("monospace")
+    color: colors.color(dark-foreground)
+    padding: 1em
 
-  & > svg
-    fill: none
+    & > svg
+      fill: none
 
-.filename
-  position: absolute
-  margin: 1em
-  left: 1em
-  top: 5px
-  font-family: typography.font("monospace")
-  font-size: typography.font-size("xs")
+  .filename
+    position: absolute
+    margin: 1em
+    left: 1em
+    top: 5px
+    font-family: typography.font("monospace")
+    font-size: typography.font-size("xs")
 
 </style>

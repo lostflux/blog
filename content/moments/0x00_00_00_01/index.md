@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2019-02-06 23:00:00
 navigation: false
 
@@ -18,8 +18,13 @@ head:
       content: 'Amittai'
 ---
 
+:::square
+---
+margin: 45%
+---
+
 structure.  
 a pleasant rhythm to the ear.  
 fractured.
 
-<!-- more -->
+:::

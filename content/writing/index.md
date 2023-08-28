@@ -1,8 +1,13 @@
 ---
-title: amittai::writing
-layout: default
+title: writing
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
-:blog-list
+::blog-list
+---
+title: Writing
+---
+::

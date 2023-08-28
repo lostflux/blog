@@ -12,33 +12,20 @@
 .prose-table
   min-width: 300px
   max-width: 100%
-  width: fit-content
-  border: 1px solid colors.color("lightest-background")
+  width: 100%
   line-height: 2
   font-size: 1rem
 
   th
-    border-bottom: 1px solid colors.color("lightest-background")
-    border-top: 1px solid colors.color("lightest-background")
-    color: colors.color("primary-highlight")
-    background-color: colors.color("light-background")
+    color: colors.color("light-foreground")
     padding: 10px
-    text-align: center
+    font-weight: 600
 
   td
-    border-bottom: 1px solid colors.color("lightest-background")
     padding: 10px
-    border-right: 1px solid colors.color("lightest-background")
 
-  tr
-
-    &:nth-child(even)
-      background-color: colors.color("light-background")
-
-    &:nth-child(odd)
-      background-color: colors.color("background")
-
-    &:hover
-      background-color: rgba(colors.color("lightest-background"), 0.4)
+  // align text to top of cell
+  td, th
+    vertical-align: top
 
 </style>

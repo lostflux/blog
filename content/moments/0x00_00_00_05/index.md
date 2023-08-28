@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2019-08-03 23:00:00
 navigation: false
 
@@ -18,6 +18,11 @@ head:
       content: 'Amittai'
 ---
 
+:::square
+---
+margin: 40%
+---
+
 sometimes  
 i don't want to write down how I truly feel  
 
@@ -26,4 +31,4 @@ means the words could travel
 
 and I'll have a lot of explaining to do
 
-<!-- more -->
+:::

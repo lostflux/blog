@@ -1,8 +1,9 @@
 ---
-title: amittai::writing::misc::technology
-layout: default
+title: tech
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list

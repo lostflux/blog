@@ -3,7 +3,7 @@ title: Symmetric Groups
 description: Just a simple post on symmetric groups.
 category:
   - algebra
-draft: false
+draft: true
 featured: false
 imageUrl: ../cover.gif
 caption: The Group S4.

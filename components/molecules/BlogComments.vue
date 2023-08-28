@@ -326,8 +326,8 @@ export default {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7)
   width: 514px
 
-  background: rgba(colors.color(light-background), 0.95)
-  border: 1px solid colors.color(lightest-background)
+  background: rgba(colors.color(background), 0.95)
+  //border: 1px solid colors.color(lightest-background)
 
   transition: all 1s
 
@@ -337,9 +337,6 @@ export default {
     top: 10vh
     border-radius: 10px 10px 0 0
     padding: 0 20px
-
-  &::-webkit-scrollbar
-    display: none
 
   &.hidden
     display: none
@@ -356,7 +353,7 @@ section.comments
     border-radius: 5px
     padding: 0 20px
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5)
-    background: rgba(colors.color(light-background), 0.9)
+    background: rgba(colors.color(light-background), 0.2)
     border: 1px solid colors.color(lightest-background)
 
     .new-comment-header
@@ -465,7 +462,7 @@ section.comments
 
   .comment
     background: transparent
-    border-bottom: 1px solid colors.color(lightest-background)
+    border-bottom: 1px solid colors.color(light-background)
     margin-top: 20px
 
 </style>

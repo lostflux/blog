@@ -1,8 +1,9 @@
 ---
 title: amittai::writing::math::algebra
-layout: default
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list

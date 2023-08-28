@@ -5,7 +5,7 @@
     <ul
       class="toc"
     >
-      <span class="title"> Current Page </span>
+      <span class="title"> Table of Contents </span>
       <li
         v-for="link in toc.links"
         :key="link.text"
@@ -181,11 +181,10 @@ const { toc } = useContent();
   max-width: 100%
 
   .title
-    font-size: typography.font-size("xl")
-    color: colors.color("primary-highlight")
+    text-transform: uppercase
+    font-size: typography.font-size(xs)
     font-weight: 600
-    line-height: 2
-    min-width: 100%
+    color: colors.color(foreground)
 
   .toc-link
     display: block
@@ -194,6 +193,8 @@ const { toc } = useContent();
     width: 100%
     overflow: hidden
     text-overflow: ellipsis
+    font-weight: 600
+    color: colors.color(dark-foreground)
 
     .link-text
       transition: geometry.var("default-transition")
@@ -201,7 +202,7 @@ const { toc } = useContent();
       overflow: hidden
 
     &:hover
-      color: colors.color("primary-highlight") !important
+      color: colors.color(lightest-foreground) !important
 
       & > .link-text
         margin-left: -5px
@@ -215,9 +216,10 @@ const { toc } = useContent();
       font-size: typography.font-size("xs")
 
     &.active
-      color: colors.color("primary-highlight")
+      color: colors.color(lightest-foreground)
+      font-weight: 600
 
       &.main
-        border-left: 1px solid colors.color("primary-highlight")
+        border-left: 1px solid colors.color(lightest-foreground)
 
 </style>

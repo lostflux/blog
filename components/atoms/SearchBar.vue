@@ -1,32 +1,47 @@
 <template>
-  <div class="site-search">
-    <form class="site-search-form">
-      <input
-        id="searchbar"
-        ref="textBar"
-        v-model="searchTerm"
-        type="text"
-        class="site-search-input"
-        tabindex="0"
-        placeholder="search"
-      >
-    </form>
+  <div
+    id="site-search-background"
+    ref="siteSearchBackground"
+    class="site-search-background hidden"
+  >
     <div
-      v-if="result"
-      ref="searchResultsBackground"
-      class="search-results-background"
-    />
-    <div
-      v-if="result"
-      ref="searchResults"
-      class="search-results"
+      ref="siteSearch"
+      class="site-search"
     >
-      <div class="search-results-container">
-        <SearchItem
-          v-for="hit in result?.hits.slice(0, 5)"
-          :key="hit.objectID"
-          :hit="hit"
-        />
+      <!-- <div class="blog-list-container"> -->
+      <div class="left">
+        <BlogTitle custom-title="search" />
+      </div>
+      <div class="right">
+        <div class="content">
+          <form class="site-search-form">
+            <input
+              id="searchbar"
+              ref="textBar"
+              v-model="searchTerm"
+              type="text"
+              class="site-search-input"
+              tabindex="0"
+              placeholder="search"
+            >
+          </form>
+          <div
+            v-for="year in years"
+            :key="year"
+            class="blog-list-year"
+          >
+            <div class="blog-list-year-title">
+              {{ year }}
+            </div>
+            <ul class="blog-list">
+              <BlogListItem
+                v-for="(blog, i) in blogs.filter((blog) => new Date(blog.date).getFullYear() === year)"
+                :key="i"
+                :blog="blog"
+              />
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,11 +50,12 @@
 <script setup lang="ts">
 const textBar = ref(null);
 
-const searchResults = ref<HTMLElement>(null);
-const searchResultsBackground = ref<HTMLElement>(null);
-onClickOutside(searchResults, () => {
-  searchResults.value?.classList.add("hidden");
-  searchResultsBackground.value?.classList.add("hidden");
+const siteSearch = ref<HTMLElement>(null);
+const siteSearchBackground = ref<HTMLElement>(null);
+onClickOutside(siteSearch, () => {
+  const btn = document.querySelector(".menu-button");
+  btn.classList.remove("clicked");
+  siteSearchBackground.value?.classList.add("hidden");
 });
 
 </script>
@@ -52,6 +68,9 @@ export default {
     return {
       searchTerm: "",
       result: null,
+      searchPaths: [],
+      blogs: [],
+      years: [],
     };
   },
 
@@ -77,6 +96,7 @@ export default {
       }
       const { search } = useAlgoliaSearch("netlify_e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3_main_all");
       search({ query: this.searchTerm })
+      // search({ query: "machine learning" })
         .then((result) => {
           /**
            * Only show content pages in serch results.
@@ -86,12 +106,25 @@ export default {
            * 3: /writing/{computing, math, misc, etc}
            * 4: /writing/{computing, math, misc, etc}/{post}
           */
-          result.hits = result.hits.filter((hit) => hit.urlDepth === 4);
+          // result.hits = result.hits.filter((hit) => hit.urlDepth === 4);
           this.result = result;
-          const _searchResults = this.$refs.searchResults as HTMLElement;
-          const _searchResultsBackground = this.$refs.searchResultsBackground as HTMLElement;
-          _searchResults?.classList.remove("hidden");
-          _searchResultsBackground?.classList.remove("hidden");
+          this.searchPaths = this.result.hits.map((hit) => useTrimmedPath(hit.url).path);
+          console.log(`result: ${JSON.stringify(result)}`);
+          console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
+
+          queryContent()
+            .where({ _path: { $in: this.searchPaths } })
+            .where({ category: { $not: { $contains: "meta" } } })
+            .only(["title", "date", "category", "_path"])
+            .find()
+            .then((data) => {
+              console.log(`data: ${JSON.stringify(data)}`);
+              this.blogs = data;
+              console.log(`blogs: ${JSON.stringify(this.blogs)}`);
+              const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
+              this.years = [...new Set(_years)].sort().reverse();
+              console.log(`years: ${JSON.stringify(this.years)}`);
+            });
         })
         .catch((err) => {
           console.error(err);
@@ -108,38 +141,56 @@ export default {
 <style lang="sass" scoped>
 @use "~/styles/colors"
 @use "~/styles/typography"
+@use "@/styles/mixins"
 
-.site-search
-  // padding-top: 5px
-  // padding-bottom: 5px
-  // justify: space-between
-  width: clamp(200px, 70%, 600px)
-  margin-left: auto
-  //position: relative
-  height: 70%
+.site-search-background
+  position: fixed
+  top: 0
+  left: 0
+  width: 100svw
+  height: 100svh
+  background: rgba(colors.color(background), 0.9)
+  backdrop-filter: blur(10px)
+  z-index: 9
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  overflow-y: scroll
+
+  &.hidden
+    display: none !important
+
+  .site-search
+    width: min(100%, 75ch)
+    height: 100%
+    @include mixins.line-split
+
+    &::-webkit-scrollbar
+      width: 0px
+      background: transparent !important
 
   .site-search-input
     width: 100%
     height: 40px
     background: inherit
     font-size: 20px
-    margin: 15px 0
     justify-self: center
     align-self: center
     padding-right: 50px
-    color: colors.color("primary-highlight")
+    color: colors.color(foreground)
     font-family: typography.font("sans-serif")
-    background: red
-    background-color: rgba(colors.color(light-background), 0.5)
-    border-bottom: 1px solid rgba(colors.color(primary-highlight), 0.5)
-    padding: 0 15px
+    padding: 0 // 15px
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2)
     text-transform: lowercase
     transition: all 0.3s ease-in-out
 
+    border-bottom: 1px solid colors.color(light-background)
+    margin: -7px 0 1em 0
+
     &:is(:hover, :focus, :active)
-      background-color: rgba(colors.color(light-background), 0.9)
-      border-bottom: 1px solid colors.color(primary-highlight)
+      color: colors.color(lightest-foreground)
 
     // prevent zooming
     font-size: 16px
@@ -149,44 +200,13 @@ export default {
 
     &::placeholder
       font-size: typography.font-size("m")
-      color: colors.color("primary-highlight")
+      color: colors.color(dark-foreground)
       opacity: 0.6
 
-    &::selection
-      color: colors.color("primary-highlight")
-      opacity: 0.8
-
-  .search-results-background
-    position: fixed
-    top: 0
-    left: 0
-    width: 200vw
-    height: 200vh
-    background: rgba(colors.color(background), 0.9)
-    backdrop-filter: blur(10px)
-    z-index: 9
-    margin-top: 70px
-
-    &.hidden
-      display: none !important
-
   .search-results
-    position: absolute
-    top: 200%
-    left: 50%
-    transform: translateX(-50%)
     width: 100%
-    background: colors.color(light-background)
-    z-index: 10
     display: flex
     flex-direction: column
-    background: rgba(colors.color(light-background), 0.7)
-    border: 1px solid colors.color(lightest-background)
-    padding: 10px
-    border-radius: 10px
-    max-height: 80svh
-    transition: all 0.3s ease-in-out
-    width: clamp(300px, 100svw, 800px)
 
     @media screen only and (max-width: 800px)
       font-size: typography.font-size("xxs") !important
@@ -198,18 +218,41 @@ export default {
       display: none
 
     .search-results-container
-      display: flex
-      flex-direction: column
-      align-items: center
-      width: 100%
-      overflow-y: scroll
+      @include mixins.line-split
 
-      &::-webkit-scrollbar-track
-        background: colors.color(light-background) !important
+.blog-list-container
+  width: 100%
+  line-height: 3
+  font-size: typography.font-size(m)
+  color: colors.color(lightest-foreground)
+  align-self: flex-start
 
-      &::-webkit-scrollbar-thumb
-        background-color: colors.color(lightest-background) !important
-        border: 3px solid colors.color(light-background)
-        border-radius: 10px
+  @media (max-width: 640px)
+    font-size: typography.font-size(xs)
 
+  *
+    transition: all 50ms ease-in-out
+
+  &:hover
+    color: colors.color(foreground)
+
+  .blog-list-title
+    font-size: 1rem
+    font-weight: 500
+    color: colors.color(lightest-foreground)
+
+  .blog-list-year
+    @include mixins.split
+    border-top: 1px solid colors.color(light-background)
+    padding-top: 1em
+    gap: 1em
+
+    .blog-list-year-title
+      width: 15%
+      color: colors.color(foreground)
+      font-weight: 400
+      line-height: 2
+
+    .blog-list
+      width: 85%
 </style>

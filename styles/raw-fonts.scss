@@ -1144,4 +1144,50 @@ explicitly, e.g.
   src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Bold.woff2') format('truetype');
 }
 
+
+// light
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Light.woff2') format('truetype');
+}
+
+// regular
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Regular.woff2') format('truetype');
+}
+
+// regular italic
+@font-face {
+  font-family: 'Graphik';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-RegularItalic.woff2') format('truetype');
+}
+
+// semibold
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Semibold.woff2') format('truetype');
+}
+
+// bold
+@font-face {
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~/assets/fonts/Graphik/Graphik-Web-Bold.woff2') format('truetype');
+}
+
 @debug('fonts loaded');

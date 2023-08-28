@@ -7,18 +7,18 @@
     :style="style"
   >
     <nav class="header-nav">
-      <Logo class="header-logo" />
-      <SearchBar
+      <!-- <Logo class="header-logo" /> -->
+      <!-- <SearchBar
         ref="searchBar"
         class="search-bar"
-      />
-      <StyledMenuButton
+      /> -->
+      <!-- <StyledMenuButton
         ref="buttonRef"
         :aria-expanded="menuOpen"
         :aria-label="menuOpen ? 'Close Menu' : 'Open Menu'"
         class="menu-button"
         @click="toggleMenu"
-      />
+      /> -->
     </nav>
     <div
       :class="{
@@ -147,7 +147,7 @@
     </div>
     <div
       v-if="toc && toc.links && toc.links.length > 0"
-      v-show="showToc"
+      v-show="showToc()"
       class="header-toc-plus-button"
     >
       <div class="toc-wrapper">
@@ -158,7 +158,7 @@
           }"
           @click="tocExpanded = !tocExpanded"
         >
-          <span style="margin-right: 0.5em;"> Table of Contents</span>
+          <span> Table of Contents</span>
           <Icon
             :class="{
               'expand-icon': true,
@@ -182,7 +182,7 @@
 
 <script lang="ts">
 const {
-  navHeight, nonTocRoutes, ignorePrefixes, navLinks,
+  navHeight, navLinks, showToc,
 } = useConfig();
 
 export default {
@@ -216,13 +216,6 @@ export default {
     route() {
       const { path } = useTrimmedPath();
       return path;
-    },
-    showToc() {
-      const { path } = useTrimmedPath();
-      if (ignorePrefixes.some((prefix) => path.startsWith(prefix))) {
-        return false;
-      }
-      return nonTocRoutes.indexOf(path) === -1;
     },
   },
   watch: {
@@ -372,10 +365,11 @@ const { apps } = useApps();
   top: 0
   left: 0
   width: 100%
-  min-height: 70px
-  max-height: 90vh
+  //min-height: 70px
+  //max-height: 90vh
   display: table
-  padding: 0 clamp(10px, 2vw, 20px) !important
+  //padding: 0 clamp(10px, 2vw, 20px) !important
+  padding: 0
 
   // trick: make header stick out a bit
   // by filtering it with grayscale.
@@ -424,22 +418,6 @@ const { apps } = useApps();
   max-height: geometry.var("header-height")
   width: min(100%, 1300px)
 
-  .header-logo
-    position: relative
-    align-self: left
-    height: 70px
-    width: 70px
-    margin-left: 0
-    display: flex
-    //padding: 20px 30px 20px 10px
-
-  .menu-button
-    position: relative
-    height: 70px
-    aspect-ratio: 1/1
-    margin: auto 0
-    padding: 15px 0px 15px 5px
-
 .site-menu
   display: block
   position: relative
@@ -461,99 +439,27 @@ const { apps } = useApps();
   -o-transition: all 0.1s ease-in-out
   transition: all 0.1s ease-in-out
 
-  &::-webkit-scrollbar
-    display: none
-
-.menu-columns-wrapper
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: space-between
-  height: 100%
-  width: 100%
-  margin: 0 0 40px 0
-  color: inherit
-
-.menu-column
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  height: 100%
-  width: 25%
-  padding-left: 10px
-  margin-top: 40px
-
-  @media (max-width: 1080px)
-    width: 50%
-    flex: 0 50%
-
-  @media (max-width: 768px)
-    width: 100%
-    flex: 0 100%
-
-.menu-column-header
-  font-family: typography.font("sans-serif")
-  font-size: typography.font-size("xl")
-  color: colors.color("light-foreground")
-
-.menu-column-item
-  font-family: typography.font("sans-serif")
-  font-size: typography.font-size("m")
-  color: colors.color("light-foreground")
-
-.menu-column-header, .menu-column-item
-
-  &:hover
-    transform: translateX(-5px)
-
-.menu-extras
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  height: 100%
-  width: 100%
-  border-top: 1px solid colors.color("light-background")
-
-.menu-extras-footer
-  width: 100%
-
-  .menu-footer
-    // float: right
-    margin-top: 20px
-    // top: 0px
-    width: 100%
-    margin: 0 auto
-
-    &.in-header
-      border-top: none
-
-      .styled-button
-        background: transparent !important
-        border: 2px solid colors.color("lightest-background") !important
-
-        &:hover
-          background: colors.color("lightest-background") !important
-          border: 2px solid transparent
-
 .search-bar
-  padding: 0 2vw
   align-content: center
   vertical-align: middle
   height: geometry.var("nav-height")
+  width: 100%
 
 .header-toc-plus-button
   position: relative
-  padding: 10px 0
-  margin: 0 auto
-  min-height: 40px
-  border-top: 2px dotted colors.color("lightest-background")
-  border-bottom: 2px dotted colors.color("lightest-background")
+  //padding: 10px 0
+  //margin: 0 auto
+  //border-bottom: 2px dotted colors.color("lightest-background")
+  font-size: typography.font-size(m)
+  margin: 0
+  margin-left: 1em
 
   .toc-wrapper
-    width: 100%
+    width: fit-content //100%
     max-width: 70ch
-    margin: 0 auto
-    padding: 0 1em
+    padding: 10px 1em
+    border-left: 1px solid colors.color(light-background)
+    margin: 0
 
   .header-toc-button
     width: 100%
@@ -562,8 +468,9 @@ const { apps } = useApps();
     flex-direction: row
     white-space: nowrap
     align-items: flex-start
-    font-size: typography.font-size("m")
-    color: colors.color('foreground')
+
+    text-transform: uppercase
+    font-size: typography.font-size(xs)
     font-weight: 500
     display: flex
     place-items: center
@@ -581,9 +488,6 @@ const { apps } = useApps();
 
     -webkit-tap-highlight-color: rgba(0,0,0,0)
     -webkit-tap-highlight-color: transparent
-
-    &.expanded
-      color: colors.color('primary-highlight')
 
   .header-toc
     padding-top: 10px
@@ -610,7 +514,7 @@ const { apps } = useApps();
       padding-top: 0
 
 // hide toc on desktop
-@media (min-width: 1200px)
+@media (min-width: 1150px)
 
   .header-toc-plus-button
     display: none
@@ -633,47 +537,5 @@ const { apps } = useApps();
 
   * > .toc .toc-link-2
     display: none
-
-.user-info
-  display: flex
-  justify-content: center
-  align-items: center
-  margin: auto 0
-  padding: 0 2vw
-  .user-header
-    display: flex
-    flex-direction: row
-    align-items: center
-    margin-bottom: 10px
-
-    .user-avatar
-      width: 40px
-      height: 40px
-      border-radius: 50%
-      margin-right: 10px
-      margin-top: 10px
-      margin-bottom: 10px
-      background-size: cover
-      background-position: center
-      background-repeat: no-repeat
-
-    .user-header-text
-      display: flex
-      flex-direction: column
-      justify-content: center
-      background: yellow
-      line-height: 1.5
-
-      .user-name
-        font-family: typography.font("sans-serif")
-        font-size: typography.font-size("m")
-        color: colors.color("lightest-foreground")
-        font-weight: 500
-
-      .user-email
-        font-family: typography.font("sans-serif")
-        font-size: typography.font-size("m")
-        color: colors.color("light-foreground")
-        font-weight: 400
 
 </style>

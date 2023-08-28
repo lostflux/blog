@@ -5,14 +5,27 @@
 </template>
 
 <style lang="sass">
-@use "~/styles/mixins"
-@use "~/styles/typography"
+@use "@/styles/mixins"
+@use "@/styles/typography"
 .prose-ul
-  @include mixins.styled-list
   margin-left: 0.5em
   font-family: typography.font("sans-serif")
   font-size: inherit
-  line-height: 1.5rem
+  line-height: 22px
   margin: 1em 0 1em 1em
 
+  .prose-li
+    position: relative
+    padding-left: 20px
+    margin-bottom: 10px
+    font-weight: 400
+    line-height: inherit
+    font-size: typography.font-size("m")
+
+    &::before
+      // show em-dash
+      content: "— "
+      position: absolute
+      left: 0
+      font-weight: 600
 </style>

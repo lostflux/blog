@@ -1,29 +1,43 @@
 <template>
-  <div class="title-container">
+  <div
+    :class="{
+      'blog-title-container': true,
+      'search-variant': customTitle
+    }"
+  >
     <div class="text-container">
-      <div class="title">
-        <div class="category">
-          <ul class="category-labels">
-            <NuxtLink
-              v-for="_category in categories"
-              :key="_category"
-              class="category-label"
-              purpose="button"
-              :to="categoryPaths[_category]"
-            >
-              {{ _category }}
-            </NuxtLInk>
-          </ul>
-        </div>
-        <h1 class="title-heading">
-          {{ title }}
-        </h1>
-        <div class="title-description">
-          {{ description }}
+      <div class="bio">
+        <div>
+          <ProseA
+            href="https://amittai.studio"
+            class="bio-name"
+            fancy
+          >
+            Amittai Siavava
+          </ProseA>
+          <div class="bio-title">
+            non-deterministic infinite automaton
+          </div>
         </div>
       </div>
-      <div class="blog-actions-and-date">
-        <div class="blog-actions">
+      <div class="title">
+        <h1 class="title-heading">
+          {{ customTitle || title }}
+        </h1>
+        <TableOfContents
+          v-if="tocVisible && !customTitle"
+          class="table-of-contents"
+        />
+      </div>
+
+      <div
+        v-if="!isMeta"
+        class="blog-actions-and-date"
+      >
+        <div
+          v-if="!customTitle"
+          class="blog-actions"
+        >
           <button class="blog-action left">
             <Icon
               type="comment"
@@ -44,42 +58,28 @@
           </button>
         </div>
         <Date
+          v-if="!customTitle"
           :date="date"
-          class="blog-action-date"
-          left
         />
       </div>
-      <figure
-        v-if="image"
-        class="title-image-wrapper"
-      >
-        <NuxtImg
-          :class="{
-            'title-image': true,
-            'gif': image.endsWith('.gif'),
-          }"
-          :src="`${path}/${image}`"
-          alt="Title Image"
-        />
-        <figcaption
-          v-if="caption"
-          class="title-image-caption"
-        >
-          <div
-            style="text-align: left; margin-top: 0.5rem;"
-            v-html="caption"
-          />
-        </figcaption>
-      </figure>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const { path } = useTrimmedPath();
-const categoryPaths = useNavigationRoutes();
+const { showToc } = useConfig();
+const tocVisible = await showToc();
+
+defineProps({
+  customTitle: {
+    type: String,
+    default: "",
+  },
+});
+
 const {
-  categories, image, caption, date, title, description,
+  date, title,
 } = await queryContent()
   .where({ _path: path })
   .only(["category", "date", "imageUrl", "caption", "title", "description"])
@@ -95,6 +95,9 @@ const {
       caption: data.caption || null,
     };
   });
+
+const { useMetaPage } = useConfig();
+const isMeta = await useMetaPage();
 
 const toggleSubscription = () => {
   // if user logged in, toggle subscription
@@ -128,103 +131,76 @@ export default {
 @use "../styles/mixins"
 @use "../styles/geometry"
 
-*
-  // z-index: 1
-
-.title-container
+.bio
   width: 100%
-  align-content: center
-  padding: 0.5rem 0 2rem 0
-  overflow: hidden
+  height: 400px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  //align-items: center
 
-  //@include mixins.fancy-background
+  text-transform: uppercase
+  //margin-left: 1em
+
+  .bio-name
+    font-size: typography.font-size(l)
+    color: colors.color(lightest-foreground)
+    //font-weight: 600
+
+  .bio-title
+    font-size: typography.font-size(s)
+
+.table-of-contents
+  position: fixed
+
+  top: 50vh //calc(50vh - 500px)
+
+  @media screen and (max-width: 1150px)
+    display: none
+
+  @media screen and (max-height: 1000px)
+    display: none
+
+.blog-title-container
+  //width: 100%
+  align-content: center
+  //padding: 0.5rem 0 2rem 0
+  overflow: hidden
+  margin: 0
+  padding: 0
+  margin-bottom: 1em
+  margin-right: 70px
+  position: relative
+
+  &.search-variant
+    @media screen and (max-width: 1150px)
+      margin-top: 40px
 
   .text-container
-    width: min(100%, 1200px)
-    margin: auto
-    padding: 0 5vw
+    //width: min(100%, 1200px)
+    width: fit-content
     height: 100%
+    display: flex
+    flex-direction: column
     display: flex
     flex-direction: column
 
     .title
       width: 100%
 
-      .category
-        color: colors.color("primary-highlight")
-        display: inline-flex
-        height: clamp(1.5rem, 1.5vh, 2rem)
-        position: relative
-        opacity: 0.7
-        margin: 0.5rem 0 0 0
-
-        .category-icon
-          height: 70%
-          margin-right: 1rem
-          vertical-align: middle
-          max-width: 1.5rem
-
-        .category-labels
-          display: inline-flex
-          flex-direction: row
-          cursor: pointer
-
-          .category-label
-            font-size: clamp(typography.font-size("xs"), 1vw, typography.font-size("m"))
-            font-weight: 600
-            font-family: typography.font("monospace")
-            text-transform: capitalize
-            text-transform: uppercase
-
-            &:not(:last-child)::after
-              content: "/"
-              color: colors.color("lightest-foreground")
-              margin: 0 0.5rem 0 0.5rem
-
       .title-heading
-        font-size: clamp(1.7rem, 1vw, 2rem)
-        line-height: 130%
-        margin: 0.5em 0
-        font-family: typography.font(fancy)
-        color: colors.color("primary-highlight")
-        font-weight: 700
-        font-variation-settings: "cuts" 300
+        font-size: typography.font-size("m")
+        text-transform: uppercase
+
+        @media screen and (max-width: 600px)
+          font-size: typography.font-size("s")
 
       .title-description
         font-size: clamp(1rem, 1.8vw, 1.5rem)
-        font-weight:500
+        font-weight: 500
         line-height: 1.5
-        margin-bottom: 0.5rem
+        //margin-bottom: 0.5rem
         color: colors.color("lightest-foreground")
-
-      .date
-        color: colors.color("primary-highlight")
-        font-family: typography.font("monospace")
-        font-size: typography.font-size("xs")
-        font-weight: 600
-        text-transform: uppercase
-
-  .title-image-wrapper
-    margin: auto
-    margin-top: 2em
-    width: 100%
-    display: flex
-    flex-direction: column
-    align-items: center
-
-  .title-image
-    @include mixins.box-shadow
-    border-radius: geometry.var("border-radius")
-    margin-bottom: 1rem
-
-    &.gif
-      width: clamp(500px, 50%, 1000px)
-
-  .title-image-caption
-    margin-top: 0.5rem
-    font-size: typography.font-size("s")
-    color: colors.color("secondary-highlight")
-    text-align: center
 
   .blog-actions-and-date
     width: 100%
@@ -232,6 +208,7 @@ export default {
     display: flex
     flex-direction: row
     justify-content: space-between
+    align-items: center
     margin: 1rem 0
 
     .blog-actions

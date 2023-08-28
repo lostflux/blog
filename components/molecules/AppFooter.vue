@@ -165,13 +165,12 @@ export default {
 
 .styled-footer {
   flex-direction: column;
-  color: colors.color("primary-highlight");
   flex-direction: column;
 
   .footer-vertical {
     @include mixins.flex-center;
     width: 100%;
-    border-top: 1px solid colors.color(lightest-background);
+    border-top: 1px solid colors.color(light-background);
     padding: 1em;
   }
 
@@ -185,8 +184,8 @@ export default {
     }
 
     .left-section {
-      color: colors.color(foreground);
-      font-size: 1rem;
+      color: colors.color(dark-foreground);
+      font-size: 1em;
     }
 
     .right-section {
@@ -195,10 +194,10 @@ export default {
       position: relative;
 
       .year {
-        font-size: 1rem;
-        font-weight: 300;
+        font-size: 1em;
         font-family: typography.font(sans-serif);
-        color: colors.color(foreground);
+        color: colors.color(dark-foreground);
+        font-weight: 500
       }
       align-items: center;
     }
@@ -212,7 +211,7 @@ export default {
       background: rgba(colors.color(background), 0.2);
       color: colors.color(foreground);
       font-weight: 300;
-      font-size: 1rem;
+      font-size: 1em;
       padding: 0 1px;
       border-radius: 5px;
       display: inline-flex;
@@ -222,7 +221,7 @@ export default {
       transition: opacity 0.2s ease-in-out;
 
       & > span {
-        color: colors.color(lightest-foreground);
+        color: colors.color(light-foreground);
         font-weight: 500;
       }
     }
@@ -281,12 +280,12 @@ export default {
 
     .footer-paragraph {
       width: min(100%, 548px);
-      color: colors.color(foreground);
+      color: colors.color(light-foreground);
       margin: 0 auto;
       padding: 60px 0;
 
       * {
-        font-size: 0.8rem !important;
+        font-size: 1em;
       }
     }
   }

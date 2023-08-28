@@ -3,7 +3,7 @@ title: fundamental theorem of software engineering
 category:
   - aphorisms
 draft: false
-layout: aphorism
+layout: article
 date: 2023-07-26 23:00:00
 navigation: false
 
@@ -15,6 +15,11 @@ head:
       content: 'index, follow'
     - name: 'author'
       content: 'Amittai'
+---
+
+:::square
+---
+margin: 35%
 ---
 
 We can solve any problem by introducing an extra level of indirection.[^indirection]
@@ -30,6 +35,7 @@ style: "margin: 100px 0"
 _...except the problem of too much indirection_.[^too-much-indirection]  
 And [too much indirection][semantic-compression] is the third root of all evil.[^roots-of-evil]
 ::
+:::
 
 [david-wheeler]:          https://www.forbes.com/sites/forbestechcouncil/2020/08/20/indirection-the-unsung-hero-of-software-engineering
 [koenig]:                 https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer)

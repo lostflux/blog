@@ -1,8 +1,9 @@
 ---
-title: amittai::writing::computing
-layout: default
+title: math
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list

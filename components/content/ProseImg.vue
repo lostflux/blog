@@ -14,8 +14,6 @@
       class="prose-img-alt"
       v-html="alt"
     />
-    <!-- {{ alt }}
-    </caption> -->
   </figure>
 </template>
 
@@ -65,7 +63,7 @@ const refinedSrc = computed(() => {
 
   .prose-img-alt
     margin-top: 0.5rem
-    font-size: typography.font-size("s")
-    color: colors.color("secondary-highlight")
+    font-size: typography.font-size(s)
+    color: colors.color(lightest-foreground)
     text-align: center
 </style>

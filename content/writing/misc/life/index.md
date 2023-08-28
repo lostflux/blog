@@ -1,8 +1,9 @@
 ---
 title: amittai::writing::misc
-layout: default
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list

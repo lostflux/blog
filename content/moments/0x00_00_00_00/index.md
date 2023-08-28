@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2018-08-13 23:00:00
 navigation: false
 
@@ -18,8 +18,13 @@ head:
       content: 'Amittai'
 ---
 
+:::square
+---
+margin: 45%
+---
+
 teardrop.  
 misunderstood pain and joy mingle.  
 emotional contradiction.
 
-<!-- more -->
+:::

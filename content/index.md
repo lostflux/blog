@@ -1,20 +1,31 @@
 ---
-title: "amittai"
+title: archive
 description: "Amittai's portfolio website. Showcases work an projects."
-navigation:
-  title: 'Home'
-  icon: '🥶'
-layout: default
+layout: article
+navigation: false
+category:
+  - meta
 ---
 
-:hero
+::blog-list
+---
+title: Writing
+---
+::
 
-:about
+::blog-list
+---
+title: Aphorisms
+category:
+  - aphorisms
+---
+::
 
-:jobs
 
-:featured
-
-:projects
-
-:contact
+::blog-list
+---
+title: Moments
+category:
+  - moments
+---
+::

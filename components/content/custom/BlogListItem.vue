@@ -2,22 +2,28 @@
   <div
     class="blog-list-item"
   >
-    <NuxtLink
-      class="blog-list-item-title"
+    <div class="blog-list-item-head">
+      <div class="date">
+        {{ date }}
+      </div>
 
-      :to="blog._path"
+      <ProseA
+        class="blog-list-item-category"
+        :href="mainCategoryPath"
+        fancy
+        lowercase
+      >
+        {{ mainCategory }}
+      </ProseA>
+    </div>
+    <ProseA
+      class="blog-list-item-title"
+      :href="blog._path"
+      fancy
+      uppercase
     >
       {{ title }}
-    </NuxtLink>
-    <NuxtLink
-      class="blog-list-item-category"
-      :to="mainCategoryPath"
-    >
-      {{ mainCategory }}
-    </NuxtLink>
-    <div class="blog-list-item-date">
-      {{ date }}
-    </div>
+    </ProseA>
   </div>
 </template>
 <script lang="ts">
@@ -35,6 +41,7 @@ export default {
     const mainCategory = props.blog.category[props.blog.category.length - 1];
     const mainCategoryPath = useNavigationRoutes()[mainCategory];
     return {
+      // eslint-disable-next-line vue/no-setup-props-destructure
       date: new Date(props.blog.date).toLocaleDateString("en-US", {
         month: "2-digit",
         day: "2-digit",
@@ -52,59 +59,36 @@ export default {
 
 .blog-list-item
   width: 100%
-  display: inline-flex
+  display: flex
+  flex-direction: column
   vertical-align: middle
   padding-right: 0.5rem
   justify-content: space-between
   color: inherit
   position: relative
 
-  &:not(:last-of-type)
-    border-bottom: 1px solid colors.color(lightest-background)
-
-  .blog-list-item-category
-
-    // align left
-    text-align: right
-    background: rgba(colors.color(three), 0.3)
-    line-height: 1
-    margin: auto 20px auto auto
-    height: 1.5rem
-    max-width: 10ch
-    border-radius: 5px
-    padding: 5px
-    font-size: typography.font-size(xxs)
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
-    position: absolute
-    top: 50%
-    right: 7%
-    transform: translateY(-50%)
-    transition: all 0.9s ease-in-out
-
-    &:hover
-      cursor: pointer
-      background: rgba(colors.color(three), 0.5)
-
-  &:hover
-    cursor: pointer
-
-    :is(.blog-list-item-title, .blog-list-item-date, .blog-list-item-category)
-      color: colors.color(lightest-foreground)
-
-    .blog-list-item-category
-
-      // on hover, expand to show full category name
-      max-width: 100%
-
   .blog-list-item-title
     width: 80%
     height: 2rem
     overflow: hidden
     text-overflow: ellipsis
+    font-size: typography.font-size(s)
+    line-height: 1.2
+    margin-bottom: 0.5rem
 
-  .blog-list-item-date
+  .blog-list-item-head
     color: colors.color(dark-foreground)
     font-weight: 400
+    line-height: 2
+    display: inline-flex
+    justify-content: space-between
+
+    .blog-list-item-category
+      text-align: right
+      height: 1.5rem
+      max-width: 20ch
+      font-size: typography.font-size(xxs)
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
 </style>

@@ -15,18 +15,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    day: {
-      type: Boolean,
-      default: true,
-    },
-    month: {
-      type: Boolean,
-      default: true,
-    },
-    year: {
-      type: Boolean,
-      default: true,
-    },
     left: {
       type: Boolean,
       default: false,
@@ -34,15 +22,11 @@ export default {
   },
   setup(props) {
     const date = new Date(props.date);
-    const options = {
-      weekday: props.weekday ? "long" : undefined,
-      year: props.year ? "numeric" : undefined,
-      month: props.month ? "short" : undefined,
-      day: props.day ? "2-digit" : undefined,
-    } as any;
-
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear().toString().substr(-2);
     return {
-      formattedDate: date.toLocaleDateString("en-US", options),
+      formattedDate: `${day}/${month}/${year}`,
     };
   },
 };
@@ -52,24 +36,8 @@ export default {
 @use "~/styles/colors"
 @use "~/styles/typography"
 .date-component
-  font-weight: 400
-  font-size: 0.8em
-  color: colors.color("secondary-highlight") !important
-  font-family: typography.font("sans-serif")
-  background: transparent
-
-  border-left: 1px solid
-  border-right: none
-
-  padding-left: 1rem
-  line-height: 2
-
-  &.left
-    border-left: none
-    border-right: 1px solid
-
-    padding-left: 0
-    padding-right: 1rem
-    justify-self: end
+  font-size: typography.font-size(m)
+  font-weight: 500
+  color: colors.color(dark-foreground)
 
 </style>

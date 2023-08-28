@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2020-05-17 23:00:00
 navigation: false
 
@@ -18,8 +18,10 @@ head:
       content: 'Amittai'
 ---
 
+::square
+
 why else are we here  
 if not to live  
 with unreasonable passion for things!
 
-<!-- more -->
+::

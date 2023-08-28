@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2019-02-11 23:00:00
 navigation: false
 
@@ -18,6 +18,11 @@ head:
       content: 'Amittai'
 ---
 
+:::square
+---
+margin: 35%
+---
+
 that's what we were: [nowhere people](http://www.nowherepeople.org/).  
 born to a pretty anyhow world.  
 born to nightmares.  
@@ -27,4 +32,4 @@ a haunted fate.
 
 but who are we now? a disaster of our own making.
 
-<!-- more -->
+:::

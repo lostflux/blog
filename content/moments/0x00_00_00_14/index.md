@@ -3,7 +3,7 @@ title: what is darkness, but an excuse for light?
 category:
   - moments
 draft: true
-layout: moment
+layout: article
 date: 2023-07-25 23:00:00
 navigation: false
 

@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2020-05-17 23:00:00
 navigation: false
 
@@ -16,6 +16,11 @@ head:
       content: 'index, follow'
     - name: 'author'
       content: 'Amittai'
+---
+
+::square
+---
+margin: 30%
 ---
 
 Let blatant audacity be our hallmark.
@@ -40,19 +45,8 @@ us at least look back at how bravely we fell and went back
 out in search of another dose of failure &mdash; how futile it was,
 yet how fulfilling.
 
-May our story be one of triumph or one of failure, but not anything in between.
-May we be counted among those that poured
-immeasurable portions of themselves towards a worthy cause.
-
-Should we not succeed;  
-let us regret that we failed miserably,
-not that we did not try hard enough.  
-Or were not audacious enough.  
-Or blatant enough.
-
-Let us dare.
-
-::right
+:::right
   &ndash; [Obura Tongoi](https://youtu.be/iTFq9p6WWpk?t=287).
+:::
+
 ::
-<!-- more -->

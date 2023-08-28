@@ -1,23 +1,27 @@
 <template>
   <div class="buttons-container">
-    <NuxtLink
+    <ProseA
       class="error-page-button"
+      fancy
+      forced
       @click="$router.back()"
     >
-      <span>cd -</span>
-    </NuxtLink>
-    <NuxtLink
+      <span>back</span>
+    </ProseA>
+    <ProseA
       class="error-page-button"
-      to="/"
+      href="/"
+      fancy
     >
-      <span>cd /</span>
-    </NuxtLink>
-    <NuxtLink
+      <span>home</span>
+    </ProseA>
+    <ProseA
       class="error-page-button"
-      :to="parentPath"
+      :href="parentPath"
+      fancy
     >
-      <span>cd ..</span>
-    </NuxtLink>
+      <span>up</span>
+    </ProseA>
   </div>
 </template>
 <script lang="ts">
@@ -26,7 +30,15 @@ export default {
   setup() {
     // eslint-disable-next-line no-unused-vars
     const { path } = useTrimmedPath();
-    const parentPath = path.split("/").slice(0, -1).join("/");
+    let parentPath = "";
+    if (path.length > 1) {
+      parentPath = path.split("/").slice(0, -1).join("/");
+      parentPath = parentPath === "" ? "/" : parentPath;
+    }
+
+    // const parentPath = (path.length >= 1)
+    //   ? path === "/" ? "" : path.split("/").slice(0, -1).join("/")
+    //   : "";
 
     return {
       parentPath,
@@ -44,8 +56,8 @@ export default {
   padding: 50px 0
 
 .error-page-button
-  color: rgba(colors.color(primary-highlight), 0.8)
-  transition: all 0.2s ease-in-out
+  //color: rgba(colors.color(primary-highlight), 0.8)
+  //transition: all 0.2s ease-in-out
 
   & > span
     transition: all 0.2s ease-in-out
@@ -55,9 +67,9 @@ export default {
     content: "❯"
     margin-right: 0.5rem
 
-  &:hover
-    cursor: pointer
-    & > span
-      color: colors.color(primary-highlight)
-      border-bottom: 1px solid
+  //&:hover
+  //  cursor: pointer
+  //  & > span
+      //color: colors.color(primary-highlight)
+      //border-bottom: 1px solid
 </style>

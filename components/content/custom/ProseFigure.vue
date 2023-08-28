@@ -48,7 +48,7 @@ export default {
   .prose-figure-alt
     margin-top: 0.5rem
     font-size: typography.font-size("s")
-    color: colors.color("secondary-highlight")
+    color: colors.color(lightest-foreground)
     text-align: center
 
 </style>

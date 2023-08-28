@@ -1,12 +1,14 @@
 <template>
   <div class="edit-button-container">
-    <NuxtLink
-      :to="editLink"
+    <ProseA
+      :href="editLink"
       class="edit-button"
+      fancy
     >
-      <Icon type="edit" />
-      <span> Edit on GitHub</span>
-    </NuxtLink>
+      Edit on GitHub
+      <!-- <Icon type="edit" />
+      <span> Edit on GitHub</span> -->
+    </ProseA>
   </div>
 </template>
 
@@ -42,7 +44,7 @@ export default {
       border-bottom: 2px dotted
 
     &:hover
-      color: colors.color(primary-highlight)
+      //color: colors.color(primary-highlight)
       & > span
         border-bottom: 2px solid
 

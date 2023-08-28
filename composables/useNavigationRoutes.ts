@@ -35,4 +35,12 @@ export default () => ({
     path: "/writing/misc/movies",
   },
 
+  moments: {
+    path: "/moments",
+  },
+
+  aphorisms: {
+    path: "/aphorisms",
+  },
+
 });

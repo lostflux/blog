@@ -1,8 +1,9 @@
 ---
-title: amittai::moments
-layout: default
+title: moments
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list

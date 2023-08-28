@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2019-06-05 23:00:00
 navigation: false
 
@@ -16,6 +16,11 @@ head:
       content: 'index, follow'
     - name: 'author'
       content: 'Amittai'
+---
+
+:::square
+---
+margin: 35%
 ---
 
 **Peter Abernathy** (to Dolores)  
@@ -32,4 +37,4 @@ Hell is empty and all the devils are here.
   &ndash; [Westworld](https://www.hbo.com/westworld), Season 1, Episode 1 (The Original)
 ::
 
-<!-- more -->
+:::

@@ -1,29 +1,33 @@
 <template>
-  <div class="blog-list-container">
-    <h1 class="blog-list-title">
-      {{ title || "Writing" }}
-    </h1>
-
-    <div
-      v-for="year in years"
-      :key="year"
-      class="blog-list-year"
-    >
-      <div class="blog-list-year-title">
-        {{ year }}
+  <Square margin="0%">
+    <div class="blog-list-container">
+      <ProseH1
+        v-if="title"
+        :id="title"
+      >
+        {{ title }}
+      </ProseH1>
+      <div
+        v-for="year in years"
+        :key="year"
+        class="blog-list-year"
+      >
+        <div class="blog-list-year-title">
+          {{ year }}
+        </div>
+        <ul class="blog-list">
+          <BlogListItem
+            v-for="(blog, i) in blogs.filter((blog) => new Date(blog.date).getFullYear() === year)"
+            :key="i"
+            :blog="blog"
+          />
+        </ul>
       </div>
-      <ul class="blog-list">
-        <BlogListItem
-          v-for="(blog, i) in blogs.filter((blog) => new Date(blog.date).getFullYear() === year)"
-          :key="i"
-          :blog="blog"
-        />
-      </ul>
+      <div style="padding: 0 40px;">
+        <RouterButtons />
+      </div>
     </div>
-    <div style="padding: 0 40px;">
-      <RouterButtons />
-    </div>
-  </div>
+  </Square>
 </template>
 
 <script lang="ts">
@@ -40,9 +44,12 @@ export default {
     },
   },
   async setup(props) {
-    const { data: blogs } = props.category.length
+    // eslint-disable-next-line vue/no-setup-props-destructure
+    const { category } = props;
+    const { data: blogs } = category.length
       ? await useAsyncData(
-        `blogs-list-${props.category}`,
+        // eslint-disable-next-line vue/no-setup-props-destructure
+        `blogs-list-${category.join("-")}`,
         async () => {
           const _blogs = await queryContent()
             .where({ draft: false })
@@ -54,16 +61,17 @@ export default {
         },
       )
       : await useAsyncData(
-        "blogs-list",
         async () => {
           const _blogs = await queryContent()
             .where({ draft: false })
-            .where({ category: { $not: { $contains: "moments" } } })
+            .where({ category: { $not: { $containsAny: ["moments", "aphorisms", "meta"] } } })
             .sort({ date: -1 })
             .find();
           return _blogs;
         },
       );
+
+    // console.log(`blogs: ${JSON.stringify(blogs)}`);
 
     const _years = blogs.value.map((blog) => new Date(blog.date).getFullYear());
     const years = [...new Set(_years)];
@@ -87,13 +95,10 @@ export default {
 
 .blog-list-container
   width: 100%
-  max-width: 640px
   line-height: 3
   font-size: typography.font-size(m)
   color: colors.color(lightest-foreground)
-  transition: all 50ms ease-in-out
-  padding: 0 20px
-  margin: 0 auto
+  align-self: flex-start
 
   @media (max-width: 640px)
     font-size: typography.font-size(xs)
@@ -111,15 +116,16 @@ export default {
     color: colors.color(lightest-foreground)
 
   .blog-list-year
-    display: inline-flex
-    border-top: 1px solid colors.color(lightest-background)
-    width: 100%
-    justify-content: space-between
+    @include mixins.split
+    border-top: 1px solid colors.color(light-background)
+    padding-top: 1em
+    gap: 1em
 
     .blog-list-year-title
       width: 15%
       color: colors.color(foreground)
       font-weight: 400
+      line-height: 2
 
     .blog-list
       width: 85%

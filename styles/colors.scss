@@ -1,37 +1,37 @@
 @use "sass:map";
 
 $palette: (
-  "teal": #00ffd9,
-  "purple": #a374ff,
-  "khaki": #ffd074,
-  "white": #ecf7fa,
-  "black": #050505,
-  "ochre": #ff4e20,
-  "pastel": #fdfd96,
+  // "teal": #00ffd9,
+  // "purple": #a374ff,
+  // "khaki": #ffd074,
+  // "white": #ecf7fa,
+  // "black": #050505,
+  // "ochre": #ff4e20,
+  // "pastel": #fdfd96,
 
 
   "primary-highlight": #BD998F,
   // "primary-highlight": #5FB9D5,
 
-  "one": #EE765C,
-  "two": #3A594D,
-  "three": #BD8FC0,
+  // "one": #EE765C,
+  // "two": #3A594D,
+  // "three": #BD8FC0,
 
   "secondary-highlight": #BD998F,
-  "background": #000000,
-  // "background": #151E2D,
-  "dark-background": #000000,
-  "light-background": #100f0f,
-  "lightest-background": #1e1e1e,
-  "fancy-background": lighten(#0a192f, 40%),
-  "shadow": rgba(#000000, 0.1),
+  // "background": #000000,
+  // // "background": #151E2D,
+  // "dark-background": #000000,
+  // "light-background": #100f0f,
+  // "lightest-background": #1e1e1e,
+  // "fancy-background": lighten(#0a192f, 40%),
+  // "shadow": rgba(#000000, 0.1),
 
 
-  // "dark-foreground": #434343,
-  "dark-foreground": #707070,
-  "foreground": #a0a0a0,
-  "light-foreground": #c2c6d1,
-  "lightest-foreground": #ffffff,
+  // // "dark-foreground": #434343,
+  // "dark-foreground": #707070,
+  // "foreground": #a0a0a0,
+  // "light-foreground": #c2c6d1,
+  // "lightest-foreground": #ffffff,
 
   "info-background": rgba(5, 95, 249, 0.1),
   "info-foreground": #7aade0,
@@ -43,6 +43,38 @@ $palette: (
   "warning-foreground": #fd7c7c,
   "critical-background": rgba(238, 12, 12, 0.15),
   "critical-foreground": #f42e4f,
+
+
+  "teal": #00ffd9,
+  "purple": #a374ff,
+  "khaki": #ffd074,
+  "white": #ecf7fa,
+  "black": #050505,
+  "ochre": #ff4e20,
+  "pastel": #fdfd96,
+
+
+  // "primary-highlight": #BD998F,
+  // "primary-highlight": #1D52F3,
+
+  "one": #EE765C,
+  "two": #3A594D,
+  "three": #BD8FC0,
+
+  // "secondary-highlight": #1D52F3,
+  "background": #191919,
+  "dark-background": #000000,
+  "light-background": #333333,
+  "lightest-background": #1e1e1e,
+  "fancy-background": lighten(#0a192f, 40%),
+  "shadow": rgba(#000000, 0.1),
+
+
+  // "dark-foreground": #434343,
+  "dark-foreground": #888888,
+  "foreground": #bbbbbb,
+  "light-foreground": #dedede,
+  "lightest-foreground": #ffffff,
 );
 
 

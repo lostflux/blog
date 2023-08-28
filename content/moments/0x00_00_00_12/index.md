@@ -5,7 +5,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2023-07-15 00:00:00
 navigation: false
 

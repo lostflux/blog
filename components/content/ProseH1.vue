@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    v-if="generate"
+    v-if="generate && id"
     :to="`#${id}`"
     class="prose-title-wrapper"
   >
@@ -28,7 +28,12 @@
 <script setup lang="ts">
 import { useRuntimeConfig } from "#imports";
 
-defineProps<{ id: string }>();
+defineProps({
+  id: {
+    type: String,
+    default: "",
+  },
+});
 const heading = 1;
 const { anchorLinks } = useRuntimeConfig().public.content;
 const generate = anchorLinks?.depth >= heading;
@@ -40,23 +45,11 @@ const generate = anchorLinks?.depth >= heading;
 @use "~/styles/typography"
 @use "~/styles/geometry"
 
-.prose-title-wrapper
-
-  margin-top: 1.5rem
-  margin-bottom: 1.5rem
-
 .prose-h1
+  color: colors.color(light-foreground)
+  font-size: typography.font-size(m)
   font-weight: 600
-  font-size: 1.4rem
-  color: colors.color("primary-highlight")
-  display: inline
-
-  &::before
-    content: "#"
-    margin-right: 0.5rem
-    opacity: 0.5
-    transition: geometry.var("default-transition")
-
-  &:hover::before
-    opacity: 1
+  margin: 0 0 2em 0
+  padding: 0
+  line-height: 0.9em
 </style>

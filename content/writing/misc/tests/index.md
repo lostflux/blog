@@ -1,8 +1,9 @@
 ---
-title: amittai::writing::misc::tests
-layout: default
+title: tests
+layout: article
 navigation: false
-category: meta
+category:
+  - tests
 ---
 
 ::blog-list

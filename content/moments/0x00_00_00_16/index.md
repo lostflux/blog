@@ -5,7 +5,7 @@ category:
   - moments
 draft: false
 featured: false
-layout: moment
+layout: article
 date: 2023-08-04 23:00:00
 navigation: false
 
@@ -19,7 +19,11 @@ head:
       content: 'Amittai'
 ---
 
+::square
+
 She who lights neon in my heart  
 Called to say she couldn't find my place.
 
 That's because my building moves by night.
+
+::

@@ -4,7 +4,7 @@ category:
   - moments
 draft: false
 featured: true
-layout: moment
+layout: article
 date: 2020-04-03 23:00:00
 navigation: false
 
@@ -16,6 +16,11 @@ head:
       content: 'index, follow'
     - name: 'author'
       content: 'Amittai'
+---
+
+:::square
+---
+margin: 20%
 ---
 
 **Charlotte Hale**  
@@ -36,4 +41,5 @@ style: "margin-top: 5em;"
 ---
   &ndash; [Westworld](https://www.hbo.com/westworld), Season 3, Episode 3 (The Absence of Field)
 ::
-<!-- more -->
+
+:::

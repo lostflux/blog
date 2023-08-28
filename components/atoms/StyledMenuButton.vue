@@ -1,7 +1,6 @@
 <template>
   <button
     class="menu-button"
-    :class="clicked ? 'clicked' : ''"
     aria-controls="primary-navigation"
     aria-expanded="false"
     @click="click"
@@ -35,7 +34,11 @@ export default {
       this.menuOpen = !this.menuOpen;
     },
     click() {
-      this.clicked = !this.clicked;
+      // this.clicked = !this.clicked;
+      if (typeof document !== "undefined") {
+        const btn = document.querySelector(".menu-button");
+        btn.classList.toggle("clicked");
+      }
     },
   },
 };
@@ -47,7 +50,7 @@ export default {
 .menu-button
   background: transparent
   z-index: 25
-  color: colors.color("primary-highlight")
+  color: colors.color(lightest-foreground)
 
   .menu-icon
     width: 100%

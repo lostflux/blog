@@ -286,3 +286,135 @@ $border-radius: geometry.radius("small")
 
     &::after
       transform: translateX(0%)
+
+
+@mixin split
+  display: flex
+  flex-direction: row
+  gap: 2em
+  font-size: typography.font-size(m)
+
+  @media screen and ( max-width: 540px )
+    flex-direction: column
+    gap: 1em
+
+    & > :first-child
+      width: 100%
+
+    & > :last-child
+      width: 100%
+
+  &:not(:last-child)
+    margin-bottom: 2em
+
+  // first descendant
+  & > :first-child
+    width: 20%
+    gap: 0.5em
+    display: flex
+
+    @media screen and ( max-width: 540px )
+      margin-top: 2em
+
+  & > :last-child
+    width: 80%
+
+    @media screen and ( max-width: 540px )
+      width: 100%
+    
+  .range
+    font-size: typography.font-size(xs)
+    color: colors.color(dark-foreground)
+    gap: 1rem
+
+    .date
+      width: 40%
+
+
+@mixin line-split
+  width: min(100%, 1600px)
+  position: relative
+  display: flex
+  flex-direction: row
+  color: foreground
+  min-height: 100svh
+  overflow-x: hidden
+  padding: 0
+  font-size: typography.font-size(m)
+
+  @media screen and (max-width: 1150px)
+    flex-direction: column
+    border-left: 1px solid colors.color(light-background)
+    margin-left: 1em
+    width: min(calc(100% - 1em), 1600px)
+    padding-left: 0
+
+  & > *
+    padding-left: 15px
+
+  .left, .right
+    padding-left: 1em
+    font-size: typography.font-size(m)
+
+  .left
+    width: clamp(30%, 30svw, 50%)
+    border-right: 1px solid colors.color(light-background)
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    margin: 0
+
+    @media screen and (max-width: 1150px)
+      width: auto
+      border-right: none
+      align-items: flex-start
+      flex-grow: 0
+
+    .table-of-contents
+      margin-left: 0 !important
+      width: 85% !important
+      z-index: 500
+
+  .right
+    font-size: typography.font-size(m)
+    width: min(100%, 75.5ch)
+    padding-right: 1em
+    display: flex
+    flex-direction: column
+    align-items: space-between
+    position: relative
+    padding-top: 397px
+
+    @media screen and (max-width: 1150px)
+      padding-top: 0
+
+    .content
+      width: min(100%, 72ch)
+      height: 100%
+      font-size: typography.font-size("m")
+      height: 100% !important
+      //flex-grow: 1
+      display: flex
+      flex-direction: column
+      align-items: space-between
+
+      .content-container
+        flex-grow: 1
+        display: flex
+        width: 100%
+
+        & > :deep(div)
+          width: 100% !important
+
+        // center text vertically
+        align-items: space-between
+
+        &::before
+          padding-bottom: 100% // Minimum aspect ratio
+          content: ''
+          float: left
+
+        &::after
+          display: table
+          content: ''
+          clear: both

@@ -50,9 +50,9 @@ Find the sum of all the multiples of $3$ and $5$ below $1000$.
 
 ::inline-flex
 
-:styled-button[more information]{href=https://projecteuler.net/archives}
+[more information](https://projecteuler.net/archives){fancy}
 
-:styled-button[code repository]{href=https://github.com/siavava/epsilon/tree/main}
+[code repository](https://github.com/siavava/epsilon/tree/main){fancy}
 
 ::
 
@@ -212,6 +212,7 @@ iter 0 120      -- subroutine call 6
 ---
 type: info
 ---
+
 The canon Haskell compiler, [GHC](https://www.haskell.org/ghc/),
 guarantees tail call elimination for tail recursive functions.  
 As [Peter Deutsch](https://en.wikipedia.org/wiki/L._Peter_Deutsch) once said:

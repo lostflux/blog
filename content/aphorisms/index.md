@@ -1,13 +1,13 @@
 ---
-title: amittai::aphorisms
-layout: default
+title: aphorisms
+layout: article
 navigation: false
-category: meta
+category:
+  - meta
 ---
 
 ::blog-list
 ---
-title: a priori
 category:
   - aphorisms
 ---

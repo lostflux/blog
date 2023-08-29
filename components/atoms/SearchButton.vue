@@ -17,7 +17,12 @@ onMounted(() => {
 });
 
 const toggleSearch = () => {
+  console.log(`\nsearchBackground.classList: ${searchBackground.value?.classList}`);
   searchBackground.value?.classList.toggle("hidden");
+
+  searchBackground.value.style.display = "none";
+
+  searchBackground.value.style.display = "flex";
   console.log(`searchBackground.classList: ${searchBackground.value?.classList}`);
 };
 

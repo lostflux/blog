@@ -112,12 +112,12 @@ export default {
           console.log(`result: ${JSON.stringify(result)}`);
           console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
 
-          queryContent()
+          useAsyncData(async () => queryContent()
             .where({ _path: { $in: this.searchPaths } })
             .where({ category: { $not: { $contains: "meta" } } })
             .only(["title", "date", "category", "_path"])
-            .find()
-            .then((data) => {
+            .find())
+            .then(({ data }) => {
               console.log(`data: ${JSON.stringify(data)}`);
               this.blogs = data;
               console.log(`blogs: ${JSON.stringify(this.blogs)}`);

@@ -89,7 +89,7 @@ export default {
   },
 
   methods: {
-    search() {
+    async search() {
       if (!this.searchTerm) {
         this.result = null;
         return;
@@ -97,7 +97,7 @@ export default {
       const { search } = useAlgoliaSearch("netlify_e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3_main_all");
       search({ query: this.searchTerm })
       // search({ query: "machine learning" })
-        .then((result) => {
+        .then(async (result) => {
           /**
            * Only show content pages in serch results.
            * NOTE on depths:
@@ -112,23 +112,24 @@ export default {
           console.log(`result: ${JSON.stringify(result)}`);
           console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
 
-          useAsyncData(async () => queryContent()
-            .where({ _path: { $in: this.searchPaths } })
-            .where({ category: { $not: { $contains: "meta" } } })
-            .only(["title", "date", "category", "_path"])
-            .find())
-            .then(({ data }) => {
-              console.log(`data: ${JSON.stringify(data)}`);
-              this.blogs = data;
-              console.log(`blogs: ${JSON.stringify(this.blogs)}`);
-              const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
-              this.years = [...new Set(_years)].sort().reverse();
-              console.log(`years: ${JSON.stringify(this.years)}`);
-            });
-        })
-        .catch((err) => {
-          console.error(err);
+          await useAsyncData(async () => {
+            const data = await queryContent()
+              .where({ _path: { $in: this.searchPaths } })
+              .where({ category: { $not: { $contains: "meta" } } })
+              .only(["title", "date", "category", "_path"])
+              .find();
+
+            console.log(`data: ${JSON.stringify(data)}`);
+            this.blogs = data;
+            console.log(`blogs: ${JSON.stringify(this.blogs)}`);
+            const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
+            this.years = [...new Set(_years)].sort().reverse();
+            console.log(`years: ${JSON.stringify(this.years)}`);
+          });
         });
+      // .catch((err) => {
+      //   console.error(err);
+      // });
     },
     focus() {
       this.$refs.textBar.focus();

@@ -116,7 +116,7 @@ export default {
             "search-page-data",
 
             async () => {
-              const _data = await queryContent()
+              const _data = queryContent()
                 .only(["title", "date", "category", "_path"])
                 .find();
 

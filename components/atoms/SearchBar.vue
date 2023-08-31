@@ -47,23 +47,70 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const textBar = ref(null);
+<!-- <script setup lang="ts">
+// const textBar = ref(null);
 
-const siteSearch = ref<HTMLElement>(null);
-const siteSearchBackground = ref<HTMLElement>(null);
-onClickOutside(siteSearch, () => {
-  const btn = document.querySelector(".menu-button");
-  btn.classList.remove("clicked");
-  siteSearchBackground.value?.classList.add("hidden");
-});
+// const siteSearch = ref<HTMLElement>(null);
+// const siteSearchBackground = ref<HTMLElement>(null);
+// onClickOutside(siteSearch, () => {
+//   const btn = document.querySelector(".menu-button");
+//   btn.classList.remove("clicked");
+//   siteSearchBackground.value?.classList.add("hidden");
+// });
 
-</script>
+// const { data: rawData } = await useAsyncData(
+//   "search-page-data",
+
+//   async () => {
+//     const _data = queryContent()
+//       .only(["title", "date", "category", "_path"])
+//       .find();
+
+//     return _data;
+//   },
+// );
+
+// let data = rawData.value || [];
+
+// data = data.filter((blog) => blog.category !== "meta");
+</script> -->
 
 <script lang="ts">
 
 export default {
   name: "SearchBar",
+
+  async setup() {
+    // const textBar = ref(null);
+
+    const siteSearch = ref<HTMLElement>(null);
+    const siteSearchBackground = ref<HTMLElement>(null);
+    onClickOutside(siteSearch, () => {
+      const btn = document.querySelector(".menu-button");
+      btn.classList.remove("clicked");
+      siteSearchBackground.value?.classList.add("hidden");
+    });
+
+    const { data: rawData } = await useAsyncData(
+      "search-page-data",
+
+      async () => {
+        const _data = queryContent()
+          .only(["title", "date", "category", "_path"])
+          .find();
+
+        return _data;
+      },
+    );
+
+    let data = rawData.value || [];
+
+    data = data.filter((blog) => blog.category !== "meta");
+
+    return {
+      data,
+    };
+  },
   data() {
     return {
       searchTerm: "",
@@ -71,6 +118,7 @@ export default {
       searchPaths: [],
       blogs: [],
       years: [],
+    //  data: [],
     };
   },
 
@@ -112,29 +160,27 @@ export default {
           console.log(`result: ${JSON.stringify(result)}`);
           console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
 
-          const { data: rawData } = await useAsyncData(
-            `search-page-data-${this.searchTerm}`,
+          // const { data: rawData } = await useAsyncData(
+          //   `search-page-data-${this.searchTerm}`,
 
-            async () => {
-              const _data = queryContent()
-                .only(["title", "date", "category", "_path"])
-                .find();
+          //   async () => {
+          //     const _data = queryContent()
+          //       .only(["title", "date", "category", "_path"])
+          //       .find();
 
-              return _data;
-            },
-          );
+          //     return _data;
+          //   },
+          // );
 
-          let data = rawData.value || [];
+          // let data = rawData.value || [];
 
-          data = data.filter((blog) => blog.category !== "meta");
-
-          data = data.filter((blog) => {
+          const searchData = this.data.filter((blog) => {
             const _path = useTrimmedPath(blog._path).path;
-            return this.searchPaths.includes(_path);
+            return this.searchPaths.includes(_path) && blog.category !== "meta";
           });
 
-          console.log(`data: ${JSON.stringify(data)}`);
-          this.blogs = data;
+          console.log(`data: ${JSON.stringify(searchData)}`);
+          this.blogs = searchData;
           console.log(`blogs: ${JSON.stringify(this.blogs)}`);
           const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
           this.years = [...new Set(_years)].sort().reverse();

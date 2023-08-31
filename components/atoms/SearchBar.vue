@@ -124,7 +124,7 @@ export default {
             },
           );
 
-          let data = rawData.value;
+          let data = rawData.value || [];
 
           data = data.filter((blog) => blog.category !== "meta");
 

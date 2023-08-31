@@ -365,10 +365,7 @@ const { apps } = useApps();
   top: 0
   left: 0
   width: 100%
-  //min-height: 70px
-  //max-height: 90vh
   display: table
-  //padding: 0 clamp(10px, 2vw, 20px) !important
   padding: 0
 
   // trick: make header stick out a bit

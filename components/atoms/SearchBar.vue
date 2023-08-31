@@ -99,7 +99,7 @@ export default {
       // search({ query: "machine learning" })
         .then(async (result) => {
           /**
-           * Only show content pages in serch results.
+           * Only show content pages in search results.
            * NOTE on depths:
            * 1: /
            * 2: /writing
@@ -123,7 +123,7 @@ export default {
           });
 
           console.log(`data: ${JSON.stringify(data)}`);
-          this.blogs = data;
+          this.blogs = data.value;
           console.log(`blogs: ${JSON.stringify(this.blogs)}`);
           const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
           this.years = [...new Set(_years)].sort().reverse();

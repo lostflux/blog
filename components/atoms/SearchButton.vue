@@ -33,6 +33,7 @@ onMounted(() => {
     const searchBackground = document.querySelector(".blog-title-container");
     const startPosition = searchBackground.getBoundingClientRect().left;
     searchButton.value.style.left = `${startPosition}px`;
+    searchButton.value.style.opacity = "1";
 
     // change on resize!!
     window.addEventListener("resize", () => {
@@ -69,11 +70,15 @@ export default {
   padding: 12px
   border-radius: 50%
   display: flex
+  // opacity: 0
   justify-content: center
   align-items: center
   position: fixed
   bottom: 60px
   z-index: 10
+
+  // transition on position
+  transition: all 0.3s ease-in-out
 
   &:active
     background: colors.color(lightest-background)

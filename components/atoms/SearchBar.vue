@@ -113,7 +113,7 @@ export default {
           console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
 
           const { data: rawData } = await useAsyncData(
-            "search-page-data",
+            `search-page-data-${this.searchTerm}`,
 
             async () => {
               const _data = queryContent()

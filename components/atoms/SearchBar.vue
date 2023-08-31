@@ -112,18 +112,29 @@ export default {
           console.log(`result: ${JSON.stringify(result)}`);
           console.log(`searchPaths: ${JSON.stringify(this.searchPaths)}`);
 
-          const { data } = await useAsyncData(async () => {
-            const _data = await queryContent()
-              .where({ _path: { $in: this.searchPaths } })
-              .where({ category: { $not: { $contains: "meta" } } })
-              .only(["title", "date", "category", "_path"])
-              .find();
+          const { data: rawData } = await useAsyncData(
+            "search-page-data",
 
-            return _data;
+            async () => {
+              const _data = await queryContent()
+                .only(["title", "date", "category", "_path"])
+                .find();
+
+              return _data;
+            },
+          );
+
+          let data = rawData.value;
+
+          data = data.filter((blog) => blog.category !== "meta");
+
+          data = data.filter((blog) => {
+            const _path = useTrimmedPath(blog._path).path;
+            return this.searchPaths.includes(_path);
           });
 
           console.log(`data: ${JSON.stringify(data)}`);
-          this.blogs = data.value;
+          this.blogs = data;
           console.log(`blogs: ${JSON.stringify(this.blogs)}`);
           const _years = this.blogs.map((blog) => new Date(blog.date).getFullYear());
           this.years = [...new Set(_years)].sort().reverse();

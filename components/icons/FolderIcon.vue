@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @use "~/styles/colors"
+  @use "@/styles/colors"
   svg
     fill: none
 

@@ -39,9 +39,9 @@ export default {
 
 <style lang="sass">
 
-@use "~/styles/mixins"
-@use "~/styles/typography"
-@use "~/styles/colors"
+@use "@/styles/mixins"
+@use "@/styles/typography"
+@use "@/styles/colors"
 
 .styled-tab-panel
   width: 100%

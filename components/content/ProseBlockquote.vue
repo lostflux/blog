@@ -5,13 +5,13 @@
 </template>
 
 <style lang="sass">
-@use "~/styles/typography"
-@use "~/styles/colors"
-@use "~/styles/mixins"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/mixins"
 
 .prose-blockquote
   width: calc(100% - 1rem)
-  text-align: left
+  //text-align: left
   position: relative
   margin: 0.5rem
   padding: 0 2rem 0 1em

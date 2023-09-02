@@ -1,6 +1,6 @@
 ---
-title: Tech | Amittai
-subtitle: Tech
+title: DevOps | Amittai
+subtitle: DevOps
 layout: article
 navigation: false
 category:
@@ -10,6 +10,6 @@ category:
 ::blog-list
 ---
 category:
-  - technology
+  - devops
 ---
 ::

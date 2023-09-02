@@ -305,11 +305,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/typography"
-@use "~/styles/colors"
-@use "~/styles/geometry"
-@use "~/styles/mixins"
-@use "~/styles/default"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/geometry"
+@use "@/styles/mixins"
+@use "@/styles/default"
 
 .styled-button::hover
   cursor: pointer

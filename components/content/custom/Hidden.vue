@@ -41,8 +41,8 @@ export default {
   .hidden-cover
     position: absolute
     top: -1rem
-    left: -1rem
-    width: calc(100% + 2rem)
+    left: -0.5rem
+    width: calc(100% + 1rem)
     height: calc(100% + 2rem)
     background: rgba(colors.color(background), 0.7)
     backdrop-filter: blur(2px)

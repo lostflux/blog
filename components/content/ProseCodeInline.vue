@@ -3,14 +3,13 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/typography"
 
 code
   background: colors.color("light-background")
-  padding-left: 0.2em
-  padding-right: 0.2em
-  border-radius: 0.2em
+  padding: 0.2em 0.4em
+  border-radius: 0.4em
   font-size: typography.font-size("s")
-  color: colors.color("primary-highlight")
+  color: colors.color(lightest-foreground)
 </style>

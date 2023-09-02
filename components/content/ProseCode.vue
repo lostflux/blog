@@ -159,7 +159,7 @@ export default {
               margin-right: 1em
               padding-right: 0.5em
               color: colors.color(dark-foreground)
-              border-right: 1px solid colors.color(dark-foreground)
+              border-right: 1px solid lighten(colors.color(lightest-background), 10%)
 
             &:hover
               background-color: rgba(colors.color("lightest-background"), 0.7)
@@ -183,7 +183,7 @@ export default {
     display: flex
     justify-content: flex-end
     margin-bottom: 1rem
-    border-bottom: 1px solid colors.color(dark-foreground)
+    border-bottom: 1px solid lighten(colors.color(lightest-background), 10%)
 
   .copy-button
     font: typography.font("monospace")

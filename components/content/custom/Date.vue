@@ -30,8 +30,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/typography"
 .date-component
   font-size: typography.font-size(m)
   font-weight: 500

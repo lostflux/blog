@@ -1,5 +1,6 @@
 ---
-title: misc
+title: Misc | Amittai
+subtitle: Misc
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: misc
 category:
   - alien worlds
   - life

@@ -2,6 +2,7 @@
 title: Test of Blog Elements
 description: Setting Up and Running Nuxt in 4 Steps.
 category:
+  - long-form
   - tests
 draft: true
 layout: article

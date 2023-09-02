@@ -174,7 +174,7 @@ const { toc } = useContent();
 <style lang="sass" scoped>
 @use "../styles/typography"
 @use "../styles/colors"
-@use "~/styles/geometry"
+@use "@/styles/geometry"
 .toc
   line-height: 2
   position: relative

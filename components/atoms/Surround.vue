@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/colors"
+@use "@/styles/colors"
 .surround
   width: 100%
   display: flex

@@ -1,5 +1,6 @@
 ---
-title: writing
+title: Writing | Amittai
+subtitle: Writing
 layout: article
 navigation: false
 category:
@@ -8,6 +9,7 @@ category:
 
 ::blog-list
 ---
-title: Writing
+category:
+  - long-form
 ---
 ::

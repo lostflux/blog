@@ -40,9 +40,9 @@ const generate = anchorLinks?.depth >= heading;
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/geometry"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/geometry"
 
 .prose-h3
   font-size: typography.font-size(m)

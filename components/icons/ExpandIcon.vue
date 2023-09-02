@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/colors"
+@use "@/styles/colors"
 
 .expand-icon
   width: 2.5ch

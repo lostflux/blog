@@ -3,10 +3,10 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
+@use "@/styles/colors"
 .prose-hr
-  width: 100%
-  height: 1px !important
-  margin: 0.5em 0 2em 0
-  color: colors.color("lightest-background")
+  background-color: colors.color(light-background)
+  height: 1px
+  border-width: 0px
+  margin: 1rem 0
 </style>

@@ -87,7 +87,7 @@ export default {
 
       async () => {
         const _data = queryContent()
-          .only(["title", "date", "category", "_path"])
+          .only(["title", "subtitle", "date", "category", "_path"])
           .find();
 
         return _data;
@@ -179,13 +179,13 @@ export default {
   position: fixed
   top: 0
   left: 0
-  width: 100svw
-  height: 100svh
+  width: 100vw
+  height: 100vh
   overflow-y: scroll
 
   background: rgba(colors.color(background), 0.9)
   backdrop-filter: blur(10px)
-  z-index: 9
+  z-index: 10
   display: flex
   flex-direction: column
   justify-content: flex-start
@@ -198,6 +198,11 @@ export default {
     width: min(100%, 75ch)
     //height: 100%
     @include mixins.line-split
+
+    @media screen and (max-width: 1150px)
+      padding-top: 5em
+      .left
+        display: none
 
     &::-webkit-scrollbar
       width: 0px

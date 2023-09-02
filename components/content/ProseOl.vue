@@ -5,9 +5,17 @@
 </template>
 
 <style lang="sass">
+@use "@/styles/typography"
 
 .prose-ol
   counter-reset: ol-count
+
+  margin: 2em 0
+
+  font-size: typography.font-size("l")
+
+  @media screen and (max-width: 720px)
+    font-size: typography.font-size("m")
 
   & > li
     counter-increment: ol-count

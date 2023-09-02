@@ -1,0 +1,59 @@
+extends:
+  - "@nuxt/eslint-config"
+  - "plugin:nuxt/recommended"
+  - "airbnb"
+  - "eslint:recommended"
+
+env:
+  browser: true
+  es6: true
+
+parserOptions:
+  ecmaVersion: 2022
+
+rules:
+  # Your overrides here
+  strict: off
+  quotes:
+    - error
+    - double
+  no-else-return: off
+  new-cap:
+    - error
+
+  no-console: off
+  no-undef: off
+  no-param-reassign: error
+  no-unused-vars: error
+  no-plusplus: off
+  no-underscore-dangle: off
+  no-use-before-define: error
+  no-useless-constructor: error
+  no-useless-escape: error
+  # "one-var": ["error", { "uninitialized": "always", "initialized": "never" }],
+  one-var:
+    - error
+    - { initialized: never, uninitialized: always }
+  one-var-declaration-per-line:
+    - error
+    - initializations
+
+  no-extra-parens: error
+  no-extra-semi: error
+  import/extensions: off
+  no-debugger: warn
+  no-alert: warn
+  vue/no-multiple-template-root: error
+  vue/no-v-html: off
+  import/no-extraneous-dependencies: warn
+  import/first: error
+
+  max-len:
+    - error
+    - code: 150
+
+plugins:
+  - nuxt
+
+root:
+  false

@@ -7,25 +7,27 @@ category:
   - meta
 ---
 
-::blog-list
+<!-- ::blog-list
 ---
 title: Writing
 ---
-::
+:: -->
 
 ::blog-list
 ---
 title: Aphorisms
 category:
   - aphorisms
+  - moments
+  - long-form
 ---
 ::
 
 
-::blog-list
+<!-- ::blog-list
 ---
 title: Moments
 category:
   - moments
 ---
-::
+:: -->

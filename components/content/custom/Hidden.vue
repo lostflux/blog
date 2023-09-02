@@ -41,7 +41,7 @@ export default {
   .hidden-cover
     position: absolute
     top: -1rem
-    left: -1rem
+    left: -0.5rem
     width: calc(100% + 2rem)
     height: calc(100% + 2rem)
     background: rgba(colors.color(background), 0.7)

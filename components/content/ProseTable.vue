@@ -5,9 +5,9 @@
 </template>
 
 <style lang="sass">
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/mixins"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/mixins"
 
 .prose-table
   min-width: 300px

@@ -48,14 +48,13 @@ export default {
     const { category } = props;
     const { data: blogs } = category.length
       ? await useAsyncData(
-        // eslint-disable-next-line vue/no-setup-props-destructure
         `blogs-list-${category.join("-")}`,
         async () => {
           const _blogs = await queryContent()
             .where({ draft: false })
             .where({ category: { $containsAny: props.category } })
-            .sort({ date: -1 })
             .only(["title", "date", "category", "_path"])
+            .sort({ date: -1 })
             .find();
           return _blogs;
         },
@@ -64,7 +63,8 @@ export default {
         async () => {
           const _blogs = await queryContent()
             .where({ draft: false })
-            .where({ category: { $not: { $containsAny: ["moments", "aphorisms", "meta"] } } })
+            .where({ category: { $contains: "long-form" } })
+            .only(["title", "date", "category", "_path"])
             .sort({ date: -1 })
             .find();
           return _blogs;
@@ -86,10 +86,10 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/mixins"
-@use "~/styles/geometry"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/mixins"
+@use "@/styles/geometry"
 
 .blog-list-container
   width: 100%

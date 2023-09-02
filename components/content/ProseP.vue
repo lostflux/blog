@@ -5,10 +5,10 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/typography"
-@use "~/styles/colors"
-@use "~/styles/geometry"
-@use "~/styles/mixins"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/geometry"
+@use "@/styles/mixins"
 
 .prose-p
   font-family: typography.font("sans-serif")

@@ -56,20 +56,24 @@ export default {
       type: Object as () => Comment,
       required: true,
     },
-    id: Number,
+    id: {
+      type: Number,
+      required: true,
+    },
   },
   // init
   async setup(props) {
+    const { id, comment } = toRefs(props);
     return {
-      parsedMarkdown: await markdownParser.parse(props.id, props.comment.text),
+      parsedMarkdown: await markdownParser.parse(id.value, comment.value.text),
     };
   },
 };
 </script>
 
 <style lang="sass">
-@use "~/styles/colors"
-@use "~/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/typography"
 
 .comment-wrapper
   display: flex

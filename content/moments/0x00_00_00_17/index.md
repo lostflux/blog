@@ -1,10 +1,10 @@
 ---
 title: On Being a Slow Thinker
 category:
-  - aphorisms
-draft: true
+  - moments
+draft: false
 layout: article
-date: 2023-09-01 23:00:00
+date: 2023-08-25 23:00:00
 navigation: false
 
 head:

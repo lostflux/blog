@@ -5,9 +5,9 @@
 </template>
 
 <style lang="sass">
-@use "~/styles/typography"
-@use "~/styles/colors"
-@use "~/styles/mixins"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/mixins"
 
 .prose-blockquote
   width: calc(100% - 1rem)

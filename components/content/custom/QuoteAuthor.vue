@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/typography"
-@use "~/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/colors"
 
 .quote-author
   width: 100%

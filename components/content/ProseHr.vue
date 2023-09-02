@@ -3,7 +3,7 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
+@use "@/styles/colors"
 .prose-hr
   width: 100%
   height: 1px !important

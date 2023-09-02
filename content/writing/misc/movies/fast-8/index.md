@@ -4,6 +4,7 @@ description:
   Fast& Furious 8, the latest installment into the Fast and the Furious franchise, is
   out in cinemas. Is it worth your time and money?
 category:
+  - long-form
   - movies
 draft: false
 featured: true

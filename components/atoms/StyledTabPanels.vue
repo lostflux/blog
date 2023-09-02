@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/typography"
-@use "~/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/colors"
 
 .styled-tab-panels
   line-height: 23px

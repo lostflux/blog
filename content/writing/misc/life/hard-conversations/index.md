@@ -4,6 +4,7 @@ description:
   Growing up is changing, but doing so in a progressive and authentic
   sometimes requires hard conversations with yourself and disappointing a person or two.
 category:
+  - long-form
   - life
 draft: true
 featured: true

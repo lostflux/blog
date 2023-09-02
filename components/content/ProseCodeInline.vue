@@ -3,8 +3,8 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/typography"
 
 code
   background: colors.color("light-background")

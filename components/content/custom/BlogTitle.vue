@@ -11,6 +11,7 @@
           <ProseA
             href="https://amittai.studio"
             class="bio-name"
+            fancy
           >
             {{ personName }}
           </ProseA>

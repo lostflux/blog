@@ -4,6 +4,7 @@ description: |
   A short essay on the relationship between disability and inspiration.
   I wrote this for a college writing seminar.
 category:
+  - long-form
   - life
 draft: true
 featured: false

@@ -7,9 +7,9 @@
   font-display: swap;
   src: 
     local('Calibre Light'),
-    url('~/assets/fonts/Calibre/Calibre-Light.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-Light.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-Light.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-Light.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-Light.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-Light.woff2') format('woff2');
 }
 
 // calibre 400 italic
@@ -20,9 +20,9 @@
   font-display: swap;
   src: 
     local('Calibre Light Italic'),
-    url('~/assets/fonts/Calibre/Calibre-LightItalic.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-LightItalic.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-LightItalic.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-LightItalic.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-LightItalic.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-LightItalic.woff2') format('woff2');
 }
 
 
@@ -36,9 +36,9 @@
   font-display: swap;
   src:
     local('Calibre-Regular'),
-    url('~/assets/fonts/Calibre/Calibre-Regular.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-Regular.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-Regular.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-Regular.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-Regular.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-Regular.woff2') format('woff2');
 }
 
 // calibre 600 italic
@@ -49,9 +49,9 @@
   font-display: swap;
   src:
     local('Calibre-Regular Italic'),
-    url('~/assets/fonts/Calibre/Calibre-RegularItalic.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-RegularItalic.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-RegularItalic.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-RegularItalic.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-RegularItalic.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-RegularItalic.woff2') format('woff2');
 }
 
 
@@ -63,9 +63,9 @@
   font-display: swap;
   src:
     local('Calibre Medium'),
-    url('~/assets/fonts/Calibre/Calibre-Medium.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-Medium.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-Medium.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-Medium.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-Medium.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-Medium.woff2') format('woff2');
 }
 
 // calibre 500 italic
@@ -76,9 +76,9 @@
   font-display: swap;
   src:
     local('Calibre Medium Italic'),
-    url('~/assets/fonts/Calibre/Calibre-MediumItalic.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-MediumItalic.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-MediumItalic.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-MediumItalic.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-MediumItalic.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-MediumItalic.woff2') format('woff2');
 }
 
 
@@ -90,9 +90,9 @@
   font-display: swap;
   src:
     local('Calibre Semibold'),
-    url('~/assets/fonts/Calibre/Calibre-Semibold.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-Semibold.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-Semibold.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-Semibold.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-Semibold.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-Semibold.woff2') format('woff2');
 }
 
 // calibre 700 italic
@@ -103,9 +103,9 @@
   font-display: swap;
   src:
     local('Calibre Semibold Italic'),
-    url('~/assets/fonts/Calibre/Calibre-SemiboldItalic.ttf') format('truetype'),
-    url('~/assets/fonts/Calibre/Calibre-SemiboldItalic.woff') format('woff'),
-    url('~/assets/fonts/Calibre/Calibre-SemiboldItalic.woff2') format('woff2');
+    url('@/assets/fonts/Calibre/Calibre-SemiboldItalic.ttf') format('truetype'),
+    url('@/assets/fonts/Calibre/Calibre-SemiboldItalic.woff') format('woff'),
+    url('@/assets/fonts/Calibre/Calibre-SemiboldItalic.woff2') format('woff2');
 }
 
 
@@ -119,9 +119,9 @@
   font-display: swap;
   src:
     local('SF Mono Regular'),
-    url('~/assets/fonts/SFMono/SFMono-Regular.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-Regular.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-Regular.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-Regular.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-Regular.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-Regular.woff2') format('woff2');
 }
 
 // sf-mono regular := 400 italic
@@ -132,9 +132,9 @@
   font-display: swap;
   src:
     local('SF Mono Regular Italic'),
-    url('~/assets/fonts/SFMono/SFMono-RegularItalic.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-RegularItalic.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-RegularItalic.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-RegularItalic.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-RegularItalic.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-RegularItalic.woff2') format('woff2');
 }
 
 
@@ -148,9 +148,9 @@
   font-display: swap;
   src:
     local('SF Mono Medium'),
-    url('~/assets/fonts/SFMono/SFMono-Medium.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-Medium.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-Medium.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-Medium.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-Medium.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-Medium.woff2') format('woff2');
 }
 
 // sf-mono medium := 500 italic
@@ -161,9 +161,9 @@
   font-display: swap;
   src:
     local('SF Mono Medium Italic'),
-    url('~/assets/fonts/SFMono/SFMono-MediumItalic.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-MediumItalic.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-MediumItalic.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-MediumItalic.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-MediumItalic.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-MediumItalic.woff2') format('woff2');
 }
 
 
@@ -180,9 +180,9 @@
   font-display: swap;
   src:
     local('SF Mono Semibold'),
-    url('~/assets/fonts/SFMono/SFMono-Semibold.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-Semibold.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-Semibold.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-Semibold.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-Semibold.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-Semibold.woff2') format('woff2');
 }
 
 
@@ -194,9 +194,9 @@
   font-display: swap;
   src:
     local('SF Mono Semibold Italic'),
-    url('~/assets/fonts/SFMono/SFMono-SemiboldItalic.ttf') format('truetype'),
-    url('~/assets/fonts/SFMono/SFMono-SemiboldItalic.woff') format('woff'),
-    url('~/assets/fonts/SFMono/SFMono-SemiboldItalic.woff2') format('woff2');
+    url('@/assets/fonts/SFMono/SFMono-SemiboldItalic.ttf') format('truetype'),
+    url('@/assets/fonts/SFMono/SFMono-SemiboldItalic.woff') format('woff'),
+    url('@/assets/fonts/SFMono/SFMono-SemiboldItalic.woff2') format('woff2');
 }
 
 // dm-sans regular := 400
@@ -207,7 +207,7 @@
   font-display: swap;
   src:
     local('DM Sans Regular'),
-    url('~/assets/fonts/DMSans/DMSans-Regular.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-Regular.ttf') format('truetype');
 }
 
 // dm-sans regular := 400 italic
@@ -218,7 +218,7 @@
   font-display: swap;
   src:
     local('DM Sans Regular Italic'),
-    url('~/assets/fonts/DMSans/DMSans-Italic.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-Italic.ttf') format('truetype');
 }
 
 // dm-sans medium := 500 normal
@@ -229,7 +229,7 @@
   font-display: swap;
   src:
     local('DM Sans Medium'),
-    url('~/assets/fonts/DMSans/DMSans-Medium.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-Medium.ttf') format('truetype');
 }
 
 // dm-sans medium := 500 italic
@@ -240,7 +240,7 @@
   font-display: swap;
   src:
     local('DM Sans Medium Italic'),
-    url('~/assets/fonts/DMSans/DMSans-MediumItalic.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-MediumItalic.ttf') format('truetype');
 }
 
 // dm-sans bold := 600 normal
@@ -251,7 +251,7 @@
   font-display: swap;
   src:
     local('DM Sans Bold'),
-    url('~/assets/fonts/DMSans/DMSans-Bold.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-Bold.ttf') format('truetype');
 }
 
 // dm-sans bold := 600 italic
@@ -262,7 +262,7 @@
   font-display: swap;
   src:
     local('DM Sans Bold Italic'),
-    url('~/assets/fonts/DMSans/DMSans-BoldItalic.ttf') format('truetype');
+    url('@/assets/fonts/DMSans/DMSans-BoldItalic.ttf') format('truetype');
 }
 
 // dm-mono light := 400
@@ -273,7 +273,7 @@
   font-display: swap;
   src:
     local('DM Mono Regular'),
-    url('~/assets/fonts/DMMono/DMMono-Light.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-Light.ttf') format('truetype');
 }
 
 // dm-mono light := 400 italic
@@ -284,7 +284,7 @@
   font-display: swap;
   src:
     local('DM Mono Regular Italic'),
-    url('~/assets/fonts/DMMono/DMMono-LightItalic.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-LightItalic.ttf') format('truetype');
 }
 
 // dm-mono regular := 500
@@ -295,7 +295,7 @@
   font-display: swap;
   src:
     local('DM Mono Medium'),
-    url('~/assets/fonts/DMMono/DMMono-Regular.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-Regular.ttf') format('truetype');
 }
 
 // dm-mono regular := 500 italic
@@ -306,7 +306,7 @@
   font-display: swap;
   src:
     local('DM Mono Medium Italic'),
-    url('~/assets/fonts/DMMono/DMMono-Italic.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-Italic.ttf') format('truetype');
 }
 
 // dm-mono bold := 600
@@ -317,7 +317,7 @@
   font-display: swap;
   src:
     local('DM Mono Bold'),
-    url('~/assets/fonts/DMMono/DMMono-Medium.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-Medium.ttf') format('truetype');
 }
 
 // dm-mono bold := 600 italic
@@ -328,7 +328,7 @@
   font-display: swap;
   src:
     local('DM Mono Bold Italic'),
-    url('~/assets/fonts/DMMono/DMMono-MediumItalic.ttf') format('truetype');
+    url('@/assets/fonts/DMMono/DMMono-MediumItalic.ttf') format('truetype');
 }
 
 
@@ -340,7 +340,7 @@
   font-display: swap;
   src:
     local('Brown Light'),
-    url('~/assets/fonts/Brown/BrownLight-Regular.ttf') format('truetype');
+    url('@/assets/fonts/Brown/BrownLight-Regular.ttf') format('truetype');
 }
 
 // brown light italic
@@ -351,7 +351,7 @@
   font-display: swap;
   src:
     local('Brown Light Italic'),
-    url('~/assets/fonts/Brown/BrownLight-Italic.ttf') format('truetype');
+    url('@/assets/fonts/Brown/BrownLight-Italic.ttf') format('truetype');
 }
 
 // brown medium := 500
@@ -362,7 +362,7 @@
   font-display: swap;
   src:
     local('Brown Medium'),
-    url('~/assets/fonts/Brown/BrownMedium-Regular.ttf') format('truetype');
+    url('@/assets/fonts/Brown/BrownMedium-Regular.ttf') format('truetype');
 }
 
 // brown medium italic
@@ -373,7 +373,7 @@
   font-display: swap;
   src:
     local('Brown Medium Italic'),
-    url('~/assets/fonts/Brown/BrownMedium-Italic.ttf') format('truetype');
+    url('@/assets/fonts/Brown/BrownMedium-Italic.ttf') format('truetype');
 }
 
 // brown bold := 600
@@ -384,7 +384,7 @@
   font-display: swap;
   src:
     local('Brown Bold'),
-    url('~/assets/fonts/Brown/Brown-Bold.ttf') format('truetype');
+    url('@/assets/fonts/Brown/Brown-Bold.ttf') format('truetype');
 }
 
 // brown bold italic
@@ -395,7 +395,7 @@
   font-display: swap;
   src:
     local('Brown Bold Italic'),
-    url('~/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
+    url('@/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
 }
 
 
@@ -407,7 +407,7 @@
   font-display: swap;
   src:
     local('Brown Bold Italic'),
-    url('~/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
+    url('@/assets/fonts/Brown/Brown-BoldItalic.ttf') format('truetype');
 }
 
 // brown extra-bold
@@ -418,7 +418,7 @@
 //   font-display: swap;
 //   src:
 //     local('Brown ExtraBold'),
-//     url('~/assets/fonts/Brown/BrownExtraBold Regular.ttf') format('truetype');
+//     url('@/assets/fonts/Brown/BrownExtraBold Regular.ttf') format('truetype');
 // }
 
 // // brown extra-bold condensed
@@ -429,7 +429,7 @@
 //   font-display: swap;
 //   src:
 //     local('Brown ExtraBold Condensed'),
-//     url('~/assets/fonts/Brown/BrownExtraBoldCondensed Regular.ttf') format('truetype');
+//     url('@/assets/fonts/Brown/BrownExtraBoldCondensed Regular.ttf') format('truetype');
 // }
 
 // brown heavy
@@ -440,7 +440,7 @@
   font-display: swap;
   src:
     local('Brown Heavy'),
-    url('~/assets/fonts/Brown/BrownHeavy-Regular.ttf') format('truetype');
+    url('@/assets/fonts/Brown/BrownHeavy-Regular.ttf') format('truetype');
 }
 
 
@@ -457,7 +457,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Thin'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_thin.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_thin.otf') format('truetype');
 }
 
 // Brandon Grotesk Thin Italic := 200 italic
@@ -468,7 +468,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Thin Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_thin_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_thin_it.otf') format('truetype');
 }
 
 // Brandon Grotesk Light := 300
@@ -479,7 +479,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Light'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_light.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_light.otf') format('truetype');
 }
 
 // Brandon Grotesk Light Italic := 300 italic
@@ -490,7 +490,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Light Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_light_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_light_it.otf') format('truetype');
 }
 
 // Brandon Grotesk Regular := 400
@@ -501,7 +501,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Regular'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_reg.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_reg.otf') format('truetype');
 }
 
 // Brandon Grotesk Regular Italic := 400 italic
@@ -512,7 +512,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Regular Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_reg_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_reg_it.otf') format('truetype');
 }
 
 // Brandon Grotesk Medium := 500
@@ -523,7 +523,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Medium'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_med.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_med.otf') format('truetype');
 }
 
 // Brandon Grotesk Medium Italic := 500 italic
@@ -534,7 +534,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Medium Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_med_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_med_it.otf') format('truetype');
 }
 
 // Brandon Grotesk Bold := 600
@@ -545,7 +545,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Bold'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_bld.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_bld.otf') format('truetype');
 }
 
 // Brandon Grotesk Bold Italic := 600 italic
@@ -556,7 +556,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Bold Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_bld_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_bld_it.otf') format('truetype');
 }
 
 // Brandon Grotesk Black := 700
@@ -567,7 +567,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Black'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_blk.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_blk.otf') format('truetype');
 }
 
 // Brandon Grotesk Black Italic := 700 italic
@@ -578,7 +578,7 @@
   font-display: swap;
   src:
     local('Brandon Grotesk Black Italic'),
-    url('~/assets/fonts/BrandonGrotesk/Brandon_blk_it.otf') format('truetype');
+    url('@/assets/fonts/BrandonGrotesk/Brandon_blk_it.otf') format('truetype');
 }
 
 
@@ -590,7 +590,7 @@
   font-display: swap;
   src:
     local('Rubik Fade Regular'),
-    url('~/assets/fonts/RubikFade/RubikFadeRegular.ttf') format('truetype');
+    url('@/assets/fonts/RubikFade/RubikFadeRegular.ttf') format('truetype');
 }
 
 // megrim regular := 400
@@ -601,7 +601,7 @@
   font-display: swap;
   src:
     local('Megrim Regular'),
-    url('~/assets/fonts/Megrim/Megrim-Regular.ttf') format('truetype');
+    url('@/assets/fonts/Megrim/Megrim-Regular.ttf') format('truetype');
 }
 
 // fredericka regular := 400
@@ -612,7 +612,7 @@
 //   font-display: swap;
 //   src:
 //     local('Fredericka the Great Regular'),
-//     url('~/assets/fonts/Fredericka/Fredericka.ttf') format('truetype');
+//     url('@/assets/fonts/Fredericka/Fredericka.ttf') format('truetype');
 // }
 
 // macondo regulat := 400
@@ -623,7 +623,7 @@
   font-display: swap;
   src:
     local('Macondo Regular'),
-    url('~/assets/fonts/Macondo/Macondo-Regular.ttf') format('truetype');
+    url('@/assets/fonts/Macondo/Macondo-Regular.ttf') format('truetype');
 }
 
 // rubik-puddles regular := 400
@@ -634,7 +634,7 @@
   font-display: swap;
   src:
     local('Rubik Puddles Regular'),
-    url('~/assets/fonts/RubikPuddles/RubikPuddles-Regular.ttf') format('truetype');
+    url('@/assets/fonts/RubikPuddles/RubikPuddles-Regular.ttf') format('truetype');
 }
 
 // red-hat-mono variable-weight
@@ -653,7 +653,7 @@
     local('Red Hat Mono Bold'),
     local('Red Hat Mono ExtraBold'),
     local('Red Hat Mono Black'),
-    url('~/assets/fonts/RedHatMono/RedHatMono.ttf') format('truetype');
+    url('@/assets/fonts/RedHatMono/RedHatMono.ttf') format('truetype');
 }
 
 // red-hat-mono italic
@@ -672,7 +672,7 @@
     local('Red Hat Mono Bold Italic'),
     local('Red Hat Mono ExtraBold Italic'),
     local('Red Hat Mono Black Italic'),
-    url('~/assets/fonts/RedHatMono/RedHatMono-Italic.ttf') format('truetype');
+    url('@/assets/fonts/RedHatMono/RedHatMono-Italic.ttf') format('truetype');
 }
 
 // @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -686,8 +686,8 @@
 //   font-weight: 400;
 //   font-display: swap;
 //   src:
-//     url('~/assets/fonts/Twitch/twitch.ttf') format('truetype'),
-//     url('~/assets/fonts/Twitch/twitch.otf') format('truetype');
+//     url('@/assets/fonts/Twitch/twitch.ttf') format('truetype'),
+//     url('@/assets/fonts/Twitch/twitch.otf') format('truetype');
 // }
 
 // matter light
@@ -697,7 +697,7 @@
   font-weight: 300;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-Light.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-Light.otf') format('truetype');
 }
 
 // matter light italic
@@ -707,7 +707,7 @@
   font-weight: 300;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-LightItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-LightItalic.otf') format('truetype');
 }
 
 // matter regular
@@ -717,7 +717,7 @@
   font-weight: 400;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-Regular.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-Regular.otf') format('truetype');
 }
 
 // matter regular italic
@@ -727,7 +727,7 @@
   font-weight: 400;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-RegularItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-RegularItalic.otf') format('truetype');
 }
 
 // matter medium
@@ -737,7 +737,7 @@
   font-weight: 500;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-Medium.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-Medium.otf') format('truetype');
 }
 
 // matter medium italic
@@ -747,7 +747,7 @@
   font-weight: 500;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-MediumItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-MediumItalic.otf') format('truetype');
 }
 
 // matter semibold
@@ -757,7 +757,7 @@
   font-weight: 600;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-SemiBold.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-SemiBold.otf') format('truetype');
 }
 
 // matter semibold italic
@@ -767,7 +767,7 @@
   font-weight: 600;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-SemiBoldItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-SemiBoldItalic.otf') format('truetype');
 }
 
 // matter bold
@@ -777,7 +777,7 @@
   font-weight: 700;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-Bold.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-Bold.otf') format('truetype');
 }
 
 // matter bold italic
@@ -787,7 +787,7 @@
   font-weight: 700;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-BoldItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-BoldItalic.otf') format('truetype');
 }
 
 // matter heavy
@@ -797,7 +797,7 @@
   font-weight: 800;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-Heavy.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-Heavy.otf') format('truetype');
 }
 
 // matter heavy italic
@@ -807,7 +807,7 @@
   font-weight: 800;
   font-display: swap;
   src:
-    url('~/assets/fonts/Matter/Matter-HeavyItalic.otf') format('truetype');
+    url('@/assets/fonts/Matter/Matter-HeavyItalic.otf') format('truetype');
 }
 
 
@@ -820,7 +820,7 @@
   font-weight: 300;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Light.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Light.ttf') format('truetype');
 }
 
 // antique olive light italic
@@ -830,7 +830,7 @@
   font-weight: 300;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-LightItalic.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-LightItalic.ttf') format('truetype');
 }
 
 // antique olive regular
@@ -840,7 +840,7 @@
   font-weight: 400;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Regular.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Regular.ttf') format('truetype');
 }
 
 // antique olive regular italic
@@ -850,7 +850,7 @@
   font-weight: 400;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-RegularItalic.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-RegularItalic.ttf') format('truetype');
 }
 
 // antique olive medium
@@ -860,7 +860,7 @@
   font-weight: 500;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Medium.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Medium.ttf') format('truetype');
 }
 
 // antique olive medium italic
@@ -870,7 +870,7 @@
 //   font-weight: 500;
 //   font-display: swap;
 //   src:
-//     url('~/assets/fonts/antique-olive/AntiqueOlive-MediumItalic.ttf') format('truetype');
+//     url('@/assets/fonts/antique-olive/AntiqueOlive-MediumItalic.ttf') format('truetype');
 // }
 
 // antique olive Bold
@@ -880,7 +880,7 @@
   font-weight: 700;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Bold.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Bold.ttf') format('truetype');
 }
 
 // antique olive Bold condensed
@@ -890,7 +890,7 @@
 //   font-weight: 700;
 //   font-display: swap;
 //   src:
-//     url('~/assets/fonts/antique-olive/AntiqueOlive-BoldCondensed.ttf') format('truetype');
+//     url('@/assets/fonts/antique-olive/AntiqueOlive-BoldCondensed.ttf') format('truetype');
 // }
 
 // antique olive heavy
@@ -900,7 +900,7 @@
   font-weight: 900;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Heavy.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Heavy.ttf') format('truetype');
 }
 
 // antique olive heavy italic
@@ -910,7 +910,7 @@
   font-weight: 900;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-HeavyItalic.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-HeavyItalic.ttf') format('truetype');
 }
 
 // antique olive black
@@ -920,7 +920,7 @@
   font-weight: 800;
   font-display: swap;
   src:
-    url('~/assets/fonts/antique-olive/AntiqueOlive-Black.ttf') format('truetype');
+    url('@/assets/fonts/antique-olive/AntiqueOlive-Black.ttf') format('truetype');
 }
 
 // apercu
@@ -931,7 +931,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProLight.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProLight.otf') format('truetype');
 }
 
 @font-face {
@@ -939,7 +939,7 @@
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProLightItalic.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProLightItalic.otf') format('truetype');
 }
 
 @font-face {
@@ -947,7 +947,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProRegular.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProRegular.otf') format('truetype');
 }
 
 @font-face {
@@ -955,7 +955,7 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProItalic.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProItalic.otf') format('truetype');
 }
 
 @font-face {
@@ -963,7 +963,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProMedium.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProMedium.otf') format('truetype');
 }
 
 @font-face {
@@ -971,7 +971,7 @@
   font-style: italic;
   font-weight: 500;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProMediumItalic.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProMediumItalic.otf') format('truetype');
 }
 
 @font-face {
@@ -979,7 +979,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProBold.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProBold.otf') format('truetype');
 }
 
 @font-face {
@@ -987,7 +987,7 @@
   font-style: italic;
   font-weight: 600;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProBoldItalic.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProBoldItalic.otf') format('truetype');
 }
 
 @font-face {
@@ -995,7 +995,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Apercu/ApercuProMono.otf') format('truetype');
+  src: url('@/assets/fonts/Apercu/ApercuProMono.otf') format('truetype');
 }
 
 // cohere variable font
@@ -1004,7 +1004,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('~/assets/fonts/Cohere/CohereVariable.woff2') format('truetype');
+  src: url('@/assets/fonts/Cohere/CohereVariable.woff2') format('truetype');
 }
 
 // cohere regular font
@@ -1013,7 +1013,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('~/assets/fonts/Cohere/CohereRegular.woff2') format('truetype');
+  src: url('@/assets/fonts/Cohere/CohereRegular.woff2') format('truetype');
 }
 
 @font-face {
@@ -1021,7 +1021,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('~/assets/fonts/AdelleRegular/AdelleRegular.woff') format('truetype');
+  src: url('@/assets/fonts/AdelleRegular/AdelleRegular.woff') format('truetype');
 }
 
 
@@ -1043,7 +1043,7 @@ Usage:
   font-display: swap;
   font-style: normal;
   // font-named-instance: 'Regular';
-  src: url("~/assets/fonts/Inter/Inter-Variable.woff2") format("woff2");
+  src: url("@/assets/fonts/Inter/Inter-Variable.woff2") format("woff2");
 }
 @font-face {
   font-family: 'Inter Variable';
@@ -1051,7 +1051,7 @@ Usage:
   font-display: swap;
   font-style: italic;
   font-named-instance: 'Italic';
-  src: url("~/assets/fonts/Inter/Inter-Variable-Italic.woff2") format("woff2");
+  src: url("@/assets/fonts/Inter/Inter-Variable-Italic.woff2") format("woff2");
 }
 
 
@@ -1073,32 +1073,32 @@ explicitly, e.g.
   font-weight: 100 900;
   font-display: swap;
   font-style: oblique 0deg 10deg;
-  src: url("~/assets/fonts/Inter/Inter-Variable-Experimental.woff2") format("woff2");
+  src: url("@/assets/fonts/Inter/Inter-Variable-Experimental.woff2") format("woff2");
 }
 
 
 // Canela font
-// path: ~/assets/fonts/Canela/Canela/Canela-Regular-Trial.otf
+// path: @/assets/fonts/Canela/Canela/Canela-Regular-Trial.otf
 @font-face {
   font-family: 'Canela';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Canela/CanelaText/CanelaText-Regular-Trial.otf') format('truetype');
+  src: url('@/assets/fonts/Canela/CanelaText/CanelaText-Regular-Trial.otf') format('truetype');
 }
 
 // Helvetica Font
-// path: ~/assets/fonts/Helvetica/Helvetica-Regular.otf
+// path: @/assets/fonts/Helvetica/Helvetica-Regular.otf
 @font-face {
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Helvetica/Helvetica.ttf') format('truetype');
+  src: url('@/assets/fonts/Helvetica/Helvetica.ttf') format('truetype');
 }
 
 // SF Pro Display
-// path: ~/assets/fonts/SFPro/SF-Pro-Text-Regular.otf
+// path: @/assets/fonts/SFPro/SF-Pro-Text-Regular.otf
 
 // thin
 @font-face {
@@ -1106,7 +1106,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Thin.woff2') format('truetype');
+  src: url('@/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Thin.woff2') format('truetype');
 }
 
 // regular
@@ -1115,7 +1115,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Regular.woff2') format('truetype');
+  src: url('@/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Regular.woff2') format('truetype');
 }
 
 @font-face {
@@ -1123,7 +1123,7 @@ explicitly, e.g.
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-RegularItalic.woff2') format('truetype');
+  src: url('@/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-RegularItalic.woff2') format('truetype');
 }
 
 // semibold
@@ -1132,7 +1132,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Semibold.woff2') format('truetype');
+  src: url('@/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Semibold.woff2') format('truetype');
 }
 
 // bold
@@ -1141,7 +1141,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('~/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Bold.woff2') format('truetype');
+  src: url('@/assets/fonts/SFPro/SF-Pro-Text/SF-Pro-Text-Bold.woff2') format('truetype');
 }
 
 
@@ -1151,7 +1151,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('~/assets/fonts/Graphik/Graphik-Web-Light.woff2') format('truetype');
+  src: url('@/assets/fonts/Graphik/Graphik-Web-Light.woff2') format('truetype');
 }
 
 // regular
@@ -1160,7 +1160,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Graphik/Graphik-Web-Regular.woff2') format('truetype');
+  src: url('@/assets/fonts/Graphik/Graphik-Web-Regular.woff2') format('truetype');
 }
 
 // regular italic
@@ -1169,7 +1169,7 @@ explicitly, e.g.
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('~/assets/fonts/Graphik/Graphik-Web-RegularItalic.woff2') format('truetype');
+  src: url('@/assets/fonts/Graphik/Graphik-Web-RegularItalic.woff2') format('truetype');
 }
 
 // semibold
@@ -1178,7 +1178,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('~/assets/fonts/Graphik/Graphik-Web-Semibold.woff2') format('truetype');
+  src: url('@/assets/fonts/Graphik/Graphik-Web-Semibold.woff2') format('truetype');
 }
 
 // bold
@@ -1187,7 +1187,7 @@ explicitly, e.g.
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('~/assets/fonts/Graphik/Graphik-Web-Bold.woff2') format('truetype');
+  src: url('@/assets/fonts/Graphik/Graphik-Web-Bold.woff2') format('truetype');
 }
 
 @debug('fonts loaded');

@@ -10,18 +10,18 @@
 @use "~/styles/mixins"
 
 .prose-blockquote
-  width: calc(100% - 4rem)
+  width: calc(100% - 1rem)
   text-align: left
   position: relative
-  margin: 2rem
-  padding: 0 2rem 0 2rem
+  margin: 0.5rem
+  padding: 0 2rem 0 1em
+  border-left: 2px solid colors.color(primary-highlight)
 
   .prose-p
-    width: 80%
-    font-size: clamp(1rem, 1.7vw, 1.5rem) //1.2em
+    width: 100%
+    font-size: 1em
     font-weight: 500
-    line-height: 1.5
-    color: colors.color("secondary-highlight")
+    color: colors.color(primary-highlight)
 
   & > hr
     max-width: 80%

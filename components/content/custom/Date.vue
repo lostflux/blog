@@ -22,11 +22,8 @@ export default {
   },
   setup(props) {
     const date = new Date(props.date);
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear().toString().substr(-2);
     return {
-      formattedDate: `${day}/${month}/${year}`,
+      formattedDate: date.toLocaleDateString(),
     };
   },
 };

@@ -11,7 +11,6 @@
           <ProseA
             href="https://amittai.studio"
             class="bio-name"
-            fancy
           >
             {{ personName }}
           </ProseA>
@@ -140,23 +139,24 @@ export default {
 
 .bio
   width: 100%
-  height: 400px
+  height: 450px
   display: flex
   flex-direction: column
   justify-content: center
   text-transform: uppercase
-
   flex-grow: 0
+  font-size: typography.font-size("l")
 
   @media screen and (max-width: 1150px)
-    height: 300px
+    height: 370px
+    font-size: typography.font-size("m")
 
   .bio-name
-    font-size: typography.font-size(l)
+    // font-size: typography.font-size(l)
     color: colors.color(lightest-foreground)
 
   .bio-title
-    font-size: typography.font-size(s)
+    font-size: typography.font-size(m)
 
 .table-of-contents
   position: fixed

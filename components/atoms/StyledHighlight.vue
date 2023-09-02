@@ -95,8 +95,8 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/geometry"
-@use "~/styles/colors"
+@use "@/styles/geometry"
+@use "@/styles/colors"
 
 .styled-highlight
 

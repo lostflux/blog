@@ -22,7 +22,6 @@
       <slot />
     </h2>
   </div>
-  <br>
 </template>
 
 <script setup lang="ts">
@@ -40,15 +39,15 @@ const generate = anchorLinks?.depth >= heading;
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/geometry"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/geometry"
 
 .prose-h2
   font-size: typography.font-size(m)
   font-weight: 600
   color: colors.color(lightest-foreground)
-  margin: 1em 0 0.5em 0
+  margin: 3em 0 1em 0
   padding: 0
   line-height: 0.9em
   font-size: typography.font-size(l)

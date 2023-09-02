@@ -44,9 +44,9 @@ const refinedSrc = computed(() => {
 </script>
 
 <style lang="sass" scoped>
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/mixins"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/mixins"
 
 .prose-img-wrapper
   margin: 1rem 0

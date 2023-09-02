@@ -27,7 +27,7 @@ html
 
 ::selection
   background-color: rgba(colors.color(light-background), 0.4)
-  color: colors.color(lightest-foreground)
+  color: colors.color(primary-highlight)
 
 
 /* Provide basic, default focus styles.*/
@@ -89,7 +89,6 @@ body
 
   @media (max-width: 480px) 
     font-size: typography.font-size("l")
-  
 
 :root
   min-height: 100svh
@@ -125,52 +124,7 @@ h1, h2, h3, h4, h5, h6
   margin: 0 0 10px 0
   font-weight: 600
   color: colors.color("lightest-foreground")
-  line-height: 1.1
-
-// .big-heading 
-//   margin: 0
-//   font-size: clamp(40px, 8vw, typography.font-size("big-heading"))
-//   font-variation-settings: "cuts" 300
-
-// .medium-heading 
-//   margin: 0
-//   font-size: clamp(40px, 8vw, 60px)
-
-// .numbered-heading 
-//   display: flex
-//   align-items: center
-//   position: relative
-//   margin: 10px 0 40px
-//   width: 100%
-//   font-size: clamp(26px, 5vw, typography.font-size("heading"))
-//   font-family: typography.font("fancy")
-//   white-space: nowrap
-//   font-variation-settings: "cuts" 300
-//   font-weight: 700
-  
-//   &::before
-//     content: '0' counter(sections) '.'
-//     counter-increment: sections
-
-//     position: relative
-//     margin-right: 0.5em
-
-//     color: colors.color("primary-highlight")
-//     font-family: typography.font("monospace")
-//     font-size: typography.font-size("xl")
-//     font-weight: 400
-    
-  
-//   &::after 
-//     content: ''
-//     position: relative
-//     margin: auto
-//     width: 100%
-//     height: 1px
-//     margin-left: 0.5em
-//     background: colors.color("lightest-background")
-    
-  
+  line-height: 1.1  
 
 img, svg, .image-wrapper 
   width: 100%
@@ -185,33 +139,6 @@ img, svg, .image-wrapper
   -webkit-user-drag: none !important
   user-drag: none !important
 
-// img[alt=""], img:not([alt]) 
-//   filter: blur(5px)
-
-// svg
-//   transition: color 0.3s ease-in-out
-  
-
-// a 
-//   display: inline-block
-//   text-decoration: none
-//   text-decoration-skip-ink: auto
-//   color: inherit
-//   position: relative
-//   transition: geometry.var("default-transition")
-
-//   &:hover, &:focus 
-//     color: colors.color("primary-highlight")
-  
-//   &.inline-link 
-//     @include mixins.inline-link
-  
-
-// button 
-//   cursor: pointer
-//   border: 0
-//   border-radius: 0
-
 :is(input, textarea)
   border-radius: 0
   outline: 0
@@ -221,119 +148,3 @@ img, svg, .image-wrapper
   
   &:id(focus, :active)::placeholder 
     opacity: 1
-    
-  
-
-// p 
-//   margin: 0 0 15px 0
-
-//   &:last-child, &:last-of-type 
-//     margin: 0
-  
-//   & > a 
-//     @include mixins.inline-link
-      
-// .styled-content
-//   display: flex
-//   flex-direction: column
-//   min-height: 100svh
-
-// blockquote 
-//   border-left-color: colors.color("primary-highlight")
-//   border-left-style: solid
-//   border-left-width: 1px
-//   margin-left: 0px
-//   margin-right: 0px
-//   padding-left: 1.5rem
-
-//   p 
-//     font-style: italic
-//     font-size: 24px
-  
-
-// hr 
-//   background-color: colors.color("lightest-background")
-//   height: 1px
-//   border-width: 0px
-//   border-style: initial
-//   border-color: initial
-//   border-image: initial
-//   margin: 1rem
-
-// code 
-//   font-family: typography.font("monospace")
-//   font-size: typography.font-size("m")
-
-// .skip-to-content 
-//   @include mixins.button
-//   position: absolute
-//   top: auto
-//   left: -999px
-//   width: 1px
-//   height: 1px
-//   overflow: hidden
-//   z-index: -99
-
-
-//   &:focus, &:active 
-//     background-color: colors.color("primary-highlight")
-//     color: colors.color("background")
-//     top: 0
-//     left: 0
-//     width: auto
-//     height: auto
-//     overflow: auto
-//     z-index: 99
-  
-
-// .logo
-//   color: colors.color("primary-highlight")
-
-// .overline 
-//   color: colors.color("primary-highlight")
-//   font-family: typography.font("monospace")
-//   font-size: typography.font-size("m")
-//   font-weight: 400
-
-// .subtitle 
-//   color: colors.color("primary-highlight")
-//   margin: 0 0 20px 0
-//   font-size: typography.font-size("m")
-//   font-family: typography.font("monospace")
-//   font-weight: 400
-//   line-height: 1.5
-
-//   @media (max-width: 1080px) 
-//     font-size: typography.font-size("s")
-  
-//   @media (max-width: 768px) 
-//     font-size: typography.font-size("xs")
-  
-//   a 
-//     @include mixins.inline-link
-//     line-height: 1.5
-  
-// .breadcrumb 
-//   display: flex
-//   align-items: center
-//   margin-bottom: 50px
-//   color: colors.color("primary-highlight")
-
-
-//   .arrow 
-//     display: block
-//     margin-right: 10px
-//     padding-top: 4px
-  
-//   a 
-//     @include mixins.inline-link
-//     font-family: typography.font("monospace")
-//     font-size: typography.font-size("s")
-//     font-weight: 600
-//     line-height: 1.5
-//     text-transform: uppercase
-//     letter-spacing: 0.1em
-  
-
-// .image-outer-wrapper 
-//   height: 100%

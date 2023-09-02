@@ -1,5 +1,6 @@
 ---
-title: tests
+title: Tests | Amittai
+subtitle: Tests
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: tests
 category:
   - tests
 ---

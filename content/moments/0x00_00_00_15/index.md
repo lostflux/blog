@@ -1,5 +1,6 @@
 ---
-title: loud
+title: Loud Silence | Amittai
+subtitle: Loud Silence
 category:
   - moments
 draft: true

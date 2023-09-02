@@ -5,17 +5,17 @@
 </template>
 
 <style lang="sass" scoped>
-@use "~/styles/typography"
-@use "~/styles/colors"
-@use "~/styles/geometry"
-@use "~/styles/mixins"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/geometry"
+@use "@/styles/mixins"
 
 .prose-p
   font-family: typography.font("sans-serif")
   margin-bottom: 1em
   margin: 0 0 1.5em 0
-  font-size: typography.font-size("l")
   line-height: 24px
+  font-size: typography.font-size("l")
 
   @media screen and (max-width: 720px)
     font-size: typography.font-size("m")

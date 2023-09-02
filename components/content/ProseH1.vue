@@ -41,9 +41,9 @@ const generate = anchorLinks?.depth >= heading;
 
 <style lang="sass" scoped>
 
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/geometry"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/geometry"
 
 .prose-h1
   color: colors.color(light-foreground)

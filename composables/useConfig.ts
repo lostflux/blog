@@ -85,25 +85,7 @@ const heroFootItems = [
   },
 ];
 
-// const srConfig = (delay = 200, viewFactor = 0.25) => ({
-//   origin: "bottom",
-//   distance: "20px",
-//   duration: 500,
-//   delay,
-//   rotate: { x: 0, y: 0, z: 0 },
-//   opacity: 0,
-//   scale: 1,
-//   easing: "cubic-bezier(0.645, 0.045, 0.355, 1)",
-//   mobile: true,
-//   reset: false,
-//   useDelay: "always",
-//   viewFactor,
-//   viewOffset: {
-//     top: 0, right: 0, bottom: 0, left: 0,
-//   },
-// });
-
-const navHeight = 70; // px
+const navHeight = 40; // px
 
 const nonTocRoutes = [
   "/",
@@ -127,20 +109,18 @@ async function useMetaPage(): Promise<boolean> {
     .where({ _path: path })
     .only(["category"])
     .findOne()
-    .then((data) => {
-      return {
-        categories: data.category || [],
-      };
-    });
+    .then((data) => ({
+      categories: data.category || [],
+    }));
 
   return categories.includes("meta");
 }
 
 async function showToc() {
   const { path } = useTrimmedPath();
-  return useMetaPage().then((isMeta) => {
-    return !isMeta && ignorePrefixes.every((prefix) => !path.startsWith(prefix));
-  });
+  return useMetaPage().then(
+    (isMeta) => !isMeta && ignorePrefixes.every((prefix) => !path.startsWith(prefix)),
+  );
 }
 
 export default () => ({

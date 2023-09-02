@@ -43,4 +43,8 @@ export default () => ({
     path: "/aphorisms",
   },
 
+  devops: {
+    path: "/writing/computing/devops",
+  },
+
 });

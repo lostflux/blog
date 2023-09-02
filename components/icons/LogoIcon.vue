@@ -32,9 +32,9 @@ export default {
 
 <style lang="sass" scoped>
 
-@use "~/styles/colors"
-@use "~/styles/geometry"
-@use "~/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/geometry"
+@use "@/styles/typography"
 
 .container
   display: inline-flex

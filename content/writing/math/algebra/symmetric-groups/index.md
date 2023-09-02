@@ -1,7 +1,9 @@
 ---
-title: Symmetric Groups
+title: Symmetric Groups | Amittai
+subtitle: Symmetric Groups
 description: Just a simple post on symmetric groups.
 category:
+  - long-form
   - algebra
 draft: true
 featured: false

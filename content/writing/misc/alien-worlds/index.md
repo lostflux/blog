@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::misc
+title: Alien Worlds | Amittai
+subtitle: Alien Worlds
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: alien worlds
 category:
   - alien worlds
 ---

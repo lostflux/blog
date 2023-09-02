@@ -153,11 +153,11 @@ const headerRef = ref(null);
 </script>
 
 <style lang="sass">
-@use "~/styles/colors"
-@use "~/styles/typography"
-@use "~/styles/geometry"
-@use "~/styles/mixins"
-@use "~/styles/transitions"
+@use "@/styles/colors"
+@use "@/styles/typography"
+@use "@/styles/geometry"
+@use "@/styles/mixins"
+@use "@/styles/transitions"
 
 .header
   @include mixins.flex-between

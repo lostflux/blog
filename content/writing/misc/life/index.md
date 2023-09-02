@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::misc
+title: Life | Amittai
+subtitle: Life
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: life
 category:
   - life
 ---

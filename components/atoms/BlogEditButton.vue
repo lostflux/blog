@@ -4,8 +4,9 @@
       :href="editLink"
       class="edit-button"
       fancy
+      uppercase
     >
-      Edit on GitHub
+      View Source
     </ProseA>
   </div>
 </template>

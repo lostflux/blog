@@ -20,9 +20,9 @@ export default {
 </script>
 
 <style lang="sass">
-@use "~/styles/mixins"
-@use "~/styles/colors"
-@use "~/styles/typography"
+@use "@/styles/mixins"
+@use "@/styles/colors"
+@use "@/styles/typography"
 
 .styled-button
   background: colors.color(light-background)

@@ -8,27 +8,22 @@ with a subtle hint of [MongoDB](https://www.mongodb.com).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3/deploy-status)](https://app.netlify.com/sites/amittai/deploys)
 
-&copy; ${2022}^{+}$, Altair[^1]
+&copy; ${2022}^{+}$, Amittai[^1]
 
 ---
 
 ## Tech Stack
 
-- [Nuxt 3](https://nuxt.com/v3)
-  - [Vue 3](https://vuejs.org/)
-    > Components, Composition API, and more!
-  - [Vite](https://vitejs.dev)
-    > Fast, modern, and efficient build tool.
-  - [Nuxt Content](https://content.nuxtjs.org/)
-    > Markdown-based content management.
-- [TypeScript](https://www.typescriptlang.org)
-  > Javascript with types is actually decent.
-- [SCSS/Sass](https://sass-lang.com)
-  > Just don't use tailwind (what is `w-4 h-4 m-5 p-1-1` supposed to mean? 🤔)
-- [Netlify](https://www.netlify.com)
-  > Static site hosting.
-- [Firebase](https://firebase.google.com)
-  > Authentication & user management.
+| Name | Description |
+| :--- | ---: |
+| [Nuxt 3](https://nuxt.com/v3) | Vue framework |
+| [Vue 3](https://vuejs.org/) | Frontend framework |
+| [Vite](https://vitejs.dev) | Build tool |
+| [Nuxt Content](https://content.nuxtjs.org/) | Markdown-based content management |
+| [TypeScript](https://www.typescriptlang.org) | Javascript with types |
+| [SCSS/Sass](https://sass-lang.com) | CSS preprocessor |
+| [Netlify](https://www.netlify.com) | Static site hosting |
+| [Firebase](https://firebase.google.com) | auth and data store |
 
 ---
 
@@ -64,34 +59,17 @@ npm run dev
 Build the application for production:
 
 ```bash
+# build SSR server
 npm run build
+
+# build static site
+npm run generate  # note: this will run `build` as well
 ```
 
 Locally preview production build:
 
 ```bash
 npm run preview
-```
-
-```text
-github.com/AlDanial/cloc v 1.94  T=0.35 s (590.1 files/s, 53367.8 lines/s)
--------------------------------------------------------------------------------
-Language                     files          blank        comment           code
--------------------------------------------------------------------------------
-Vuejs Component                107           1015            390           7618
-SVG                              8              3              1           2792
-Markdown                        54            575              0           2156
-SCSS                             4            206            199            992
-TypeScript                       9             97            151            728
-Text                            10            150              0            611
-Sass                             5            175             60            563
-JSON                             4              0              0            107
-YAML                             4             16             41             61
-TOML                             1              1              0             10
-XML                              1              0              0              2
--------------------------------------------------------------------------------
-SUM:                           207           2238            842          15640
--------------------------------------------------------------------------------
 ```
 
 Checkout the [Nuxt3 docs](https://nuxt.com/docs)

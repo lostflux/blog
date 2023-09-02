@@ -12,8 +12,11 @@
 
 .prose-p
   font-family: typography.font("sans-serif")
-  font-size: typography.font-size("m")
   margin-bottom: 1em
-  line-height: 1.7rem
   margin: 0 0 1.5em 0
+  font-size: typography.font-size("l")
+  line-height: 1.6em
+
+  @media screen and (max-width: 720px)
+    font-size: typography.font-size("m")
 </style>

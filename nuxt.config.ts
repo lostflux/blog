@@ -115,6 +115,7 @@ export default defineNuxtConfig({
         "julia",
         "python",
         "haskell",
+        "hs",
         "f#",
         "vue",
       ],

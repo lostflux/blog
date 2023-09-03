@@ -68,7 +68,7 @@ onUnmounted(() => {
   position: fixed
   bottom: 50px
   z-index: 11
-  box-shadow: 0 0 10px rgba(colors.color(dark-background), 0.5)
+  // box-shadow: 0 0 10px rgba(colors.color(dark-background), 0.5)
 
   border: 1px solid colors.color(lightest-background)
 

@@ -51,5 +51,4 @@ Yet, even with this in mind, one sometimes falls into the trap
 of verbosely answering a question that they later regret
 when they should have simply pushed it to aside until they were ready.
 
-
 [sivers]: https://sive.rs/slow

@@ -49,6 +49,6 @@ live conversations don't work that way.
 Slow thinking can be more intentioned, and less erratic.
 Yet, even with this in mind, one sometimes falls into the trap
 of verbosely answering a question that they later regret
-when they should have simply pushed it to aside until they were ready.
+when they should have simply pushed it aside until they were ready.
 
 [sivers]: https://sive.rs/slow

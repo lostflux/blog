@@ -33,8 +33,8 @@
     "sass-loader": "^13.3.2"
   },
   "dependencies": {
-    "@dicebear/collection": "^6.0.4",
-    "@dicebear/core": "^6.0.4",
+    "@dicebear/collection": "^7.0.0",
+    "@dicebear/core": "^7.0.0",
     "@firebase/auth": "^1.0.0",
     "@firebase/firestore": "^4.0.0",
     "@nuxt/vite-builder": "^3.6.3",

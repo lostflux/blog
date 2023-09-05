@@ -1,5 +1,6 @@
 ---
-title: The New Space Race
+title: The New Space Race | Amittai
+subtitle: The New Space Race
 description: The Past, Present, and Future of Space Exploration.
 category:
   - featured
@@ -35,12 +36,10 @@ Collaborative publication with
 [menning]: https://www.linkedin.com/in/isaiah-menning/
 [neff]:    https://www.linkedin.com/in/sam-neff-8b72a5194/
 
-<!--more-->
-<br>
-
 ::inline-flex
 :styled-button[read the full paper]{to=https://issuu.com/dartmouthjournalofscience/docs/20f_dujs_print_journal_v3/188}
 ::
+
 ---
 
 ## Introduction

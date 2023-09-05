@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::computing
+title: NN | Amittai
+subtitle: NN
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: neural networks
 category:
   - neural networks
 ---

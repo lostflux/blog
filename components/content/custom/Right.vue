@@ -8,5 +8,4 @@
 .right-container
   width: 100%
   text-align: right
-  padding-right: 2em
 </style>

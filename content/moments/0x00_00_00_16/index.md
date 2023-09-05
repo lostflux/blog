@@ -1,5 +1,6 @@
 ---
-title: ghost town
+title: Ghost Town | Amittai
+subtitle: Ghost Town
 fancyTitle: ghost town
 category:
   - moments

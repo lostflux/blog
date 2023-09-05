@@ -1,5 +1,6 @@
 ---
-title: Efficient Multiple Discovery
+title: Efficient Multiple Discovery | Amittai
+subtitle: Efficient Multiple Discovery
 description: Given an arbitrary set of numbers, how do we most-efficiently find their smallest common multiple?
 category:
   - featured
@@ -39,8 +40,6 @@ head:
     - name: 'twitter:card'
       content: summary_large_image
 ---
-
-# Project Euler, Problem 1
 
 If we list all the natural numbers below 10 that are multiples of $3$ or $5$,
 we get $3$, $5$, $6$ and $9$. The sum of these multiples is $23$.

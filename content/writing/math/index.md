@@ -1,5 +1,6 @@
 ---
-title: math
+title: Math | Amittai
+subtitle: Math
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: math
 category:
   - algebra
 ---

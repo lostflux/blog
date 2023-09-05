@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::misc::movies
+title: Movies | Amittai
+subtitle: Movies
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: movies
 category:
   - movies
 ---

@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::computing
+title: Computing | Amittai
+subtitle: Computing
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: computing
 category:
   - exposition
   - neural networks

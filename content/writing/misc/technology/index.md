@@ -1,5 +1,6 @@
 ---
-title: tech
+title: Tech | Amittai
+subtitle: Tech
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: technology
 category:
   - technology
 ---

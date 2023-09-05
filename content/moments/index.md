@@ -1,5 +1,6 @@
 ---
-title: moments
+title: Moments | Amittai
+subtitle: Moments
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: moments
 category:
   - moments
 ---

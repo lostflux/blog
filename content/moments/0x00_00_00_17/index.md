@@ -1,5 +1,6 @@
 ---
-title: On Being a Slow Thinker
+title: On Being a Slow Thinker | Amittai
+subtitle: On Being a Slow Thinker
 category:
   - moments
 draft: false

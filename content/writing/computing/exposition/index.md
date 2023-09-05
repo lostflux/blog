@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::computing
+title: Exposition | Amittai
+subtitle: Exposition
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: exposition
 category:
   - exposition
 ---

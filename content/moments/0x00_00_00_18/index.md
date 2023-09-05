@@ -1,5 +1,6 @@
 ---
-title: Abstract Numbers
+title: Abstract Numbers | Amittai
+subtitle: Abstract Numbers
 category:
   - moments
 draft: false

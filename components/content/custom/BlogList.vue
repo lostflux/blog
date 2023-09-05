@@ -53,7 +53,7 @@ export default {
           const _blogs = await queryContent()
             .where({ draft: false })
             .where({ category: { $containsAny: props.category } })
-            .only(["title", "date", "category", "_path"])
+            .only(["title", "subtitle", "date", "category", "_path"])
             .sort({ date: -1 })
             .find();
           return _blogs;
@@ -64,7 +64,7 @@ export default {
           const _blogs = await queryContent()
             .where({ draft: false })
             .where({ category: { $contains: "long-form" } })
-            .only(["title", "date", "category", "_path"])
+            .only(["title", "subtitle", "date", "category", "_path"])
             .sort({ date: -1 })
             .find();
           return _blogs;

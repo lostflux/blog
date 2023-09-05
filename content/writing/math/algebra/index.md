@@ -1,5 +1,6 @@
 ---
-title: amittai::writing::math::algebra
+title: Algebra | Amittai
+subtitle: Algebra
 layout: article
 navigation: false
 category:
@@ -8,7 +9,6 @@ category:
 
 ::blog-list
 ---
-title: algebra
 category:
   - algebra
 ---

@@ -22,7 +22,7 @@
       </div>
       <div class="title">
         <h1 class="title-heading">
-          {{ customTitle || title }}
+          {{ customTitle || subtitle || title }}
         </h1>
         <TableOfContents
           v-if="tocVisible && !customTitle"
@@ -93,15 +93,14 @@ const header = await useAsyncData(
   async () => {
     const _data = await queryContent()
       .where({ _path: path })
-      .only(["date", "title"])
+      .only(["date", "title", "subtitle"])
       .findOne();
 
     return _data;
   },
 );
 
-const { date } = header.data.value;
-const { title } = header.data.value;
+const { date, title, subtitle } = header.data.value;
 
 const { useMetaPage } = useConfig();
 const isMeta = await useMetaPage();
@@ -133,10 +132,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../styles/typography"
-@use "../styles/colors"
-@use "../styles/mixins"
-@use "../styles/geometry"
+@use "@/styles/typography"
+@use "@/styles/colors"
+@use "@/styles/mixins"
+@use "@/styles/geometry"
 
 .bio
   width: 100%

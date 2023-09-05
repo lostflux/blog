@@ -1,5 +1,6 @@
 ---
-title: Data-driven Behavior Change
+title: Data-driven Behavior Change | Amittai
+subtitle: Data-driven Behavior Change
 description: How Machine Learning is Transforming other Industries.
 category:
   - featured
@@ -12,10 +13,6 @@ layout: article
 date: 2021-03-14
 navigation: true
 ---
-
-# Data-driven Behavior Change
-
-## Abstract
 
 ChatGPT, AlphaFold, AlphaGo, the list of recent developments in Machine Learning
 and AI are endless. Still, AI solutions are causing bigger ripples

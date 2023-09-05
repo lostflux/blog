@@ -14,6 +14,14 @@ with a subtle hint of [MongoDB](https://www.mongodb.com).
 
 ## Tech Stack
 
+| Logo | Name | Description |
+| :---: | :---: | :--- |
+| ![Nuxt 3](https://nuxt.com/assets/design-kit/logo/icon-green.svg) | [Nuxt 3](https://nuxt.com/v3) | The frontend framework. |
+| ![Vue 3](https://vuejs.org/images/logo.svg) | [Vue 3](https://vuejs.org/) | The frontend framework. |
+| ![Vite](https://vitejs.dev/logo.svg) | [Vite](https://vitejs.dev) | The build tool. |
+| ![TypeScript](https://www.typescriptlang.org/icons/icon-48x48.png?v=8944a05a8d60370dfc5e5e7f9cf64a9b) | [TypeScript](https://www.typescriptlang.org) | The language. |
+| ![SCSS/Sass](https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg) | [SCSS/Sass](https://sass-lang.com) | The styling language. |
+
 - [Nuxt 3](https://nuxt.com/v3)
   - [Vue 3](https://vuejs.org/)
     > Components, Composition API, and more!

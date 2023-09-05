@@ -46,7 +46,7 @@ export default {
         month: "2-digit",
         day: "2-digit",
       }),
-      title: props.blog.title,
+      title: props.blog.subtitle || props.blog.title,
       mainCategory,
       mainCategoryPath,
     };

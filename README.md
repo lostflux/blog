@@ -8,7 +8,7 @@ with a subtle hint of [MongoDB](https://www.mongodb.com).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3/deploy-status)](https://app.netlify.com/sites/amittai/deploys)
 
-&copy; ${2022}^{+}$, Altair[^1]
+&copy; ${2022}^{+}$, Amittai[^1]
 
 ---
 

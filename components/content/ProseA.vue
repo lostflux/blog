@@ -67,6 +67,7 @@ defineProps({
   align-items: center
   gap: 7px
   display: inline
+  color: current-color
 
   .link
     color: colors.color(lightest-foreground)

@@ -8,12 +8,10 @@
 @use "@/styles/mixins"
 @use "@/styles/typography"
 .prose-ul
-  // font-family: typography.font("sans-serif")
   font-size: inherit
   line-height: 22px
-  //margin-left: 0.5em
   color: inherit
-  margin: 2em 0
+  margin: 1em 0 1em 1em
 
   font-size: typography.font-size("l")
 
@@ -26,14 +24,12 @@
     margin-bottom: 10px
     font-weight: 400
     line-height: inherit
-    // font-size: typography.font-size("m")
     color: inherit
-    margin-left: 1em
+    padding-left: 1.5em
 
     &::before
-      // show em-dash
-      content: "— "
+      content: "—"
       position: absolute
-      left: -1em
+      left: 0
       font-weight: 600
 </style>

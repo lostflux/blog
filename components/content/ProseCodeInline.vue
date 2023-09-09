@@ -8,8 +8,8 @@
 
 code
   background: colors.color("light-background")
-  padding: 0.2em 0.4em
-  border-radius: 0.4em
+  padding: 0 0.3em 0.1em
+  border-radius: 0.2em
   font-size: typography.font-size("s")
   color: colors.color(lightest-foreground)
 </style>

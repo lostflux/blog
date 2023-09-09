@@ -17,36 +17,45 @@ export default {
 .quote-author
   width: 100%
   margin: 0 auto
-  padding: 1rem
+  padding: 2rem 1rem 1rem 1rem
 
-  color: colors.color("secondary-highlight")
+  // color: colors.color("secondary-highlight")
   font-weight: 600
-  font-size: typography.font-size("l")
+  //font-size: typography.font-size("l")
 
   display: flex
   flex-direction: column
   width: 100%
+  position: relative
+  // background: red
+  border-top: 1px solid colors.color(lightest-background)
 
-  ul
-    display: inline-flex
-    margin: 1em 0 0 0
-    color: rgba(colors.color("secondary-highlight"), 0.8)
+  &::before
+    content: "—"
+    position: absolute
+    left: 0
+    top: 0
 
-    li
-      width: fit-content
-      padding: 0
-      margin-right: 0.3em
-      font-weight: 400
-      font-style: italic
-      font-size: 0.8em
-      letter-spacing: 0.01rem
+  // ul
+  //   display: inline-flex
+  //   margin: 1em 0 0 0
+  //   // color: rgba(colors.color("secondary-highlight"), 0.8)
 
-      &::before
-        content: none
+  //   li
+  //     width: fit-content
+  //     padding: 0
+  //     margin-right: 0.3em
+  //     font-weight: 400
+  //     font-style: italic
+  //     font-size: 0.8em
+  //     letter-spacing: 0.01rem
 
-      &:not(:last-child)::after
-        content: ','
+  //     &::before
+  //       content: none
 
-      &:hover::before
-        content: none
+  //     &:not(:last-child)::after
+  //       content: ','
+
+  //     &:hover::before
+  //       content: none
 </style>

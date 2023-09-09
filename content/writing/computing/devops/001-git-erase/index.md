@@ -50,8 +50,8 @@ and it would be nice to have a more coherent history of that feature.
 type: info
 title: note
 ---
-This is not a post about whether one should edit and clean up their commit history;
-this is a post about _how one can edit their commit history, if they want to_.
+This is not about whether one should or shouldn't edit and clean up their commit history;
+this is about _how one can edit their commit history, if they want to_.
 ::
 
 ## Preparing to Edit

@@ -125,4 +125,10 @@ description
   @media(max-width: 1200px)
     display: block
 
+.content-container
+  font-size: typography.font-size("l")
+
+  @media screen and (max-width: 720px)
+    font-size: typography.font-size("m")
+
 </style>

@@ -15,8 +15,8 @@
   margin-bottom: 1em
   margin: 0 0 1.5em 0
   line-height: 24px
-  font-size: typography.font-size("l")
+  // font-size: typography.font-size("l")
 
-  @media screen and (max-width: 720px)
-    font-size: typography.font-size("m")
+  // @media screen and (max-width: 720px)
+  //   font-size: typography.font-size("m")
 </style>

@@ -31,13 +31,13 @@ link: https://foundation.fandom.com/wiki/Gaal_Dornick
 
 When I was a child, I used to ask my mother endless questions.
 
-_What happens after we die?_  
-_Where does our energy go?_  
-_And what about the universe?_  
-_Can it die?_
+What happens after we die?  
+Where does our energy go?  
+And what about the universe?  
+Can it die?
 
-How could there be nothing.  
-And then, suddenly, something?[^nothingness]
+_How could there be nothing.  
+And then, suddenly, something?_[^nothingness]
 
 ::
 
@@ -55,4 +55,4 @@ And then, suddenly, something?[^nothingness]
 [parminedes]: https://en.wikipedia.org/wiki/Parmenides
 [ex-nihilo]: https://en.wikipedia.org/wiki/Ex_nihilo
 [plato]: https://en.wikipedia.org/wiki/plato
-[proof-to-reader]: https://qr.ae/pKXU3D
+<!-- [proof-to-reader]: https://qr.ae/pKXU3D -->

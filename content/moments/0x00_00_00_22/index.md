@@ -34,7 +34,8 @@ When I was a child, I used to ask my mother endless questions.
 What happens after we die?  
 Where does our energy go?  
 And what about the universe?  
-Can it die?
+Can it die?  
+_Where did it come from?_
 
 _How could there be nothing.  
 And then, suddenly, something?_[^nothingness]

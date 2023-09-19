@@ -20,7 +20,7 @@ head:
 
 :::square
 ---
-margin: 30%
+margin: 20%
 ---
 
 ::prose-blockquote
@@ -36,8 +36,9 @@ _Where does our energy go?_
 _And what about the universe?_  
 _Can it die?_
 
-_**How could there be nothing.  
-And then, suddenly, something?**_[^nothingness]
+How could there be nothing.  
+And then, suddenly, something?[^nothingness]
+
 ::
 
 :::
@@ -49,7 +50,7 @@ And then, suddenly, something?**_[^nothingness]
   The idea of nothingness was absurd.
   This school of thought proves a refuge for many a political institution, religious doctrine,
   philosophical school of thought, and even scientific argument. <br/> <br/>
-  [Examples are left as an exercise to the reader.][proof-to-reader]
+  [Examples are left as an exercise to the reader.](https://qr.ae/pKXU3D){fancy}
 
 [parminedes]: https://en.wikipedia.org/wiki/Parmenides
 [ex-nihilo]: https://en.wikipedia.org/wiki/Ex_nihilo

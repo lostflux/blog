@@ -20,7 +20,7 @@ head:
 
 :::square
 ---
-margin: 20%
+margin: 10%
 ---
 
 ::prose-blockquote

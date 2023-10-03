@@ -9,7 +9,7 @@
 
       <ProseA
         class="blog-list-item-category"
-        :href="mainCategoryPath"
+        :href="path"
         fancy
         lowercase
       >
@@ -48,7 +48,7 @@ export default {
       }),
       title: props.blog.subtitle || props.blog.title,
       mainCategory,
-      mainCategoryPath,
+      path: mainCategoryPath.path || "",
     };
   },
 };

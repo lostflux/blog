@@ -1,11 +1,11 @@
 ---
-title: On Nothingness | Amittai
-subtitle: Nothingness
+title: On Not Knowing | Amittai
+subtitle: Not Knowing
 category:
   - moments
-draft: false
+draft: true
 layout: article
-date: 2023-09-19 23:00:00
+date: 2023-09-24 23:00:00
 navigation: false
 
 head:
@@ -20,25 +20,17 @@ head:
 
 :::square
 ---
-margin: 10%
+margin: 20%
 ---
 
 ::prose-blockquote
 ---
-name: Gaal Dornick
-link: https://foundation.fandom.com/wiki/Gaal_Dornick
+name: Socrates, Apology 21d
+link: https://en.wikipedia.org/wiki/Socrates
 ---
 
-When I was a child, I used to ask my mother endless questions.
-
-What happens after we die?  
-Where does our energy go?  
-And what about the universe?  
-Can it die?  
-_Where did it come from?_
-
-_How could there be nothing.  
-And then, suddenly, something?_[^nothingness]
+That which I do not know,  
+neither do I think I know.
 
 ::
 

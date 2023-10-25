@@ -34,14 +34,26 @@
     </div>
   </blockquote>
 </template>
-<script lang="ts" setup>
 
-defineProps<{
-  name: { type: string, default: "" },
-  link: { type: string, default: "" },
-  tags: { type: string, default: "" },
-}>();
+<script lang="ts">
 
+export default {
+  name: "ProseBlockquote",
+  props: {
+    name: {
+      type: String,
+      default: "",
+    },
+    link: {
+      type: String,
+      default: "",
+    },
+    tags: {
+      type: String,
+      default: "",
+    },
+  },
+};
 </script>
 
 <style lang="sass">

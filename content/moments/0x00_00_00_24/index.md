@@ -62,7 +62,6 @@ No, my friend, you're not missing anything at all.[^3]
 
 :::
 
-
 [^1]: [Dr. Ford][dr-ford] is a co-creator of Westworld,
   a theme park populated by androids called "hosts"
   &mdash; human-like robots programmed to fulfill the guests' desires.

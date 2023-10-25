@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineProps({
   href: {
+    // type string or object
+    // type: [String, Object],
     type: String,
     default: "",
   },

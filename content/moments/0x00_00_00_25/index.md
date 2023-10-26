@@ -27,7 +27,7 @@ The physicist Richard Feynman speaks of a similar period of "burn-out"
 in his research, where he felt he was not making progress.
 Except he decided to stop trying to do research entirely,
 instead playing with interesting ideas in his field
-without reagard to where they weould go.  
+without regard to where they would go.  
 Here is an excerpt from his biography:
 
 :br

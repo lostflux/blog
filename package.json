@@ -18,7 +18,7 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/image": "^1.0.0",
     "@nuxt/types": "^2.17.1",
-    "@nuxt/ui": "^0.4.1",
+    "@nuxt/ui": "^2.10.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/style-resources": "^1.2.1",
     "@vueblocks/vue-use-core": "^0.2.11",

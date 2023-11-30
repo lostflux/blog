@@ -44,7 +44,7 @@
 <script lang="ts">
 export default {
   name: "EditIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

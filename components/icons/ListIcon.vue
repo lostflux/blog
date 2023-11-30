@@ -22,7 +22,7 @@
 <script lang="ts">
 export default {
   name: "ListIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

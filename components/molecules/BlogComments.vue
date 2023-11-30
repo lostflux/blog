@@ -43,7 +43,7 @@
               class="blog-action"
               @click="() => userInfo.toggleSubscription()"
             />
-            <NuxtLink to="/writing">
+            <NuxtLink to="/">
               <ListIcon class="blog-action" />
             </NuxtLink>
 
@@ -88,7 +88,7 @@
               @click="() => userInfo.toggleSubscription()"
             />
             <NuxtLink
-              to="/writing"
+              to="/"
             >
               <ListIcon class="blog-action" />
             </NuxtLink>
@@ -130,7 +130,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "@firebase/auth"
 
 // interface Comment {
 //   text: string,
@@ -140,12 +140,12 @@ import { getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
 //   path: string,
 // }
 
-const { textarea: commentTextArea, input: comment } = useTextareaAutosize();
+const { textarea: commentTextArea, input: comment } = useTextareaAutosize()
 
-const comments = ref<HTMLElement>(null);
+const comments = ref<HTMLElement>(null)
 onClickOutside(comments, () => {
-  comments.value.classList.add("hidden");
-});
+  comments.value.classList.add("hidden")
+})
 </script>
 
 <script lang="ts">
@@ -159,7 +159,7 @@ export default {
       userDependency: 0,
       showAllSubscriptions: false,
       userInfo: useUserInfo(),
-    };
+    }
   },
 
   computed: {
@@ -170,13 +170,13 @@ export default {
      * The target is undefined in SSR mode, so ignore in SSR mode.
      */
     currentUser() {
-      this.userDependency;
+      this.userDependency // eslint-disable-line no-unused-expressions
       // ignore in SSR mode.
-      if (typeof document === "undefined") return null;
+      if (typeof document === "undefined") return null
 
-      const { currentUser } = getAuth();
+      const { currentUser } = getAuth()
 
-      return currentUser;
+      return currentUser
     },
 
     /**
@@ -185,11 +185,11 @@ export default {
      * The target is undefined in SSR mode, so ignore in SSR mode.
      */
     isLoggedIn() {
-      this.userDependency;
+      this.userDependency // eslint-disable-line no-unused-expressions
       // ignore in SSR mode.
-      if (typeof document === "undefined") return false;
+      if (typeof document === "undefined") return false
 
-      return !!this.currentUser;
+      return !!this.currentUser
     },
   },
 
@@ -202,8 +202,8 @@ export default {
     showAuthPopup() {
       if (this.showAuthPopup && typeof document !== "undefined") {
         document.getElementById("auth-form-container")
-          .classList.remove("hidden");
-        this.showAuthPopup = false;
+          .classList.remove("hidden")
+        this.showAuthPopup = false
       }
     },
 
@@ -212,12 +212,12 @@ export default {
      * when the user dependency changes.
      */
     userDependency() {
-      this.$forceUpdate();
+      this.$forceUpdate()
     },
 
     userInfo() {
       // this.toggleUserDependency();
-      this.$forceUpdate();
+      this.$forceUpdate()
     },
   },
 
@@ -229,45 +229,44 @@ export default {
   mounted() {
     // this._updateComments();
 
-    const auth = getAuth();
+    const auth = getAuth()
     onAuthStateChanged(auth, () => {
-      this.toggleUserDependency();
-    });
+      this.toggleUserDependency()
+    })
   },
 
   methods: {
 
     // reset auth visibility
     resetAuthVisibility() {
-      this.showAuthPopup = false;
+      this.showAuthPopup = false
     },
 
     /**
      * Toggles whether all subs for current user are shown or not.
      */
     refreshSubscriptions() {
-      this.showAllSubscriptions = !this.showAllSubscriptions;
+      this.showAllSubscriptions = !this.showAllSubscriptions
     },
 
     toggleUserDependency() {
-      this.userDependency = (this.userDependency + 1) % 100;
+      this.userDependency = (this.userDependency + 1) % 100
     },
 
     async _signOut() {
-      // first, hide comments popup
-      const commentsElement = document.getElementsByClassName("comments-section-wrapper")[0];
-      commentsElement.classList.add("hidden");
+      const commentsElement = document.getElementsByClassName("comments-section-wrapper")[0]
+      commentsElement.classList.add("hidden")
 
       // sign out
-      const auth = getAuth();
-      await signOut(auth);
+      const auth = getAuth()
+      await signOut(auth)
     },
 
     signIn() {
-      const commentsElement = document.getElementsByClassName("comments-section-wrapper")[0];
-      commentsElement.classList.add("hidden");
+      const commentsElement = document.getElementsByClassName("comments-section-wrapper")[0]
+      commentsElement.classList.add("hidden")
 
-      this.showAuthPopup = true;
+      this.showAuthPopup = true
     },
 
     /**
@@ -279,15 +278,15 @@ export default {
      *   generate an avatar and submit comment.
      */
     submitComment() {
-      if (comment.value === "") return;
+      if (comment.value === "") return
 
       // if user not logged in, show login popup
-      const auth = getAuth();
-      const { currentUser } = auth;
+      const auth = getAuth()
+      const { currentUser } = auth
 
       if (!currentUser) {
-        this.signIn();
-        return;
+        this.signIn()
+        return
       }
       const newComment = {
         text: comment.value,
@@ -295,13 +294,13 @@ export default {
         avatar: this.userInfo.avatar,
         date: new Date().toISOString(),
         path: useTrimmedPath().path,
-      };
-      this.userInfo.sendComment(newComment);
+      }
+      this.userInfo.sendComment(newComment)
       // reset comment
-      comment.value = "";
+      comment.value = ""
     },
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

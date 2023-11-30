@@ -28,7 +28,7 @@
 <script lang="ts">
 export default {
   name: "FolderIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

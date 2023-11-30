@@ -21,5 +21,5 @@
 <script lang="ts">
 export default {
   name: "PlayStoreIcon",
-};
+}
 </script>

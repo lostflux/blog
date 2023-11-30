@@ -47,4 +47,4 @@ export default () => ({
     path: "/writing/computing/devops",
   },
 
-});
+})

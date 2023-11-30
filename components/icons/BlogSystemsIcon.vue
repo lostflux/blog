@@ -71,5 +71,5 @@
 <script lang="ts">
 export default {
   name: "BlogSystemsIcon",
-};
+}
 </script>

@@ -8,16 +8,8 @@
 @use "@/styles/mixins"
 @use "@/styles/typography"
 .prose-ul
-  // line-height: 22px
   color: inherit
   margin: 1em 0 1em 1em
-
-  // font-size: typography.font-size("l")
-  // font-size: 1em
-  // line-height: 1em
-
-  // @media screen and (max-width: 720px)
-  //   font-size: typography.font-size("m")
 
   .prose-li
     position: relative

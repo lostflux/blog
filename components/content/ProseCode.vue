@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts" setup>
-const { copy, copied } = useClipboard();
+const { copy, copied } = useClipboard()
 </script>
 
 <script lang="ts">
@@ -90,7 +90,7 @@ export default {
       default: () => [],
     },
   },
-};
+}
 </script>
 
 <style lang="sass">
@@ -98,7 +98,6 @@ export default {
 @use "../styles/typography"
 
 .code-container
-  //background: colors.color("light-background")
   background: rgba(colors.color(light-background), 0.2)
   position: relative
   margin: 1rem 0

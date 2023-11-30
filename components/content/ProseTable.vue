@@ -24,7 +24,6 @@
   td
     padding: 10px
 
-  // align text to top of cell
   td, th
     vertical-align: top
 

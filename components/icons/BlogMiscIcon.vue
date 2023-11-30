@@ -74,7 +74,7 @@
 <script lang="ts">
 export default {
   name: "BlogMiscIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

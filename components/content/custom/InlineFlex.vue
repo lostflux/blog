@@ -6,8 +6,6 @@
   </div>
 </template>
 <script setup lang="ts">
-
-// define props
 defineProps({
   justify: {
     type: String,
@@ -17,7 +15,7 @@ defineProps({
     type: String,
     default: "left",
   },
-});
+})
 </script>
 <style lang="sass" scoped>
 .inline-flex-div

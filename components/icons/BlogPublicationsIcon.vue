@@ -18,5 +18,5 @@
 <script lang="ts">
 export default {
   name: "BlogPublicationsIcon",
-};
+}
 </script>

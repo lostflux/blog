@@ -1,10 +1,10 @@
 // import { getAuth } from "firebase/auth";
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"
 // import {
 //   getFirestore, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, updateDoc, arrayUnion, arrayRemove,
 // } from "firebase/firestore";
-import { createAvatar } from "@dicebear/core";
-import { lorelei } from "@dicebear/collection";
+import { createAvatar } from "@dicebear/core"
+import { lorelei } from "@dicebear/collection"
 
 interface Comment {
   text: string,
@@ -29,67 +29,64 @@ const useUserInfo = defineStore("userInfo", {
   getters: {
     getSubscriptionPaths(): Array<string> {
       // return [...this.subscriptions];
-      return Array.from(this.subscriptions);
+      return Array.from(this.subscriptions)
     },
     getComments(): Array<Comment> {
-      return this.currentRouteComments;
+      return this.currentRouteComments
     },
     getUserName(): string {
-      return this.userName;
+      return this.userName
     },
     getAvatar(): string {
-      return this.avatar;
+      return this.avatar
     },
     getSubscriptionCount(): number {
-      return this.subscriptions.size;
+      return this.subscriptions.size
     },
     getCommentCount(): number {
-      return this.currentRouteComments.length;
+      return this.currentRouteComments.length
     },
 
   },
 
   actions: {
     async init() {
-      const { path } = useRoute();
       // dynamic import getAuth
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
 
-      const { currentUser: newUser } = getAuth();
+      const { currentUser: newUser } = getAuth()
       // const auth = getAuth();
-      this.active = !!newUser;
+      this.active = !!newUser
 
-      this.userName = newUser?.displayName || "";
-      this.avatar = await this.getUserAvatar();
-      this.email = newUser?.email || "";
-      this.uid = newUser?.uid;
+      this.userName = newUser?.displayName || ""
+      this.avatar = await this.getUserAvatar()
+      this.email = newUser?.email || ""
+      this.uid = newUser?.uid
 
-      this.updateSubscriptions(true);
-      if (!["/", "/writing"].includes(path)) {
-        this.getCommentsByRoute();
-      }
+      this.updateSubscriptions()
+      this.getCommentsByRoute()
     },
     async update() {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
 
-      const { currentUser: newUser } = getAuth();
-      const auth = getAuth();
-      const { path } = useRoute();
+      const { currentUser: newUser } = getAuth()
+      const auth = getAuth()
+      const { path } = useRoute()
       // if (newUser?.email !== undefined) {
-      this.active = auth.currentUser.email !== null;
+      this.active = auth.currentUser.email !== null
 
-      this.userName = newUser.displayName || "";
-      this.avatar = await this.getUserAvatar();
-      this.email = newUser.email || "";
-      this.uid = newUser.uid;
+      this.userName = newUser.displayName || ""
+      this.avatar = await this.getUserAvatar()
+      this.email = newUser.email || ""
+      this.uid = newUser.uid
 
       if (!["/"].includes(path)) {
-        this.updateSubscriptions(true);
+        this.updateSubscriptions()
       }
       // }
       if (!["/", "/writing"].includes(path)) {
-        await this.getCommentsByRoute();
+        await this.getCommentsByRoute()
       }
     },
 
@@ -102,44 +99,44 @@ const useUserInfo = defineStore("userInfo", {
     */
     async subscribe(_path? : string) {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
       const {
         getFirestore, collection, addDoc, getDocs, query, where, updateDoc, arrayUnion,
-      } = await import("firebase/firestore");
-      const db = getFirestore();
-      const { currentUser } = getAuth();
-      const { path } = useTrimmedPath(_path);
+      } = await import("firebase/firestore")
+      const db = getFirestore()
+      const { currentUser } = getAuth()
+      const { path } = useTrimmedPath(_path)
       const q = query(
         collection(db, "subscriptions"),
         where("page", "==", path),
-      );
+      )
 
       return getDocs(q).then((querySnapshot) => {
         if (querySnapshot.size === 0) {
           addDoc(collection(db, "subscriptions"), {
             page: path,
             subscribers: [currentUser.email],
-          });
+          })
         } else {
-          const doc = querySnapshot.docs[0];
+          const doc = querySnapshot.docs[0]
           updateDoc(doc.ref, {
             subscribers: arrayUnion(currentUser.email),
-          });
+          })
         }
         // this.updateSubscriptions();
-        return true;
+        return true
       }).catch((error) => {
-        console.error("Error getting documents: ", error);
-        return false;
-      });
+        console.error("Error getting documents: ", error)
+        return false
+      })
     },
 
     toggleSubscription(blogPath?: string) {
-      const { path } = useTrimmedPath(blogPath);
+      const { path } = useTrimmedPath(blogPath)
       if (this.isSubscribed(path)) {
-        this.unsubscribe(path);
+        this.unsubscribe(path)
       } else {
-        this.subscribe(path);
+        this.subscribe(path)
       }
     },
 
@@ -151,32 +148,32 @@ const useUserInfo = defineStore("userInfo", {
      */
     async sendEmailToSubs(comment: Comment) {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
       const {
         getFirestore, collection, addDoc, getDocs, query, where,
-      } = await import("firebase/firestore");
-      const db = getFirestore();
-      const { currentUser } = getAuth();
+      } = await import("firebase/firestore")
+      const db = getFirestore()
+      const { currentUser } = getAuth()
 
-      const { path } = useTrimmedPath();
+      const { path } = useTrimmedPath()
 
       // get subscribers to current page
       const q = query(
         collection(db, "subscriptions"),
         where("page", "==", path),
-      );
+      )
 
       // add notification message to mail collection
       getDocs(q).then((querySnapshot) => {
         // snapshot should contain single document with array of subscribers
-        const _rawSubs: Array<Array<string>> = querySnapshot.docs.map((_doc) => _doc.data().subscribers);
+        const _rawSubs: Array<Array<string>> = querySnapshot.docs.map((_doc) => _doc.data().subscribers)
 
-        const _subscribers = _rawSubs[0] || [];
-        const otherSubscriber = (email) => email !== currentUser?.email;
-        _subscribers.filter(otherSubscriber);
+        const _subscribers = _rawSubs[0] || []
+        const otherSubscriber = (email) => email !== currentUser?.email
+        _subscribers.filter(otherSubscriber)
 
-        if (_subscribers.length === 0) return;
-        if (comment.text === "") return;
+        if (_subscribers.length === 0) return
+        if (comment.text === "") return
 
         const outMail = {
           to: _subscribers,
@@ -194,13 +191,13 @@ const useUserInfo = defineStore("userInfo", {
       Check it out here: https://amitt.ai${path}.`,
             // html: ''
           },
-        };
-          // add message to mail collection
+        }
+        // add message to mail collection
         addDoc(collection(db, "mail"), outMail)
           .catch((error) => {
-            console.error(`Error adding document: ${error}`);
-          });
-      });
+            console.error(`Error adding document: ${error}`)
+          })
+      })
     },
 
     /**
@@ -211,31 +208,31 @@ const useUserInfo = defineStore("userInfo", {
      */
     async unsubscribe(_path? : string) {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
       const {
         getFirestore, collection, getDocs, query, where, updateDoc, arrayRemove,
-      } = await import("firebase/firestore");
-      const db = getFirestore();
+      } = await import("firebase/firestore")
+      const db = getFirestore()
 
-      const { path } = useTrimmedPath(_path);
-      const { currentUser } = getAuth();
+      const { path } = useTrimmedPath(_path)
+      const { currentUser } = getAuth()
 
       const q = query(
         collection(db, "subscriptions"),
         where("page", "==", path),
-      );
+      )
 
       try {
-        const querySnapshot = await getDocs(q);
-        const doc = querySnapshot.docs[0];
+        const querySnapshot = await getDocs(q)
+        const doc = querySnapshot.docs[0]
         updateDoc(doc.ref, {
           subscribers: arrayRemove(currentUser.email),
-        });
+        })
         // this.updateSubscriptions();
-        return true;
+        return true
       } catch (error) {
-        console.error("Error getting documents: ", error);
-        return false;
+        console.error("Error getting documents: ", error)
+        return false
       }
     },
 
@@ -247,63 +244,55 @@ const useUserInfo = defineStore("userInfo", {
      */
     async updateSubscriptions() {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
       const {
         getFirestore, collection, getDocs, query, where, onSnapshot,
-      } = await import("firebase/firestore");
-      if (!this.active) return;
-      const db = getFirestore();
-      const { currentUser } = getAuth();
-      if (!currentUser) return;
+      } = await import("firebase/firestore")
+      if (!this.active) return
+      const db = getFirestore()
+      const { currentUser } = getAuth()
+      if (!currentUser) return
 
       // get all documents that have user email in subscribers
       const q = query(
         collection(db, "subscriptions"),
         where("subscribers", "array-contains", currentUser?.email),
-      );
+      )
 
       // const _results: BlogPostMeta[] = [];
       getDocs(q).then(async (querySnapshot) => {
         const newPaths = Array.from(new Set<string>(
           querySnapshot.docs.map((doc) => {
-            const path = doc.data().page;
-            return useTrimmedPath(path).path;
-          }).filter((path) => {
-            return !this.isSubscribed(path);
-          }),
-        ));
+            const path = doc.data().page
+            return useTrimmedPath(path).path
+          }).filter((path) => !this.isSubscribed(path)),
+        ))
 
-        const pages = querySnapshot.docs.map((doc) => doc.data().page);
-        this.subscriptions = new Set<string>([...this.subscriptions].filter((sub) => {
-          return pages.includes(sub);
-        }));
+        const pages = querySnapshot.docs.map((doc) => doc.data().page)
+        this.subscriptions = new Set<string>([...this.subscriptions].filter((sub) => pages.includes(sub)))
 
         newPaths.forEach((path) => {
-          this.subscriptions.add(path);
-        });
+          this.subscriptions.add(path)
+        })
       }).catch((error) => {
-        console.error("Error getting documents: ", error);
-      });
+        console.error("Error getting documents: ", error)
+      })
 
       onSnapshot(q, (newQuerySnapshot) => {
         const paths = Array.from(new Set<string>(
           newQuerySnapshot.docs.map((doc) => {
-            const path = doc.data().page;
-            return useTrimmedPath(path).path;
-          }).filter((path) => {
-            return !this.isSubscribed(path);
-          }),
-        ));
+            const path = doc.data().page
+            return useTrimmedPath(path).path
+          }).filter((path) => !this.isSubscribed(path)),
+        ))
 
-        const pages = newQuerySnapshot.docs.map((doc) => doc.data().page);
-        this.subscriptions = new Set<string>([...this.subscriptions].filter((sub) => {
-          return pages.includes(sub);
-        }));
+        const pages = newQuerySnapshot.docs.map((doc) => doc.data().page)
+        this.subscriptions = new Set<string>([...this.subscriptions].filter((sub) => pages.includes(sub)))
 
         paths.forEach((path) => {
-          this.subscriptions.add(path);
-        });
-      });
+          this.subscriptions.add(path)
+        })
+      })
     },
 
     /**
@@ -315,44 +304,44 @@ const useUserInfo = defineStore("userInfo", {
      */
     async getUserAvatar() {
       // dynamic imports
-      const { getAuth } = await import("firebase/auth");
+      const { getAuth } = await import("firebase/auth")
       const {
         getFirestore, collection, getDocs, query, where, addDoc,
-      } = await import("firebase/firestore");
-      const db = getFirestore();
-      const { currentUser } = getAuth();
+      } = await import("firebase/firestore")
+      const db = getFirestore()
+      const { currentUser } = getAuth()
 
       if (!currentUser) {
         // console.error("Call to getUserAvatar with no user logged in.");
-        return "";
+        return ""
       }
 
       const q = query(
         collection(db, "avatars"),
         where("uid", "==", currentUser?.uid),
-      );
+      )
 
       return getDocs(q).then((querySnapshot) => {
         // if query is empty, generate new avatar
         if (querySnapshot.size === 0) {
           const avatar = createAvatar(lorelei, {
             seed: `${currentUser?.uid} @ ${new Date().toISOString()}`,
-          });
+          })
 
           const newUserAvatar = {
             uid: currentUser.uid,
             avatar: avatar.toString(),
-          };
+          }
 
-          addDoc(collection(db, "avatars"), newUserAvatar);
-          return newUserAvatar.avatar;
+          addDoc(collection(db, "avatars"), newUserAvatar)
+          return newUserAvatar.avatar
         } else {
           // get first avatar in querySnapshot
-          const doc = querySnapshot.docs[0];
-          const userAvatar: string = doc.data().avatar;
-          return userAvatar;
+          const doc = querySnapshot.docs[0]
+          const userAvatar: string = doc.data().avatar
+          return userAvatar
         }
-      });
+      })
     },
 
     /**
@@ -368,9 +357,9 @@ const useUserInfo = defineStore("userInfo", {
       // dynamic imports
       const {
         getFirestore, collection, getDocs, query, where, orderBy, onSnapshot,
-      } = await import("firebase/firestore");
-      const db = getFirestore();
-      const { path } = useTrimmedPath(_path);
+      } = await import("firebase/firestore")
+      const db = getFirestore()
+      const { path } = useTrimmedPath(_path)
 
       // get comments for the current path
       // sorted by date.
@@ -378,10 +367,10 @@ const useUserInfo = defineStore("userInfo", {
         collection(db, "comments"),
         where("path", "==", path),
         orderBy("date", "asc"),
-      );
+      )
 
       await getDocs(q).then((querySnapshot) => {
-        const _results: Comment[] = [];
+        const _results: Comment[] = []
         querySnapshot.forEach((doc) => {
           const comment: Comment = {
             text: doc.data().text,
@@ -389,15 +378,15 @@ const useUserInfo = defineStore("userInfo", {
             avatar: doc.data().avatar,
             date: doc.data().date,
             path: doc.data().page || "",
-          };
+          }
 
-          _results.push(comment);
-        });
+          _results.push(comment)
+        })
 
-        this.currentRouteComments = _results;
+        this.currentRouteComments = _results
 
         onSnapshot(q, (newQuerySnapshot) => {
-          const _newResults: Comment[] = [];
+          const _newResults: Comment[] = []
           newQuerySnapshot.forEach((doc) => {
             const comment: Comment = {
               text: doc.data().text,
@@ -405,13 +394,13 @@ const useUserInfo = defineStore("userInfo", {
               avatar: doc.data().avatar,
               date: doc.data().date,
               path: doc.data().page || "",
-            };
+            }
 
-            _newResults.push(comment);
-          });
-          this.currentRouteComments = _newResults;
-        });
-      });
+            _newResults.push(comment)
+          })
+          this.currentRouteComments = _newResults
+        })
+      })
     },
 
     /**
@@ -423,31 +412,36 @@ const useUserInfo = defineStore("userInfo", {
      */
     async sendComment(comment: Comment) {
       // dynamic imports
-      const { getFirestore, collection, addDoc } = await import("firebase/firestore");
+      const { getFirestore, collection, addDoc } = await import("firebase/firestore")
 
-      const db = getFirestore();
+      const db = getFirestore()
       //          ^?
 
-      comment.path = useTrimmedPath(comment.path).path;
+      const trimmedPath = useTrimmedPath(comment.path).path
 
-      await addDoc(collection(db, "comments"), comment)
-        .then(() => { return true; })
+      const _comment = {
+        ...comment,
+        path: trimmedPath,
+      }
+
+      await addDoc(collection(db, "comments"), _comment)
+        .then(() => true)
         .catch((error) => {
-          console.error("Error adding document: ", error);
-          return false;
-        });
+          console.error("Error adding document: ", error)
+          return false
+        })
 
-      this.sendEmailToSubs(comment);
+      this.sendEmailToSubs(comment)
     },
 
     /**
      * Check if active user is subscribed to a given route.
      */
     isSubscribed(_path?: string) {
-      const { path } = useTrimmedPath(_path);
-      return this.getSubscriptionPaths.includes(path);
+      const { path } = useTrimmedPath(_path)
+      return this.getSubscriptionPaths.includes(path)
     },
   },
-});
+})
 
-export default useUserInfo;
+export default useUserInfo

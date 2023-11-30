@@ -7,7 +7,7 @@
     :style="style"
   >
     <div
-      v-if="tocVisible && toc.links.length > 0"
+      v-if="toc && toc?.links?.length > 1"
       class="header-toc-plus-button"
     >
       <div class="toc-wrapper">
@@ -42,8 +42,8 @@
 
 <script lang="ts">
 const {
-  navHeight, navLinks,
-} = useConfig();
+  navHeight,
+} = useConfig()
 
 export default {
   name: "AppHeader",
@@ -54,67 +54,53 @@ export default {
       scrollHeight: 0,
       height: 0,
       menuOpen: false,
-      anchors: [],
       tocExpanded: false,
-    };
+    }
   },
   computed: {
     hidden() {
-      return this.scrollHeight === this.height;
+      return this.scrollHeight === this.height
     },
     revealed() {
-      return this.scrollHeight === 0;
+      return this.scrollHeight === 0
     },
     style() {
       return this.scrolledToTop
         ? "box-shadow: none; background-color: none;"
-        : `transform: translateY(-${this.scrollHeight}px)`;
+        : `transform: translateY(-${this.scrollHeight}px)`
     },
     scrolledToTop() {
-      return this.lastScrollPosition <= 0;
+      return this.lastScrollPosition <= 0
     },
     route() {
-      const { path } = useTrimmedPath();
-      return path;
+      const { path } = useTrimmedPath()
+      return path
     },
   },
   watch: {
     menuOpen: {
       handler() {
-        this.height = this.$el.offsetHeight || 0;
+        this.height = this.$el.offsetHeight || 0
       },
       deep: true,
     },
-    anchors() {
-      // this.$forceUpdate();
-    },
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll)
 
     // set height initially.
-    this.height = navHeight;
-
-    this.setup();
+    this.height = navHeight
   },
   beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll)
   },
   methods: {
     toggleMenu() {
-      this.height = this.$refs.header.offsetHeight || 0;
+      // @ts-ignore
+      this.height = this.$refs.header.offsetHeight || 0
     },
     close() {
-      this.menuOpen = false;
-    },
-
-    setup() {
-      const { path } = useTrimmedPath();
-      if (path === "/") {
-        this.anchors = navLinks.homeLinks;
-      }
-
-      this.$forceUpdate();
+      this.menuOpen = false
     },
 
     /**
@@ -123,33 +109,39 @@ export default {
      * NOTE: `scroll position` increases as you go down the page.
      */
     handleScroll() {
-      const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
+      const currentScrollPosition = window.scrollY || document.documentElement.scrollTop
 
       // we want positive offset if scrolling down, negative if scrolling up
-      const offset = this.scrollSpeed * (currentScrollPosition - this.lastScrollPosition);
-      this.lastScrollPosition = currentScrollPosition;
+      const offset = this.scrollSpeed * (currentScrollPosition - this.lastScrollPosition)
+      this.lastScrollPosition = currentScrollPosition
 
       if (offset > 0 && !this.hidden && !this.menuOpen) {
-        this.scrollHeight = Math.min(this.scrollHeight + offset, this.height);
+        this.scrollHeight = Math.min(this.scrollHeight + offset, this.height)
         if (this.scrollHeight >= this.height) {
-          this.scrollHeight = this.height;
+          this.scrollHeight = this.height
         }
       } else if (offset < 0 && !this.revealed) {
-        this.scrollHeight = Math.max(0, this.scrollHeight + offset);
+        this.scrollHeight = Math.max(0, this.scrollHeight + offset)
       }
     },
   },
-};
+}
 </script>
 
 <script lang="ts" setup>
-const { toc } = useContent();
-const { showToc } = useConfig();
-const tocVisible = await showToc();
+import { withoutTrailingSlash } from "ufo"
 
-const menuOpen = ref(false);
+const path = withoutTrailingSlash(useRoute().path)
+const { data: page } = await useAsyncData(async () => {
+  const _page = await queryContent().where({ _path: path }).findOne()
+  return _page
+})
 
-const headerRef = ref(null);
+const toc = page?.value?.body?.toc
+
+const menuOpen = ref(false)
+
+const headerRef = ref(null)
 </script>
 
 <style lang="sass">
@@ -169,16 +161,8 @@ const headerRef = ref(null);
   width: 100%
   display: table
   padding: 0
-
-  // trick: make header stick out a bit
-  // by filtering it with grayscale.
-  // filter: grayscale(30%) !important
-
-  // blur when there's content underneath
-  // background-color: colors.color("background")
   background-color: rgba(colors.color("background"), 0.8)
   backdrop-filter: blur(2px)
-  //background-color: red
 
   pointer-events: auto !important
   user-select: auto !important
@@ -195,9 +179,6 @@ const headerRef = ref(null);
   -moz-transition: all 0.1s ease-in-out
   -o-transition: all 0.1s ease-in-out
   transition: all 0.1s ease-in-out
-
-  //&.collapse-into-page
-  //  border-bottom: 1px solid colors.color(lightest-background)
 
   .footer-link
     background: none !important
@@ -246,9 +227,6 @@ const headerRef = ref(null);
 
 .header-toc-plus-button
   position: relative
-  //padding: 10px 0
-  //margin: 0 auto
-  //border-bottom: 2px dotted colors.color("lightest-background")
   font-size: typography.font-size(m)
   margin: 0
   margin-left: 1em

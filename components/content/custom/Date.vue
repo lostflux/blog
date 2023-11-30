@@ -21,12 +21,12 @@ export default {
     },
   },
   setup(props) {
-    const date = new Date(props.date);
+    const date = new Date(props.date)
     return {
       formattedDate: date.toLocaleDateString(),
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

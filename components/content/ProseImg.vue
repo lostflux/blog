@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { withBase } from "ufo";
+import { withBase } from "ufo"
 
 const props = defineProps({
   src: {
@@ -37,10 +37,8 @@ const props = defineProps({
     type: [String, Number],
     default: undefined,
   },
-});
-const refinedSrc = computed(() => {
-  return withBase(props.src, useRoute().path);
-});
+})
+const refinedSrc = computed(() => withBase(props.src, useRoute().path))
 </script>
 
 <style lang="sass" scoped>

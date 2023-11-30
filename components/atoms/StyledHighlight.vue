@@ -10,8 +10,8 @@
 
 <script lang="ts">
 
-const tabHeight = 42;
-const tabWidth = 120;
+const tabHeight = 42
+const tabWidth = 120
 
 export default {
   name: "StyledHighlight",
@@ -25,7 +25,7 @@ export default {
     return {
       index: 0,
       vertical: true,
-    };
+    }
   },
   computed: {
     style() {
@@ -35,7 +35,7 @@ export default {
             -moz-transform: translateX(${this.index * tabWidth}px);
             -ms-transform: translateX(${this.index * tabWidth}px);
             -o-transform: translateX(${this.index * tabWidth}px);
-            transform: translateX(${this.index * tabWidth}px);`;
+            transform: translateX(${this.index * tabWidth}px);`
       }
       return this.vertical
         ? `
@@ -49,48 +49,46 @@ export default {
               -moz-transform: translateX(${this.index * tabWidth}px);
               -ms-transform: translateX(${this.index * tabWidth}px);
               -o-transform: translateX(${this.index * tabWidth}px);
-              transform: translateX(${this.index * tabWidth}px);`;
+              transform: translateX(${this.index * tabWidth}px);`
     },
   },
 
   watch: {
-    index(newIndex: number) {
+    index() {
       // re-render the component
-      this.$forceUpdate();
+      this.$forceUpdate()
     },
-    vertical(newVertical: boolean) {
+    vertical() {
       // re-render the component
-      this.$forceUpdate();
+      this.$forceUpdate()
     },
   },
   mounted() {
-    this.vertical = window.innerWidth > 600;
+    this.vertical = window.innerWidth > 600
     window.addEventListener("resize", () => {
-      this.vertical = window.innerWidth > 600;
-      // this.$forceUpdate();
-    });
+      this.vertical = window.innerWidth > 600
+    })
+    // eslint-disable-next-line no-restricted-globals
     screen.orientation.addEventListener("change", () => {
-      this.vertical = window.innerWidth > 600;
-      // this.$forceUpdate();
-    });
+      this.vertical = window.innerWidth > 600
+    })
   },
 
   unmounted() {
     window.removeEventListener("resize", () => {
-      this.vertical = window.innerWidth > 600;
-      // this.$forceUpdate();
-    });
+      this.vertical = window.innerWidth > 600
+    })
+    // eslint-disable-next-line no-restricted-globals
     screen.orientation.removeEventListener("change", () => {
-      this.vertical = window.innerWidth > 600;
-      // this.$forceUpdate();
-    });
+      this.vertical = window.innerWidth > 600
+    })
   },
   methods: {
     highlight(newIndex: number) {
-      this.index = newIndex;
+      this.index = newIndex
     },
   },
-};
+}
 
 </script>
 

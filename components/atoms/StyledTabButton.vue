@@ -22,35 +22,35 @@ export default {
     return {
       // initially, the first tab is active.
       selected: this.$props.identifier === 0,
-    };
+    }
   },
   computed: {
     style() {
       if (this.selected) {
-        return "aria-selected: true;";
+        return "aria-selected: true;"
       } else {
-        return "aria-selected: false";
+        return "aria-selected: false"
       }
     },
   },
 
   watch: {
-    selected(newSelected: boolean) {
-      this.$forceUpdate();
+    selected() {
+      this.$forceUpdate()
     },
   },
   methods: {
     focus() {
-      document.getElementById(`styled-button-${this.$props.identifier}`)?.focus();
+      document.getElementById(`styled-button-${this.$props.identifier}`)?.focus()
     },
     select() {
-      this.selected = true;
+      this.selected = true
     },
     deselect() {
-      this.selected = false;
+      this.selected = false
     },
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

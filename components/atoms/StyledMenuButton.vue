@@ -1,6 +1,9 @@
 <template>
   <button
-    class="menu-button"
+    :class="{
+      'menu-button': true,
+      'clicked': clicked,
+    }"
     aria-controls="primary-navigation"
     aria-expanded="false"
     @click="click"
@@ -19,29 +22,19 @@
   </button>
 </template>
 
+<script lang="ts" setup>
+const clicked = ref(false)
+
+const click = () => {
+  clicked.value = !clicked.value
+}
+</script>
+
 <script lang="ts">
 
 export default {
   name: "StyledMenuButton",
-  data() {
-    return {
-      menuOpen: false,
-      clicked: false,
-    };
-  },
-  methods: {
-    toggle() {
-      this.menuOpen = !this.menuOpen;
-    },
-    click() {
-      // this.clicked = !this.clicked;
-      if (typeof document !== "undefined") {
-        const btn = document.querySelector(".menu-button");
-        btn.classList.toggle("clicked");
-      }
-    },
-  },
-};
+}
 </script>
 
 <style lang="sass" scoped>
@@ -84,7 +77,6 @@ export default {
       x: 10%
 
   &.clicked
-
     .top, .bottom
       width: 70%
       x: 15%

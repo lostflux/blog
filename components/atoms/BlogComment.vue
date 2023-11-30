@@ -34,7 +34,10 @@
 </template>
 
 <script lang="ts">
-import markdownParser from "@nuxt/content/transformers/markdown";
+
+// @ts-ignore
+// eslint-disable-next-line import/no-unresolved
+import markdownParser from "@nuxt/content/transformers/markdown"
 
 interface Comment {
   text: string,
@@ -44,13 +47,9 @@ interface Comment {
   path: string,
 }
 
-// types
-
 export default {
   name: "BlogComment",
   components: {},
-
-  // define props
   props: {
     comment: {
       type: Object as () => Comment,
@@ -61,14 +60,14 @@ export default {
       required: true,
     },
   },
-  // init
   async setup(props) {
-    const { id, comment } = toRefs(props);
+    const { id, comment } = toRefs(props)
     return {
       parsedMarkdown: await markdownParser.parse(id.value, comment.value.text),
-    };
+    }
   },
-};
+}
+
 </script>
 
 <style lang="sass">

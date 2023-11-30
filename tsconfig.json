@@ -17,7 +17,7 @@
       "@types/node", // standard node types
       "vite/client", // if using vite
       "@nuxt/types",
-      "@nuxt/image-edge"
+      "@nuxt/image"
       // ...
     ]
   }

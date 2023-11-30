@@ -2,7 +2,10 @@
   <div
     id="site-search-background"
     ref="siteSearchBackground"
-    class="site-search-background hidden"
+    :class="{
+      'site-search-background': true,
+      'hidden': !open
+    }"
   >
     <div
       ref="siteSearch"
@@ -27,25 +30,16 @@
             >
           </form>
           <div
-            v-if="searchTerm.length > 0 && years.length > 0"
+            v-if="searchTerm.length > 0 && blogs.length > 0"
             class="blog-list-container"
           >
-            <div
-              v-for="year in years"
-              :key="year"
-              class="blog-list-year"
-            >
-              <div class="blog-list-year-title">
-                {{ year }}
-              </div>
-              <ul class="blog-list">
-                <BlogListItem
-                  v-for="(blog, i) in blogs.filter((blog) => new Date(blog.date).getFullYear() === year)"
-                  :key="i"
-                  :blog="blog"
-                />
-              </ul>
-            </div>
+            <ul class="blog-list">
+              <BlogListItem
+                v-for="blog in blogs"
+                :key="blog._path"
+                :blog="blog"
+              />
+            </ul>
           </div>
 
           <div
@@ -53,14 +47,10 @@
             class="blog-list-container"
           >
             <ProseP v-if="searchTerm.length == 0">
-              Empty query.
-              <br>
-              Please type something to search.
+              Type something...
             </ProseP>
             <ProseP v-else>
               No results found.
-              <br>
-              Please try broadening your search.
             </ProseP>
           </div>
         </div>
@@ -69,104 +59,58 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+import { withoutTrailingSlash } from "ufo"
+
+const searchTerm = ref("")
+const result = ref(null)
+const textBar = ref<HTMLInputElement>(null)
+const blogs = ref([])
+
+const siteSearch = ref<HTMLElement>(null)
+const siteSearchBackground = ref<HTMLElement>(null)
+onClickOutside(siteSearch, () => {
+  const btn = document.querySelector(".menu-button")
+  btn.classList.remove("clicked")
+  siteSearchBackground.value?.classList.add("hidden")
+})
+
+defineProps<{
+  open: boolean
+}>()
+
+// focus on search bar when mounted
+onMounted(() => textBar.value.focus())
+
+const search = () => {
+  if (!searchTerm.value) {
+    result.value = null
+    return
+  }
+  const { search } = useAlgoliaSearch("netlify_e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3_main_all")
+  search({ query: searchTerm.value })
+    .then(async (res) => {
+      result.value = res
+
+      const searchData = result.value?.hits?.map((res) => ({
+        _path: withoutTrailingSlash(res.url) || "",
+        title: res?.title || "",
+        description: res?.description || "",
+      })) || []
+
+      blogs.value = searchData
+    })
+}
+
+watch(searchTerm, search)
+
+</script>
+
 <script lang="ts">
+
 export default {
   name: "SearchBar",
-
-  async setup() {
-    const siteSearch = ref<HTMLElement>(null);
-    const siteSearchBackground = ref<HTMLElement>(null);
-    onClickOutside(siteSearch, () => {
-      const btn = document.querySelector(".menu-button");
-      btn.classList.remove("clicked");
-      siteSearchBackground.value?.classList.add("hidden");
-    });
-
-    const { data: rawData } = await useAsyncData(
-      "search-page-data",
-
-      async () => {
-        const _data = queryContent()
-          .only(["title", "subtitle", "date", "category", "_path"])
-          .find();
-
-        return _data;
-      },
-    );
-
-    let data = rawData.value || [];
-
-    data = data.filter((blog) => blog.category !== "meta");
-
-    const textBar = ref<HTMLInputElement>(null);
-
-    return { data, textBar };
-  },
-  data() {
-    return {
-      searchTerm: "",
-      result: null,
-      searchPaths: [],
-      blogs: [],
-      years: [],
-    };
-  },
-
-  watch: {
-    searchTerm() {
-      this.search();
-    },
-  },
-  mounted() {
-    // get text bar
-    const searchInput = document.querySelector("#searchbar") as HTMLInputElement;
-    searchInput.focus();
-    searchInput?.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        const btn = document.querySelector(".menu-button");
-        btn.classList.remove("clicked");
-        this.$refs.siteSearchBackground.classList.add("hidden");
-      }
-    });
-  },
-
-  methods: {
-    async search() {
-      if (!this.searchTerm) {
-        this.result = null;
-        return;
-      }
-      const { search } = useAlgoliaSearch("netlify_e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3_main_all");
-      search({ query: this.searchTerm })
-        .then(async (result) => {
-          /**
-           * Only show content pages in search results.
-           * NOTE on depths:
-           * 1: /
-           * 2: /writing
-           * 3: /writing/{computing, math, misc, etc}
-           * 4: /writing/{computing, math, misc, etc}/{post}
-          */
-          this.result = result;
-          this.searchPaths = this.result.hits.map((hit) => useTrimmedPath(hit.url).path);
-
-          const searchData = this.data.filter((blog) => {
-            const _path = useTrimmedPath(blog._path).path;
-            return this.searchPaths.includes(_path) && blog.category !== "meta";
-          });
-
-          this.blogs = searchData;
-          const _years = this.blogs
-            .map((blog) => new Date(blog.date).getFullYear())
-            .filter((year) => year);
-          this.years = [...new Set(_years)].sort().reverse();
-        });
-    },
-    focus() {
-      this.$refs.textBar.focus();
-    },
-  },
-};
+}
 
 </script>
 
@@ -196,7 +140,6 @@ export default {
 
   .site-search
     width: min(100%, 75ch)
-    //height: 100%
     @include mixins.line-split
 
     @media screen and (max-width: 1150px)
@@ -218,7 +161,7 @@ export default {
     padding-right: 50px
     color: colors.color(foreground)
     font-family: typography.font("sans-serif")
-    padding: 0 // 15px
+    padding: 0
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2)
     text-transform: lowercase
     transition: all 0.3s ease-in-out
@@ -234,7 +177,6 @@ export default {
       color: colors.color(lightest-foreground)
       border: 1px solid colors.color(lightest-background)
 
-    // prevent zooming
     font-size: 16px
     -moz-text-size-adjust: none
     -webkit-text-size-adjust: none

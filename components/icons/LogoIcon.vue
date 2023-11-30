@@ -27,7 +27,7 @@
 <script lang="ts" scoped>
 export default {
   name: "LogoIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

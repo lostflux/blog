@@ -50,7 +50,7 @@ export default {
       default: false,
     },
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

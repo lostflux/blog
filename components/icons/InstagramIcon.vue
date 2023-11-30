@@ -29,7 +29,7 @@
 <script lang="ts">
 export default {
   name: "InstagramIcon",
-};
+}
 </script>
 <style lang="sass" scoped>
 .instagram-icon

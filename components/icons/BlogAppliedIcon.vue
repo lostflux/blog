@@ -32,5 +32,5 @@
 <script lang="ts">
 export default {
   name: "BlogAppliedIcon",
-};
+}
 </script>

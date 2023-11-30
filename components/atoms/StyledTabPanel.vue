@@ -21,20 +21,20 @@ export default {
     return {
       // initially, the first tab is active.
       active: this.$props.identifier === 0 ? 1 : 0,
-    };
+    }
   },
   methods: {
     activateTab() {
-      this.active = 1;
+      this.active = 1
     },
     muteTab() {
-      this.active = 0;
+      this.active = 0
     },
     focus() {
-      this.$refs.tab.focus();
+      this.$refs.tab.focus()
     },
   },
-};
+}
 </script>
 
 <style lang="sass">
@@ -48,7 +48,6 @@ export default {
   height: auto
   padding: 10px 5px
   position: absolute    // fix jumping content when switching tabs
-  // background: yellow
   top: 0
   bottom: 0
   left: 0

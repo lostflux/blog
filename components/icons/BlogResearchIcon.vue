@@ -55,5 +55,5 @@
 <script lang="ts">
 export default {
   name: "BlogResearchIcon",
-};
+}
 </script>

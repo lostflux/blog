@@ -16,5 +16,5 @@
 <script lang="ts">
 export default {
   name: "StarIcon",
-};
+}
 </script>

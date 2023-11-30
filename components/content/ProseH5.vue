@@ -8,12 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRuntimeConfig } from "#imports";
-
-defineProps<{ id: string }>();
-const heading = 5;
-const { anchorLinks } = useRuntimeConfig().public.content;
-const generate = anchorLinks?.depth >= heading && !anchorLinks?.exclude.includes(heading);
+defineProps<{ id: string }>()
 </script>
 
 <style lang="sass" scoped>

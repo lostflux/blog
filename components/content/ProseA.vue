@@ -1,8 +1,10 @@
 <script setup lang="ts">
 defineProps({
   href: {
-    // type string or object
-    // type: [String, Object],
+    type: String,
+    default: "",
+  },
+  to: {
     type: String,
     default: "",
   },
@@ -10,15 +12,19 @@ defineProps({
     type: Boolean,
     default: false,
   },
-  blank: {
+  external: {
     type: Boolean,
     default: false,
   },
+  // blank: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   forced: {
     type: Boolean,
     default: false,
   },
-});
+})
 </script>
 
 <template>
@@ -26,12 +32,13 @@ defineProps({
     :class="{
       'link-wrapper': true,
       'fancy': fancy,
-      'inactive': !href && !forced
+      'inactive': !(to || href) && !forced
     }"
   >
     <NuxtLink
-      :href="href"
+      :href="to || href"
       :class="{'link': true, 'arrow': fancy}"
+      :target="external ? '_blank' : ''"
     >
       <span class="link-text">
         <slot />
@@ -79,7 +86,6 @@ defineProps({
     line-height: 0.9em
     display: inline
 
-    //a
     border-bottom: 1px solid transparent
 
     &:not(:last-child)
@@ -96,7 +102,6 @@ defineProps({
     fill: currentcolor
 
   &.inactive
-    // disable hover
 
     .link
       color: colors.color(dark-foreground) !important

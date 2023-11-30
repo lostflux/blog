@@ -20,7 +20,7 @@
 <script lang="ts">
 export default {
   name: "ExpandDiagonalIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

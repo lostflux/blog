@@ -53,7 +53,7 @@ export default {
       default: "",
     },
   },
-};
+}
 </script>
 
 <style lang="sass">
@@ -63,7 +63,6 @@ export default {
 
 .prose-blockquote
   width: calc(100% - 1rem)
-  //text-align: left
   position: relative
   margin: 0.5rem
   padding: 0 2rem 0 1em

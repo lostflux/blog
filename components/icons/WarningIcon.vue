@@ -27,5 +27,5 @@
 <script lang="ts">
 export default {
   name: "WarningIcon",
-};
+}
 </script>

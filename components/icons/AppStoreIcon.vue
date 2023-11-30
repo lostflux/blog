@@ -50,5 +50,5 @@
 <script lang="ts">
 export default {
   name: "AppStoreIcon",
-};
+}
 </script>

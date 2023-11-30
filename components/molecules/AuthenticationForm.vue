@@ -88,58 +88,58 @@
 </template>
 
 <script lang="ts" setup>
-import { createAvatar } from "@dicebear/core";
-import { lorelei } from "@dicebear/collection";
+import { createAvatar } from "@dicebear/core"
+import { lorelei } from "@dicebear/collection"
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
   getAuth,
-} from "@firebase/auth";
+} from "@firebase/auth"
 
 import {
   getFirestore,
   addDoc,
   collection,
-} from "@firebase/firestore";
+} from "@firebase/firestore"
 
-const panes = ["sign in", "sign up"];
+const panes = ["sign in", "sign up"]
 
-const tabs = ref([]);
-const tabButtons = ref([]);
-const highlight = ref(null);
+const tabs = ref([])
+const tabButtons = ref([])
+const highlight = ref(null)
 
-const activeTabId = ref(0);
-const tabFocus = new NumRefManager(panes.length - 1);
+const activeTabId = ref(0)
+const tabFocus = new NumRefManager(panes.length - 1)
 
 const focusTab = () => {
-  tabButtons.value[tabFocus.value]?.focus();
-};
+  tabButtons.value[tabFocus.value]?.focus()
+}
 
 const setActiveTabId = (id: number) => {
-  tabs.value[activeTabId.value]?.muteTab();
+  tabs.value[activeTabId.value]?.muteTab()
 
   // change active tab to current
-  tabFocus.value = id;
+  tabFocus.value = id
 
-  activeTabId.value = id;
-  tabs.value[activeTabId.value]?.activateTab();
+  activeTabId.value = id
+  tabs.value[activeTabId.value]?.activateTab()
 
   // show the corresponding tab panel
-  highlight.value?.highlight(id);
+  highlight.value?.highlight(id)
 
-  focusTab();
-};
+  focusTab()
+}
 
-let selectedTab = 0;
+let selectedTab = 0
 const selectTab = (id: number) => {
   if (id !== selectedTab) {
-    tabButtons.value[selectedTab]?.deselect();
-    selectedTab = id;
-    tabButtons.value[selectedTab]?.select();
+    tabButtons.value[selectedTab]?.deselect()
+    selectedTab = id
+    tabButtons.value[selectedTab]?.select()
   }
-};
+}
 
 // Only re-run the effect if tabFocus changes
 // watch(tabFocus.ref, focusTab);
@@ -156,7 +156,7 @@ export default {
       username: "",
       email: "",
       password: "",
-    };
+    }
   },
 
   methods: {
@@ -166,77 +166,79 @@ export default {
         !(this.username.length < 5),
         !(this.email.length < 5),
         !(this.password.length < 5),
-      ];
+      ]
 
       if (!validation.every((v) => v)) {
-        console.error("validation error");
-        return;
+        console.error("validation error")
+        return
       }
 
-      const auth = getAuth();
+      const auth = getAuth()
 
       createUserWithEmailAndPassword(auth, this.email, this.password)
+        // eslint-disable-next-line
         .then((userCredential) => {
           // Signed in
-          const user = auth.currentUser;
+          const user = auth.currentUser
 
           updateProfile(user, {
             displayName: this.username,
-          });
+          })
 
           // add avatar to avatars collection
-          const db = getFirestore();
+          const db = getFirestore()
 
           const avatar = createAvatar(lorelei, {
             seed: user.uid,
-          });
+          })
           const newUserAvatar = {
             uid: user.uid,
             avatar: avatar.toString(),
-          };
-          addDoc(collection(db, "avatars"), newUserAvatar);
+          }
+          addDoc(collection(db, "avatars"), newUserAvatar)
           // ...
           // close sign-in popup after sign-in;
-          this.closePopUp();
+          this.closePopUp()
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
           // ..
-        });
+        })
     },
 
     // sign in
     async signIn() {
-      const auth = getAuth();
+      const auth = getAuth()
 
       signInWithEmailAndPassword(auth, this.email, this.password)
+        // eslint-disable-next-line
         .then((userCredential) => {
         // Signed in
           // const { user } = userCredential;
           // ...
           // close sign-in popup after sign-in;
-          this.closePopUp();
+          this.closePopUp()
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.error(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
         // ..
-        });
+        })
     },
     closePopUp() {
       if (typeof document !== "undefined") {
-        const authFormContainer = document.getElementById("auth-form-container");
+        const authFormContainer = document.getElementById("auth-form-container")
         if (authFormContainer) {
-          authFormContainer.classList.add("hidden");
+          authFormContainer.classList.add("hidden")
         }
       }
     },
 
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

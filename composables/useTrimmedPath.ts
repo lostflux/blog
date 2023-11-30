@@ -6,9 +6,9 @@
 export default (currentPath?: string) => {
   const { path: rawPath } = currentPath
     ? { path: currentPath }
-    : useRoute();
+    : useRoute()
 
   // remove trailing slash
-  const path = rawPath.endsWith("/") && rawPath.length > 1 ? rawPath.slice(0, -1) : rawPath;
-  return { path };
-};
+  const path = rawPath.endsWith("/") && rawPath.length > 1 ? rawPath.slice(0, -1) : rawPath
+  return { path }
+}

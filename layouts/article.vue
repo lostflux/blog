@@ -15,20 +15,29 @@
           <div
             class="bottom-items"
           >
-            <template v-if="!isMeta">
-              <BlogEditButton />
-              <InlineFlex class="archive-link">
-                <ProseA
-                  href="/"
-                  fancy
-                >
-                  archive
-                </ProseA>
-              </InlineFlex>
+            <!-- <template> -->
+
+            <BlogEditButton />
+
+            <!-- <InlineFlex class="archive-link"> -->
+            <div class="page-foot-actions">
+              <ProseA
+                class="archive-link"
+                to="/"
+              >
+                open the archive
+              </ProseA>
               <Surround />
-            </template>
+            </div>
+            <!-- </InlineFlex> -->
+            <!-- <div>
+            </div> -->
+            <!-- </template> -->
             <AppFooter identifier="in-page" />
-            <SearchButton class="search-button" />
+            <SearchButton
+              class="search-button"
+              @toggle-search="toggleSearch"
+            />
           </div>
           <BlogComments
             id="blog-comments"
@@ -39,30 +48,32 @@
             class="hidden"
           />
         </div>
-        <SearchBar />
+        <SearchBar :open="searchOpen" />
       </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { getAuth, onAuthStateChanged } from "@firebase/auth";
+import { getAuth, onAuthStateChanged } from "@firebase/auth"
 
 // reference to comments section for detecting when to show auth popup
-const commentsSection = ref<HTMLElement | null>(null);
+const commentsSection = ref<HTMLElement | null>(null)
 
-const { useMetaPage } = useConfig();
-const isMeta = await useMetaPage();
+const searchOpen = ref(false)
+const toggleSearch = () => {
+  searchOpen.value = !searchOpen.value
+}
 
 onMounted(() => {
-  const userInfo = useUserInfo();
+  const userInfo = useUserInfo()
   // listen for auth state changes
-  const auth = getAuth();
-  userInfo.init();
+  const auth = getAuth()
+  userInfo.init()
   onAuthStateChanged(auth, () => {
-    userInfo.init();
-  });
-});
+    userInfo.init()
+  })
+})
 </script>
 
 <style lang="sass" scoped>
@@ -80,16 +91,22 @@ onMounted(() => {
 .article-main
   @include mixins.line-split
   margin-top: 0
-  //min-height: 100% !important
-  // flex-grow: 1
 
 .archive-link
-  margin-top: auto
+  // margin-top: auto
   text-transform: uppercase
+
 .article-blog-navigation
   position: sticky
   left: 0
   top: 0
+
+.page-foot-actions
+  height: 200px
+  width: 100%
+  display: inline-flex
+  justify-content: space-between
+  align-items: center
 
 #root
   display: flex

@@ -7,7 +7,7 @@
 <script lang="ts">
 export default {
   name: "StyledTabList",
-};
+}
 </script>
 
 <style lang="sass">

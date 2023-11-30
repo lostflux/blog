@@ -18,15 +18,15 @@ export default {
   data() {
     return {
       hidden: true,
-    };
+    }
   },
   methods: {
     toggle() {
-      this.$el.classList.toggle("hidden-prose");
-      this.hidden = !this.hidden;
+      this.$el.classList.toggle("hidden-prose")
+      this.hidden = !this.hidden
     },
   },
-};
+}
 </script>
 
 <style lang="sass">

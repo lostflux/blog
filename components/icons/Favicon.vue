@@ -34,7 +34,7 @@
 <script>
 export default {
   name: "Favicon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

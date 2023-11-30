@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts">
-
-import markdownParser from "@nuxt/content/transformers/markdown";
+// @ts-ignore
+// eslint-disable-next-line import/no-unresolved
+import markdownParser from "@nuxt/content/transformers/markdown"
 
 export default {
   name: "ProseFigure",
@@ -27,9 +28,9 @@ export default {
   async setup(props) {
     return {
       parsedCaption: await markdownParser.parse(props.alt, props.alt),
-    };
+    }
   },
-};
+}
 
 </script>
 

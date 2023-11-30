@@ -13,10 +13,10 @@
             class="bio-name"
             fancy
           >
-            {{ personName }}
+            {{ profile.name }}
           </ProseA>
           <div class="bio-title">
-            {{ personTitle }}
+            {{ profile?.title }}
           </div>
         </div>
       </div>
@@ -25,17 +25,13 @@
           {{ customTitle || subtitle || title }}
         </h1>
         <TableOfContents
-          v-if="tocVisible && !customTitle"
           class="table-of-contents"
         />
       </div>
 
-      <div
-        v-if="!isMeta"
-        class="blog-actions-and-date"
-      >
+      <div class="blog-actions-and-date">
         <div
-          v-if="!customTitle"
+          v-if="userInfo && includeActions"
           class="blog-actions"
         >
           <button class="blog-action left">
@@ -45,7 +41,9 @@
               class="blog-action-icon"
               @click="showComments"
             />
-            <span class="blog-action-count">
+            <span
+              class="blog-action-count"
+            >
               {{ userInfo.getCommentCount }}
             </span>
           </button>
@@ -58,7 +56,7 @@
           </button>
         </div>
         <Date
-          v-if="!customTitle"
+          v-if="!customTitle && date"
           :date="date"
         />
       </div>
@@ -67,68 +65,59 @@
 </template>
 
 <script lang="ts" setup>
-const { path } = useTrimmedPath();
-const { showToc } = useConfig();
-const tocVisible = await showToc();
+const { path } = useTrimmedPath()
+const includeActions = false
 
 defineProps({
   customTitle: {
     type: String,
     default: "",
   },
-});
+})
 
-const profile = await useAsyncData(async () => {
-  const _data = await queryContent()
-    .where({ category: { $contains: "profile" } })
-    .only(["name", "title"])
-    .findOne();
-  return _data;
-});
-
-const personName = profile.data.value.name;
-const personTitle = profile.data.value.title;
+const { profile } = useConfig()
 
 const header = await useAsyncData(
   async () => {
     const _data = await queryContent()
       .where({ _path: path })
       .only(["date", "title", "subtitle"])
-      .findOne();
+      .findOne()
 
-    return _data;
+    return _data
   },
-);
+)
 
-const { date, title, subtitle } = header.data.value;
+if (!header.data.value) {
+  throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
+}
 
-const { useMetaPage } = useConfig();
-const isMeta = await useMetaPage();
+const { date, title, subtitle } = header.data.value
 
 const toggleSubscription = () => {
   // if user logged in, toggle subscription
-  if (userInfo.active) userInfo.toggleSubscription();
+  if (userInfo.active) userInfo.toggleSubscription()
   // otherwise, show auth modal
   else {
-    const authModal = document.getElementsByClassName("auth-modal")[0];
-    authModal?.classList.remove("hidden");
+    const authModal = document.getElementsByClassName("auth-modal")[0]
+    authModal?.classList.remove("hidden")
   }
-};
+}
 
 const showComments = () => {
-  const commentsContainer = document.getElementsByClassName("comments-section-wrapper")[0];
+  const commentsContainer = document.getElementsByClassName("comments-section-wrapper")[0]
   if (commentsContainer) {
-    commentsContainer.classList.remove("hidden");
+    commentsContainer.classList.remove("hidden")
   }
-};
+}
 
 </script>
 
 <script lang="ts">
-const userInfo = useUserInfo();
+const userInfo = useUserInfo()
 export default {
   name: "BlogTitle",
-};
+}
 </script>
 
 <style lang="sass" scoped>
@@ -145,7 +134,7 @@ export default {
   justify-content: center
   text-transform: uppercase
   flex-grow: 0
-  font-size: typography.font-size("l")
+  font-size: typography.font-size("m")
 
   @media screen and (max-width: 1150px)
     height: 370px
@@ -155,8 +144,8 @@ export default {
     // font-size: typography.font-size(l)
     color: colors.color(lightest-foreground)
 
-  .bio-title
-    font-size: typography.font-size(m)
+  // .bio-title
+  //   font-size: typography.font-size(l)
 
 .table-of-contents
   position: fixed

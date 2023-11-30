@@ -147,7 +147,7 @@
 <script lang="ts">
 export default {
   name: "BugIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

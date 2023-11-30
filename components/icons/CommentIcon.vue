@@ -17,7 +17,7 @@
 <script lang="ts">
 export default {
   name: "CommentIcon",
-};
+}
 </script>
 <style lang="sass">
 @use "@/styles/colors"

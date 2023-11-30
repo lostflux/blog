@@ -16,7 +16,7 @@
 <script lang="ts">
 export default {
   name: "ExternalLinkIcon",
-};
+}
 </script>
 
 <style lang="sass" scoped>

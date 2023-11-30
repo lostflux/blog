@@ -1,5 +1,5 @@
 <template>
-  <InlineFlex
+  <div
     v-if="surround"
     class="surround"
   >
@@ -11,7 +11,6 @@
         :key="i"
         :href="link._path"
         class="surround-link"
-        fancy
       >
         {{ i == 0 ? "previous" : "next" }}
       </ProseA>
@@ -23,77 +22,48 @@
         <ProseA
           :key="i"
           class="surround-link"
-          fancy
         >
           {{ i == 0 ? "previous" : "next" }}
         </ProseA>
       </div>
     </template>
-  </InlineFlex>
+  </div>
 </template>
 
 <script setup lang="ts">
-const { path } = useTrimmedPath();
+import { withoutTrailingSlash } from "ufo"
 
-// use props
-// const props = defineProps({
-//   category: {
-//     type: String,
-//     default: "",
-//   },
-// });
-
-// get current category
-const { category } = await queryContent()
-  .where({ _path: path })
-  .only(["category"])
-  .findOne();
+const route = useRoute()
 
 const { data: surround } = await useAsyncData(
-  // "prev-next",
   async () => {
-    const surround = ["moments", "aphorisms"].some((cat) => {
-      return category.includes(cat);
-    }) ? await queryContent()
-        .where({ draft: false })
-        .where({ category: { $contains: category } })
-        .only(["_path", "title", "category", "date"])
-        .sort({ date: -1 })
-        .findSurround(path)
-      : await queryContent()
-        .where({ draft: false })
-        .where({ category: { $not: { $containsAny: ["moments", "aphorisms"] } } })
-        .only(["_path", "title", "category", "date"])
-        .sort({ date: -1 })
-        .findSurround(path);
-    return surround;
+    const { path } = route
+    const _surround = await queryContent()
+      .where({ _extension: "md" })
+      .only(["_path", "title"])
+      .findSurround(withoutTrailingSlash(path))
+    return _surround
   },
-);
+)
 
 </script>
 
 <script lang="ts">
-// fetch the current route
-
 export default {
   name: "Surround",
-};
+}
 </script>
 
 <style lang="sass">
 @use "@/styles/colors"
 .surround
-  width: 100%
-  display: flex
+  display: inline-flex
   justify-content: space-between
-  margin: 100px 0
+  align-items: center
+  height: 1rem
+  width: 30%
 
   .surround-link
-    width: 45%
-    padding: 0.5rem 0
     text-transform: uppercase
-
-    display: flex
-    //justify-content: center
 
 </style>

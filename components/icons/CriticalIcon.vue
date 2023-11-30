@@ -91,5 +91,5 @@
 <script lang="ts">
 export default {
   name: "CriticalIcon",
-};
+}
 </script>

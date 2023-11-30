@@ -5,7 +5,8 @@
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "lint": "eslint ."
+    "lint": "eslint . --fix",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,vue}": [
@@ -25,9 +26,12 @@
     "@vueblocks/vue-use-vuex": "^0.2.11",
     "composition-api": "^0.0.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.52.0",
+    "eslint": "^8.54.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
     "nuxt": "^3.8.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2"

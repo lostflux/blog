@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="toc && toc.links"
+    v-if="toc && toc.links && toc.links.length > 1"
   >
     <ul
       class="toc"
@@ -62,112 +62,121 @@ export default {
       scrollY: 0,
       scrollDirection: "down",
       activeTocItems: new Set<Element>(),
-    };
+    }
   },
   computed: {
     activeTocElementIds(): string[] {
-      const tocItemIds: string[] = [];
+      const tocItemIds: string[] = []
       this.activeTocItems.forEach((tocItem: Element) => {
-        tocItemIds.push(tocItem.id);
-      });
-      return tocItemIds;
+        tocItemIds.push(tocItem.id)
+      })
+      return tocItemIds
     },
 
     tocItemsOrdered() {
-      this.refreshKey;
-      return Array.from(document.querySelectorAll("h2, h3"));
+      // eslint-disable-next-line no-unused-expressions
+      this.refreshKey
+      return Array.from(document.querySelectorAll("h2, h3"))
     },
 
     tocItemsInViewport(): Element[] {
-      this.refreshKey;
+      // eslint-disable-next-line no-unused-expressions
+      this.refreshKey
 
-      // ignore in ssr more
       if (typeof window === "undefined") {
-        return [];
+        return []
       }
 
-      const tocItemsInViewport: Element[] = [];
+      const tocItemsInViewport: Element[] = []
 
       this.tocItemsOrdered.forEach((tocItem: Element) => {
         if (elementIsInWindow(tocItem)) {
-          tocItemsInViewport.push(tocItem);
+          tocItemsInViewport.push(tocItem)
         }
-      });
-      return tocItemsInViewport;
+      })
+      return tocItemsInViewport
     },
   },
   watch: {
     // when route changes, register event listeners in case they haven't been registered yet
     $route() {
-      this.refreshKey += 1;
-      this.activeTocItems = new Set<Element>();
-      this.handleScroll();
-      window.addEventListener("scroll", this.handleScroll);
-      window.addEventListener("resize", this.handleScroll);
+      this.refreshKey += 1
+      this.activeTocItems = new Set<Element>()
+      this.handleScroll()
+      window.addEventListener("scroll", this.handleScroll)
+      window.addEventListener("resize", this.handleScroll)
     },
   },
 
   mounted() {
     // ignore in ssr more
     if (typeof window === "undefined") {
-      return;
+      return
     }
-    this.handleScroll();
-    window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener("resize", this.handleScroll);
+    this.handleScroll()
+    window.addEventListener("scroll", this.handleScroll)
+    window.addEventListener("resize", this.handleScroll)
   },
 
   unmounted() {
     // ignore in ssr more
     if (typeof window === "undefined") {
-      return;
+      return
     }
-    window.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener("resize", this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll)
+    window.removeEventListener("resize", this.handleScroll)
   },
 
   methods: {
     updateActiveTocItems() {
-      const { tocItemsInViewport } = this;
+      const { tocItemsInViewport } = this
       this.tocItemsOrdered.forEach((tocItem: Element) => {
-        const elemIndex = this.tocItemsOrdered.indexOf(tocItem);
+        const elemIndex = this.tocItemsOrdered.indexOf(tocItem)
         if (tocItemsInViewport.includes(tocItem)) {
-          this.activeTocItems.add(tocItem);
+          this.activeTocItems.add(tocItem)
 
           // if element not at top of screen, add predecessor
           if (!elementIsAtTop(tocItem)) {
-            const predecessor = this.tocItemsOrdered[elemIndex - 1] || null;
+            const predecessor = this.tocItemsOrdered[elemIndex - 1] || null
             if (predecessor) {
-              this.activeTocItems.add(predecessor);
+              this.activeTocItems.add(predecessor)
             }
           }
         } else if (elementIsBelowScreen(tocItem)) {
-          this.activeTocItems.delete(tocItem);
+          this.activeTocItems.delete(tocItem)
         } else if (elementIsAboveScreen(tocItem)) {
-          const successor = this.tocItemsOrdered[elemIndex + 1] || null;
+          const successor = this.tocItemsOrdered[elemIndex + 1] || null
           if (successor && elementIsAboveScreen(successor)) {
-            this.activeTocItems.delete(tocItem);
+            this.activeTocItems.delete(tocItem)
           }
         }
-      });
+      })
     },
     handleScroll() {
-      this.refreshKey = this.refreshKey === 999 ? 0 : this.refreshKey + 1;
+      this.refreshKey = this.refreshKey === 999 ? 0 : this.refreshKey + 1
 
-      const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
-      this.scrollDirection = (currentScrollPosition > this.scrollY)
+      const currentScrollPosition = window.scrollY || document.documentElement.scrollTop
+      this.scrollDirection = currentScrollPosition > this.scrollY
         ? "down"
-        : "up";
-      this.scrollY = currentScrollPosition;
+        : "up"
+      this.scrollY = currentScrollPosition
 
-      this.updateActiveTocItems();
+      this.updateActiveTocItems()
     },
   },
-};
+}
 </script>
 
 <script lang="ts" setup>
-const { toc } = useContent();
+import { withoutTrailingSlash } from "ufo"
+
+const path = withoutTrailingSlash(useRoute().path)
+const { data: page } = await useAsyncData(async () => {
+  const _page = await queryContent().where({ _path: path }).findOne()
+  return _page
+})
+
+const toc = page?.value?.body?.toc
 
 </script>
 

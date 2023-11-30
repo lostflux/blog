@@ -1,5 +1,3 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
-
 export default defineNuxtConfig({
   experimental: {
     viewTransition: true,
@@ -11,9 +9,6 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    // pageTransition: { name: "page", mode: "out-in" },
-    // layoutTransition: { name: "layout", mode: "out-in" },
-
     head: {
       title: "whatever",
       htmlAttrs: {
@@ -27,11 +22,11 @@ export default defineNuxtConfig({
         { property: "og:site_name", content: "amittai" },
         { property: "og:locale", content: "en_US" },
         { name: "robots", content: "index, follow" },
-        // {
-        //   hid: "description",
-        //   name: "description",
-        //   content: "Amittai's portfolio. A summary of his work, thoughts, and interests.",
-        // },
+        {
+          hid: "description",
+          name: "description",
+          content: "Amittai's portfolio. A summary of his work, thoughts, and interests.",
+        },
       ],
       link: [
         { rel: "icon", type: "image/svg", href: "/favicon.svg" },
@@ -41,9 +36,6 @@ export default defineNuxtConfig({
         {
           rel: "apple-touch-icon", type: "image/svg", href: "/favicon.svg",
         },
-        // {
-        //   rel: "manifest", href: "/manifest.json",
-        // },
       ],
     },
   },
@@ -54,10 +46,8 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/content",
     "@nuxt/ui",
-    // "@nuxt/image-edge",
     "@nuxt/devtools",
     "@pinia/nuxt",
-    // "@nuxthq/studio",
     ["@nuxtjs/algolia", {
       applicationId: process.env.ALGOLIA_SEARCH_APP_ID,
       apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
@@ -70,22 +60,17 @@ export default defineNuxtConfig({
   ],
   router: { },
   devtools: {
-    // Enable devtools (default: true)
     enabled: true,
-    // VS Code Server options
     vscode: {},
-    // ...other options
   },
   content: {
-    documentDriven: {
-      // Will fetch navigation, page and surround.
-      navigation: true,
-      page: true,
-      surround: true,
-
-      // Will inject `[...slug].vue` as the root page.
-      injectPage: true,
-      trailingSlash: true,
+    sources: {
+      content: {
+        driver: "github",
+        repo: "siavava/content",
+        branch: "main",
+        dir: "content",
+      },
     },
     markdown: {
       remarkPlugins: [
@@ -136,7 +121,6 @@ export default defineNuxtConfig({
     ],
   },
   image: {
-    // The screen sizes predefined by `@nuxt/image-edge`:
     screens: {
       xs: 320,
       sm: 640,
@@ -151,20 +135,6 @@ export default defineNuxtConfig({
     ipx: {},
     dir: "static",
   },
-  // buildModules: [
-  //   "@nuxtjs/firebase",
-  //   ["@nuxtjs/redirect-module",
-  //     {
-  //       from: "^.*(?<!/)$",
-  //       to: (from, req) => (req.url.endsWith("/") ? req.url : `${req.url}/`),
-  //       statusCode: 301,
-  //     },
-  //   ],
-  // ],
-  // layouts: {
-  //   default: "@/layouts/clean.vue",
-  // },
-  // build: { },
   runtimeConfig: {
     public: {
       firebaseConfig: {
@@ -178,4 +148,4 @@ export default defineNuxtConfig({
       },
     },
   },
-});
+})

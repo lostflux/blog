@@ -30,59 +30,22 @@
   </Square>
 </template>
 
-<script lang="ts">
-export default {
-  name: "BlogList",
-  props: {
-    category: {
-      type: Array<string>,
-      default: [],
-    },
-    title: {
-      type: String,
-      default: "",
-    },
-  },
-  async setup(props) {
-    // eslint-disable-next-line vue/no-setup-props-destructure
-    const { category } = props;
-    const { data: blogs } = category.length
-      ? await useAsyncData(
-        `blogs-list-${category.join("-")}`,
-        async () => {
-          const _blogs = await queryContent()
-            .where({ draft: false })
-            .where({ category: { $containsAny: props.category } })
-            .only(["title", "subtitle", "date", "category", "_path"])
-            .sort({ date: -1 })
-            .find();
-          return _blogs;
-        },
-      )
-      : await useAsyncData(
-        async () => {
-          const _blogs = await queryContent()
-            .where({ draft: false })
-            .where({ category: { $contains: "long-form" } })
-            .only(["title", "subtitle", "date", "category", "_path"])
-            .sort({ date: -1 })
-            .find();
-          return _blogs;
-        },
-      );
+<script setup lang="ts">
 
-    const _years = blogs.value.map((blog) => new Date(blog.date).getFullYear());
-    const years = [...new Set(_years)];
-    return {
-      blogs, years,
-    };
-  },
-  data() {
-    return {
-      userInfo: useUserInfo(),
-    };
-  },
-};
+defineProps<{
+  title: string
+}>()
+const { data: blogs } = await useAsyncData(async () => {
+  const _blogs = await queryContent()
+    .only(["title", "description", "date", "category", "_path"])
+    .sort({ date: -1 })
+    .find()
+  return _blogs
+})
+
+const _years = blogs.value.map((blog) => new Date(blog.date).getFullYear()).filter(Boolean)
+const years = [...new Set(_years)]
+
 </script>
 
 <style lang="sass">

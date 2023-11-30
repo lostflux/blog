@@ -3,18 +3,12 @@
     class="blog-list-item"
   >
     <div class="blog-list-item-head">
-      <div class="date">
+      <div
+        v-if="date"
+        class="date"
+      >
         {{ date }}
       </div>
-
-      <ProseA
-        class="blog-list-item-category"
-        :href="path"
-        fancy
-        lowercase
-      >
-        {{ mainCategory }}
-      </ProseA>
     </div>
     <ProseA
       class="blog-list-item-title"
@@ -24,6 +18,9 @@
     >
       {{ title }}
     </ProseA>
+    <ProseP class="description">
+      {{ description }}
+    </ProseP>
   </div>
 </template>
 <script lang="ts">
@@ -36,22 +33,17 @@ export default {
     },
   },
   setup(props) {
-    // const { path } = useTrimmedPath();
-    // eslint-disable-next-line vue/no-setup-props-destructure
-    const mainCategory = props.blog.category[props.blog.category.length - 1];
-    const mainCategoryPath = useNavigationRoutes()[mainCategory];
     return {
       // eslint-disable-next-line vue/no-setup-props-destructure
-      date: new Date(props.blog.date).toLocaleDateString("en-US", {
+      date: props.blog.date ? new Date(props.blog.date).toLocaleDateString("en-US", {
         month: "2-digit",
         day: "2-digit",
-      }),
-      title: props.blog.subtitle || props.blog.title,
-      mainCategory,
-      path: mainCategoryPath.path || "",
-    };
+      }) : null,
+      title: props.blog?.title,
+      description: props.blog?.description || "",
+    }
   },
-};
+}
 </script>
 <style lang="sass" scoped>
 @use "@/styles/colors"
@@ -66,6 +58,17 @@ export default {
   justify-content: space-between
   color: inherit
   position: relative
+  margin-bottom: 1.5rem
+
+  .description
+    color: colors.color(dark-foreground)
+    font-weight: 400
+    line-height: 1.5
+    font-size: typography.font-size(s)
+    margin-bottom: 0.5rem
+    margin-top: 0
+    padding-top: 0
+    max-width: 40ch
 
   .blog-list-item-title
     width: 80%
@@ -73,15 +76,25 @@ export default {
     overflow: hidden
     text-overflow: ellipsis
     font-size: typography.font-size(s)
-    line-height: 1.2
-    margin-bottom: 0.5rem
 
   .blog-list-item-head
     color: colors.color(dark-foreground)
     font-weight: 400
-    line-height: 2
+    line-height: 1
     display: inline-flex
     justify-content: space-between
+
+    .date
+      font-size: typography.font-size(xxs)
+      font-weight: 500
+      line-height: 2
+      color: colors.color(light-foreground)
+      text-align: right
+      height: 1rem
+      max-width: 20ch
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
 
     .blog-list-item-category
       text-align: right

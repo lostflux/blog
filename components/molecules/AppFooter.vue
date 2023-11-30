@@ -54,7 +54,9 @@
 </template>
 
 <script setup lang="ts">
-import markdownParser from "@nuxt/content/transformers/markdown";
+// @ts-ignore
+// eslint-disable-next-line import/no-unresolved
+import markdownParser from "@nuxt/content/transformers/markdown"
 
 const parsedMarkdown = await markdownParser.parse(
   "footer-comment",
@@ -63,51 +65,51 @@ const parsedMarkdown = await markdownParser.parse(
   This skill develops while doing.
   Not thinking, not imagining, _doing_.
   It is acquired through learning and experimenting and consistency and pacing.`,
-);
+)
 
-const shortMessageElement = ref<HTMLElement>(null);
-const timeZoneElement = ref<HTMLElement>(null);
-const secondHand = ref<HTMLElement>(null);
-const minuteHand = ref<HTMLElement>(null);
-const hourHand = ref<HTMLElement>(null);
-const intervals = [];
-const extendedMessageActive = ref(false);
+const shortMessageElement = ref<HTMLElement>(null)
+const timeZoneElement = ref<HTMLElement>(null)
+const secondHand = ref<HTMLElement>(null)
+const minuteHand = ref<HTMLElement>(null)
+const hourHand = ref<HTMLElement>(null)
+const intervals = []
+const extendedMessageActive = ref(false)
 const shortMessage = [
   "Find flow.",
   "Sit with your ambient ambition.",
   "Endure and raise the bar.",
   "Pray at the altar of hard work.",
-];
+]
 
-let index = -1;
+let index = -1
 
 function updateBlurb() {
-  index += 1;
-  index %= shortMessage.length;
-  shortMessageElement.value.innerText = shortMessage[index];
+  index += 1
+  index %= shortMessage.length
+  shortMessageElement.value.innerText = shortMessage[index]
 }
 
 function toggleComment() {
-  extendedMessageActive.value = !(extendedMessageActive.value);
+  extendedMessageActive.value = !extendedMessageActive.value
 }
 
 function tick() {
   const setTime = () => {
-    const now = new Date();
+    const now = new Date()
 
-    const seconds = now.getSeconds();
-    const secondsDegree = ((seconds / 60) * 360) + 90;
-    secondHand.value.style.transform = `rotate(${secondsDegree}deg)`;
+    const seconds = now.getSeconds()
+    const secondsDegree = (seconds / 60) * 360 + 90
+    secondHand.value.style.transform = `rotate(${secondsDegree}deg)`
 
-    const minutes = now.getMinutes();
-    const minutesDegree = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+    const minutes = now.getMinutes()
+    const minutesDegree = (minutes / 60) * 360 + (seconds / 60) * 6 + 90
 
-    minuteHand.value.style.transform = `rotate(${minutesDegree}deg)`;
+    minuteHand.value.style.transform = `rotate(${minutesDegree}deg)`
 
-    const hour = now.getHours();
-    const hourDegree = ((hour / 12) * 360) + ((minutes / 60) * 30) + 90;
+    const hour = now.getHours()
+    const hourDegree = (hour / 12) * 360 + (minutes / 60) * 30 + 90
 
-    hourHand.value.style.transform = `rotate(${hourDegree}deg)`;
+    hourHand.value.style.transform = `rotate(${hourDegree}deg)`
 
     const timeZoneInfo = `${new Date()
       .toLocaleTimeString(
@@ -124,22 +126,22 @@ function tick() {
         {
           timeZoneName: "short",
         },
-      ).split(" ")[2]}`;
+      ).split(" ")[2]}`
 
-    timeZoneElement.value.innerText = timeZoneInfo;
-  };
+    timeZoneElement.value.innerText = timeZoneInfo
+  }
 
-  intervals.push(setInterval(setTime, 1000));
+  intervals.push(setInterval(setTime, 1000))
 }
 
 onMounted(() => {
-  tick();
-  intervals.push(setInterval(updateBlurb, 1000 * 5));
-});
+  tick()
+  intervals.push(setInterval(updateBlurb, 1000 * 5))
+})
 
 onUnmounted(() => {
-  intervals.forEach((interval) => clearInterval(interval));
-});
+  intervals.forEach((interval) => clearInterval(interval))
+})
 </script>
 
 <style lang="scss" scoped>

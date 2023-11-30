@@ -9,13 +9,12 @@
   </div>
 </template>
 <script setup lang="ts">
-// props
 defineProps({
   margin: {
     type: String,
     default: "50%",
   },
-});
+})
 </script>
 
 <style lang="sass" scoped>
@@ -24,7 +23,6 @@ defineProps({
   width: 100%
 
   &::before
-    //padding-bottom: 100% // Minimum aspect ratio
     padding: 50% 0
     content: ''
     float: left

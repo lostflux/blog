@@ -5,7 +5,7 @@
     </AppHeader>
     <main class="article-main">
       <div class="left">
-        <BlogTitle />
+        <BlogTitle :key="`title-${route.path}`" />
       </div>
       <div class="right">
         <div class="content">
@@ -17,7 +17,7 @@
           >
             <!-- <template> -->
 
-            <BlogEditButton />
+            <BlogEditButton :key="`actions-${route.path}`" />
 
             <!-- <InlineFlex class="archive-link"> -->
             <div class="page-foot-actions">
@@ -27,7 +27,7 @@
               >
                 open the archive
               </ProseA>
-              <Surround />
+              <Surround :key="`surround-${route.path}`" />
             </div>
             <!-- </InlineFlex> -->
             <!-- <div>
@@ -56,6 +56,8 @@
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "@firebase/auth"
+
+const route = useRoute()
 
 // reference to comments section for detecting when to show auth popup
 const commentsSection = ref<HTMLElement | null>(null)

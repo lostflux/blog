@@ -39,7 +39,7 @@
   "dependencies": {
     "@dicebear/collection": "^7.0.1",
     "@dicebear/core": "^7.0.1",
-    "@firebase/auth": "^1.0.0",
+    "@firebase/auth": "^1.5.1",
     "@firebase/firestore": "^4.0.0",
     "@nuxt/vite-builder": "^3.8.0",
     "@nuxtjs/algolia": "^1.9.0",

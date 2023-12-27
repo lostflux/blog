@@ -37,7 +37,7 @@ defineProps<{
 }>()
 const { data: blogs } = await useAsyncData(async () => {
   const _blogs = await queryContent()
-    .only(["title", "description", "date", "category", "_path"])
+    .only(["title", "description", "excerpt", "date", "category", "_path"])
     .sort({ date: -1 })
     .find()
   return _blogs

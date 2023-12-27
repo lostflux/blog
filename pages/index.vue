@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!-- <template #title> -->
-    <!-- <span v-html="page?.hero?.title" /> -->
-    <!-- </template> -->
-
-    <!-- <span v-html="page?.hero?.description" /> -->
-
     <BlogList title="" />
   </div>
 </template>

@@ -1,7 +1,26 @@
+import { resolve } from "path"
+
+const contentSource: any = {}
+
+const localSource = process.env.CONTENT_SOURCE || undefined
+
+if (localSource) {
+  contentSource.driver = "fs"
+  contentSource.base = resolve(__dirname, localSource, "content")
+} else {
+  contentSource.driver = "github"
+  contentSource.repo = "siavava/content"
+  contentSource.branch = "main"
+  contentSource.dir = "content"
+}
+
+console.info(`local source: ${localSource}`)
+console.log(`contentSource: ${JSON.stringify(contentSource)}`)
+
 export default defineNuxtConfig({
   experimental: {
-    viewTransition: true,
-    payloadExtraction: false,
+    // viewTransition: true,
+    payloadExtraction: true,
   },
   routeRules: {
     "/**": {
@@ -25,16 +44,22 @@ export default defineNuxtConfig({
         {
           hid: "description",
           name: "description",
-          content: "Amittai's portfolio. A summary of his work, thoughts, and interests.",
+          content:
+            "Amittai's portfolio. A summary of his work, thoughts, and interests.",
         },
       ],
       link: [
         { rel: "icon", type: "image/svg", href: "/favicon.svg" },
         {
-          rel: "mask-icon", type: "image/svg", href: "/favicon.svg", color: "#f42e4f",
+          rel: "mask-icon",
+          type: "image/svg",
+          href: "/favicon.svg",
+          color: "#f42e4f",
         },
         {
-          rel: "apple-touch-icon", type: "image/svg", href: "/favicon.svg",
+          rel: "apple-touch-icon",
+          type: "image/svg",
+          href: "/favicon.svg",
         },
       ],
     },
@@ -48,34 +73,33 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/devtools",
     "@pinia/nuxt",
-    ["@nuxtjs/algolia", {
-      applicationId: process.env.ALGOLIA_SEARCH_APP_ID,
-      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
-    }],
-    ["@nuxtjs/robots", {
-      UserAgent: "*",
-      Disallow: "",
-    }],
+    [
+      "@nuxtjs/algolia",
+      {
+        applicationId: process.env.ALGOLIA_SEARCH_APP_ID,
+        apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      },
+    ],
+    [
+      "@nuxtjs/robots",
+      {
+        UserAgent: "*",
+        Disallow: "",
+      },
+    ],
     "@nuxt/image",
   ],
-  router: { },
+  router: {},
   devtools: {
     enabled: true,
     vscode: {},
   },
   content: {
     sources: {
-      content: {
-        driver: "github",
-        repo: "siavava/content",
-        branch: "main",
-        dir: "content",
-      },
+      blog: contentSource,
     },
     markdown: {
-      remarkPlugins: [
-        "remark-math",
-      ],
+      remarkPlugins: ["remark-math"],
       rehypePlugins: {
         "rehype-katex": {
           output: "html",

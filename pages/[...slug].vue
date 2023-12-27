@@ -23,7 +23,7 @@ useSeoMeta({
   titleTemplate: "%s | amittai",
   title: page.value.title,
   ogTitle: `${page.value.title} | amittai`,
-  description: page.value?.description || "",
-  ogDescription: page.value.description,
+  description: page.value?.description || page.value.excerpt || "",
+  ogDescription: page.value.description || page.value.excerpt || "",
 })
 </script>

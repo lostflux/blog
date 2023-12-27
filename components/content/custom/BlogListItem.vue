@@ -18,9 +18,10 @@
     >
       {{ title }}
     </ProseA>
-    <ProseP class="description">
+    <ProseP v-if="description" class="description">
       {{ description }}
     </ProseP>
+    <ContentRendererMarkdown v-else-if="excerpt" :value="excerpt" class="description"/>
   </div>
 </template>
 <script lang="ts">
@@ -41,6 +42,7 @@ export default {
       }) : null,
       title: props.blog?.title,
       description: props.blog?.description || "",
+      excerpt: props.blog?.excerpt || "",
     }
   },
 }

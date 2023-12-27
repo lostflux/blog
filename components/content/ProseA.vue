@@ -28,7 +28,7 @@ defineProps({
 </script>
 
 <template>
-  <div
+  <span
     :class="{
       'link-wrapper': true,
       'fancy': fancy,
@@ -64,7 +64,7 @@ defineProps({
             8.64645L3.35355 9.35355L8.85355 3.85355L8.14645 3.14645Z"
       />
     </svg>
-  </div>
+  </span>
 </template>
 
 <style lang="sass" scoped>

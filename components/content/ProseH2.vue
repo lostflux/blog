@@ -1,4 +1,5 @@
 <template>
+  <ProseHr />
   <NuxtLink
     v-if="generate && id"
     :to="`#${id}`"
@@ -46,11 +47,12 @@ const generate = anchorLinks?.depth >= heading
 @use "@/styles/geometry"
 
 .prose-h2
-  font-size: typography.font-size(m)
-  font-weight: 600
-  color: colors.color(lightest-foreground)
-  margin: 3em 0 1em 0
-  padding: 0
-  line-height: 0.9em
-  font-size: typography.font-size(l)
+  // font-size: typography.font-size(m)
+  // font-weight: 600
+  // color: colors.color(lightest-foreground)
+  margin: 2em 0 2em 0
+  // padding: 0
+  // line-height: 0.9em
+  // font-size: typography.font-size(l)
+  text-transform: uppercase
 </style>

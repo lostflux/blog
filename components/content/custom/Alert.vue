@@ -38,7 +38,7 @@ export default {
 
 .alert-container
   margin: 1em 0
-  padding: 1em 1em 0.5em 1em
+  padding: 1rem
   border-radius: 0.5rem
 
   .prose-ul
@@ -106,5 +106,10 @@ export default {
 
     & > .paragraph
       color: colors.color("critical-foreground") !important
+
+  & > .paragraph
+    &:is(:last-of-type)
+      padding-bottom: 5em !important
+      background: yellow !important
 
 </style>

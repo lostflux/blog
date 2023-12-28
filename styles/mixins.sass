@@ -343,13 +343,13 @@
   .right
     font-size: typography.font-size(m)
     // width: min(100%, 75.5ch)
-    width: min(100%, 68ch)
+    width: min(100%, 80ch)
     padding-right: 1em
     display: flex
     flex-direction: column
     align-items: space-between
     position: relative
-    padding-top: 445px //397px
+    padding-top: 645px //397px
 
     @media screen and (max-width: 1150px)
       padding-top: 0
@@ -376,12 +376,17 @@
         // center text vertically
         align-items: space-between
 
-        &::before
-          padding-bottom: 100% // Minimum aspect ratio
-          content: ''
-          float: left
+        // &::before
+        //   padding-bottom: 100% // Minimum aspect ratio
+        //   content: ''
+        //   float: left
 
-        &::after
-          display: table
-          content: ''
-          clear: both
+        // &::after
+        //   display: table
+        //   content: ''
+        //   clear: both
+
+@mixin shift-left
+  $offset: calc(0px - typography.font-size(m))
+  margin-left: $offset
+  padding-left: calc(0px - $offset)

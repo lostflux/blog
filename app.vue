@@ -20,10 +20,6 @@ useHead({
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { key: "theme-color", name: "theme-color", content: "#BD998F" },
   ],
-  link: [
-    { rel: "icon", type: "image/svg+xml", href: "https://amittai.studio/favicon.svg" },
-    // { rel: "canonical", href: `https://txt.amittai.studio${withoutTrailingSlash(route.path)}` },
-  ],
   htmlAttrs: {
     lang: "en",
   },

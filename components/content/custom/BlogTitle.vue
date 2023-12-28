@@ -22,7 +22,7 @@
       </div>
       <div class="title">
         <h1 class="title-heading">
-          {{ customTitle || subtitle || title }}
+          {{ title }}
         </h1>
         <TableOfContents
           class="table-of-contents"
@@ -31,8 +31,8 @@
 
       <div class="blog-actions-and-date">
         <div
-          v-if="userInfo && includeActions"
           class="blog-actions"
+          v-if="userInfo && includeActions"
         >
           <button class="blog-action left">
             <Icon
@@ -56,7 +56,7 @@
           </button>
         </div>
         <Date
-          v-if="!customTitle && date"
+          v-if="date"
           :date="date"
         />
       </div>
@@ -128,7 +128,7 @@ export default {
 
 .bio
   width: 100%
-  height: 450px
+  height: 650px
   display: flex
   flex-direction: column
   justify-content: center
@@ -137,15 +137,15 @@ export default {
   font-size: typography.font-size("m")
 
   @media screen and (max-width: 1150px)
-    height: 370px
+    height: 400px
     font-size: typography.font-size("m")
 
   .bio-name
-    // font-size: typography.font-size(l)
+    font-size: typography.font-size(l)
     color: colors.color(lightest-foreground)
 
-  // .bio-title
-  //   font-size: typography.font-size(l)
+  .bio-title
+    font-size: typography.font-size(s)
 
 .table-of-contents
   position: fixed
@@ -163,7 +163,7 @@ export default {
   overflow: hidden
   margin: 0
   padding: 0
-  margin-bottom: 1em
+  //margin-bottom: 1em
   margin-right: 70px
   position: relative
 
@@ -178,13 +178,16 @@ export default {
 
     .title
       width: 100%
+      margin-top: 1rem
+      margin-bottom: 1em
+      // background: yellow
 
       .title-heading
-        font-size: typography.font-size("m")
+        font-size: typography.font-size("l")
         text-transform: uppercase
 
-        @media screen and (max-width: 600px)
-          font-size: typography.font-size("s")
+        @media screen and (max-width: 800px)
+          font-size: typography.font-size("m")
 
       .title-description
         font-size: clamp(1rem, 1.8vw, 1.5rem)
@@ -199,7 +202,7 @@ export default {
     flex-direction: row
     justify-content: space-between
     align-items: center
-    margin: 1rem 0
+    margin: -0.8rem 0 1rem 0
 
     .blog-actions
       width: 100px

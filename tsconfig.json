@@ -9,10 +9,6 @@
     "moduleResolution": "Node",
     "lib": ["ESNext", "DOM", "es5", "es6", "DOM.Iterable"],
     "module": "ESNext",
-    // "esModuleInterop": true,
-    // "noUnusedLocals": true,
-    // "resolveJsonModule": true,
-    // "allowSyntheticDefaultImports": true,
     "types": [
       "@types/node", // standard node types
       "vite/client", // if using vite

@@ -103,15 +103,6 @@ const search = () => {
 }
 
 watch(searchTerm, search)
-
-</script>
-
-<script lang="ts">
-
-export default {
-  name: "SearchBar",
-}
-
 </script>
 
 <style lang="sass" scoped>

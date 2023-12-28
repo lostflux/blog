@@ -158,9 +158,11 @@ onUnmounted(() => {
 
   .footer-vertical {
     @include mixins.flex-center;
-    width: 100%;
+    width: calc(100% + 0.87rem);
     border-top: 1px solid colors.color(light-background);
     padding: 1em;
+
+    @include mixins.shift-left
   }
 
   .footer-inner {

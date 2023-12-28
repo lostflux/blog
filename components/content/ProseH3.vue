@@ -47,11 +47,15 @@ const generate = anchorLinks?.depth >= heading
 @use "@/styles/geometry"
 
 .prose-h3
-  font-size: typography.font-size(m)
-  font-weight: 500
-  color: colors.color(light-foreground)
-  margin: 1em 0 0.5em 0
-  padding: 0
-  line-height: 0.9em
+  // font-size: typography.font-size(m)
+  // font-weight: 500
+  // color: colors.color(light-foreground)
+  margin: 2em 0 0.5em // 0.5em 0
+  // padding: 0
+  // line-height: 0.9em
   font-size: typography.font-size(l)
+
+  // &::before
+  //   // right arrow -> as content
+    // content: "\2192   "
 </style>

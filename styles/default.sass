@@ -96,7 +96,7 @@ body
 
 section 
   margin: 0 auto
-  padding: 100px 30px   // fix hero section.
+  padding: 100px 0   // fix hero section.
   max-width: 1000px
 
   @media (max-width: 768px) 
@@ -108,18 +108,17 @@ section
   &.footnotes
     margin-top: 3em
     margin-bottom: 20px
-    border-top: 1px solid colors.color("light-background")
+    // border-top: 1px solid colors.color("light-background")
     padding-top: 1em !important
     padding-bottom: 0
     line-height: 2
-    //olor: colors.color(dark-foreground)
 
     & > *
       font-size: typography.font-size(xs)
 
     // grab the links and add some space!!
-    & > * > * > *
-      padding: 0.2em 0
+    // & > * > * > *
+    //   padding: 0.2em 0
 
 
 h1, h2, h3, h4, h5, h6 

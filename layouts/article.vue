@@ -67,6 +67,23 @@ const toggleSearch = () => {
   searchOpen.value = !searchOpen.value
 }
 
+// if search is open and "esc" is pressed, close search
+onMounted(() => {
+  const closeSearch = (e: KeyboardEvent) => {
+    if (searchOpen && e.key === "Escape") {
+      toggleSearch()
+      
+      // find .menu-button and remove .clicked
+      const btn = document.querySelector(".menu-button")
+      btn.classList.remove("clicked")
+    }
+  }
+  window.addEventListener("keydown", closeSearch)
+  return () => {
+    window.removeEventListener("keydown", closeSearch)
+  }
+})
+
 onMounted(() => {
   const userInfo = useUserInfo()
   // listen for auth state changes

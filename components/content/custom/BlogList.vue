@@ -1,12 +1,12 @@
 <template>
   <Square margin="0%">
     <div class="blog-list-container">
-      <ProseH1
+      <!-- <ProseH1
         v-if="title"
         :id="title"
       >
         {{ title }}
-      </ProseH1>
+      </ProseH1> -->
       <div
         v-for="year in years"
         :key="year"
@@ -37,7 +37,7 @@ defineProps<{
 }>()
 const { data: blogs } = await useAsyncData(async () => {
   const _blogs = await queryContent()
-    .only(["title", "description", "excerpt", "date", "category", "_path"])
+    .only(["title", "description", "excerpt", "date", "_path"])
     .sort({ date: -1 })
     .find()
   return _blogs
@@ -60,6 +60,8 @@ const years = [...new Set(_years)]
   font-size: typography.font-size(m)
   color: colors.color(lightest-foreground)
   align-self: flex-start
+  gap: 0
+
 
   @media (max-width: 640px)
     font-size: typography.font-size(xs)
@@ -71,22 +73,36 @@ const years = [...new Set(_years)]
     color: colors.color(foreground)
 
   .blog-list-title
-    margin-bottom: 5rem
     font-size: 1rem
     font-weight: 500
     color: colors.color(lightest-foreground)
 
   .blog-list-year
     @include mixins.split
-    border-top: 1px solid colors.color(light-background)
     padding-top: 1em
+    // padding-left: 1em
     gap: 1em
+    // margin-left: -1em
+
+    @include mixins.shift-left
+
+    border-bottom: 1px solid colors.color(light-background)
+
+    &:not(:first-child)
+      margin-top: -2em
+
+    &:first-child
+      border-top: 1px solid colors.color(light-background)
 
     .blog-list-year-title
       width: 15%
-      color: colors.color(foreground)
+      color: colors.color(dark-foreground)
       font-weight: 400
       line-height: 2
+
+      @media (min-width: 540px)
+        margin-top: 50px
+      
 
     .blog-list
       width: 85%

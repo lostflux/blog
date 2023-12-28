@@ -12,7 +12,15 @@
 
 .prose-p
   font-family: typography.font("sans-serif")
-  margin-bottom: 1em
-  margin: 0 0 1.5em 0
+  // margin-bottom: 1em
   line-height: 24px
+
+
+  // if not following a .prose-hr, indent first line
+  // :not(.prose-hr, .prose-title-wrapper) + &
+  //   &:not(:first-child)
+  //     text-indent: 1.5em
+
+  &:not(:last-child)
+    margin: 0 0 1.5em 0
 </style>

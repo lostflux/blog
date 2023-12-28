@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "whatever",
+      title: "alt",
       htmlAttrs: {
         lang: "en",
       },
@@ -41,12 +41,6 @@ export default defineNuxtConfig({
         { property: "og:site_name", content: "amittai" },
         { property: "og:locale", content: "en_US" },
         { name: "robots", content: "index, follow" },
-        {
-          hid: "description",
-          name: "description",
-          content:
-            "Amittai's portfolio. A summary of his work, thoughts, and interests.",
-        },
       ],
       link: [
         { rel: "icon", type: "image/svg", href: "/favicon.svg" },

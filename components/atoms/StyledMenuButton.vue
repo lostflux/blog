@@ -28,13 +28,27 @@ const clicked = ref(false)
 const click = () => {
   clicked.value = !clicked.value
 }
-</script>
 
-<script lang="ts">
+// on mounted, set event listener such that
+// on hover, if clicked is true but there's no .clicked class, set clicked to false
+onMounted(() => {
+  const btn = document.querySelector(".menu-button")
+  btn.addEventListener("mouseover", () => {
+    if (clicked.value && !btn.classList.contains("clicked")) {
+      clicked.value = false
+    }
+  })
+})
 
-export default {
-  name: "StyledMenuButton",
-}
+// remove listener before unmount
+onUnmounted(() => {
+  const btn = document.querySelector(".menu-button")
+  btn.removeEventListener("mouseover", () => {
+    if (clicked.value && !btn.classList.contains("clicked")) {
+      clicked.value = false
+    }
+  })
+})
 </script>
 
 <style lang="sass" scoped>

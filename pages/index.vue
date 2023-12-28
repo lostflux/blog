@@ -15,14 +15,34 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
 }
 
+useHead({
+  titleTemplate: "",
+  title: "alt",
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: page.value?.description || page.value.excerpt || "",
+    },
+    {
+      hid: "og:description",
+      name: "og:description",
+      content: page.value?.description || page.value.excerpt || "",
+    },
+    {
+      hid: "og:title",
+      name: "og:title",
+      content: `alt`,
+    },
+  ],
+})
+
 useSeoMeta({
   titleTemplate: "",
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description,
-  ogImage: page.value.image || "",
-  twitterImage: page.value.image || "",
+  title: "alt",
+  ogTitle: `alt`,
+  description: page.value?.description || page.value.excerpt || "",
+  ogDescription: page.value?.description || page.value.excerpt || "",
 })
 
 provide("page", page)

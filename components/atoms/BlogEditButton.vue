@@ -1,6 +1,6 @@
 <template>
   <div class="edit-button-container">
-    <ProseA
+    <!-- <ProseA
       :to="fullLink"
       class="edit-button"
       fancy
@@ -8,7 +8,7 @@
       external
     >
       Full Version
-    </ProseA>
+    </ProseA> -->
     <ProseA
       :to="repoLink"
       class="edit-button"

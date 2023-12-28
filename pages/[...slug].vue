@@ -19,11 +19,33 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
 }
 
-useSeoMeta({
-  titleTemplate: "%s | amittai",
+useHead({
+  titleTemplate: "%s | alt",
   title: page.value.title,
-  ogTitle: `${page.value.title} | amittai`,
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: page.value?.description || page.value.excerpt || "",
+    },
+    {
+      hid: "og:description",
+      name: "og:description",
+      content: page.value?.description || page.value.excerpt || "",
+    },
+    {
+      hid: "og:title",
+      name: "og:title",
+      content: `${page.value.title} | alt`,
+    },
+  ],
+})
+
+useSeoMeta({
+  titleTemplate: "%s | alt",
+  title: page.value.title,
+  ogTitle: `${page.value.title} | alt`,
   description: page.value?.description || page.value.excerpt || "",
-  ogDescription: page.value.description || page.value.excerpt || "",
+  ogDescription: page.value?.description || page.value.excerpt || "",
 })
 </script>

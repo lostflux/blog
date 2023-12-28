@@ -69,6 +69,9 @@ export default {
   border-left: 2px solid colors.color(primary-highlight)
   color: colors.color(primary-highlight)
 
+  &:not(:last-child)
+    margin-bottom: 1.5rem
+
   .author
     border-top: 1px solid colors.color(lightest-background)
     padding-top: 0.5em

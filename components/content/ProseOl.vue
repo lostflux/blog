@@ -10,7 +10,7 @@
 .prose-ol
   counter-reset: ol-count
 
-  margin: 2em 0
+  // margin: 2em 0
 
   font-size: typography.font-size("l")
 

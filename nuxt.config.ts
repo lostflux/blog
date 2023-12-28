@@ -19,8 +19,8 @@ console.log(`contentSource: ${JSON.stringify(contentSource)}`)
 
 export default defineNuxtConfig({
   experimental: {
-    // viewTransition: true,
-    payloadExtraction: true,
+    viewTransition: true,
+    payloadExtraction: false,
   },
   routeRules: {
     "/**": {

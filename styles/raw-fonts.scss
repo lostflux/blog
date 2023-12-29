@@ -1190,4 +1190,27 @@ explicitly, e.g.
   src: url('@/assets/fonts/Graphik/Graphik-Web-Bold.woff2') format('truetype');
 }
 
+// Geist
+
+// variable font
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('@/assets/fonts/Geist/GeistVariable.woff2') format('truetype');
+}
+
+// Geist Mono
+
+// variable font
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('@/assets/fonts/Geist.Mono/GeistMonoVariable.woff2') format('truetype');
+}
+
 // @debug('fonts loaded');
+

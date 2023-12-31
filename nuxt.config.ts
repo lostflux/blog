@@ -55,6 +55,12 @@ export default defineNuxtConfig({
           type: "image/svg",
           href: "/favicon.svg",
         },
+        {
+          rel: 'stylesheet',
+          href: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+          // integrity: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV",
+        },
+        
       ],
     },
   },
@@ -97,6 +103,17 @@ export default defineNuxtConfig({
       rehypePlugins: {
         "rehype-katex": {
           output: "html",
+          macros: {
+            "\\RR": "\\mathbb{R}",
+            "\\NN": "\\mathbb{N}",
+            "\\ZZ": "\\mathbb{Z}",
+            "\\QQ": "\\mathbb{Q}",
+            "\\CC": "\\mathbb{C}",
+            "\\FF": "\\mathbb{F}",
+            "\\PP": "\\mathbb{P}",
+            "\\dd": "\\mathrm{d}",
+            "\\Re": "\\operatorname{Re}",
+          }
         },
       },
     },
@@ -116,6 +133,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   ssr: true,
 
   css: [

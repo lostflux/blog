@@ -1,6 +1,9 @@
 <template>
   <div
     class="inline-flex-div"
+    :style="{
+      justifyContent: justify,
+    }"
   >
     <slot />
   </div>
@@ -9,18 +12,18 @@
 defineProps({
   justify: {
     type: String,
-    default: "left",
+    default: "space-evenly",
   },
   align: {
     type: String,
-    default: "left",
+    default: "center",
   },
 })
 </script>
 <style lang="sass" scoped>
 .inline-flex-div
   width: 100%
-  display: inline-flex
+  display: flex
   gap: 10px
-  padding: 10px
+  padding-top: 20px
 </style>

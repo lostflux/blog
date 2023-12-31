@@ -18,7 +18,11 @@
     >
       {{ title }}
     </ProseA>
-    <ContentRendererMarkdown v-if="description" :value="description" class="description"/>
+    <ContentRendererMarkdown
+      v-if="description"
+      :value="description"
+      class="description"
+    />
   </div>
 </template>
 
@@ -39,21 +43,17 @@ const props = defineProps<{
 }>()
 
 const date = props.blog.date ? new Date(props.blog.date).toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-  }) : null
+  month: "2-digit",
+  day: "2-digit",
+}) : null
 
-const title = computed( () => {
-  props.blog.title
-
+const title = computed(() => {
   let _title = props.blog.title.split("|")[0]
   if (_title.toLowerCase() === "alt") {
     _title = "archive"
   }
   return _title
-  
 })
-
 
 const description = props.blog.description
   ? await markdownParser.parse(`description-${props.blog._path}`, props.blog.description)

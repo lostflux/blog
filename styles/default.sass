@@ -150,20 +150,17 @@ img, svg, .image-wrapper
   &:id(focus, :active)::placeholder 
     opacity: 1
 
-:not(.prose-p) > .katex
-  
-  // background-color: colors.color("light-background") !important
+.katex-html
+  color: colors.color("lightest-foreground")
+
+// :not(.prose-p, .prose-li) > .katex
+:is(.content-container, .blog-list-item) > div > .katex
   display: flex
   padding: 1em 0
-  margin-top: -1em
+  margin: 1em
   overflow: auto hidden
-  // border: 1px solid colors.color("light-background") !important
-  // border-radius: 5px
-  // border: 1px solid colors.color("light-background") !important
 
 
   .katex-html
-    color: colors.color("lightest-foreground") !important
-    white-space: normal
     margin: 0 auto !important
 

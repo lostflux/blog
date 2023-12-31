@@ -31,8 +31,8 @@
 
       <div class="blog-actions-and-date">
         <div
-          class="blog-actions"
           v-if="userInfo && includeActions"
+          class="blog-actions"
         >
           <button class="blog-action left">
             <Icon
@@ -81,7 +81,7 @@ const header = await useAsyncData(
   async () => {
     const _data = await queryContent()
       .where({ _path: path })
-      .only(["date", "title", "subtitle"])
+      .only(["date", "title"])
       .findOne()
 
     return _data
@@ -92,7 +92,7 @@ if (!header.data.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
 }
 
-const { date, title, subtitle } = header.data.value
+const { date, title } = header.data.value
 
 const toggleSubscription = () => {
   // if user logged in, toggle subscription

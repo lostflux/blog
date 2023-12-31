@@ -62,7 +62,6 @@ const years = [...new Set(_years)]
   align-self: flex-start
   gap: 0
 
-
   @media (max-width: 640px)
     font-size: typography.font-size(xs)
 
@@ -102,7 +101,6 @@ const years = [...new Set(_years)]
 
       @media (min-width: 540px)
         margin-top: 50px
-      
 
     .blog-list
       width: 85%

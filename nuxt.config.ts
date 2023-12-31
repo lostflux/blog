@@ -56,11 +56,11 @@ export default defineNuxtConfig({
           href: "/favicon.svg",
         },
         {
-          rel: 'stylesheet',
+          rel: "stylesheet",
           href: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
           // integrity: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV",
         },
-        
+
       ],
     },
   },
@@ -103,6 +103,8 @@ export default defineNuxtConfig({
       rehypePlugins: {
         "rehype-katex": {
           output: "html",
+          errorColor: "#BD998F",
+          globalGroup: true,
           macros: {
             "\\RR": "\\mathbb{R}",
             "\\NN": "\\mathbb{N}",
@@ -113,7 +115,12 @@ export default defineNuxtConfig({
             "\\PP": "\\mathbb{P}",
             "\\dd": "\\mathrm{d}",
             "\\Re": "\\operatorname{Re}",
-          }
+            "\\cos": "\\operatorname{cos}",
+            "\\sin": "\\operatorname{sin}",
+
+            // parentheses
+            "\\parens": "\\left( #1 \\right)",
+          },
         },
       },
     },

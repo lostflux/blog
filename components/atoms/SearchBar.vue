@@ -82,15 +82,15 @@ defineProps<{
 // focus on search bar when mounted
 onMounted(() => textBar.value.focus())
 
-const search = () => {
+const searchFun = () => {
   if (!searchTerm.value) {
     result.value = null
     return
   }
   const { search } = useAlgoliaSearch("netlify_e0f5d7d0-9d2a-45ae-8962-6e3af2ec4cf3_main_all")
   search({ query: searchTerm.value })
-    .then(async (res) => {
-      result.value = res
+    .then(async (response) => {
+      result.value = response
 
       const searchData = result.value?.hits?.map((res) => ({
         _path: withoutTrailingSlash(res.url) || "",
@@ -102,7 +102,7 @@ const search = () => {
     })
 }
 
-watch(searchTerm, search)
+watch(searchTerm, searchFun)
 </script>
 
 <style lang="sass" scoped>

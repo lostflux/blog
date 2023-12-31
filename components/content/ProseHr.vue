@@ -11,6 +11,6 @@
   height: 1px
   border-width: 0px
   margin: 1rem 0
-  
+
   @include mixins.shift-left
 </style>

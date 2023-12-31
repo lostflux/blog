@@ -40,6 +40,7 @@ const { data: surround } = await useAsyncData(
     const { path } = route
     const _surround = await queryContent()
       .where({ _extension: "md" })
+      .sort({ date: 1 })
       .only(["_path", "title"])
       .findSurround(withoutTrailingSlash(path))
     return _surround

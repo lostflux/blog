@@ -72,7 +72,7 @@ onMounted(() => {
   const closeSearch = (e: KeyboardEvent) => {
     if (searchOpen && e.key === "Escape") {
       toggleSearch()
-      
+
       // find .menu-button and remove .clicked
       const btn = document.querySelector(".menu-button")
       btn.classList.remove("clicked")

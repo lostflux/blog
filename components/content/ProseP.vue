@@ -15,7 +15,6 @@
   // margin-bottom: 1em
   line-height: 24px
 
-
   // if not following a .prose-hr, indent first line
   // :not(.prose-hr, .prose-title-wrapper) + &
   //   &:not(:first-child)

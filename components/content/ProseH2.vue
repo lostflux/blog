@@ -1,27 +1,29 @@
 <template>
-  <ProseHr />
-  <NuxtLink
-    v-if="generate && id"
-    :to="`#${id}`"
-    class="prose-title-wrapper"
-  >
-    <h2
-      :id="id"
-      class="prose-h2"
+  <div>
+    <ProseHr />
+    <NuxtLink
+      v-if="generate && id"
+      :to="`#${id}`"
+      class="prose-title-wrapper"
     >
-      <slot />
-    </h2>
-  </NuxtLink>
-  <div
-    v-else
-    class="prose-title-wrapper"
-  >
-    <h2
-      :id="id"
-      class="prose-h2"
+      <h2
+        :id="id"
+        class="prose-h2"
+      >
+        <slot />
+      </h2>
+    </NuxtLink>
+    <div
+      v-else
+      class="prose-title-wrapper"
     >
-      <slot />
-    </h2>
+      <h2
+        :id="id"
+        class="prose-h2"
+      >
+        <slot />
+      </h2>
+    </div>
   </div>
 </template>
 

@@ -32,7 +32,7 @@ useHead({
     {
       hid: "og:title",
       name: "og:title",
-      content: `alt`,
+      content: "alt",
     },
   ],
 })
@@ -40,7 +40,7 @@ useHead({
 useSeoMeta({
   titleTemplate: "",
   title: "alt",
-  ogTitle: `alt`,
+  ogTitle: "alt",
   description: page.value?.description || page.value.excerpt || "",
   ogDescription: page.value?.description || page.value.excerpt || "",
 })

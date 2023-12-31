@@ -171,7 +171,7 @@ export default {
 import { withoutTrailingSlash } from "ufo"
 
 const path = withoutTrailingSlash(useRoute().path)
-const { data: page } = await useAsyncData(async () => {
+const { data: page } = await useAsyncData(`toc-data-${path}`, async () => {
   const _page = await queryContent().where({ _path: path }).findOne()
   return _page
 })

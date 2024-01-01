@@ -59,7 +59,9 @@
           v-if="date"
           :date="date"
         />
-        <BlogViews />
+        <ClientOnly>
+          <BlogViews />
+        </ClientOnly>
       </div>
     </div>
   </div>

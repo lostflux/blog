@@ -13,7 +13,9 @@
         v-if="props.blog.date"
         :date="props.blog.date"
       />
-      <BlogViews :path="blog._path" />
+      <ClientOnly>
+        <BlogViews :path="blog._path" />
+      </ClientOnly>
     </div>
     <ProseA
       class="blog-list-item-title"

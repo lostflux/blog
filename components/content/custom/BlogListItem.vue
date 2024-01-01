@@ -3,12 +3,17 @@
     class="blog-list-item"
   >
     <div class="blog-list-item-head">
-      <div
+      <!-- <div
         v-if="date"
         class="date"
       >
         {{ date }}
-      </div>
+      </div> -->
+      <Date
+        v-if="props.blog.date"
+        :date="props.blog.date"
+      />
+      <BlogViews :path="blog._path" />
     </div>
     <ProseA
       class="blog-list-item-title"
@@ -42,10 +47,10 @@ const props = defineProps<{
   }
 }>()
 
-const date = props.blog.date ? new Date(props.blog.date).toLocaleDateString("en-US", {
-  month: "2-digit",
-  day: "2-digit",
-}) : null
+// const date = props.blog.date ? new Date(props.blog.date).toLocaleDateString("en-US", {
+//   month: "2-digit",
+//   day: "2-digit",
+// }) : null
 
 const title = computed(() => {
   let _title = props.blog.title.split("|")[0]
@@ -71,11 +76,12 @@ const description = props.blog.description
   flex-direction: column
   vertical-align: middle
   padding-right: 0.5rem
-  padding-top: 0.4em
+  padding-top: 3em
   justify-content: space-between
   color: inherit
   position: relative
   margin-bottom: 2rem
+  font-size: typography.font-size(xs)
 
   .description
     color: colors.color(dark-foreground)
@@ -87,6 +93,10 @@ const description = props.blog.description
     padding-top: 0
     max-width: 40ch
 
+    &:last-of-type
+      padding-bottom: 1em
+      border-bottom: 1px solid colors.color(light-background)
+
     :deep(.square)
       &::before, &::after
         padding: 0 !important
@@ -97,6 +107,11 @@ const description = props.blog.description
       .inner
         display: block !important
         padding-top: 0 !important
+
+  &:last-child
+    .description
+      padding-bottom: 0 !important
+      border-bottom: none !important
 
   .blog-list-item-title
     width: 80%
@@ -110,15 +125,16 @@ const description = props.blog.description
     font-weight: 400
     line-height: 1
     display: inline-flex
-    justify-content: space-between
+    justify-content: flex-start // space-between
+    // background: red
+    align-items: center
+    gap: 2em
 
     .date
-      font-size: typography.font-size(xxs)
+      font-size: typography.font-size(m)
       font-weight: 500
-      line-height: 2
       color: colors.color(dark-foreground)
       text-align: right
-      height: 1rem
       max-width: 20ch
       overflow: hidden
       text-overflow: ellipsis

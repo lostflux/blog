@@ -1,40 +1,35 @@
 <template>
-  <div :class="{ 'date-component': true, 'left': left }">
+  <div class="date-component">
     {{ formattedDate }}
   </div>
 </template>
-<script lang="ts">
-export default {
-  name: "Date",
-  props: {
-    date: {
-      type: String,
-      required: true,
-    },
-    weekday: {
-      type: Boolean,
-      default: true,
-    },
-    left: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props) {
-    const date = new Date(props.date)
-    return {
-      formattedDate: date.toLocaleDateString(),
-    }
-  },
-}
+<script lang="ts" setup>
+
+const props = defineProps<{
+  date: string
+  // weekday?: boolean
+  left?: boolean
+}>()
+
+const formattedDate = computed(() => {
+  const date = new Date(props.date)
+  const options = {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+    weekday: "short",
+  }
+  return date.toLocaleDateString("en-US", options)
+})
+
 </script>
 
 <style lang="sass" scoped>
 @use "@/styles/colors"
 @use "@/styles/typography"
 .date-component
-  font-size: typography.font-size(m)
-  font-weight: 500
   color: colors.color(dark-foreground)
-
+  font-size: typography.font-size("xxs")
+  font-weight: 600
+  text-transform: uppercase
 </style>

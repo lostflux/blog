@@ -59,6 +59,7 @@
           v-if="date"
           :date="date"
         />
+        <BlogViews />
       </div>
     </div>
   </div>
@@ -200,7 +201,8 @@ export default {
     height: 30px
     display: flex
     flex-direction: row
-    justify-content: space-between
+    justify-content: flex-start
+    gap: 2em
     align-items: center
     margin: -0.8rem 0 1rem 0
 

@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-
 definePageMeta({
   layout: "article",
 })
@@ -47,4 +46,10 @@ useSeoMeta({
 
 provide("page", page)
 
+// const { gtag } = useGtag()
+
+// gtag("event", "page_view", {
+//   app_name: "amittai.studio",
+//   screen_name: withoutTrailingSlash(route.path)
+// })
 </script>

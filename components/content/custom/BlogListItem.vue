@@ -89,11 +89,14 @@ const description = props.blog.description
     color: colors.color(dark-foreground)
     font-weight: 400
     line-height: 1.5
-    font-size: typography.font-size(s)
     margin-bottom: 0.5rem
     margin-top: 0
     padding-top: 0
     max-width: 40ch
+
+    font-size: typography.font-size(m)
+    @media screen and (min-width: 800px)
+      font-size: typography.font-size(l)
 
     &:last-of-type
       padding-bottom: 1em
@@ -117,10 +120,12 @@ const description = props.blog.description
 
   .blog-list-item-title
     width: 80%
-    height: 2rem
+    // height: 2rem
     overflow: hidden
     text-overflow: ellipsis
-    font-size: typography.font-size(s)
+    font-size: typography.font-size(m)
+    @media screen and (min-width: 800px)
+      font-size: typography.font-size(l)
 
   .blog-list-item-head
     color: colors.color(dark-foreground)

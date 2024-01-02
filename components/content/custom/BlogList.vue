@@ -96,8 +96,12 @@ const years = [...new Set(_years)]
     .blog-list-year-title
       width: 15%
       color: colors.color(dark-foreground)
-      font-weight: 400
-      line-height: 2
+      font-weight: 500
+
+      line-height: 2.9
+
+      @media (max-width: 800px)
+        line-height: 2.7
 
       @media (min-width: 540px)
         margin-top: 50px

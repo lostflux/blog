@@ -18,6 +18,11 @@ console.info(`local source: ${localSource}`)
 console.log(`contentSource: ${JSON.stringify(contentSource)}`)
 
 export default defineNuxtConfig({
+  hooks: {
+    close: () => {
+      process.exit(0)
+    },
+  },
   experimental: {
     viewTransition: true,
     payloadExtraction: false,

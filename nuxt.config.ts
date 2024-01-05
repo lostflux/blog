@@ -14,15 +14,10 @@ if (localSource) {
   contentSource.dir = "content"
 }
 
-console.info(`local source: ${localSource}`)
-console.log(`contentSource: ${JSON.stringify(contentSource)}`)
+// console.info(`local source: ${localSource}`)
+console.info(`contentSource: ${JSON.stringify(contentSource)}`)
 
 export default defineNuxtConfig({
-  hooks: {
-    close: () => {
-      process.exit(0)
-    },
-  },
   experimental: {
     viewTransition: true,
     payloadExtraction: false,
@@ -63,10 +58,15 @@ export default defineNuxtConfig({
         {
           rel: "stylesheet",
           href: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
-          // integrity: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV",
         },
-
       ],
+      // script: [
+      //   {
+      //     type: "text/javascript",
+      //     id: "mapmyvisitors",
+      //     src: "//mapmyvisitors.com/map.js?d=rKdVFGlR7Hq6hLXnrXt6Y8-wYYEJ83h8K0fs6RIia7I&cl=ffffff&w=a",
+      //   },
+      // ],
     },
   },
   typescript: {
@@ -199,7 +199,6 @@ export default defineNuxtConfig({
     },
   },
   pageViews: {
-
     credentials: {
       type: "service_account",
       project_id: "altair-on-the-web",

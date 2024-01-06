@@ -18,6 +18,9 @@ if (localSource) {
 console.info(`contentSource: ${JSON.stringify(contentSource)}`)
 
 export default defineNuxtConfig({
+  features: {
+    inlineStyles: false,
+  },
   experimental: {
     viewTransition: true,
     payloadExtraction: false,

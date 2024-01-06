@@ -53,6 +53,9 @@ const refinedSrc = computed(() => withBase(props.src, useRoute().path))
   flex-direction: column
   align-items: center
 
+  font-size: typography.font-size(s)
+  color: colors.color(lightest-foreground)
+
   .prose-img
     max-width: 100%
     max-height: 100%
@@ -61,7 +64,5 @@ const refinedSrc = computed(() => withBase(props.src, useRoute().path))
 
   .prose-img-alt
     margin-top: 0.5rem
-    font-size: typography.font-size(s)
-    color: colors.color(lightest-foreground)
     text-align: center
 </style>

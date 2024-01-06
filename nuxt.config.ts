@@ -75,9 +75,7 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/content",
-    "@nuxt/ui",
     "@nuxt/devtools",
-    "@pinia/nuxt",
     "@nuxt/image",
     "nuxt-pageviews",
     "nuxt-gtag",
@@ -184,19 +182,6 @@ export default defineNuxtConfig({
     provider: "ipx",
     ipx: {},
     dir: "static",
-  },
-  runtimeConfig: {
-    public: {
-      firebaseConfig: {
-        apiKey: process.env.DATABASE_API_KEY,
-        authDomain: process.env.DATABASE_AUTH_DOMAIN,
-        projectId: process.env.DATABASE_PROJECT_ID,
-        storageBucket: process.env.DATABASE_STORAGE_BUCKET,
-        messagingSenderId: process.env.DATABASE_MESSAGING_SENDER_ID,
-        appId: process.env.DATABASE_APP_ID,
-        measurementId: process.env.DATABASE_MEASUREMENT_ID,
-      },
-    },
   },
   pageViews: {
     credentials: {

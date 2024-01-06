@@ -54,6 +54,7 @@ const generate = anchorLinks?.depth >= heading
   // padding: 0
   // line-height: 0.9em
   font-size: typography.font-size(l)
+  font-weight: 400
 
   // &::before
   //   // right arrow -> as content

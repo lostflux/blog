@@ -118,9 +118,9 @@ const description = props.blog.description
 
   .blog-list-item-title
     width: 80%
-    // height: 2rem
     overflow: hidden
     text-overflow: ellipsis
+    text-transform: uppercase
     font-size: typography.font-size(m)
     @media screen and (min-width: 800px)
       font-size: typography.font-size(l)

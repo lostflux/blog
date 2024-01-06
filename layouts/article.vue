@@ -39,14 +39,6 @@
               @toggle-search="toggleSearch"
             />
           </div>
-          <BlogComments
-            id="blog-comments"
-            ref="commentsSection"
-          />
-          <AuthenticationForm
-            id="auth-form-container"
-            class="hidden"
-          />
         </div>
         <SearchBar :open="searchOpen" />
       </div>
@@ -55,12 +47,10 @@
 </template>
 
 <script setup lang="ts">
-import { getAuth, onAuthStateChanged } from "@firebase/auth"
-
 const route = useRoute()
 
 // reference to comments section for detecting when to show auth popup
-const commentsSection = ref<HTMLElement | null>(null)
+// const commentsSection = ref<HTMLElement | null>(null)
 
 const searchOpen = ref(false)
 const toggleSearch = () => {
@@ -82,16 +72,6 @@ onMounted(() => {
   return () => {
     window.removeEventListener("keydown", closeSearch)
   }
-})
-
-onMounted(() => {
-  const userInfo = useUserInfo()
-  // listen for auth state changes
-  const auth = getAuth()
-  userInfo.init()
-  onAuthStateChanged(auth, () => {
-    userInfo.init()
-  })
 })
 </script>
 

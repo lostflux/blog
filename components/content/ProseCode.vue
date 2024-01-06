@@ -67,6 +67,8 @@
 </template>
 
 <script lang="ts" setup>
+import { useClipboard } from "@vueuse/core"
+
 const { copy, copied } = useClipboard()
 </script>
 
@@ -191,6 +193,7 @@ export default {
 
     & > svg
       fill: none
+      height: 1em
 
   .filename
     position: absolute

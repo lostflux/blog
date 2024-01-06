@@ -56,5 +56,7 @@ const generate = anchorLinks?.depth >= heading
   // padding: 0
   // line-height: 0.9em
   // font-size: typography.font-size(l)
+  font-weight: 400
+  font-size: 1em
   text-transform: uppercase
 </style>

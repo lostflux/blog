@@ -65,12 +65,6 @@ const years = [...new Set(_years)]
   @media (max-width: 640px)
     font-size: typography.font-size(xs)
 
-  *
-    transition: all 50ms ease-in-out
-
-  &:hover
-    color: colors.color(foreground)
-
   .blog-list-title
     font-size: 1rem
     font-weight: 500
@@ -79,9 +73,7 @@ const years = [...new Set(_years)]
   .blog-list-year
     @include mixins.split
     padding-top: 1em
-    // padding-left: 1em
     gap: 1em
-    // margin-left: -1em
 
     @include mixins.shift-left
 

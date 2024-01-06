@@ -69,11 +69,6 @@ const blogs = ref([])
 
 const siteSearch = ref<HTMLElement>(null)
 const siteSearchBackground = ref<HTMLElement>(null)
-onClickOutside(siteSearch, () => {
-  const btn = document.querySelector(".menu-button")
-  btn.classList.remove("clicked")
-  siteSearchBackground.value?.classList.add("hidden")
-})
 
 defineProps<{
   open: boolean

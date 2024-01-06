@@ -5,11 +5,12 @@
 </template>
 <script lang="ts" setup>
 
-const props = defineProps<{
-  date: string
-  // weekday?: boolean
-  left?: boolean
-}>()
+const props = defineProps({
+  date: {
+    type: String,
+    default: new Date().toDateString(),
+  },
+})
 
 const formattedDate = computed(() => {
   const date = new Date(props.date)

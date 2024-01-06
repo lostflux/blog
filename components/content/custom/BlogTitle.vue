@@ -30,31 +30,6 @@
       </div>
 
       <div class="blog-actions-and-date">
-        <div
-          v-if="userInfo && includeActions"
-          class="blog-actions"
-        >
-          <button class="blog-action left">
-            <Icon
-              type="comment"
-              :active="false"
-              class="blog-action-icon"
-              @click="showComments"
-            />
-            <span
-              class="blog-action-count"
-            >
-              {{ userInfo.getCommentCount }}
-            </span>
-          </button>
-          <button class="blog-action">
-            <BookMarkIcon
-              :active="userInfo.isSubscribed()"
-              class="blog-action-icon"
-              @click="toggleSubscription"
-            />
-          </button>
-        </div>
         <Date
           v-if="date"
           :date="date"
@@ -67,7 +42,6 @@
 
 <script lang="ts" setup>
 const { path } = useTrimmedPath()
-const includeActions = false
 
 defineProps({
   customTitle: {
@@ -95,27 +69,9 @@ if (!header.data.value) {
 
 const { date, title } = header.data.value
 
-const toggleSubscription = () => {
-  // if user logged in, toggle subscription
-  if (userInfo.active) userInfo.toggleSubscription()
-  // otherwise, show auth modal
-  else {
-    const authModal = document.getElementsByClassName("auth-modal")[0]
-    authModal?.classList.remove("hidden")
-  }
-}
-
-const showComments = () => {
-  const commentsContainer = document.getElementsByClassName("comments-section-wrapper")[0]
-  if (commentsContainer) {
-    commentsContainer.classList.remove("hidden")
-  }
-}
-
 </script>
 
 <script lang="ts">
-const userInfo = useUserInfo()
 export default {
   name: "BlogTitle",
 }
@@ -169,7 +125,6 @@ export default {
   position: relative
 
   .text-container
-    //width: min(100%, 1200px)
     width: fit-content
     height: 100%
     display: flex
@@ -181,11 +136,11 @@ export default {
       width: 100%
       margin-top: 1rem
       margin-bottom: 1em
-      // background: yellow
 
       .title-heading
         font-size: typography.font-size("l")
         text-transform: uppercase
+        font-weight: 400
 
         @media screen and (max-width: 800px)
           font-size: typography.font-size("m")

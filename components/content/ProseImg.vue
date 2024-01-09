@@ -4,16 +4,14 @@
       class="prose-img"
       :src="refinedSrc"
       :alt="alt"
-      :width="width"
-      :height="height"
       loading="lazy"
-      format="avif,webp"
-    />
-    <caption
-      v-if="alt"
-      class="prose-img-alt"
-      v-html="alt"
-    />
+    >
+      <caption
+        v-if="alt"
+        class="prose-img-alt"
+        v-html="alt"
+      />
+    </nuxtimg>
   </figure>
 </template>
 

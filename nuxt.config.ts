@@ -24,7 +24,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/**": {
-      prerender: true,
+      // isr: 60,
+      ssr: true,
     },
   },
   app: {
@@ -146,8 +147,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: true,
-
   css: [
     "@/styles/colors.scss",
     "@/styles/default.sass",
@@ -178,10 +177,7 @@ export default defineNuxtConfig({
       xxl: 1536,
       "2xl": 1536,
     },
-    format: ["avif", "webp"],
-    provider: "ipx",
-    ipx: {},
-    dir: "static",
+    provider: "ipxStatic",
   },
   pageViews: {
     credentials: {

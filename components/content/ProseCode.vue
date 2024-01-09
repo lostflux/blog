@@ -96,8 +96,8 @@ export default {
 </script>
 
 <style lang="sass">
-@use "../styles/colors"
-@use "../styles/typography"
+@use "@/styles/colors"
+@use "@/styles/typography"
 
 .code-container
   background: rgba(colors.color(light-background), 0.2)
@@ -135,7 +135,7 @@ export default {
         code
           font-family: typography.font("monospace")
           font-size: typography.font-size("xs")
-          line-height: 1.7em
+          line-height: 1.7rem
           display: flex
           flex-direction: column
 
@@ -145,7 +145,7 @@ export default {
 
             &.highlight
               background-color: rgba(colors.color("lightest-background"), 0.5)
-              padding-right: 1em
+              padding-right: 1rem
 
               &::before
                 content: '+'
@@ -154,11 +154,11 @@ export default {
 
             &::before
               display: inline-block
-              width: 2.5em
+              width: 2.5rem
               text-align: right
               content: counter(line)
-              margin-right: 1em
-              padding-right: 0.5em
+              margin-right: 1rem
+              padding-right: 0.5rem
               color: colors.color(dark-foreground)
               border-right: 1px solid lighten(colors.color(lightest-background), 10%)
 
@@ -168,15 +168,15 @@ export default {
               &::before
                 display: inline-block
                 content: counter(line)
-                padding-right: 0.5em
+                padding-right: 0.5rem
                 color: colors.color("lightest-foreground")
                 border-right: 1px solid colors.color(foreground)
 
   .language
-    padding: 0 1em
+    padding: 0 1rem
     margin: auto 0
     padding-top: 7px
-    line-height: 1
+    line-height: 1rem
     font-weight: 400
     text-transform: capitalize
 
@@ -189,16 +189,16 @@ export default {
   .copy-button
     font: typography.font("monospace")
     color: colors.color(dark-foreground)
-    padding: 1em
+    padding: 1rem
 
     & > svg
       fill: none
-      height: 1em
+      height: 1rem
 
   .filename
     position: absolute
-    margin: 1em
-    left: 1em
+    margin: 1rem
+    left: 1rem
     top: 5px
     font-family: typography.font("monospace")
     font-size: typography.font-size("xs")

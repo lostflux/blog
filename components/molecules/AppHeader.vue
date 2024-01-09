@@ -1,15 +1,18 @@
 <template>
   <header
     ref="headerRef"
+    :key="tocKey"
     :class="{
       'header': true,
-      'collapse-into-page': scrolledToTop}"
+      'collapse-into-page': scrolledToTop,
+      'hidden': !showToc
+    }"
     :style="style"
   >
     <div
-      v-if="toc && toc?.links?.length > 1"
       class="header-toc-plus-button"
     >
+      <!-- v-show="toc && toc?.links?.length > 1" -->
       <div class="toc-wrapper">
         <button
           :class="{
@@ -45,6 +48,9 @@ const {
   navHeight,
 } = useConfig()
 
+// get current route path
+// const { path } = useRoute()
+
 export default {
   name: "AppHeader",
   data() {
@@ -55,6 +61,7 @@ export default {
       height: 0,
       menuOpen: false,
       tocExpanded: false,
+      tocKey: 0,
     }
   },
   computed: {
@@ -83,6 +90,19 @@ export default {
         this.height = this.$el.offsetHeight || 0
       },
       deep: true,
+    },
+    $route(to, from) {
+      console.log("route changed", to, from)
+      // this.tocExpanded = false
+
+      // force update on next tick
+      this.$nextTick(() => {
+        this.$forceUpdate()
+      })
+      // this.$forceUpdate()
+      this.tocKey += 1
+      this.$forceUpdate()
+      console.log("tocKey", this.tocKey)
     },
   },
   mounted() {
@@ -129,15 +149,20 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { withoutTrailingSlash } from "ufo"
+const { path } = useRoute()
+const { data: page } = await useAsyncData(
+  `toc-data-${path}`,
+  async () => {
+    const _page = await queryContent().where({ _path: path }).findOne()
+    return _page
+  },
+)
 
-const path = withoutTrailingSlash(useRoute().path)
-const { data: page } = await useAsyncData(async () => {
-  const _page = await queryContent().where({ _path: path }).findOne()
-  return _page
-})
+// get toc for current page
 
 const toc = page?.value?.body?.toc
+
+const showToc = computed(() => toc && toc?.links?.length > 1)
 
 const menuOpen = ref(false)
 
@@ -179,6 +204,16 @@ const headerRef = ref(null)
   -moz-transition: all 0.1s ease-in-out
   -o-transition: all 0.1s ease-in-out
   transition: all 0.1s ease-in-out
+
+  &.hidden
+    // display: none
+    // width: 0
+    height: 0
+    overflow: hidden
+
+    *
+      display: none
+    // background: yellow
 
   .footer-link
     background: none !important
@@ -256,15 +291,14 @@ const headerRef = ref(null)
     margin-top: 0
     padding-top: 0
     line-height: 1.5
-
-    -webkit-user-select: none
-    -moz-user-select: none
-    -ms-user-select: none
-    -o-user-select: none
+    color: colors.color(lightest-foreground)
     user-select: none
 
     -webkit-tap-highlight-color: rgba(0,0,0,0)
     -webkit-tap-highlight-color: transparent
+
+    &:hover
+      cursor: pointer
 
   .header-toc
     padding-top: 10px

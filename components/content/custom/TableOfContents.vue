@@ -193,7 +193,7 @@ const toc = page?.value?.body?.toc
     text-transform: uppercase
     font-size: typography.font-size(xs)
     font-weight: 600
-    color: colors.color(foreground)
+    color: colors.color(lightest-foreground)
 
   .toc-link
     display: block

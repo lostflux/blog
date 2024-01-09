@@ -1,12 +1,6 @@
 <template>
   <Square margin="0%">
     <div class="blog-list-container">
-      <!-- <ProseH1
-        v-if="title"
-        :id="title"
-      >
-        {{ title }}
-      </ProseH1> -->
       <div
         v-for="year in years"
         :key="year"
@@ -22,9 +16,6 @@
             :blog="blog"
           />
         </ul>
-      </div>
-      <div style="padding: 0 40px;">
-        <RouterButtons />
       </div>
     </div>
   </Square>

@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="surround"
+    :key="`surround-${route.path}`"
     class="surround"
   >
     <template

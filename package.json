@@ -6,8 +6,7 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "lint": "eslint . --fix",
-    "postinstall": "nuxt prepare",
-    "prepare": "husky install"
+    "prepare": "husky install && nuxt prepare"
   },
   "lint-staged": {
     "*.{ts,vue}": [

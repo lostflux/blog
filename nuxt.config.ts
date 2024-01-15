@@ -90,8 +90,10 @@ export default defineNuxtConfig({
     [
       "@nuxtjs/robots",
       {
+        Comment: "Algolia-Crawler-Verif: 126E843A3C9C54DF",
         UserAgent: "*",
         Disallow: "",
+        Sitemap: "https://amittai.space/sitemap.xml",
       },
     ],
   ],
@@ -119,13 +121,15 @@ export default defineNuxtConfig({
             "\\CC": "\\mathbb{C}",
             "\\FF": "\\mathbb{F}",
             "\\PP": "\\mathbb{P}",
-            "\\dd": "\\mathrm{d}",
+            "\\d": "\\mathrm{d}",
             "\\Re": "\\operatorname{Re}",
             "\\cos": "\\operatorname{cos}",
             "\\sin": "\\operatorname{sin}",
 
             // parentheses
             "\\parens": "\\left( #1 \\right)",
+            "\\braces": "\\left\\{ #1 \\right\\}",
+            "\\brackets": "\\left[ #1 \\right]",
           },
         },
       },

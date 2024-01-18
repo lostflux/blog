@@ -5,13 +5,12 @@
       :src="refinedSrc"
       :alt="alt"
       loading="lazy"
-    >
-      <caption
-        v-if="alt"
-        class="prose-img-alt"
-        v-html="alt"
-      />
-    </nuxtimg>
+    />
+    <caption
+      v-if="alt"
+      class="prose-img-alt"
+      v-html="alt"
+    />
   </figure>
 </template>
 
@@ -36,7 +35,9 @@ const props = defineProps({
     default: undefined,
   },
 })
-const refinedSrc = computed(() => withBase(props.src, useRoute().path))
+
+const route = useRoute()
+const refinedSrc = computed(() => withBase(props.src, route.path))
 </script>
 
 <style lang="sass" scoped>

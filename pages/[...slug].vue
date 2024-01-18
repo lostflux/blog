@@ -1,19 +1,21 @@
 <template>
   <ContentRenderer
-    v-if="page.body"
+    v-if="page?.body"
     :value="page"
   />
 </template>
 
 <script setup lang="ts">
+import { withoutTrailingSlash } from "ufo"
+
 const route = useRoute()
 
 definePageMeta({
   layout: "article",
 })
 
-const { data: page } = await useAsyncData(route.path, () => queryContent()
-  .where({ _path: route.path })
+const { data: page } = await useAsyncData(withoutTrailingSlash(route.path), () => queryContent()
+  .where({ _path: withoutTrailingSlash(route.path) })
   .findOne())
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })

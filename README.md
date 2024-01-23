@@ -1,6 +1,6 @@
 # amittai.space
 
-[![Screenshot](static/.misc/alt2.jpeg)](https://amittai.space)
+[![Screenshot](public/.misc/alt2.jpeg)](https://amittai.space)
 
 <div align="center">
 

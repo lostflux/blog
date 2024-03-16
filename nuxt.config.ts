@@ -61,13 +61,6 @@ export default defineNuxtConfig({
           href: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
         },
       ],
-      // script: [
-      //   {
-      //     type: "text/javascript",
-      //     id: "mapmyvisitors",
-      //     src: "//mapmyvisitors.com/map.js?d=rKdVFGlR7Hq6hLXnrXt6Y8-wYYEJ83h8K0fs6RIia7I&cl=ffffff&w=a",
-      //   },
-      // ],
     },
   },
   typescript: {
@@ -182,6 +175,12 @@ export default defineNuxtConfig({
       "2xl": 1536,
     },
     provider: "ipxStatic",
+
+    // provider: "cloudinary",
+    // cloudinary: {
+    //   // baseURL: process.env.CLOUDINARY_BASE_URL,
+    //   baseURL: "https://res.cloudinary.com/ddxpqn2jg/image/upload",
+    // },
   },
   pageViews: {
     credentials: {
@@ -195,10 +194,10 @@ export default defineNuxtConfig({
       client_email: "analytics-api@altair-on-the-web.iam.gserviceaccount.com",
       client_id: "103470861819219016250",
       auth_uri: "https://accounts.google.com/o/oauth2/auth",
-      token_uri: "https://oauth2.googleapis.com/token",
+      // token_uri: "https://oauth2.googleapis.com/token",
       auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
       client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/analytics-api%40altair-on-the-web.iam.gserviceaccount.com",
-      universe_domain: "googleapis.com",
+      // universe_domain: "googleapis.com",
     },
     // propertyId: "6505863097",
     propertyId: "421464525",

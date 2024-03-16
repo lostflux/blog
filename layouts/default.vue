@@ -7,6 +7,33 @@
   </div>
 </template>
 
+<script setup lang="ts">
+// reference to comments section for detecting when to show auth popup
+// const commentsSection = ref<HTMLElement | null>(null)
+
+const searchOpen = ref(false)
+const toggleSearch = () => {
+  searchOpen.value = !searchOpen.value
+}
+
+// if search is open and "esc" is pressed, close search
+onMounted(() => {
+  const closeSearch = (e: KeyboardEvent) => {
+    if (searchOpen && e.key === "Escape") {
+      toggleSearch()
+
+      // find .menu-button and remove .clicked
+      const btn = document.querySelector(".menu-button")
+      btn.classList.remove("clicked")
+    }
+  }
+  window.addEventListener("keydown", closeSearch)
+  return () => {
+    window.removeEventListener("keydown", closeSearch)
+  }
+})
+</script>
+
 <style lang="sass" scoped>
 @use "@/styles/colors"
 @use "@/styles/typography"

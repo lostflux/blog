@@ -1,8 +1,8 @@
 <template>
   <div id="root">
-    <AppHeader>
+    <!-- <AppHeader>
       <TableOfContents />
-    </AppHeader>
+    </AppHeader> -->
     <main class="article-main">
       <div class="left">
         <BlogTitle :key="`title-${route.path}`" />
@@ -12,14 +12,10 @@
           <div class="content-container">
             <slot id="content" />
           </div>
-          <div
-            class="bottom-items"
-          >
-            <!-- <template> -->
 
+          <div class="bottom-items">
             <BlogEditButton :key="`actions-${route.path}`" />
 
-            <!-- <InlineFlex class="archive-link"> -->
             <div class="page-foot-actions">
               <ProseA
                 class="archive-link"
@@ -29,10 +25,6 @@
               </ProseA>
               <Surround :key="`surround-${route.path}`" />
             </div>
-            <!-- </InlineFlex> -->
-            <!-- <div>
-            </div> -->
-            <!-- </template> -->
             <AppFooter identifier="in-page" />
             <SearchButton
               class="search-button"

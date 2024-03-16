@@ -36,8 +36,15 @@ const props = defineProps({
   },
 })
 
+// const refinedSrc = ref("")
+
 const route = useRoute()
-const refinedSrc = computed(() => withBase(props.src, route.path))
+const refinedSrc = withBase(props.src, route.path)
+
+// onMounted(() => {
+//   refinedSrc.value = withBase(props.src, route.path)
+// })
+
 </script>
 
 <style lang="sass" scoped>

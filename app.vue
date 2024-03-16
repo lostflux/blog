@@ -16,10 +16,6 @@ const { data: nav } = await useAsyncData("navigation", () => fetchContentNavigat
 const navigation = computed(() => nav.value)
 
 useHead({
-  meta: [
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-    { key: "theme-color", name: "theme-color", content: "#BD998F" },
-  ],
   htmlAttrs: {
     lang: "en",
   },

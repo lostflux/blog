@@ -37,7 +37,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "theme-color", content: "#f42e4f" },
+        { name: "theme-color", content: "#0A0A0A" },
         { property: "og:type", content: "article" },
         { property: "og:site_name", content: "amittai" },
         { property: "og:locale", content: "en_US" },

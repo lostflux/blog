@@ -97,6 +97,29 @@ export default defineNuxtConfig({
     vscode: {},
   },
   content: {
+    experimental: {
+      search: {
+        indexed: true,
+        // ignoredTags: ["style", "code"],
+        filterQuery: {
+          // _draft: !true,
+        },
+        options: {
+          fields: ["title", "titles", "description", "content"],
+          // store the page title
+          storeFields: ["title", "titles", "description", "content", "slug", "dir"],
+          searchOptions: {
+            prefix: true,
+            fuzzy: 0.2,
+            boost: {
+              title: 4,
+              description: 3,
+              content: 2,
+            },
+          },
+        },
+      },
+    },
     sources: {
       blog: contentSource,
     },

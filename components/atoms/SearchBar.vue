@@ -29,6 +29,44 @@
               autofocus
             >
           </form>
+
+          <!-- <div
+            v-if="result2.length > 0"
+            class="blog-search-result-container"
+          >
+            <div
+              v-for="blog in result2"
+              class="blog-search-result"
+            >
+              <div class="blog-title">
+                <ProseA :to="blog.path">
+                  {{ "this is a title" }}
+                </ProseA>
+                <BlogViews :path="blog.path" />
+              </div>
+              <ul
+                v-for="blog in result2"
+                class="blog-sections-list"
+              >
+                <li
+                  v-for="section in blog.sections"
+                  :key="section.id"
+                  class="blog-section"
+                >
+                  <ProseA
+                    class="blog-section-title"
+                    :to="section.id"
+                  >
+                    {{ section.title }}
+                  </ProseA>
+                  <div>
+                    {{ section.match.join(", ") }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
           <div
             v-if="searchTerm.length > 0 && blogs.length > 0"
             class="blog-list-container"
@@ -62,10 +100,93 @@
 <script lang="ts" setup>
 import { withoutTrailingSlash } from "ufo"
 
+// import { defineMiniSearchOptions } from "@nuxt/content/dist/runtime/composables/search";
+
+interface SearchResultSection {
+  id: string
+  title: string
+  match: string[]
+}
+
+interface SearchResult {
+  path: string
+  title?: string
+  sections: SearchResultSection[]
+}
+
 const searchTerm = ref("")
 const result = ref(null)
 const textBar = ref<HTMLInputElement>(null)
 const blogs = ref([])
+
+const result2 = ref<SearchResult[]>([])
+
+// function to search content
+const search2 = async () => {
+  await searchContent(searchTerm).then((res) => {
+    // result2.value = []
+
+    console.log(`RES: ${JSON.stringify(res.value)}`)
+
+    const acc = new Map<string, SearchResultSection[]>()
+
+    // result2.value.
+    res.value.forEach((r: any) => {
+      console.log(`MATCH: ${JSON.stringify(r.match)}`)
+
+      const match = Object.keys(r.match)
+
+      console.log(`WORDS: ${JSON.stringify(match)}`)
+
+      const path = r.id.split("#")[0]
+      const { id, title } = r
+
+      const searchResultSection: SearchResultSection = { id, title, match }
+
+      if (acc.has(path)) {
+        acc.get(path).push(searchResultSection)
+      } else {
+        acc.set(path, [searchResultSection])
+      }
+
+      console.log(`
+        PATH: ${path}
+        TITLE: ${title}
+        ID: ${id}
+        MATCH: ${match}
+      `)
+    })
+
+    console.log(`ACC: ${JSON.stringify(acc)}`)
+
+    // build the final result
+    const searchResults: SearchResult[] = []
+
+    acc.forEach((sections, path) => {
+      searchResults.push({
+        path,
+        sections,
+      })
+    })
+
+    // for (const [path, sections] of acc) {
+    //   searchResults.push({
+    //     path,
+    //     sections,
+    //   })
+    // }
+
+    result2.value = searchResults
+
+    // concat all the 'match' keys into a single string
+
+    // console.log(`RES: ${JSON.stringify(res.value)}`)
+    // result2.value = Array.from(res.value)
+    // console.log(`RES: ${JSON.stringify(result2)}`)
+  })
+}
+
+watch(searchTerm, search2)
 
 const siteSearch = ref<HTMLElement>(null)
 const siteSearchBackground = ref<HTMLElement>(null)
@@ -104,6 +225,24 @@ watch(searchTerm, searchFun)
 @use "@/styles/colors"
 @use "@/styles/typography"
 @use "@/styles/mixins"
+
+.blog-search-result-container
+  display: flex
+  flex-direction: column
+  gap: 1em
+
+  *
+    line-height: 2
+
+  .blog-search-result
+    border: 1px solid colors.color(light-background)
+    padding: 1em 0
+
+  .blog-title
+    // font-size: 1.5rem
+    font-weight: 600
+    color: colors.color(lightest-foreground)
+    text-transform: capitalize
 
 .site-search-background
   position: fixed

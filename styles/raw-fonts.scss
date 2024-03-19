@@ -1197,5 +1197,86 @@ explicitly, e.g.
   src: url('@/assets/fonts/Geist.Mono/GeistMonoVariable.woff2') format('truetype');
 }
 
-// @debug('fonts loaded');
+// X
+// variable font
+@font-face {
+  font-family: 'X';
+  font-style: normal;
+  font-weight: 100-900;
+  font-display: swap;
+  src: url('@/assets/fonts/X/X.woff2') format('truetype');
+}
+
+// @font-face {
+//   font-family: 'X';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+//   src: url('@/assets/fonts/X/X-Regular.woff2') format('truetype');
+// }
+
+// @font-face {
+//   font-family: 'X';
+//   font-style: normal;
+//   font-weight: 500;
+//   font-display: swap;
+//   src: url('@/assets/fonts/X/X-Medium.woff2') format('truetype');
+// }
+
+
+// Neue Montreal
+
+// thin
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Thin.otf') format('truetype');
+}
+
+// Regular
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Regular.otf') format('truetype');
+}
+
+// Regular Italic
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Italic.otf') format('truetype');
+}
+
+
+// Medium
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Medium.otf') format('truetype');
+}
+
+// SemiBold Italic
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-SemiBolditalic.otf') format('truetype');
+}
+// Bold
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Bold.otf') format('truetype');
+}
 

@@ -146,7 +146,7 @@ watch(searchTerm, searchFun)
     align-self: center
     padding-right: 50px
     color: colors.color(foreground)
-    font-family: typography.font("sans-serif")
+    font-family: typography.font("sans-serif"), sans-serif
     padding: 0
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2)
     text-transform: lowercase

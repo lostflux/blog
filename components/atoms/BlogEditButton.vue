@@ -13,6 +13,7 @@
       :to="repoLink"
       class="edit-button"
       fancy
+      bare
       external
     >
       View on GitHub
@@ -21,7 +22,7 @@
       :to="editLink"
       class="edit-button"
       fancy
-      uppercase
+      bare
       external
     >
       Edit
@@ -59,13 +60,6 @@ export default {
     justify-content: flex-end
     align-items: center
     font-weight: 500
-    text-transform: uppercase
-
-    & > span
-      border-bottom: 2px dotted
-
-    &:hover
-      & > span
-        border-bottom: 2px solid
-
+    // text-transform: uppercase
+    text-transform: lowercase
 </style>

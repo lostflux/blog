@@ -20,6 +20,7 @@
               <ProseA
                 class="archive-link"
                 to="/"
+                bare
               >
                 open the archive
               </ProseA>
@@ -84,8 +85,8 @@ onMounted(() => {
   margin-top: 0
 
 .archive-link
-  // margin-top: auto
-  text-transform: uppercase
+  // text-transform: uppercase
+  text-transform: lowercase
 
 .article-blog-navigation
   position: sticky

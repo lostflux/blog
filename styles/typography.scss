@@ -24,7 +24,6 @@ $fonts-map: (
   // "sans-serif": "Cohere Regular",
   // "sans-serif": "Graphik",
   // "sans-serif": "Geist",
-  // "sans-serif": "X",
   "sans-serif": "Neue Montreal",
   // "sans-serif": "DM Sans",
   // "sans-serif": "Brandon Grotesk",
@@ -58,27 +57,27 @@ $fonts-map: (
   "headings": "Antique Olive",
 );
 
-// $font-sizes: (
-//   "xxs": 11px,
-//   "xs": 12px,
-//   "s": 13px,
-//   "m": 14px,
-//   "l": 16px,
-//   "xl": 19px,
-//   "xxl": 21px,
-//   "heading": clamp(21px, 5vw, 35px),
-//   "big-heading": 80px
-// );
-
 $font-sizes: (
   "xxs": 11px,
-  "xs": 13px,
-  "s": 14px,
-  // "m": 14px,o
-  "m": 15px,
-  "l": 17px,
+  "xs": 12px,
+  "s": 13px,
+  "m": 14px,
+  "l": 16px,
   "xl": 19px,
   "xxl": 21px,
   "heading": clamp(21px, 5vw, 35px),
   "big-heading": 80px
 );
+
+// $font-sizes: (
+//   "xxs": 11px,
+//   "xs": 13px,
+//   "s": 14px,
+//   // "m": 14px,o
+//   "m": 15px,
+//   "l": 17px,
+//   "xl": 19px,
+//   "xxl": 21px,
+//   "heading": clamp(21px, 5vw, 35px),
+//   "big-heading": 80px
+// );

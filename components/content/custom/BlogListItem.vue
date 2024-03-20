@@ -18,7 +18,7 @@
     <ProseA
       class="blog-list-item-title"
       :href="blog._path"
-      fancy
+      bare
       uppercase
     >
       {{ title }}
@@ -120,8 +120,11 @@ const description = props.blog.description
     width: 80%
     overflow: hidden
     text-overflow: ellipsis
-    text-transform: uppercase
+    // text-transform: uppercase
+    font-weight: 600
+    text-transform: lowercase
     font-size: typography.font-size(m)
+
     @media screen and (min-width: 800px)
       font-size: typography.font-size(l)
 

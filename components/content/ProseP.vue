@@ -11,7 +11,7 @@
 @use "@/styles/mixins"
 
 .prose-p
-  font-family: typography.font("sans-serif")
+  font-family: typography.font("sans-serif"), sans-serif
   // margin-bottom: 1em
   line-height: 24px
 

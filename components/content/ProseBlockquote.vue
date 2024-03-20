@@ -10,6 +10,7 @@
         :href="link"
         class="name"
         fancy
+        bare
       >
         {{ name }}
       </ProseA>

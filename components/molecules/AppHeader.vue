@@ -337,7 +337,7 @@ const headerRef = ref(null)
 
   .toc-link-1
     color: colors.color("lightest-foreground") !important
-    font-family: typography.font("sans-serif") !important
+    font-family: typography.font("sans-serif"), sans-serif !important
     font-size: typography.font-size("m") !important
 
     font-weight: 400 !important

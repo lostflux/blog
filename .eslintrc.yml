@@ -42,14 +42,18 @@ rules:
   semi:
     - error
     - never
+
   no-extra-semi: error
+
   import/extensions: off
+  import/no-extraneous-dependencies: warn
+  import/first: off
+  import/no-unresolved: warn
+
   no-debugger: warn
   no-alert: warn
   vue/no-multiple-template-root: error
   vue/no-v-html: off
-  # import/no-extraneous-dependencies: warn
-  import/first: off
 
   max-len:
     - error

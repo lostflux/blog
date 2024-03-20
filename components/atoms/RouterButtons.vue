@@ -3,6 +3,7 @@
     <ProseA
       class="error-page-button"
       fancy
+      bare
       forced
       @click="$router.back()"
     >
@@ -12,6 +13,7 @@
       class="error-page-button"
       href="/"
       fancy
+      bare
     >
       <span>home</span>
     </ProseA>

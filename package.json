@@ -17,7 +17,7 @@
     "@nuxt/content": "^2.12.1",
     "@nuxt/devtools": "^1.0.0",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/image": "latest",
+    "@nuxt/image": "^1.4.0",
     "@nuxt/types": "^2.17.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/style-resources": "^1.2.1",
@@ -31,10 +31,10 @@
     "eslint-plugin-vue": "^9.18.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.1",
     "nuxt-gtag": "^1.1.2",
-    "sass": "^1.69.5",
-    "sass-loader": "^13.3.2"
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1"
   },
   "dependencies": {
     "@nuxt/vite-builder": "^3.8.0",

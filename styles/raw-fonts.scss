@@ -1267,7 +1267,7 @@ explicitly, e.g.
 @font-face {
   font-family: 'Neue Montreal';
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   font-display: swap;
   src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-SemiBolditalic.otf') format('truetype');
 }
@@ -1275,8 +1275,7 @@ explicitly, e.g.
 @font-face {
   font-family: 'Neue Montreal';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   font-display: swap;
   src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Bold.otf') format('truetype');
 }
-

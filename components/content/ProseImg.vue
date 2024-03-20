@@ -6,16 +6,24 @@
       :alt="alt"
       loading="lazy"
     />
-    <caption
+    <!-- <caption
       v-if="alt"
       class="prose-img-alt"
       v-html="alt"
-    />
+    /> -->
+    <caption
+      v-if="alt"
+      class="prose-img-alt"
+    >
+      <ContentRenderer :value="parsedCaption" />
+    </caption>
   </figure>
 </template>
 
 <script setup lang="ts">
 import { withBase } from "ufo"
+
+import { parseMarkdown } from "#imports"
 
 const props = defineProps({
   src: {
@@ -36,15 +44,9 @@ const props = defineProps({
   },
 })
 
-// const refinedSrc = ref("")
-
 const route = useRoute()
 const refinedSrc = withBase(props.src, route.path)
-
-// onMounted(() => {
-//   refinedSrc.value = withBase(props.src, route.path)
-// })
-
+const parsedCaption = await parseMarkdown(props.alt)
 </script>
 
 <style lang="sass" scoped>
@@ -60,7 +62,6 @@ const refinedSrc = withBase(props.src, route.path)
   align-items: center
 
   font-size: typography.font-size(s)
-  color: colors.color(lightest-foreground)
 
   .prose-img
     max-width: 100%
@@ -71,4 +72,5 @@ const refinedSrc = withBase(props.src, route.path)
   .prose-img-alt
     margin-top: 0.5rem
     text-align: center
+    color: colors.color(lightest-foreground)
 </style>

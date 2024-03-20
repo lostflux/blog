@@ -50,13 +50,17 @@ const generate = anchorLinks?.depth >= heading
   // font-size: typography.font-size(m)
   // font-weight: 500
   // color: colors.color(light-foreground)
-  margin: 2em 0 0.5em // 0.5em 0
+  // margin: 2em 0 0.5em // 0.5em 0
   // padding: 0
   // line-height: 0.9em
+  margin-top: 3em
   font-size: typography.font-size(l)
-  font-weight: 400
+  font-weight: 500
 
-  // &::before
-  //   // right arrow -> as content
-    // content: "\2192   "
+  text-transform: lowercase
+
+  &::before
+    // right arrow -> as content
+    content: "\2192  "
+
 </style>

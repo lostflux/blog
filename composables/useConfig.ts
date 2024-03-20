@@ -20,8 +20,8 @@ const social = [
 ]
 
 const profile = {
-  name: "Amittai Siavava",
-  title: "Software Engineer, Et Cetera",
+  name: "alt.",
+  title: "precarious writer",
 }
 
 const navHeight = 40 // px

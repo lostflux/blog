@@ -11,7 +11,7 @@
           <ProseA
             href="https://amittai.studio"
             class="bio-name"
-            fancy
+            bare
           >
             {{ profile.name }}
           </ProseA>
@@ -89,7 +89,8 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
-  text-transform: uppercase
+  // text-transform: uppercase
+  text-transform: lowercase
   flex-grow: 0
   font-size: typography.font-size("m")
 
@@ -98,21 +99,30 @@ export default {
     font-size: typography.font-size("m")
 
   .bio-name
-    font-size: typography.font-size(l)
-    color: colors.color(lightest-foreground)
+    // font-size: typography.font-size(l)
+    // color: colors.color(lightest-foreground)
+    // font-weight: 600
+    // font-size: 20px
+    font-weight: 600
+    letter-spacing: -1.2px
+    margin: 0
+    font-size: 30px
+    text-transform: lowercase
 
   .bio-title
     font-size: typography.font-size(s)
+    text-transform: lowercase
 
 .table-of-contents
   position: fixed
 
-  top: 50vh
+  // top: 50vh
+  top: max(50%, min(65%, 750px))
 
   @media screen and (max-width: 1150px)
     display: none
 
-  @media screen and (max-height: 1000px)
+  @media screen and (max-height: 1200px)
     display: none
 
 .blog-title-container
@@ -120,7 +130,6 @@ export default {
   overflow: hidden
   margin: 0
   padding: 0
-  //margin-bottom: 1em
   margin-right: 70px
   position: relative
 
@@ -138,12 +147,14 @@ export default {
       margin-bottom: 1em
 
       .title-heading
-        font-size: typography.font-size("l")
-        text-transform: uppercase
-        font-weight: 400
+        font-size: typography.font-size("xl")
+        // font-size: 1.1em
+        // text-transform: uppercase
+        text-transform: lowercase
+        font-weight: 600
 
         @media screen and (max-width: 800px)
-          font-size: typography.font-size("m")
+          font-size: typography.font-size("l")
 
       .title-description
         font-size: clamp(1rem, 1.8vw, 1.5rem)
@@ -187,7 +198,7 @@ export default {
         .blog-action-count
           height: 100%
           padding-left: 0.3rem
-          font-family: typography.font(sans-serif)
+          font-family: typography.font(sans-serif), sans-serif
           font-size: typography.font-size(xs)
           font-weight: 600
 

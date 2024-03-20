@@ -175,13 +175,7 @@ export default defineNuxtConfig({
       xxl: 1536,
       "2xl": 1536,
     },
-    provider: "ipxStatic",
-
-    // provider: "cloudinary",
-    // cloudinary: {
-    //   // baseURL: process.env.CLOUDINARY_BASE_URL,
-    //   baseURL: "https://res.cloudinary.com/ddxpqn2jg/image/upload",
-    // },
+    provider: "ipx",
   },
   gtag: {
     id: "G-1GPPT1CS3Z",

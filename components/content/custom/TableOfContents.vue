@@ -220,9 +220,13 @@ const toc = page?.value?.body?.toc
       padding-left: 1em
       font-size: typography.font-size("xs")
 
+      // max-width 50ch. If overflow, show ellipsis
+      max-width: 20ch
+
     &.level-2
       padding-left: 2em
       font-size: typography.font-size("xs")
+      max-width: 20ch
 
     &.active
       color: colors.color(lightest-foreground)

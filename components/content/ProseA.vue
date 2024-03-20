@@ -24,6 +24,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  bare: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -37,7 +41,11 @@ defineProps({
   >
     <NuxtLink
       :href="to || href"
-      :class="{'link': true, 'arrow': fancy}"
+      :class="{
+        'link': true,
+        'underline': !bare,
+        'arrow': fancy
+      }"
       :target="external ? '_blank' : ''"
     >
       <span class="link-text">
@@ -80,19 +88,30 @@ defineProps({
 
   .link
     color: colors.color(lightest-foreground)
-    border-bottom: 1px transparent
     margin: 0
     padding: 0
     line-height: 0.9em
     display: inline
 
-    border-bottom: 1px solid transparent
+    .link-text
+      font-family: typography.font("sans-serif"), sans-serif !important
 
     &:not(:last-child)
       margin-right: 3px
 
-    &:hover > span
-      border-bottom: 1px solid
+    &.underline:not(.router-link-active)
+
+      & > span
+        border-bottom: 1px dashed rgba(colors.color(lightest-foreground), 0.7)
+
+      &:hover > span
+        border-bottom: 1px solid
+
+    &.router-link-active
+      color: colors.color(yellow)
+
+      *
+        font-size: 11px !important
 
   .pointer
     height: 1em

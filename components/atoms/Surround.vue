@@ -12,6 +12,7 @@
         :key="i"
         :href="link._path"
         class="surround-link"
+        bare
       >
         {{ i == 0 ? "previous" : "next" }}
       </ProseA>
@@ -23,6 +24,7 @@
         <ProseA
           :key="i"
           class="surround-link"
+          bare
         >
           {{ i == 0 ? "previous" : "next" }}
         </ProseA>
@@ -66,6 +68,7 @@ export default {
   width: 30%
 
   .surround-link
-    text-transform: uppercase
+    // text-transform: uppercase
+    text-transform: lowercase
 
 </style>

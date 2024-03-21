@@ -107,12 +107,6 @@ defineProps({
       &:hover > span
         border-bottom: 1px solid
 
-    &.router-link-active
-      color: colors.color(yellow)
-
-      *
-        font-size: 11px !important
-
   .pointer
     height: 1em
     aspect-ratio: 1/1 !important

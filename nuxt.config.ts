@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "alt",
+      title: "alt.",
       htmlAttrs: {
         lang: "en",
       },

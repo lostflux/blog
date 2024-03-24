@@ -59,7 +59,7 @@ const generate = anchorLinks?.depth >= heading
   font-size: 1.1em
 
   // font-weight: 400
-  // text-transform: uppercase
   font-weight: 600
   text-transform: lowercase
+  // text-transform: uppercase
 </style>

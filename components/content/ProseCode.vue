@@ -100,14 +100,16 @@ export default {
 @use "@/styles/typography"
 
 .code-container
-  background: rgba(colors.color(light-background), 0.2)
+  background: rgba(colors.color(light-background), 0.3)
   position: relative
   margin: 1rem 0
   padding: 0.5rem
   padding-top: 0
   border-radius: 0.3rem
-  font-size: typography.font-size("m")
+  font-size: 14px // typography.font-size("m")
   min-width: 100%
+
+  border: 1px solid transparent // colors.color(light-background)
 
   counter-reset: line
 
@@ -133,18 +135,19 @@ export default {
           display: none
 
         code
-          font-family: typography.font("monospace")
-          font-size: typography.font-size("xs")
-          line-height: 1.7rem
           display: flex
           flex-direction: column
+
+          font-family: typography.font("monospace"), monospace
+          font-size: typography.font-size("xs")
+          line-height: 2em
 
           & > span
             counter-increment: line
             min-width: 100%
 
             &.highlight
-              background-color: rgba(colors.color("lightest-background"), 0.5)
+              background-color: rgba(colors.color("lightest-background"), 0.3)
               padding-right: 1rem
 
               &::before
@@ -163,7 +166,7 @@ export default {
               border-right: 1px solid lighten(colors.color(lightest-background), 10%)
 
             &:hover
-              background-color: rgba(colors.color("lightest-background"), 0.7)
+              background-color: rgba(colors.color("lightest-background"), 0.5)
 
               &::before
                 display: inline-block

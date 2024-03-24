@@ -60,7 +60,7 @@ export default {
       font-weight: 600
       text-transform: uppercase
       letter-spacing: 0.1rem
-      text-shadow: 0 0 0.5rem rgba(colors.color(primary-highlight), 0.5)
+      // text-shadow: 0 0 0.5rem rgba(colors.color(primary-highlight), 0.5)
 
     & > span, p
       transition: inherit

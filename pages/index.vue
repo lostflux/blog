@@ -16,7 +16,7 @@ if (!page.value) {
 
 useHead({
   titleTemplate: "",
-  title: "alt",
+  title: "alt.",
   meta: [
     {
       hid: "description",
@@ -31,25 +31,18 @@ useHead({
     {
       hid: "og:title",
       name: "og:title",
-      content: "alt",
+      content: "alt.",
     },
   ],
 })
 
 useSeoMeta({
   titleTemplate: "",
-  title: "alt",
-  ogTitle: "alt",
+  title: "alt.",
+  ogTitle: "alt.",
   description: page.value?.description || page.value.excerpt || "",
   ogDescription: page.value?.description || page.value.excerpt || "",
 })
 
 provide("page", page)
-
-// const { gtag } = useGtag()
-
-// gtag("event", "page_view", {
-//   app_name: "amittai.studio",
-//   screen_name: withoutTrailingSlash(route.path)
-// })
 </script>

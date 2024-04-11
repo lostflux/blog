@@ -54,12 +54,13 @@ const generate = anchorLinks?.depth >= heading
   // color: colors.color(lightest-foreground)
   margin: 2em 0 2em 0
   // padding: 0
-  // line-height: 0.9em
+  line-height: 0.9em
   // font-size: typography.font-size(l)
-  font-size: 1.1em
+  // font-size: 1.1em
+  font-size: 0.9em
 
-  // font-weight: 400
-  font-weight: 600
-  text-transform: lowercase
-  // text-transform: uppercase
+  font-weight: 400
+  // font-weight: 600
+  // text-transform: lowercase
+  text-transform: uppercase
 </style>

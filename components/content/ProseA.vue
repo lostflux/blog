@@ -104,8 +104,12 @@ defineProps({
       & > span
         border-bottom: 1px dashed rgba(colors.color(lightest-foreground), 0.7)
 
-      &:hover > span
-        border-bottom: 1px solid
+      &:hover
+        & > span
+          border-bottom: 1px solid
+
+  &:hover > .pointer
+    transform: translate(3px, -3px)
 
   .pointer
     height: 1em
@@ -113,6 +117,7 @@ defineProps({
     display: inline
     width: 1em
     fill: currentcolor
+    transition: transform 0.2s ease-in-out
 
   &.inactive
 

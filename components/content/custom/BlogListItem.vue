@@ -120,9 +120,9 @@ const description = props.blog.description
     width: 80%
     overflow: hidden
     text-overflow: ellipsis
-    // text-transform: uppercase
-    font-weight: 600
-    text-transform: lowercase
+    text-transform: uppercase
+    font-weight: 500
+    // text-transform: lowercase
     font-size: typography.font-size(m)
 
     @media screen and (min-width: 800px)

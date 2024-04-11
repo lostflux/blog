@@ -149,8 +149,8 @@ export default {
       .title-heading
         font-size: typography.font-size("xl")
         // font-size: 1.1em
-        // text-transform: uppercase
-        text-transform: lowercase
+        text-transform: uppercase
+        // text-transform: lowercase
         font-weight: 600
 
         @media screen and (max-width: 800px)

@@ -6,6 +6,6 @@
 
 <style lang="sass" scoped>
 
-.prose-li
-  line-height: inherit !important
+// .prose-li
+//   line-height: inherit !important
 </style>

@@ -11,7 +11,7 @@
 @use "@/styles/mixins"
 
 .prose-p
-  font-family: typography.font("sans-serif"), sans-serif
+  // font-family: typography.font("serif"), sans-serif
   // margin-bottom: 1em
   // line-height: 24px
 
@@ -31,7 +31,7 @@
     text-indent: 1.5em
 
     // but if immediately following a .prose-hr, don't indent
-  :is(.prose-hr, .prose-title-wrapper) + &
+  :is(.prose-hr, .prose-title-wrapper, .katex) + &
     text-indent: 0
 
   // if pred is a .prose-p, remove bottom margin
@@ -43,5 +43,4 @@
   // & + .prose-ol
   //   text-indent: 0
 
-    
 </style>

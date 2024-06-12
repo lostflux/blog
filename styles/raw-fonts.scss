@@ -1279,3 +1279,118 @@ explicitly, e.g.
   font-display: swap;
   src: url('@/assets/fonts/NeueMontreal/PPNeueMontreal-Bold.otf') format('truetype');
 }
+
+
+
+
+
+// newsreader
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200-900;
+  font-display: swap;
+  src: url('@/assets/fonts/Newsreader/Newsreader-Variable.ttf') format('truetype');
+}
+
+
+// newsreader italic
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200-900;
+  font-display: swap;
+  src: url('@/assets/fonts/Newsreader/Newsreader-Italic-Variable.ttf') format('truetype');
+}
+
+
+/////// PLANTIN FONT ///////
+
+// plantin light & light italic
+@font-face {
+  font-family: 'Plantin';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProLight.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Plantin';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProLightIt.TTF') format('truetype');
+}
+
+// plantin regular & regular italic
+@font-face {
+  font-family: 'Plantin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProRg.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Plantin';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProRgIt.TTF') format('truetype');
+}
+
+// plantin semi-bold & semi-bold italic
+@font-face {
+  font-family: 'Plantin';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProSmBd.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Plantin';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProSemiBdIt.TTF') format('truetype');
+}
+
+// plantin bold & bold italic
+@font-face {
+  font-family: 'Plantin';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProBold.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Plantin';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/Plantin/PlantinMTProBolddIt.TTF') format('truetype');
+}
+
+
+///// LORA FONT /////
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+///// BASKERVILLE FONT /////
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap');
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Linden+Hill:ital@0;1&display=swap');

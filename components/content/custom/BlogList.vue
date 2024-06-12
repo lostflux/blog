@@ -52,6 +52,7 @@ const years = [...new Set(_years)]
   color: colors.color(lightest-foreground)
   align-self: flex-start
   gap: 0
+  font-family: typography.font("sans-serif")
 
   @media (max-width: 640px)
     font-size: typography.font-size(xs)

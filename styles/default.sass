@@ -72,6 +72,16 @@ html
     border: 3px solid
 
 
+:root
+  --background-color: black
+  --foreground-color: orange // colors.color("lightest-foreground")
+
+  @media (prefers-color-scheme: dark)
+    --background-color: yellow // colors.color("background")
+    --foreground-color: red // colors.color("foreground")
+
+
+
 
 body
   /////// INITIALIZE COUNTERS
@@ -82,10 +92,13 @@ body
   min-width: 100vw
   overflow-x: scroll //hidden
   height: fit-content
-  -moz-osx-font-smoothing: grayscale
-  -webkit-font-smoothing: antialiased
-  background-color: colors.color("background")
+  // -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: auto //subpixel-antialiased
+  font-smooth: auto
+
+  background: colors.color("background")
   color: colors.color("foreground")
+  // color: colors.color("foreground")
   font-family: typography.font("sans-serif")
   font-size: typography.font-size("xl")
   line-height: 1.7
@@ -173,3 +186,9 @@ img, svg, .image-wrapper
 sup, sub
   line-height: 0
   font-size: 11px !important
+
+div.content-container
+  font-family: typography.font("serif")
+
+  h1, h2, h3, h4, h5, h6
+    font-family: typography.font("sans-serif") !important

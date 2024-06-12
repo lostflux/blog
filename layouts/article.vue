@@ -137,7 +137,7 @@ description
 .content-container
   font-size: typography.font-size("l")
 
-  @media screen and (max-width: 720px)
-    font-size: typography.font-size("m")
+  // @media screen and (max-width: 720px)
+  //   font-size: typography.font-size("m")
 
 </style>

@@ -13,6 +13,8 @@
   // margin-left: 1em
   margin: 0 0 1em 0
 
+  // font-family: typography.font("serif"), sans-serif
+
   .prose-li
     position: relative
     padding-left: 0.7em

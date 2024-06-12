@@ -91,6 +91,7 @@ const description = props.blog.description
     margin-top: 0
     padding-top: 0
     max-width: 40ch
+    font-family: typography.font("serif")
 
     font-size: typography.font-size(m)
     @media screen and (min-width: 800px)

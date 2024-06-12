@@ -93,8 +93,8 @@ defineProps({
     line-height: 0.9em
     display: inline
 
-    .link-text
-      font-family: typography.font("sans-serif"), sans-serif !important
+    // .link-text
+    //  font-family: typography.font("sans-serif"), sans-serif !important
 
     &:not(:last-child)
       margin-right: 3px

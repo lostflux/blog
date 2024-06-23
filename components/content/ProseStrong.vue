@@ -6,6 +6,6 @@
 <style lang="sass" scoped>
 @use "@/styles/colors"
 .prose-strong
-  font-weight: 500
+  font-weight: 400
   color: colors.color(lightest-foreground)
 </style>
